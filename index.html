@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFE COMPLIANCE | Precision Estate Governance</title>
+    <style>
+        :root { 
+            --navy: #020617; --lime: #82bc00; 
+            --white: #ffffff; --text-gray: #94a3b8; 
+        }
+        
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: var(--navy); color: var(--white); 
+            margin: 0; padding: 0; line-height: 1.5; overflow-x: hidden;
+        }
+
+        .divider { border-bottom: 2px solid var(--lime); width: 100%; box-shadow: 0 0 15px rgba(130, 188, 0, 0.3); }
+
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 60px; background: var(--navy);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; color: var(--white); text-transform: uppercase; }
+        .logo span { color: var(--lime); }
+        .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 500; margin-left: 40px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        header, section { background: var(--navy) !important; }
+
+        /* HERO */
+        header { height: 80vh; display: flex; align-items: center; justify-content: flex-start; padding: 0 60px; }
+        .hero-inner { max-width: 1200px; width: 100%; }
+        h1 { font-weight: 900; text-transform: uppercase; margin: 0; line-height: 0.85; letter-spacing: -2px; }
+        .title-top { font-size: 6.2rem; display: block; } 
+        .title-bottom { font-size: 5.4rem; display: block; color: var(--lime); }
+        .hero-sub { font-size: 1.5rem; color: var(--text-gray); margin: 50px 0; max-width: 850px; }
+        
+        .btn-primary { 
+            background: var(--lime); color: var(--navy); padding: 22px 55px; 
+            font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+            text-decoration: none; display: inline-block; border-radius: 2px; transition: 0.3s;
+            border: none; cursor: pointer;
+        }
+
+        .section { padding: 100px 60px; }
+        .section-tight { padding: 60px 60px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        h2 { font-size: 3.5rem; text-transform: uppercase; font-weight: 900; margin-bottom: 30px; line-height: 0.9; }
+
+        .feature-box { background: rgba(255,255,255,0.02); padding: 45px; border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid var(--lime); }
+        .feature-box h3 { color: var(--lime); text-transform: uppercase; margin: 0; font-size: 1.4rem; }
+
+        .authority-bar { background: var(--white); color: var(--navy); padding: 50px; display: flex; justify-content: space-around; text-align: center; }
+        .auth-item strong { font-size: 2.8rem; display: block; line-height: 1; font-weight: 900; }
+        .auth-item span { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 800; opacity: 0.8; }
+
+        .module-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(255,255,255,0.1); }
+        .module-card { background: var(--navy); padding: 60px 40px; transition: all 0.4s ease; cursor: default; }
+        .module-card h3 { margin: 0 0 15px 0; font-size: 1.2rem; color: var(--lime); }
+        .module-card:hover { background: var(--lime); }
+        .module-card:hover h3, .module-card:hover p { color: var(--navy); font-weight: bold; }
+
+        .audit-form { background: rgba(255,255,255,0.02); padding: 40px; border: 1px solid var(--lime); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .audit-form input, .audit-form select { 
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid #333; 
+            color: white; padding: 10px; font-weight: 600; font-family: inherit; font-size: 0.85rem;
+        }
+        .full-width { grid-column: span 2; }
+        .audit-form select { border: 1px solid #333; height: 40px; margin-top: 5px; cursor: pointer; } 
+        label { font-size: 0.6rem; color: var(--lime); text-transform: uppercase; letter-spacing: 1px; font-weight: 900; }
+
+        /* FOOTER */
+        footer { background: #000; padding: 80px 60px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; align-items: flex-start; }
+        .footer-logo, .footer-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -1px; }
+        .footer-title { color: var(--white); }
+        .f-text { color: var(--text-gray); font-size: 0.95rem; line-height: 1.8; margin: 0; text-decoration: none; display: block; }
+        .f-link:hover { color: var(--lime); }
+        .copyright { font-size: 0.75rem; color: var(--white); margin-top: 20px; display: block; letter-spacing: 1px; opacity: 0.9; }
+
+        /* CHAT SYSTEM */
+        .chat-btn { position: fixed; bottom: 40px; right: 40px; background: var(--lime); color: var(--navy); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 10px 30px rgba(130, 188, 0, 0.4); cursor: pointer; z-index: 2000; }
+        .chat-window { position: fixed; bottom: 120px; right: 40px; width: 380px; height: 500px; background: var(--navy); border: 1px solid var(--lime); box-shadow: 0 20px 50px rgba(0,0,0,0.8); display: none; flex-direction: column; z-index: 3000; border-radius: 4px; }
+        .chat-header { background: var(--lime); color: var(--navy); padding: 15px; font-weight: 900; text-transform: uppercase; font-size: 0.75rem; display: flex; justify-content: space-between; }
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .message { max-width: 85%; padding: 12px; font-size: 0.85rem; border-radius: 2px; }
+        .bot-msg { background: rgba(130, 188, 0, 0.1); color: var(--white); border-left: 3px solid var(--lime); align-self: flex-start; }
+        .user-msg { background: #1e293b; color: var(--white); align-self: flex-end; border-right: 3px solid var(--text-gray); }
+        .chat-input-area { padding: 15px; border-top: 1px solid #1e293b; display: flex; gap: 8px; }
+        .chat-input-area input { flex: 1; background: transparent; border: 1px solid #333; color: white; padding: 10px; font-size: 0.85rem; outline: none; }
+        .chat-input-area button { background: var(--lime); border: none; padding: 0 15px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SAFE<span>COMPLIANCE</span></div>
+        <div class="nav-links">
+            <a href="#platform">Architecture</a>
+            <a href="#features">Capabilities</a>
+            <a href="#audit" style="color: var(--lime);">Execute Audit</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hero-inner">
+            <h1><span class="title-top">INTELLIGENCE-LED</span><span class="title-bottom">ESTATE GOVERNANCE.</span></h1>
+            <p class="hero-sub">The world’s most advanced digital Data Monitoring & Compliance ecosystem. We eliminate the blind spots that spreadsheets create.</p>
+            <a href="#audit" class="btn-primary">Deploy System</a>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <section class="section-tight" id="platform">
+        <div class="grid-2">
+            <div>
+                <h2>CENTRALISED <br><span style="color: var(--lime);">DOMINANCE.</span></h2>
+                <p style="font-size: 1.2rem; color: var(--text-gray);">Our platform is the "Single Source of Truth." We provide Real-Time Identification of potential risks.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 50px; font-family: monospace; color: var(--lime);">
+                >> SYSTEM STATUS: OPTIMIZED<br>>> SECURITY: AES-256 ACTIVE
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="features">
+        <h2 style="text-align: center; margin-bottom: 60px;">PLATFORM <span style="color: var(--lime);">WEAPONRY</span></h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+            <div class="feature-box"><h3>Advanced Analytics</h3><p>Generate high-density reports across your entire estate.</p></div>
+            <div class="feature-box"><h3>Secure Repository</h3><p>Centralised version-controlled documentation. Audit-ready 24/7.</p></div>
+            <div class="feature-box"><h3>Custom Intelligence</h3><p>Tailor assessments to your specific industrial requirements.</p></div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <div class="authority-bar">
+        <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
+        <div class="auth-item"><strong>24/7</strong><span>Real-Time Analysis</span></div>
+        <div class="auth-item"><strong>GLOBAL</strong><span>System Deployment</span></div>
+        <div class="auth-item"><strong>ISO</strong><span>9001 Standards</span></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section class="section" id="sectors">
+        <h2 style="text-align: center;">SPECIALIST <span style="color: var(--lime);">POWER MODULES</span></h2>
+        <div class="module-grid" style="margin-top: 60px;">
+            <div class="module-card"><h3>WATER HYGIENE</h3><p>Legionella tracking and digital temperature logging.</p></div>
+            <div class="module-card"><h3>FIRE, HEALTH & SAFETY</h3><p>Integrated emergency protocols and monitoring.</p></div>
+            <div class="module-card"><h3>ESTATE ASSETS</h3><p>Lifts, HVAC monitoring, and maintenance lifecycles.</p></div>
+            <div class="module-card"><h3>GOVERNANCE</h3><p>Expert support for ISO 9001 and SafeContractor.</p></div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="audit">
+        <div class="grid-2">
+            <div>
+                <h2>INITIATE <br><span style="color: var(--lime);">SYSTEM AUDIT.</span></h2>
+                <p>Our team will contact you within 24 hours.</p>
+            </div>
+            <form class="audit-form">
+                <input type="text" placeholder="FULL NAME" required>
+                <input type="text" placeholder="BUSINESS NAME" required>
+                <input type="email" placeholder="CORPORATE EMAIL" required>
+                <div class="full-width">
+                    <label>Primary Audit Focus:</label>
+                    <select>
+                        <option value="water">Water Hygiene (L8)</option>
+                        <option value="hs">Health & Safety</option>
+                        <option value="fire">Fire Safety</option>
+                        <option value="governance">Global Governance</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary full-width">EXECUTE TRANSITION</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">SAFE<span style="color:var(--lime)">COMPLIANCE</span></div>
+                <p class="f-text" style="max-width: 400px;">The intelligence layer for modern estate governance. Delivering visible reassurance through data integrity Globally.</p>
+                <span class="copyright">© 2026 SAFE COMPLIANCE GROUP. ALL RIGHTS RESERVED.</span>
+            </div>
+            <div>
+                <div class="footer-title">GLOBAL</div>
+                <div class="f-text">71-75 Shelton Street<br>Covent Garden<br>London, WC2H 9JQ</div>
+            </div>
+            <div>
+                <div class="footer-title">CONTROL</div>
+                <div class="f-text">
+                    <a href="#" class="f-text f-link">Privacy Policy</a>
+                    <a href="#" class="f-text f-link">Data Governance</a>
+                    <a href="tel:03300432153" class="f-text f-link">0330 0432153</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chat-btn" onclick="toggleChat()">💬</div>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header"><span>System Intelligence Active</span><span style="cursor:pointer" onclick="toggleChat()">×</span></div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-msg">System Online. How can I assist with your estate compliance architecture today?</div>
+        </div>
+        <form class="chat-input-area" id="chatForm">
+            <input type="text" id="chatInput" placeholder="Command..." autocomplete="off">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+        // DATA KNOWLEDGE BASE
+        const SAFE_DATA = {
+            "water": "Our Water Hygiene module covers ACoP L8 compliance, real-time temperature telemetry, and digital Legionella logbooks.",
+            "fire": "We automate Fire Risk Assessments (RRO) and track maintenance for alarms, extinguishers, and emergency lighting.",
+            "price": "Pricing is custom-scaled based on your estate's square footage and required modules. Submit an 'Audit Request' for a quote.",
+            "audit": "A System Audit involves a full gap analysis of your current data vs. ISO 9001 standards. We usually complete this in 48 hours.",
+            "contact": "You can reach our compliance desk at 0330 0432153 or visit our London HQ in Covent Garden.",
+            "default": "I've logged that query. To provide a technical breakdown, I recommend initiating a System Audit via the form on this page."
+        };
+
+        function toggleChat() {
+            const chat = document.getElementById('chatWindow');
+            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        document.getElementById('chatForm').onsubmit = (e) => {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const msgs = document.getElementById('chatMessages');
+            if(!input.value.trim()) return;
+
+            const userVal = input.value.toLowerCase();
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user-msg';
+            userMsg.textContent = input.value;
+            msgs.appendChild(userMsg);
+            input.value = '';
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot-msg';
+                
+                // DATA LOOKUP LOGIC
+                let response = SAFE_DATA.default;
+                for(let key in SAFE_DATA) {
+                    if(userVal.includes(key)) response = SAFE_DATA[key];
+                }
+                
+                botMsg.textContent = response;
+                msgs.appendChild(botMsg);
+                msgs.scrollTop = msgs.scrollHeight;
+            }, 600);
+            msgs.scrollTop = msgs.scrollHeight;
+        };
+    </script>
+</body>
+</html>
