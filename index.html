@@ -574,23 +574,42 @@
 </style>
         
 <div id="privacyModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); z-index: 10000; backdrop-filter: blur(15px);">
-    <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 650px; background: #010409; border: 1px solid #82bc00; border-radius: 4px; overflow: hidden; height: 85vh; display: flex; flex-direction: column;">
-        <div style="background: #82bc00; color: #020617; padding: 20px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
-            <span style="font-size: 0.8rem; letter-spacing: 1px;">DATA PRIVACY PROTOCOL</span>
-            <span onclick="closePrivacy()" style="cursor: pointer; font-size: 1.8rem; line-height: 1;">&times;</span>
+    <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 95%; max-width: 600px; background: #010409; border: 1px solid #82bc00; border-radius: 4px; overflow: hidden; height: 70vh; display: flex; flex-direction: column;">
+        
+        <div style="background: #82bc00; color: #020617; padding: 15px 20px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+            <span style="font-size: 0.75rem; letter-spacing: 1px;">DATA PRIVACY PROTOCOL</span>
+            <span onclick="closePrivacy()" style="cursor: pointer; font-size: 1.5rem; line-height: 1;">&times;</span>
         </div>
-        <div style="padding: 40px; overflow-y: scroll; flex-grow: 1; color: #f8fafc;">
-            <div style="margin-bottom: 30px;">
-                <h3 style="color: #82bc00; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px;">01 // Encryption Standards</h3>
-                <p style="color: #94a3b8; line-height: 1.7;">Every data packet is processed using AES-256 military-grade encryption. We operate on a 'Need-to-Know' basis, where estate telemetry is siloed and accessible only via authenticated sessions.</p>
+
+        <div style="padding: 30px; overflow-y: scroll; flex-grow: 1; color: #f8fafc; scrollbar-width: thin; scrollbar-color: #82bc00 #010409;">
+            
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: #82bc00; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 900;">01 // Zero-Knowledge Architecture</h3>
+                <p style="color: #94a3b8; line-height: 1.5; font-size: 0.9rem; margin: 0;">We employ a Zero-Knowledge framework. All estate telemetry is encrypted at the source using AES-256 standards, ensuring that sensitive data is accessible only by authorized client personnel—never by third-party providers.</p>
             </div>
-            <div style="margin-bottom: 30px;">
-                <h3 style="color: #82bc00; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px;">02 // UK Data Sovereignty</h3>
-                <p style="color: #94a3b8; line-height: 1.7;">Safe Compliance operates strictly under UK Data Protection laws. No metadata or estate analytics are stored outside of Tier-3 UK Data Centers.</p>
+
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: #82bc00; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 900;">02 // TLS 1.3 Transport Security</h3>
+                <p style="color: #94a3b8; line-height: 1.5; font-size: 0.9rem; margin: 0;">Data in transit utilizes TLS 1.3 protocols, providing an additional layer of protection against interception during the transmission of high-frequency statutory compliance telemetry.</p>
             </div>
-            <div style="margin-bottom: 30px;">
-                <h3 style="color: #82bc00; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px;">03 // Zero-Third-Party Policy</h3>
-                <p style="color: #94a3b8; line-height: 1.7;">We do not share, sell, or provide access to your estate governance data to any third-party marketing or analytics firms. Your data is your property.</p>
+
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: #82bc00; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 900;">03 // Data Minimisation Protocol</h3>
+                <p style="color: #94a3b8; line-height: 1.5; font-size: 0.9rem; margin: 0;">We only process data points essential for statutory safety compliance. No third-party tracking, behavioral analytics, or metadata-harvesting protocols are active within the Safe Compliance ecosystem.</p>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: #82bc00; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 900;">04 // Biometric Authentication</h3>
+                <p style="color: #94a3b8; line-height: 1.5; font-size: 0.9rem; margin: 0;">Access to the privacy ledger is gated by hardware-token or biometric authentication, preventing unauthorized access even in the event of credential compromise.</p>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <h3 style="color: #82bc00; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 900;">05 // Sovereign Processing</h3>
+                <p style="color: #94a3b8; line-height: 1.5; font-size: 0.9rem; margin: 0;">Unlike standard SaaS platforms, our processing nodes are logically isolated. Your estate analytics never leave the UK jurisdiction, maintaining strict adherence to DPA 2018 standards.</p>
+            </div>
+
+            <div style="padding: 15px; border: 1px solid rgba(130, 188, 0, 0.3); color: #82bc00; font-size: 0.65rem; font-weight: 900; text-align: center; letter-spacing: 1px;">
+                ENCRYPTION TIER: MILITARY-GRADE // REGION: UK-SOVEREIGN
             </div>
         </div>
     </div>
