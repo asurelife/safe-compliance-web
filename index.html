@@ -700,31 +700,23 @@
     };
 
     // --- PRIVACY MODAL LOGIC (ADD THIS) ---
-    function openPrivacy(e) {
-        if (e) e.preventDefault(); 
-        const modal = document.getElementById('privacyModal');
-        if (modal) {
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; 
-        }
-    }
+function openPrivacy() {
+    document.getElementById('privacyModal').style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent scrolling background
+}
 
-    function closePrivacy() {
-        const modal = document.getElementById('privacyModal');
-        if (modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; 
-        }
-    }
+function closePrivacy() {
+    document.getElementById('privacyModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+}
 
-    // Close if user clicks outside the box
-    window.onclick = function(event) {
-        let modal = document.getElementById('privacyModal');
-        let chat = document.getElementById('chatWindow');
-        if (event.target == modal) {
-            closePrivacy();
-        }
+// Close if user clicks outside the box
+window.onclick = function(event) {
+    let modal = document.getElementById('privacyModal');
+    if (event.target == modal) {
+        closePrivacy();
     }
+}
 </script>
 </body>
 </html>
