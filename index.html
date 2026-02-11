@@ -639,7 +639,7 @@
             <p style="color:var(--text-gray); font-size:0.9rem; max-width:350px; margin: 25px 0;">
                 The intelligence layer for complex estate governance and precision compliance management.
             </p>
-            <p style="font-size: 0.75rem; color: #F1F5F99; letter-spacing: 1px;">
+            <p style="font-size: 0.75rem; color: #F1F5F9; letter-spacing: 1px;">
                 © 2026 SAFE COMPLIANCE.<br>
             </p>
         </div>
@@ -758,51 +758,35 @@
         }, 600);
     };
 
-// --- MODAL LOGIC FOR PRIVACY ---
+// Function for Privacy Link
 function openPrivacy(e) {
-    if (e) e.preventDefault(); 
+    if (e) e.preventDefault();
     const modal = document.getElementById('privacyModal');
     if (modal) {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-    } else {
-        alert("System Error: Privacy Modal HTML is missing.");
     }
 }
 
-function closePrivacy() {
-    document.getElementById('privacyModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// --- MODAL LOGIC FOR DATA GOVERNANCE ---
+// Function for Governance Link
 function openGovernance(e) {
-    if (e) e.preventDefault(); 
+    if (e) e.preventDefault();
     const modal = document.getElementById('governanceModal');
     if (modal) {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-    } else {
-        alert("System Error: Governance Modal HTML is missing.");
     }
 }
 
-function closeGovernance() {
-    document.getElementById('governanceModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
+// Global Close Functions
+function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+function closeGovernance() { document.getElementById('governanceModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-// --- GLOBAL CLICK HANDLER ---
-// This handles closing BOTH modals if you click the dark background
+// Global background click closer
 window.onclick = function(event) {
-    const privModal = document.getElementById('privacyModal');
-    const govModal = document.getElementById('governanceModal');
-    
-    if (event.target == privModal) {
-        closePrivacy();
-    }
-    if (event.target == govModal) {
-        closeGovernance();
+    if (event.target.classList.contains('modal-overlay')) {
+        event.target.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 }
 </script>
