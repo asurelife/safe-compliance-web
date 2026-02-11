@@ -47,79 +47,84 @@
         box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
 
-    .chat-window { 
-        position: fixed; bottom: 90px; right: 20px;
-        width: 320px; height: 450px; 
-        background: var(--navy); border: 1px solid var(--lime); 
-        display: none; /* STARTS CLOSED */
-        flex-direction: column; z-index: 5000; border-radius: 12px;
-        overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.8);
-    }
+   /* RE-ENGINEERED CHAT WINDOW */
+.chat-window { 
+    position: fixed; 
+    bottom: 90px; 
+    right: 20px; 
+    width: 320px; 
+    height: 480px; /* Slightly taller for the larger input */
+    background: var(--navy); 
+    border: 1px solid var(--lime); 
+    display: none; 
+    flex-direction: column; 
+    z-index: 5000; 
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+}
 
-    .chat-header { 
-        background: var(--lime); color: var(--navy); 
-        padding: 15px; font-weight: 900; text-transform: uppercase; 
-        font-size: 0.7rem; display: flex; justify-content: space-between; 
-    }
-
-    .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #010409; }
-    
-/* USER MESSAGE COLOR & INPUT BOX FIXES */
-.message { 
-    max-width: 85%; 
-    padding: 12px 16px; 
-    font-size: 0.9rem; 
-    border-radius: 8px; 
-    line-height: 1.4; 
+.chat-messages { 
+    flex: 1; 
+    padding: 15px; 
+    overflow-y: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+    background: #010409; 
 }
 
 /* User font changed to Green */
 .user-msg { 
-    background: rgba(130, 188, 0, 0.1); 
-    color: var(--lime); 
+    background: rgba(130, 188, 0, 0.1) !important; 
+    color: var(--lime) !important; 
     align-self: flex-end; 
     border-right: 3px solid var(--lime); 
-    font-weight: 600; 
+    padding: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    max-width: 85%;
 }
 
 .bot-msg { 
     background: #1e293b; 
     color: var(--white); 
     border-left: 3px solid var(--lime); 
-    align-self: flex-start; 
+    align-self: flex-start;
+    padding: 12px;
+    font-size: 0.95rem;
+    max-width: 85%;
 }
 
-/* Input area moved to bottom with bigger box */
+/* Fixed Bottom Input Area */
 .chat-input-area { 
     padding: 15px; 
-    background: #010409; 
+    background: var(--navy); 
     border-top: 1px solid #1e293b; 
     display: flex; 
-    gap: 10px; 
-    align-items: center;
+    gap: 8px; 
 }
 
+/* Larger Input Box */
 .chat-input-area input { 
     flex: 1; 
     background: #1e293b; 
     border: 1px solid #334155; 
     color: white; 
-    padding: 15px; /* Bigger input area */
+    padding: 14px; 
     font-size: 1rem; 
-    border-radius: 6px; 
+    border-radius: 4px; 
     outline: none;
 }
 
 .chat-input-area button { 
     background: var(--lime); 
     border: none; 
-    padding: 15px 20px; 
+    padding: 0 15px; 
     font-weight: 900; 
-    border-radius: 6px; 
     cursor: pointer; 
-    text-transform: uppercase; 
-    font-size: 0.75rem; 
     color: var(--navy);
+    border-radius: 4px;
 }
 
     /* AUTHORITY BAR SPACING */
@@ -241,17 +246,20 @@
         </div>
     </footer>
 
-    <div class="chat-btn" onclick="toggleChat()">💬</div>
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header"><span>System Intelligence Active</span><span style="cursor:pointer" onclick="toggleChat()">×</span></div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot-msg">System Online. How can I assist with your estate compliance architecture today?</div>
-        </div>
-        <form class="chat-input-area" id="chatForm">
-            <input type="text" id="chatInput" placeholder="Command..." autocomplete="off">
-            <button type="submit">Send</button>
-        </form>
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+<div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+        <span style="padding-left:10px">SYSTEM INTELLIGENCE</span>
+        <span style="cursor:pointer; padding-right:10px" onclick="toggleChat()">×</span>
     </div>
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot-msg">System Online. How can I assist with your estate compliance architecture today?</div>
+    </div>
+    <form class="chat-input-area" id="chatForm">
+        <input type="text" id="chatInput" placeholder="Type command..." autocomplete="off">
+        <button type="submit">SEND</button>
+    </form>
+</div>
 
 <script>
     // Keeping your detailed SAFE_DATA intact
