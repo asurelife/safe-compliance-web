@@ -758,24 +758,18 @@
         }, 600);
     };
 
-// Function for Privacy Link
+// This opens Privacy
 function openPrivacy(e) {
     if (e) e.preventDefault();
-    const modal = document.getElementById('privacyModal');
-    if (modal) {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
+    document.getElementById('privacyModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
 
-// Function for Governance Link
+// This opens Governance (The one you just linked in the footer)
 function openGovernance(e) {
     if (e) e.preventDefault();
-    const modal = document.getElementById('governanceModal');
-    if (modal) {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
+    document.getElementById('governanceModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
 
 // Global Close Functions
