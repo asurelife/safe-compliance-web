@@ -85,13 +85,87 @@
         </div>
     </nav>
 
-    <header>
-        <div>
-            <h1>INTELLIGENCE-LED<br><span style="color:var(--lime)">ESTATE GOVERNANCE.</span></h1>
-            <p class="hero-sub">The world’s most advanced digital Data Monitoring ecosystem for precision compliance management.</p>
-            <a href="#audit" class="btn-main">Deploy System Architecture</a>
+<header id="home">
+    <div class="hero-content">
+        <div class="status-indicator">
+            <span class="pulse"></span> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
         </div>
-    </header>
+        <h1>INTELLIGENCE-LED<br><span style="color:var(--lime)">ESTATE GOVERNANCE.</span></h1>
+        
+        <p class="hero-sub">
+            The world’s most advanced digital Data Monitoring ecosystem. We provide the 
+            intelligence layer for complex estate governance, precision compliance 
+            management, and real-time risk mitigation. 
+            <br><br>
+            Our architecture is engineered to eliminate the fragmentation of compliance 
+            data, providing a single, unified command interface for the modern estate 
+            professional. From Legionella telemetry to Fire Safety protocols, we 
+            bridge the gap between physical infrastructure and digital oversight.
+        </p>
+
+        <div class="hero-cta-group">
+            <a href="#audit" class="btn-main">Deploy System Architecture</a>
+            <div class="compliance-tag">ACoP L8 / RRO / HASWA Compliant</div>
+        </div>
+    </div>
+</header>
+
+<style>
+    /* Supporting Styles for Section 1 Details */
+    .status-indicator {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--lime);
+        font-weight: 900;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+    }
+
+    .pulse {
+        width: 8px;
+        height: 8px;
+        background: var(--lime);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--lime);
+        animation: pulse-animation 2s infinite;
+    }
+
+    @keyframes pulse-animation {
+        0% { opacity: 1; }
+        50% { opacity: 0.3; }
+        100% { opacity: 1; }
+    }
+
+    .hero-sub {
+        line-height: 1.8;
+        font-size: 1.2rem;
+        color: var(--text-gray);
+        margin: 35px 0;
+        max-width: 850px;
+    }
+
+    .hero-cta-group {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+    @media (min-width: 768px) {
+        .hero-cta-group { flex-direction: row; align-items: center; }
+    }
+
+    .compliance-tag {
+        font-size: 0.7rem;
+        font-weight: 900;
+        color: var(--text-gray);
+        border-left: 2px solid var(--lime);
+        padding-left: 15px;
+        text-transform: uppercase;
+    }
+</style>
 
     <div class="divider"></div>
 
