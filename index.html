@@ -599,37 +599,42 @@
             <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #1e293b; font-size: 0.7rem; font-weight: 900; color: #94A3B8;">GOVERNANCE TIER: ENTERPRISE // FRAMEWORK: NIST-UK</div>
         </div>
     </div>
-<div style="background: #020617; padding: 50px 5%; border: 1px solid rgba(130, 188, 0, 0.2); margin: 40px 5%;">
+
+    <div style="background: #020617; padding: 50px 5%; border: 1px solid rgba(130, 188, 0, 0.2); margin: 40px 5% 60px 5%; clear: both;">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; align-items: center;">
+        
         <div style="border-left: 2px solid #82bc00; padding-left: 15px;">
             <div style="color: #F1F5F9; font-weight: 900; font-size: 0.85rem; letter-spacing: 1.5px;">ISO 27001</div>
             <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase;">Security Management</div>
         </div>
+
         <div style="border-left: 2px solid #82bc00; padding-left: 15px;">
             <div style="color: #F1F5F9; font-weight: 900; font-size: 0.85rem; letter-spacing: 1.5px;">NIST-UK</div>
             <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase;">Cyber Framework</div>
         </div>
+
         <div style="border-left: 2px solid #82bc00; padding-left: 15px;">
             <div style="color: #F1F5F9; font-weight: 900; font-size: 0.85rem; letter-spacing: 1.5px;">UK GDPR</div>
             <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase;">Data Sovereignty</div>
         </div>
+
         <div style="border-left: 2px solid #82bc00; padding-left: 15px;">
             <div style="color: #F1F5F9; font-weight: 900; font-size: 0.85rem; letter-spacing: 1.5px;">AES-256</div>
             <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase;">Military Encryption</div>
         </div>
+
         <div style="border-left: 2px solid #82bc00; padding-left: 15px;">
             <div style="color: #F1F5F9; font-weight: 900; font-size: 0.85rem; letter-spacing: 1.5px;">CYBER+</div>
             <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase;">Essentials Certified</div>
         </div>
-    </div>
-</div>
 
-<footer style="padding: 100px 5% 60px 5%; background: #000; border-top: 1px solid rgba(130, 188, 0, 0.2);">
+    </div>
+</div> <footer style="padding: 100px 5% 60px 5%; background: #000; border-top: 1px solid rgba(130, 188, 0, 0.2); display: block; clear: both;">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; max-width: 1400px; margin: 0 auto;">
         
         <div class="footer-brand">
             <div class="logo" style="color:white; font-weight:900; font-size:1.5rem;">SAFE<span style="color:#82bc00;">COMPLIANCE</span></div>
-            <p style="color:#94a3b8; font-size:0.9rem; max-width:350px; margin: 25px 0;">
+            <p style="color:#94a3b8; font-size:0.9rem; max-width:350px; margin: 25px 0; line-height:1.6;">
                 The intelligence layer for complex estate governance and precision compliance management.
             </p>
             <p style="font-size: 0.75rem; color: #F1F5F9; letter-spacing: 1px;">© 2026 SAFE COMPLIANCE GROUP LTD.</p>
@@ -652,47 +657,26 @@
         </div>
 
     </div>
-</footer>
-
-<footer style="padding: 100px 5% 60px 5%; background: #000; border-top: 1px solid rgba(130, 188, 0, 0.2);">
-    <div class="footer-grid" style="display: grid; gap: 60px;">
-        <div class="footer-brand">
-            <div class="logo" style="color:white; font-weight:900; font-size:1.5rem;">SAFE<span style="color:#82bc00;">COMPLIANCE</span></div>
-            <p style="color:#94a3b8; font-size:0.9rem; max-width:350px; margin: 25px 0;">The intelligence layer for complex estate governance.</p>
-            <p style="font-size: 0.75rem; color: #F1F5F9; letter-spacing: 1px;">© 2026 SAFE COMPLIANCE.</p>
-        </div>
-        <div class="footer-col">
-            <h4 style="color:white; font-size:0.75rem; letter-spacing:3px; margin-bottom:30px;">CONTROL</h4>
-            <a href="#" onclick="openPrivacy(event)" style="color:#82bc00; text-decoration:none; display:block; margin-bottom:15px; font-weight:900;">PRIVACY PROTOCOL</a>
-            <a href="#" onclick="openGovernance(event)" style="color:#82bc00; text-decoration:none; display:block; margin-bottom:15px; font-weight:900;">DATA GOVERNANCE</a>
-        </div>
-    </div>
-</footer>
-
-<div class="chat-btn" onclick="toggleChat()" style="position:fixed; bottom:20px; right:20px; cursor:pointer;">💬</div>
-<div class="chat-window" id="chatWindow" style="display:none; position:fixed; bottom:80px; right:20px; width:300px; background:#010409; border:1px solid #82bc00; flex-direction:column;">
-    <div class="chat-header" style="background:#82bc00; padding:10px; color:#000; font-weight:900;">SYSTEM INTELLIGENCE</div>
-    <div id="chatMessages" style="height:300px; overflow-y:auto; padding:10px; color:#fff;"></div>
-    <form id="chatForm" style="display:flex; padding:10px;">
-        <input type="text" id="chatInput" placeholder="Command..." style="flex:1; background:#000; color:#fff; border:1px solid #333;">
-        <button type="submit" style="background:#82bc00; border:none; padding:5px 10px; cursor:pointer;">SEND</button>
-    </form>
-</div>
-
-<script>
-    // Logic for Modals
-    function openPrivacy(e) { if(e) e.preventDefault(); document.getElementById('privacyModal').style.display='block'; document.body.style.overflow='hidden'; }
-    function closePrivacy() { document.getElementById('privacyModal').style.display='none'; document.body.style.overflow='auto'; }
-    function openGovernance(e) { if(e) e.preventDefault(); document.getElementById('governanceModal').style.display='block'; document.body.style.overflow='hidden'; }
-    function closeGovernance() { document.getElementById('governanceModal').style.display='none'; document.body.style.overflow='auto'; }
-
-    // Logic for Chat
-    function toggleChat() {
-        const chat = document.getElementById('chatWindow');
-        chat.style.display = (chat.style.display === 'none') ? 'flex' : 'none';
+</footer> <script>
+    function openPrivacy(e) { 
+        if(e) e.preventDefault(); 
+        const m = document.getElementById('privacyModal');
+        if(m) { m.style.display='block'; document.body.style.overflow='hidden'; }
+    }
+    function closePrivacy() { 
+        document.getElementById('privacyModal').style.display='none'; 
+        document.body.style.overflow='auto'; 
+    }
+    function openGovernance(e) { 
+        if(e) e.preventDefault(); 
+        const m = document.getElementById('governanceModal');
+        if(m) { m.style.display='block'; document.body.style.overflow='hidden'; }
+    }
+    function closeGovernance() { 
+        document.getElementById('governanceModal').style.display='none'; 
+        document.body.style.overflow='auto'; 
     }
 
-    // Global background click for modals
     window.onclick = function(event) {
         if (event.target.classList.contains('modal-overlay')) {
             closePrivacy();
