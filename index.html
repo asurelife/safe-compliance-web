@@ -510,25 +510,93 @@
     }
 </style>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo">SAFE<span>COMPLIANCE</span></div>
-                <p class="f-text" style="max-width: 400px;">The intelligence layer for modern estate governance. Delivering visible reassurance through data integrity Globally.</p>
-                <p style="color:var(--text-gray); font-size:0.8rem;">© 2026 SAFE COMPLIANCE</p>
-            </div>
-            <div class="footer-col">
-                <h4>CONTROL</h4>
-                <a href="#" class="f-link">PRIVACY PROTOCOL</a>
-                <a href="#" class="f-link">DATA GOVERNANCE</a>
-            </div>
-            <div class="footer-col">
-                <h4>CONNECT</h4>
-                <a href="tel:03300432153" class="f-link">0330 0432153</a>
-                <a href="#" class="f-link">LONDON HQ</a>
-            </div>
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <div class="logo">SAFE<span>COMPLIANCE</span></div>
+            <p style="color:var(--text-gray); font-size:0.9rem; max-width:350px; margin: 25px 0;">
+                The intelligence layer for complex estate governance and precision compliance management.
+            </p>
+            <p style="font-size: 0.75rem; color: #475569; letter-spacing: 1px;">
+                © 2026 SAFE COMPLIANCE GROUP LTD.<br>
+                REGISTRATION: #12345678
+            </p>
         </div>
-    </footer>
+
+        <div class="footer-col">
+            <h4>CONTROL</h4>
+            <a href="#" class="f-link">PRIVACY PROTOCOL</a>
+            <a href="#" class="f-link">DATA GOVERNANCE</a>
+            <a href="#" class="f-link" style="font-size: 0.7rem; opacity: 0.5;">ISO STANDARDS</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>CONNECT</h4>
+            <div class="address-block">
+                71-75 Shelton Street,<br>
+                Covent Garden,<br>
+                London, WC2H 9JQ
+            </div>
+            <a href="tel:03300432153" class="f-link" style="margin-top: 15px;">0330 0432153</a>
+            <a href="mailto:intelligence@safecompliance.com" class="f-link" style="font-size: 0.8rem; opacity: 0.8;">SECURE UPLINK</a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer { 
+        padding: 100px 5% 60px 5%; 
+        background: #000; 
+        border-top: 1px solid rgba(130, 188, 0, 0.2); 
+    }
+
+    .footer-grid { 
+        display: grid; 
+        grid-template-columns: 1fr; 
+        gap: 60px; 
+    }
+
+    @media (min-width: 992px) { 
+        .footer-grid { grid-template-columns: 2fr 1fr 1fr; } 
+    }
+
+    .footer-col h4 { 
+        font-size: 0.75rem; 
+        text-transform: uppercase; 
+        color: var(--white); 
+        margin-bottom: 30px; 
+        letter-spacing: 3px; 
+        font-weight: 900;
+    }
+
+    /* UPDATED FONT WEIGHT */
+    .f-link { 
+        color: var(--lime) !important; 
+        text-decoration: none; 
+        font-weight: 900; /* Maximum weight for authority */
+        display: block; 
+        margin-bottom: 15px; 
+        font-size: 0.95rem; 
+        letter-spacing: 0.5px;
+        transition: 0.3s;
+    }
+
+    .f-link:hover { 
+        padding-left: 8px;
+        color: var(--white) !important;
+    }
+
+    /* UPDATED ADDRESS BLOCK */
+    .address-block {
+        color: var(--text-gray);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        font-weight: 400;
+        margin-bottom: 20px;
+        border-left: 2px solid var(--lime);
+        padding-left: 15px;
+    }
+</style>
 
     <div class="chat-btn" onclick="toggleChat()">💬</div>
     <div class="chat-window" id="chatWindow">
