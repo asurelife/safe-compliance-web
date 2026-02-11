@@ -64,23 +64,63 @@
 
     .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #010409; }
     
-    .message { max-width: 85%; padding: 10px 14px; font-size: 0.85rem; border-radius: 8px; line-height: 1.4; }
-    .bot-msg { background: #1e293b; color: var(--white); border-left: 3px solid var(--lime); align-self: flex-start; }
-    .user-msg { background: var(--lime); color: var(--navy); align-self: flex-end; font-weight: 600; }
+/* USER MESSAGE COLOR & INPUT BOX FIXES */
+.message { 
+    max-width: 85%; 
+    padding: 12px 16px; 
+    font-size: 0.9rem; 
+    border-radius: 8px; 
+    line-height: 1.4; 
+}
 
-    .chat-input-area { 
-        padding: 12px; background: var(--navy); border-top: 1px solid #1e293b; 
-        display: flex; gap: 8px; align-items: center;
-    }
-    .chat-input-area input { 
-        flex: 1; background: #1e293b; border: 1px solid #334155; 
-        color: white; padding: 10px; font-size: 0.85rem; border-radius: 4px; outline: none;
-    }
-    .chat-input-area button { 
-        background: var(--lime); border: none; padding: 10px 15px; 
-        font-weight: 800; border-radius: 4px; cursor: pointer; 
-        text-transform: uppercase; font-size: 0.7rem; color: var(--navy);
-    }
+/* User font changed to Green */
+.user-msg { 
+    background: rgba(130, 188, 0, 0.1); 
+    color: var(--lime); 
+    align-self: flex-end; 
+    border-right: 3px solid var(--lime); 
+    font-weight: 600; 
+}
+
+.bot-msg { 
+    background: #1e293b; 
+    color: var(--white); 
+    border-left: 3px solid var(--lime); 
+    align-self: flex-start; 
+}
+
+/* Input area moved to bottom with bigger box */
+.chat-input-area { 
+    padding: 15px; 
+    background: #010409; 
+    border-top: 1px solid #1e293b; 
+    display: flex; 
+    gap: 10px; 
+    align-items: center;
+}
+
+.chat-input-area input { 
+    flex: 1; 
+    background: #1e293b; 
+    border: 1px solid #334155; 
+    color: white; 
+    padding: 15px; /* Bigger input area */
+    font-size: 1rem; 
+    border-radius: 6px; 
+    outline: none;
+}
+
+.chat-input-area button { 
+    background: var(--lime); 
+    border: none; 
+    padding: 15px 20px; 
+    font-weight: 900; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    text-transform: uppercase; 
+    font-size: 0.75rem; 
+    color: var(--navy);
+}
 
     /* AUTHORITY BAR SPACING */
     .auth-item strong { margin-right: 5px; } /* Adds space after % or numbers */
@@ -214,7 +254,7 @@
     </div>
 
 <script>
-    // 1. YOUR DETAILED DATA REPOSITORY
+    // Keeping your detailed SAFE_DATA intact
     const SAFE_DATA = {
         "water": "Our Water Hygiene module covers ACoP L8 compliance, real-time temperature telemetry, and digital Legionella logbooks.",
         "fire": "We automate Fire Risk Assessments (RRO) and track maintenance for alarms, extinguishers, and emergency lighting.",
@@ -225,23 +265,15 @@
         "default": "I've logged that query. To provide a technical breakdown, I recommend initiating a System Audit via the form on this page."
     };
 
-    // 2. USER-FRIENDLY INITIALIZATION
     window.onload = function() {
-        // Ensures the bot starts CLOSED so it doesn't block the screen
         document.getElementById('chatWindow').style.display = 'none';
     };
 
     function toggleChat() {
         const chat = document.getElementById('chatWindow');
-        // Toggle logic that works across all mobile browsers
-        if (chat.style.display === 'none' || chat.style.display === '') {
-            chat.style.display = 'flex';
-        } else {
-            chat.style.display = 'none';
-        }
+        chat.style.display = (chat.style.display === 'none' || chat.style.display === '') ? 'flex' : 'none';
     }
 
-    // 3. ENHANCED LOOKUP LOGIC
     document.getElementById('chatForm').onsubmit = (e) => {
         e.preventDefault();
         const input = document.getElementById('chatInput');
@@ -249,32 +281,27 @@
         
         if(!input.value.trim()) return;
 
-        // User Message UI
         const userVal = input.value.toLowerCase();
         const userMsg = document.createElement('div');
-        userMsg.className = 'message user-msg';
+        userMsg.className = 'message user-msg'; // Will now be Green font
         userMsg.textContent = input.value;
         msgs.appendChild(userMsg);
         input.value = '';
 
-        // Bot Thinking Delay
         setTimeout(() => {
             const botMsg = document.createElement('div');
             botMsg.className = 'message bot-msg';
             
-            // Intelligence Logic: Matching user input against SAFE_DATA
             let response = SAFE_DATA.default;
             for(let key in SAFE_DATA) {
                 if(userVal.includes(key)) {
                     response = SAFE_DATA[key];
-                    break; // Found a match, stop looking
+                    break;
                 }
             }
             
             botMsg.textContent = response;
             msgs.appendChild(botMsg);
-            
-            // Auto-scroll to latest message
             msgs.scrollTop = msgs.scrollHeight;
         }, 500);
         
