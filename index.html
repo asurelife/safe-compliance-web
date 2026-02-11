@@ -2,22 +2,25 @@
 <html lang="en">
 <head>
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-        /* This wrapper goes around EVERYTHING except the footer */
-        .main-content {
-            flex: 1 0 auto; 
-        }
-        footer {
-            flex-shrink: 0; 
-        }
-    </style>
+    /* Ensure the browser uses the full screen height */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    /* Set up the vertical flexible layout */
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    /* This makes your content stretch to fill the "empty space" */
+    .main-content {
+        flex: 1 0 auto;
+    }
+    /* This keeps the footer at its natural size at the bottom */
+    footer {
+        flex-shrink: 0;
+    }
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAFE COMPLIANCE | Precision Estate Governance</title>
@@ -154,8 +157,9 @@
         .chat-input-area input { flex: 1; background: var(--dark-blue); border: 1px solid #334155; color: white; padding: 12px; outline: none; }
     </style>
 </head>
+    
 <body>
-
+    <div class="main-content">
     <nav>
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
         <div class="nav-links">
