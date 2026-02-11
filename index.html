@@ -298,18 +298,135 @@
         <div class="module-card"><span class="mod-num">04</span><h3>ACCREDITATION</h3><p style="color:var(--text-gray); font-size:0.9rem;">ISO and regulatory lifecycle management.</p></div>
     </div>
 
-    <section class="audit-section" id="audit">
-        <div style="max-width: 900px; margin: 0 auto;">
-            <h2 style="text-align:center;">Execute <span style="color:var(--lime)">System Audit</span></h2>
-            <form class="audit-form">
-                <div class="input-group"><label>Full Name</label><input type="text" placeholder="John Doe"></div>
-                <div class="input-group"><label>Telephone Number</label><input type="tel" placeholder="0330 0432153"></div>
-                <div class="input-group"><label>Estate Name</label><input type="text" placeholder="London HQ"></div>
-                <div class="input-group"><label>Compliance Focus</label><select><option>Full Suite</option><option>Water</option><option>Fire</option></select></div>
-                <button type="submit" style="grid-column: 1 / -1; background:var(--lime); color:var(--navy); padding:20px; border:none; font-weight:900; text-transform:uppercase; cursor:pointer;">Initiate Scan</button>
-            </form>
-        </div>
-    </section>
+<section class="audit-section" id="audit">
+    <div class="audit-container">
+        <div class="kicker" style="text-align: center;">SECURE DATA UPLINK</div>
+        <h2 style="text-align:center;">Initiate <span style="color:var(--lime)">System Audit</span></h2>
+        <p style="text-align:center; color:var(--text-gray); margin-bottom: 40px;">Provide your estate parameters for a precision compliance gap analysis.</p>
+        
+        <form class="audit-form">
+            <div class="input-group">
+                <label>Estate / Company Name</label>
+                <input type="text" placeholder="e.g. London Logistics HQ" required>
+            </div>
+            <div class="input-group">
+                <label>Compliance Focus</label>
+                <select required>
+                    <option value="" disabled selected>Select Primary Module...</option>
+                    <option>Full Intelligence Suite</option>
+                    <option>Water Hygiene (ACoP L8)</option>
+                    <option>Fire, Health & Safety</option>
+                    <option>Estate Assets & Accreditation</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Contact Name</label>
+                <input type="text" placeholder="Enter Full Name" required>
+            </div>
+            <div class="input-group">
+                <label>Contact Tel</label>
+                <input type="tel" placeholder="e.g. 0330 0432153" required>
+            </div>
+
+            <div class="input-group" style="grid-column: 1 / -1;">
+                <label>Contact Email</label>
+                <input type="email" placeholder="secure.address@company.com" required>
+            </div>
+
+            <div class="input-group" style="grid-column: 1 / -1;">
+                <label>Additional Estate Notes</label>
+                <textarea rows="4" placeholder="Briefly describe your portfolio size or specific requirements..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Initiate Secure Scan</button>
+        </form>
+    </div>
+</section>
+
+<style>
+    .audit-section {
+        background: var(--dark-blue);
+        padding: 100px 5%;
+        border-top: 1px solid rgba(130, 188, 0, 0.1);
+    }
+    
+    .audit-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .audit-form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        background: var(--navy);
+        padding: 50px;
+        border: 1px solid #1e293b;
+        border-radius: 4px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    @media (min-width: 768px) {
+        .audit-form {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .input-group label {
+        font-size: 0.75rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: var(--lime);
+        letter-spacing: 1px;
+    }
+
+    .input-group input, 
+    .input-group select, 
+    .input-group textarea {
+        background: #010409;
+        border: 1px solid #334155;
+        color: white;
+        padding: 18px;
+        border-radius: 3px;
+        font-size: 1rem;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    .input-group input:focus, 
+    .input-group select:focus, 
+    .input-group textarea:focus {
+        border-color: var(--lime);
+        background: #020617;
+    }
+
+    .btn-submit {
+        grid-column: 1 / -1;
+        background: var(--lime);
+        color: var(--navy);
+        padding: 22px;
+        border: none;
+        font-weight: 900;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        background: #9bd600;
+        transform: translateY(-2px);
+    }
+</style>
 
     <footer>
         <div class="footer-grid">
