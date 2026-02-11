@@ -668,39 +668,63 @@
         </form>
     </div>
 
-    <script>
-        window.onload = function() { document.getElementById('chatWindow').style.display = 'none'; };
-        function toggleChat() {
-            const chat = document.getElementById('chatWindow');
-            chat.style.display = (chat.style.display === 'none' || chat.style.display === '') ? 'flex' : 'none';
-        }
-        document.getElementById('chatForm').onsubmit = (e) => {
-            e.preventDefault();
-            const input = document.getElementById('chatInput');
-            const msgs = document.getElementById('chatMessages');
-            if(!input.value.trim()) return;
-            const uMsg = document.createElement('div');
-            uMsg.className = 'user-msg';
-            uMsg.textContent = input.value;
-            msgs.appendChild(uMsg);
-            input.value = '';
-            setTimeout(() => {
-                const bMsg = document.createElement('div');
-                bMsg.className = 'bot-msg';
-                bMsg.textContent = "Query logged. Initiate a System Audit for a technical breakdown.";
-                msgs.appendChild(bMsg);
-                msgs.scrollTop = msgs.scrollHeight;
-            }, 600);
-        };
-        <a href="#privacy" onclick="openPrivacy(event)" class="f-link">PRIVACY PROTOCOL</a>
+<script>
+    // System Initialisation
+    window.onload = function() { 
+        document.getElementById('chatWindow').style.display = 'none'; 
+    };
 
-// Close if user clicks outside the box
-window.onclick = function(event) {
-    let modal = document.getElementById('privacyModal');
-    if (event.target == modal) {
-        closePrivacy();
+    // Chatbot Logic
+    function toggleChat() {
+        const chat = document.getElementById('chatWindow');
+        chat.style.display = (chat.style.display === 'none' || chat.style.display === '') ? 'flex' : 'none';
     }
-}
-    </script>
+
+    document.getElementById('chatForm').onsubmit = (e) => {
+        e.preventDefault();
+        const input = document.getElementById('chatInput');
+        const msgs = document.getElementById('chatMessages');
+        if(!input.value.trim()) return;
+        const uMsg = document.createElement('div');
+        uMsg.className = 'user-msg';
+        uMsg.textContent = input.value;
+        msgs.appendChild(uMsg);
+        input.value = '';
+        setTimeout(() => {
+            const bMsg = document.createElement('div');
+            bMsg.className = 'bot-msg';
+            bMsg.textContent = "Query logged. Initiate a System Audit for a technical breakdown.";
+            msgs.appendChild(bMsg);
+            msgs.scrollTop = msgs.scrollHeight;
+        }, 600);
+    };
+
+    // --- PRIVACY MODAL LOGIC (ADD THIS) ---
+    function openPrivacy(e) {
+        if (e) e.preventDefault(); 
+        const modal = document.getElementById('privacyModal');
+        if (modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+        }
+    }
+
+    function closePrivacy() {
+        const modal = document.getElementById('privacyModal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+    }
+
+    // Close if user clicks outside the box
+    window.onclick = function(event) {
+        let modal = document.getElementById('privacyModal');
+        let chat = document.getElementById('chatWindow');
+        if (event.target == modal) {
+            closePrivacy();
+        }
+    }
+</script>
 </body>
 </html>
