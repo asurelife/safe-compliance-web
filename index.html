@@ -17,79 +17,75 @@
         margin: 0; padding: 0; line-height: 1.5; overflow-x: hidden;
     }
 
-    .divider { border-bottom: 2px solid var(--lime); width: 100%; box-shadow: 0 0 15px rgba(130, 188, 0, 0.3); }
-
-    /* 1. NAV MOBILE FIX - LOGO TOP, LINKS BOTTOM */
+    /* NAV MOBILE FIX */
     nav { 
         display: flex; flex-direction: column; align-items: center; 
         padding: 15px 5%; background: var(--navy);
         position: fixed; width: 100%; top: 0; z-index: 1000;
         border-bottom: 1px solid rgba(255,255,255,0.1);
-        gap: 10px;
+        gap: 8px;
     }
     @media (min-width: 992px) {
         nav { flex-direction: row; justify-content: space-between; padding: 15px 60px; }
     }
 
-    .logo { font-size: 1.2rem; font-weight: 900; color: var(--white); text-transform: uppercase; }
+    .logo { font-size: 1.2rem; font-weight: 900; color: var(--white); text-transform: uppercase; letter-spacing: -1px; }
     .logo span { color: var(--lime); }
-    
     .nav-links { display: flex; gap: 15px; }
-    .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 500; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
+    .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 0.65rem; text-transform: uppercase; }
 
-    /* 2. DEPLOY SYSTEM BUTTON FIX (FORCING LIME) */
-    header { min-height: 80vh; display: flex; align-items: center; padding: 120px 5% 40px 5%; }
-    .btn-primary, a.btn-primary { 
-        background: var(--lime) !important; color: var(--navy) !important; 
-        padding: 18px 40px; font-weight: 900; text-transform: uppercase; 
-        text-decoration: none; display: inline-block; border-radius: 2px;
-    }
+    /* FOOTER & CONTROL LINKS */
+    .f-link { color: var(--lime) !important; text-decoration: none; font-size: 0.9rem; display: block; margin-bottom: 8px; }
 
-    h1 { font-weight: 900; text-transform: uppercase; margin: 0; line-height: 0.9; }
-    .title-top { font-size: clamp(2.2rem, 8vw, 6.2rem); display: block; } 
-    .title-bottom { font-size: clamp(2rem, 7vw, 5.4rem); display: block; color: var(--lime); }
-    .hero-sub { font-size: 1rem; color: var(--text-gray); margin: 30px 0; }
-
-    /* GRID & SECTION SPACING */
-    .section { padding: 80px 5%; }
-    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 40px; }
-    @media (min-width: 992px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
-
-    /* 3. AUTHORITY BAR SPACING FIX */
-    .authority-bar { background: var(--white); color: var(--navy); padding: 40px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: center; }
-    .auth-item strong { font-size: 2rem; display: block; margin-bottom: 5px; }
-    .auth-item span { text-transform: uppercase; font-size: 0.7rem; font-weight: 800; }
-
-    /* MODULES */
-    .module-grid { display: grid; grid-template-columns: 1fr; gap: 2px; background: rgba(255,255,255,0.1); }
-    @media (min-width: 768px) { .module-grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 1024px) { .module-grid { grid-template-columns: repeat(4, 1fr); } }
-
-    /* 4. CONTROL LINKS & FOOTER COLOR FIX */
-    footer { background: #000; padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.1); }
-    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
-    @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
-    .f-link { color: var(--lime) !important; text-decoration: none; font-size: 0.9rem; display: block; margin-bottom: 10px; }
-    .f-link:hover { text-decoration: underline; }
-
-    /* 5. CHATBOT MOBILE VISIBILITY FIX */
+    /* CHATBOT RE-ENGINEERING */
     .chat-btn { 
         position: fixed; bottom: 20px; right: 20px; 
         background: var(--lime); color: var(--navy); 
         width: 60px; height: 60px; border-radius: 50%; 
-        display: flex !important; align-items: center; justify-content: center; 
-        font-size: 1.5rem; z-index: 4000; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        display: flex; align-items: center; justify-content: center; 
+        font-size: 1.8rem; z-index: 4000; cursor: pointer;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
+
     .chat-window { 
-        position: fixed; bottom: 90px; right: 10px; left: 10px;
-        width: auto; max-width: 400px; height: 450px; 
+        position: fixed; bottom: 90px; right: 20px;
+        width: 320px; height: 450px; 
         background: var(--navy); border: 1px solid var(--lime); 
-        z-index: 5000; border-radius: 8px;
+        display: none; /* STARTS CLOSED */
+        flex-direction: column; z-index: 5000; border-radius: 12px;
+        overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.8);
     }
-    @media (min-width: 600px) {
-        .chat-window { width: 380px; left: auto; right: 40px; bottom: 120px; }
+
+    .chat-header { 
+        background: var(--lime); color: var(--navy); 
+        padding: 15px; font-weight: 900; text-transform: uppercase; 
+        font-size: 0.7rem; display: flex; justify-content: space-between; 
     }
-</style></head>
+
+    .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #010409; }
+    
+    .message { max-width: 85%; padding: 10px 14px; font-size: 0.85rem; border-radius: 8px; line-height: 1.4; }
+    .bot-msg { background: #1e293b; color: var(--white); border-left: 3px solid var(--lime); align-self: flex-start; }
+    .user-msg { background: var(--lime); color: var(--navy); align-self: flex-end; font-weight: 600; }
+
+    .chat-input-area { 
+        padding: 12px; background: var(--navy); border-top: 1px solid #1e293b; 
+        display: flex; gap: 8px; align-items: center;
+    }
+    .chat-input-area input { 
+        flex: 1; background: #1e293b; border: 1px solid #334155; 
+        color: white; padding: 10px; font-size: 0.85rem; border-radius: 4px; outline: none;
+    }
+    .chat-input-area button { 
+        background: var(--lime); border: none; padding: 10px 15px; 
+        font-weight: 800; border-radius: 4px; cursor: pointer; 
+        text-transform: uppercase; font-size: 0.7rem; color: var(--navy);
+    }
+
+    /* AUTHORITY BAR SPACING */
+    .auth-item strong { margin-right: 5px; } /* Adds space after % or numbers */
+</style>
+</head>
 <body>
 
     <nav>
@@ -217,51 +213,73 @@
         </form>
     </div>
 
-    <script>
-        // DATA KNOWLEDGE BASE
-        const SAFE_DATA = {
-            "water": "Our Water Hygiene module covers ACoP L8 compliance, real-time temperature telemetry, and digital Legionella logbooks.",
-            "fire": "We automate Fire Risk Assessments (RRO) and track maintenance for alarms, extinguishers, and emergency lighting.",
-            "price": "Pricing is custom-scaled based on your estate's square footage and required modules. Submit an 'Audit Request' for a quote.",
-            "audit": "A System Audit involves a full gap analysis of your current data vs. ISO 9001 standards. We usually complete this in 48 hours.",
-            "contact": "You can reach our compliance desk at 0330 0432153 or visit our London HQ in Covent Garden.",
-            "default": "I've logged that query. To provide a technical breakdown, I recommend initiating a System Audit via the form on this page."
-        };
+<script>
+    // 1. YOUR DETAILED DATA REPOSITORY
+    const SAFE_DATA = {
+        "water": "Our Water Hygiene module covers ACoP L8 compliance, real-time temperature telemetry, and digital Legionella logbooks.",
+        "fire": "We automate Fire Risk Assessments (RRO) and track maintenance for alarms, extinguishers, and emergency lighting.",
+        "price": "Pricing is custom-scaled based on your estate's square footage and required modules. Submit an 'Audit Request' for a quote.",
+        "license": "Pricing is custom-scaled based on your estate's square footage and required modules. Submit an 'Audit Request' for a quote.",
+        "audit": "A System Audit involves a full gap analysis of your current data vs. ISO 9001 standards. We usually complete this in 48 hours.",
+        "contact": "You can reach our compliance desk at 0330 0432153 or visit our London HQ in Covent Garden.",
+        "default": "I've logged that query. To provide a technical breakdown, I recommend initiating a System Audit via the form on this page."
+    };
 
-        function toggleChat() {
-            const chat = document.getElementById('chatWindow');
-            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+    // 2. USER-FRIENDLY INITIALIZATION
+    window.onload = function() {
+        // Ensures the bot starts CLOSED so it doesn't block the screen
+        document.getElementById('chatWindow').style.display = 'none';
+    };
+
+    function toggleChat() {
+        const chat = document.getElementById('chatWindow');
+        // Toggle logic that works across all mobile browsers
+        if (chat.style.display === 'none' || chat.style.display === '') {
+            chat.style.display = 'flex';
+        } else {
+            chat.style.display = 'none';
         }
+    }
 
-        document.getElementById('chatForm').onsubmit = (e) => {
-            e.preventDefault();
-            const input = document.getElementById('chatInput');
-            const msgs = document.getElementById('chatMessages');
-            if(!input.value.trim()) return;
+    // 3. ENHANCED LOOKUP LOGIC
+    document.getElementById('chatForm').onsubmit = (e) => {
+        e.preventDefault();
+        const input = document.getElementById('chatInput');
+        const msgs = document.getElementById('chatMessages');
+        
+        if(!input.value.trim()) return;
 
-            const userVal = input.value.toLowerCase();
-            const userMsg = document.createElement('div');
-            userMsg.className = 'message user-msg';
-            userMsg.textContent = input.value;
-            msgs.appendChild(userMsg);
-            input.value = '';
+        // User Message UI
+        const userVal = input.value.toLowerCase();
+        const userMsg = document.createElement('div');
+        userMsg.className = 'message user-msg';
+        userMsg.textContent = input.value;
+        msgs.appendChild(userMsg);
+        input.value = '';
 
-            setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = 'message bot-msg';
-                
-                // DATA LOOKUP LOGIC
-                let response = SAFE_DATA.default;
-                for(let key in SAFE_DATA) {
-                    if(userVal.includes(key)) response = SAFE_DATA[key];
+        // Bot Thinking Delay
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = 'message bot-msg';
+            
+            // Intelligence Logic: Matching user input against SAFE_DATA
+            let response = SAFE_DATA.default;
+            for(let key in SAFE_DATA) {
+                if(userVal.includes(key)) {
+                    response = SAFE_DATA[key];
+                    break; // Found a match, stop looking
                 }
-                
-                botMsg.textContent = response;
-                msgs.appendChild(botMsg);
-                msgs.scrollTop = msgs.scrollHeight;
-            }, 600);
+            }
+            
+            botMsg.textContent = response;
+            msgs.appendChild(botMsg);
+            
+            // Auto-scroll to latest message
             msgs.scrollTop = msgs.scrollHeight;
-        };
-    </script>
+        }, 500);
+        
+        msgs.scrollTop = msgs.scrollHeight;
+    };
+</script>
 </body>
 </html>
