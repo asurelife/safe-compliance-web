@@ -581,44 +581,37 @@
         </div>
         <div style="padding: 40px; max-height: 70vh; overflow-y: auto; color: #f8fafc;">
             <h3 style="color: #82bc00; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px;">Secure Encryption Standards</h3>
-            <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 30px;">Every data packet is processed using AES-256 military-grade encryption. We operate on a 'Need-to-Know' basis, where estate telemetry is siloed and accessible only via biometric or hardware-token authenticated sessions.</p>
-            
+            <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 30px;">Every data packet is processed using AES-256 military-grade encryption. We operate on a 'Need-to-Know' basis, where estate telemetry is siloed.</p>
             <h3 style="color: #82bc00; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px;">UK Data Sovereignty</h3>
-            <p style="color: #94a3b8; line-height: 1.7;">Safe Compliance operates strictly under UK Data Protection laws. No metadata or estate analytics are transmitted to third-party providers or stored outside of Tier-3 UK Data Centers.</p>
+            <p style="color: #94a3b8; line-height: 1.7;">Safe Compliance operates strictly under UK Data Protection laws.</p>
         </div>
     </div>
 </div>
-        
+
 <div id="governanceModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); z-index: 99999; backdrop-filter: blur(15px);">
-    <div style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 90%; max-width: 650px; background: #010409; border: 1px solid #82bc00; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,1);">
-        
-        <div style="background: #82bc00; color: #020617; padding: 20px; font-weight: 900; display: block; position: relative;">
+    <div style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 90%; max-width: 650px; background: #010409; border: 1px solid #82bc00; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,1); overflow: hidden;">
+        <div style="background: #82bc00; color: #020617; padding: 20px; font-weight: 900; display: flex; justify-content: space-between; align-items: center;">
             <span style="font-size: 0.8rem; letter-spacing: 1px;">DATA GOVERNANCE ARCHITECTURE</span>
-            <span onclick="closeGovernance()" style="cursor: pointer; font-size: 1.8rem; position: absolute; right: 20px; top: 12px;">&times;</span>
+            <span onclick="closeGovernance()" style="cursor: pointer; font-size: 1.8rem; line-height: 1;">&times;</span>
         </div>
 
-        <div style="padding: 40px; height: 500px; overflow-y: scroll; display: block; background: #010409; scrollbar-color: #82bc00 #010409; scrollbar-width: thick;">
-            
+        <div style="padding: 40px; height: 500px; overflow-y: scroll; background: #010409;">
             <div style="margin-bottom: 40px; border-bottom: 1px solid #1e293b; padding-bottom: 20px;">
                 <h3 style="color: #82bc00; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 10px;">01 // Data Integrity Protocol</h3>
                 <p style="color: #f8fafc; line-height: 1.7; font-size: 1rem;">SAFE COMPLIANCE utilizes validation logic to ensure the accuracy of all estate telemetry. Once data is committed to the Master Ledger, it becomes an immutable record.</p>
             </div>
-
             <div style="margin-bottom: 40px; border-bottom: 1px solid #1e293b; padding-bottom: 20px;">
                 <h3 style="color: #82bc00; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 10px;">02 // Availability & Redundancy</h3>
                 <p style="color: #f8fafc; line-height: 1.7; font-size: 1rem;">Our architecture employs multi-node replication across Tier-3 UK data centres. We guarantee 99.99% uptime for all compliance dashboards.</p>
             </div>
-
             <div style="margin-bottom: 40px; border-bottom: 1px solid #1e293b; padding-bottom: 20px;">
                 <h3 style="color: #82bc00; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 10px;">03 // Sovereign Data Residency</h3>
                 <p style="color: #f8fafc; line-height: 1.7; font-size: 1rem;">All processing and storage nodes are located strictly within the UK. We do not offshore estate telemetry, ensuring data stays under UK GDPR.</p>
             </div>
-
             <div style="margin-bottom: 40px;">
                 <h3 style="color: #82bc00; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 10px;">04 // Secure Stewardship</h3>
                 <p style="color: #f8fafc; line-height: 1.7; font-size: 1rem;">We perform monthly governance audits to ensure our security controls exceed the requirements of the NIST Cybersecurity Framework.</p>
             </div>
-
             <div style="padding: 20px; border: 2px solid #82bc00; color: #82bc00; font-size: 0.7rem; font-weight: 900; text-align: center;">
                 GOVERNANCE TIER: ENTERPRISE // STATUS: ENCRYPTED
             </div>
@@ -626,56 +619,47 @@
     </div>
 </div>
 
-<script>
-    // Force the footer link to use the NEW ID
-    document.querySelector('a[onclick*="openGovernance"]').setAttribute('onclick', 'openGovFinal(event)');
-
-    function openGovFinal(e) { 
-        if(e) e.preventDefault();
-        document.getElementById('GOV_MODAL_FINAL').style.display = 'block'; 
-        document.body.style.overflow = 'hidden'; 
-    }
-    function closeGovFinal() { 
-        document.getElementById('GOV_MODAL_FINAL').style.display = 'none'; 
-        document.body.style.overflow = 'auto'; 
-    }
-</script>
-        
 <footer style="padding: 100px 5% 60px 5%; background: #000; border-top: 1px solid rgba(130, 188, 0, 0.2); position: relative; z-index: 1;">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; max-width: 1400px; margin: 0 auto;">
-        
         <div>
             <div style="color:white; font-weight:900; font-size:1.5rem; letter-spacing: -0.5px; margin-bottom: 20px;">SAFE<span style="color:#82bc00;">COMPLIANCE</span></div>
-            <p style="color:#94a3b8; font-size:0.95rem; line-height:1.7; margin-bottom: 25px;">The intelligence layer for complex estate governance and precision compliance management.</p>
+            <p style="color:#94a3b8; font-size:0.95rem; line-height:1.7; margin-bottom: 25px;">The intelligence layer for complex estate governance.</p>
             <p style="font-size: 0.75rem; color: #475569; letter-spacing: 1px;">© 2026 SAFE COMPLIANCE GROUP LTD.</p>
         </div>
-
         <div>
             <h4 style="color:white; font-size:0.75rem; letter-spacing:3px; margin-bottom:30px; font-weight:900;">CONTROL</h4>
-            <a href="javascript:void(0)" onclick="openPrivacy()" style="color:#82bc00; text-decoration:none; display:block; margin-bottom:15px; font-weight:900; font-size:0.9rem; letter-spacing:0.5px;">PRIVACY PROTOCOL</a>
-            <a href="javascript:void(0)" onclick="openGovernance()" style="color:#82bc00; text-decoration:none; display:block; margin-bottom:15px; font-weight:900; font-size:0.9rem; letter-spacing:0.5px;">DATA GOVERNANCE</a>
+            <a href="javascript:void(0)" onclick="openPrivacy()" style="color:#82bc00; text-decoration:none; display:block; margin-bottom:15px; font-weight:900; font-size:0.9rem;">PRIVACY PROTOCOL</a>
+            <a href="javascript:void(0)" onclick="openGovernance()" style="color:#82bc00; text-decoration:none; display:block; margin-bottom:15px; font-weight:900; font-size:0.9rem;">DATA GOVERNANCE</a>
         </div>
-
         <div>
             <h4 style="color:white; font-size:0.75rem; letter-spacing:3px; margin-bottom:30px; font-weight:900;">CONNECT</h4>
-            <div style="color:#94a3b8; font-size:0.95rem; border-left:2px solid #82bc00; padding-left:15px; margin-bottom:20px; line-height:1.6;">
-                71-75 Shelton Street,<br>London, WC2H 9JQ
-            </div>
-            <a href="tel:03300432153" style="color:#82bc00; text-decoration:none; font-weight:900; font-size:0.9rem;">T: 0330 043 2153</a>
+            <div style="color:#94a3b8; font-size:0.95rem; border-left:2px solid #82bc00; padding-left:15px; margin-bottom:20px;">71-75 Shelton Street, London, WC2H 9JQ</div>
+            <a href="tel:03300432153" style="color:#82bc00; text-decoration:none; font-weight:900;">T: 0330 043 2153</a>
         </div>
     </div>
 </footer>
 
 <script>
-    function openPrivacy() { document.getElementById('privacyModal').style.display='block'; document.body.style.overflow='hidden'; }
-    function closePrivacy() { document.getElementById('privacyModal').style.display='none'; document.body.style.overflow='auto'; }
-    function openGovernance() { document.getElementById('governanceModal').style.display='block'; document.body.style.overflow='hidden'; }
-    function closeGovernance() { document.getElementById('governanceModal').style.display='none'; document.body.style.overflow='auto'; }
-    
-    // Safety closer: click background to close
+    function openPrivacy() {
+        document.getElementById('privacyModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    function closePrivacy() {
+        document.getElementById('privacyModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    function openGovernance() {
+        document.getElementById('governanceModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeGovernance() {
+        document.getElementById('governanceModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
     window.onclick = function(e) {
         if (e.target.className === 'modal-overlay') {
-            closePrivacy(); closeGovernance();
+            closePrivacy();
+            closeGovernance();
         }
     }
 </script>
