@@ -44,12 +44,75 @@
         .auth-item span { font-size: 0.75rem; font-weight: 900; text-transform: uppercase; }
 
         /* SECTION 4: UPDATED BLOCKS */
-        .module-grid { display: grid; grid-template-columns: 1fr; gap: 2px; background: rgba(255,255,255,0.15); }
-        @media (min-width: 768px) { .module-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1200px) { .module-grid { grid-template-columns: repeat(4, 1fr); } }
-        .module-card { background: var(--navy); padding: 60px 40px; position: relative; }
-        .mod-num { color: var(--lime); font-size: 1.2rem; font-weight: 900; margin-bottom: 20px; display: block; }
-        .module-card h3 { font-size: 1.3rem; margin-bottom: 15px; text-transform: uppercase; }
+/* MODULE GRID STYLING */
+.module-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 2px; 
+    background: rgba(130, 188, 0, 0.1); /* Subtle green grid lines */
+    border: 1px solid rgba(130, 188, 0, 0.2);
+}
+
+@media (min-width: 768px) { .module-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .module-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.module-card { 
+    background: var(--navy); 
+    padding: 60px 40px; 
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    position: relative; 
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* THE GREEN HOVER EFFECT */
+.module-card:hover { 
+    background: #0f172a; /* Lighter navy/charcoal on hover */
+    transform: translateY(-5px);
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(130, 188, 0, 0.15);
+}
+
+.module-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: var(--lime);
+    transition: width 0.4s ease;
+}
+
+.module-card:hover::after {
+    width: 100%; /* Green line slides across bottom on hover */
+}
+
+.module-card:hover h3 {
+    color: var(--lime); /* Title turns green on hover */
+}
+
+.mod-num { 
+    color: var(--lime); 
+    font-size: 1.2rem; 
+    font-weight: 900; 
+    margin-bottom: 25px; 
+    display: block; 
+    opacity: 0.6;
+}
+
+.module-card h3 { 
+    font-size: 1.4rem; 
+    margin-bottom: 15px; 
+    text-transform: uppercase; 
+    transition: color 0.3s ease;
+}
+
+.module-card p { 
+    color: var(--text-gray); 
+    font-size: 0.95rem; 
+    line-height: 1.6;
+}
 
         /* SECTION 5: AUDIT FORM (NAME/TEL ADDED) */
         .audit-section { background: var(--dark-blue); padding: 100px 5%; }
@@ -289,12 +352,31 @@
 
     <div class="divider"></div>
 
-    <div class="module-grid" id="capabilities">
-        <div class="module-card"><span class="mod-num">01</span><h3>WATER HYGIENE</h3><p style="color:var(--text-gray); font-size:0.9rem;">ACoP L8 digital logbooks and real-time telemetry.</p></div>
-        <div class="module-card"><span class="mod-num">02</span><h3>FIRE, HEALTH & SAFETY</h3><p style="color:var(--text-gray); font-size:0.9rem;">Automated RRO tracking and safety maintenance.</p></div>
-        <div class="module-card"><span class="mod-num">03</span><h3>ESTATE ASSETS</h3><p style="color:var(--text-gray); font-size:0.9rem;">Interactive register updates and risk profiling.</p></div>
-        <div class="module-card"><span class="mod-num">04</span><h3>ACCREDITATION</h3><p style="color:var(--text-gray); font-size:0.9rem;">ISO and regulatory lifecycle management.</p></div>
+<div class="module-grid" id="capabilities">
+    <div class="module-card">
+        <span class="mod-num">01</span>
+        <h3>WATER HYGIENE</h3>
+        <p>Advanced ACoP L8 compliance protocols and digital Legionella telemetry. We provide real-time temperature monitoring and automated logbook management.</p>
     </div>
+
+    <div class="module-card">
+        <span class="mod-num">02</span>
+        <h3>FIRE, HEALTH & SAFETY</h3>
+        <p>Full-spectrum RRO alignment and automated risk assessments. Intelligent tracking for fire suppression systems and workplace safety audits.</p>
+    </div>
+
+    <div class="module-card">
+        <span class="mod-num">03</span>
+        <h3>CRITICAL INFRASTRUCTURE</h3>
+        <p>Precision monitoring of physical estate assets. We treat every component as a data node, integrating maintenance history with statutory alignment.</p>
+    </div>
+
+    <div class="module-card">
+        <span class="mod-num">04</span>
+        <h3>ACCREDITATION</h3>
+        <p>Strategic governance for ISO standards and regulatory certification. We ensure your estate remains in a constant state of audit-readiness.</p>
+    </div>
+</div>
 
 <section class="audit-section" id="audit">
     <div class="audit-container">
