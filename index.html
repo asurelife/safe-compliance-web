@@ -587,7 +587,7 @@
 
         <div class="footer-col">
             <h4>CONTROL</h4>
-           <a href="javascript:void(0)" onclick="openPrivacy()" class="f-link">PRIVACY PROTOCOL</a>
+           <a href="#privacy" onclick="openPrivacy(event)" class="f-link">PRIVACY PROTOCOL</a>
             <a href="#" class="f-link">DATA GOVERNANCE</a>
         </div>
 
@@ -692,15 +692,7 @@
                 msgs.scrollTop = msgs.scrollHeight;
             }, 600);
         };
-        function openPrivacy() {
-    document.getElementById('privacyModal').style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent scrolling background
-}
-
-function closePrivacy() {
-    document.getElementById('privacyModal').style.display = 'none';
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
-}
+        <a href="#privacy" onclick="openPrivacy(event)" class="f-link">PRIVACY PROTOCOL</a>
 
 // Close if user clicks outside the box
 window.onclick = function(event) {
