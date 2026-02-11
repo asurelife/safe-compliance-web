@@ -169,20 +169,118 @@
 
     <div class="divider"></div>
 
-    <section class="section" id="architecture">
-        <div class="grid-2">
-            <div>
-                <h2>Centralised<br><span style="color:var(--lime)">Dominance.</span></h2>
-                <p class="desc-text">Our proprietary architecture eliminates the friction between physical estates and digital oversight. We turn raw telemetry into actionable governance.</p>
-                <p class="desc-text">From Legionella telemetry to Fire Risk Assessments, we centralise the command of every compliance node into a single, high-fidelity dashboard.</p>
-            </div>
-            <div class="status-box">
-                <div class="status-line">> <span>INITIATING_SYSTEM_SCAN...</span></div>
-                <div class="status-line">> CORE_PROTOCOL: <span>SECURE</span></div>
-                <div class="status-line">> ENCRYPTION: <span>AES-256 ACTIVE</span></div>
+<section class="section" id="architecture">
+    <div class="grid-2">
+        <div class="dominance-text">
+            <div class="kicker">GOVERNANCE ARCHITECTURE</div>
+            <h2>Centralised<br><span style="color:var(--lime)">Dominance.</span></h2>
+            
+            <p class="desc-text">
+                Our proprietary architecture eliminates the friction between physical estates and digital oversight. We turn raw telemetry into actionable governance, allowing for total visibility across your entire portfolio. By digitising the compliance lifecycle, we remove human error and provide an immutable audit trail for every asset under your command.
+            </p>
+            
+            <p class="desc-text">
+                From Legionella temperature telemetry to automated Fire Risk Assessments, we centralise the command of every compliance node into a single, high-fidelity dashboard. This system doesn't just monitor data—it predicts gaps and automates the remedial workflow, ensuring your estate remains in a state of constant audit-readiness without manual intervention.
+            </p>
+            
+            <div class="tech-specs">
+                <div class="spec-item"><span>LATENCY</span> <br> <0.5ms</div>
+                <div class="spec-item"><span>UPTIME</span> <br> 99.99%</div>
+                <div class="spec-item"><span>NODES</span> <br> UNLIMITED</div>
             </div>
         </div>
-    </section>
+
+        <div class="status-box">
+            <div class="status-header">REAL-TIME SYSTEM MONITOR</div>
+            <div class="status-line">> <span>INITIATING_SYSTEM_SCAN...</span></div>
+            <div class="status-line">> CORE_PROTOCOL: <span>SECURE</span></div>
+            <div class="status-line">> ENCRYPTION: <span>AES-256 ACTIVE</span></div>
+            <div class="status-line">> DATA_NODES: <span>412_DETECTED</span></div>
+            <div class="status-line">> COMPLIANCE_DELTA: <span>0.00%</span></div>
+            <div class="status-line">> STATUS: <span>OPTIMAL</span></div>
+            <div class="glitch-bar"></div>
+        </div>
+    </div>
+</header>
+
+<style>
+    /* Supporting Styles for Section 2 Details */
+    .kicker {
+        color: var(--lime);
+        font-weight: 900;
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    /* Standardised font size for BOTH paragraphs */
+    .desc-text {
+        color: var(--text-gray);
+        font-size: 1.15rem; /* Matched size */
+        line-height: 1.7;
+        margin-bottom: 25px;
+        max-width: 650px;
+    }
+
+    .tech-specs {
+        display: flex;
+        gap: 30px;
+        margin-top: 40px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 30px;
+    }
+
+    .spec-item {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--white);
+    }
+
+    .spec-item span {
+        font-size: 0.6rem;
+        color: var(--lime);
+        letter-spacing: 1px;
+    }
+
+    .status-box {
+        background: #010409;
+        padding: 40px;
+        border: 1px solid #1e293b;
+        border-left: 5px solid var(--lime);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .status-header {
+        font-size: 0.65rem;
+        font-weight: 900;
+        color: #475569;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .status-line {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        color: rgba(255,255,255,0.8);
+    }
+
+    .status-line span {
+        color: var(--lime);
+    }
+
+    .glitch-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        background: var(--lime);
+        opacity: 0.3;
+        box-shadow: 0 0 10px var(--lime);
+    }
+</style>
 
     <div class="authority-bar">
         <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
