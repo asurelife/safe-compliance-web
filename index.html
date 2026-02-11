@@ -588,49 +588,51 @@
         </div>
     </div>
 </div>
-
 <div id="governanceModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); z-index: 10000; backdrop-filter: blur(15px);">
-    <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 650px; background: #010409; border: 1px solid #82bc00; border-radius: 4px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
-        <div style="background: #82bc00; color: #020617; padding: 18px 25px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; letter-spacing: 1px;">
+    <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 650px; background: #010409; border: 1px solid #82bc00; border-radius: 4px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; max-height: 85vh;">
+        
+        <div style="background: #82bc00; color: #020617; padding: 18px 25px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; letter-spacing: 1px; flex-shrink: 0;">
             <span style="font-size: 0.8rem;">DATA GOVERNANCE ARCHITECTURE</span>
             <span onclick="closeGovernance()" style="cursor: pointer; font-size: 1.8rem; line-height: 1;">&times;</span>
         </div>
-        <div style="padding: 40px; max-height: 70vh; overflow-y: auto; color: #f8fafc;">
+
+        <div style="padding: 40px; overflow-y: auto; color: #f8fafc; flex-grow: 1; -webkit-overflow-scrolling: touch;">
             
             <div style="margin-bottom: 30px;">
-                <h3 style="color: #82bc00; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">01 // Data Integrity Protocol</h3>
-                <p style="color: #94a3b8; line-height: 1.7; font-size: 0.95rem;">
-                    SAFE COMPLIANCE utilizes validation logic to ensure the accuracy of all estate telemetry. Once data is committed to the Master Ledger, it becomes an immutable record, ensuring an untampered audit trail for statutory inspections and insurance validation.
+                <h3 style="color: #82bc00; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; font-weight: 900;">01 // Data Integrity Protocol</h3>
+                <p style="color: #94a3b8; line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                    SAFE COMPLIANCE utilizes validation logic to ensure the accuracy of all estate telemetry. Once data is committed to the Master Ledger, it becomes an immutable record, ensuring an untampered audit trail for statutory inspections, insurance validation, and long-term asset liability management.
                 </p>
             </div>
 
             <div style="margin-bottom: 30px;">
-                <h3 style="color: #82bc00; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">02 // Availability & Redundancy</h3>
-                <p style="color: #94a3b8; line-height: 1.7; font-size: 0.95rem;">
-                    Our architecture employs multi-node replication across Tier-3 UK data centres. We guarantee 99.99% uptime for all compliance dashboards, with real-time failover protocols in place to prevent data loss during critical reporting periods.
+                <h3 style="color: #82bc00; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; font-weight: 900;">02 // Availability & Redundancy</h3>
+                <p style="color: #94a3b8; line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                    Our architecture employs multi-node replication across Tier-3 UK data centres. We guarantee 99.99% uptime for all compliance dashboards, with real-time failover protocols in place to prevent data loss or service interruption during critical reporting periods.
                 </p>
             </div>
 
             <div style="margin-bottom: 30px;">
-                <h3 style="color: #82bc00; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">03 // Sovereign Data Residency</h3>
-                <p style="color: #94a3b8; line-height: 1.7; font-size: 0.95rem;">
-                    All processing and storage nodes are located within the UK. We do not offshore estate telemetry, ensuring your data remains under the protection of UK GDPR and the Data Protection Act 2018.
+                <h3 style="color: #82bc00; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; font-weight: 900;">03 // Sovereign Data Residency</h3>
+                <p style="color: #94a3b8; line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                    All processing and storage nodes are located strictly within the UK. We do not offshore estate telemetry or metadata, ensuring your sensitive operational data remains under the absolute protection of UK GDPR and the Data Protection Act 2018.
                 </p>
             </div>
 
-            <div style="margin-bottom: 10px;">
-                <h3 style="color: #82bc00; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">04 // Secure Stewardship & NIST Compliance</h3>
-                <p style="color: #94a3b8; line-height: 1.7; font-size: 0.95rem;">
-                    We perform monthly governance audits to ensure our security controls exceed the requirements of the NIST Cybersecurity Framework. Every interaction is logged via a forensic audit trail for total transparency.
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #82bc00; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; font-weight: 900;">04 // Secure Stewardship & NIST Compliance</h3>
+                <p style="color: #94a3b8; line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                    We perform rigorous monthly governance audits to ensure our security controls exceed the requirements of the NIST Cybersecurity Framework. Every system interaction, administrative change, and data access request is logged via a forensic audit trail for total enterprise transparency.
                 </p>
             </div>
 
-            <div style="margin-top: 35px; padding: 20px; background: rgba(130, 188, 0, 0.05); border: 1px solid rgba(130, 188, 0, 0.2); font-size: 0.7rem; font-weight: 900; color: #82bc00; text-align: center; letter-spacing: 1px;">
-                GOVERNANCE TIER: ENTERPRISE // FRAMEWORK: NIST-UK // STATUS: ACTIVE
+            <div style="margin-top: 10px; padding: 20px; background: rgba(130, 188, 0, 0.05); border: 1px solid rgba(130, 188, 0, 0.2); font-size: 0.7rem; font-weight: 900; color: #82bc00; text-align: center; letter-spacing: 2px;">
+                GOVERNANCE TIER: ENTERPRISE // FRAMEWORK: NIST-UK // STATUS: ENCRYPTED
             </div>
         </div>
     </div>
 </div>
+        
 <footer style="padding: 100px 5% 60px 5%; background: #000; border-top: 1px solid rgba(130, 188, 0, 0.2); position: relative; z-index: 1;">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; max-width: 1400px; margin: 0 auto;">
         
