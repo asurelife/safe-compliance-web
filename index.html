@@ -136,9 +136,9 @@
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
     <a href="#home" data-active="true" onclick="navigate(event, this, 'home')">Intelligence</a>
-    <a href="#architecture" data-active="false" onclick="navigate(event, this, 'architecture')">Architecture</a>
-    <a href="#capabilities" data-active="false" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
-    <a href="#audit" data-active="false" onclick="navigate(event, this, 'audit')">Execute Audit</a>
+    <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
+    <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
+    <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
 </nav>
     </header>
 
@@ -258,34 +258,33 @@
 
 <script>
 function navigate(event, element, sectionId) {
-    // 1. Stop the browser's default "jump"
+    // 1. Prevent the default jump
     if (event) event.preventDefault();
 
-    // 2. THE COLOR FIX (Using the data-active attribute we set up)
+    // 2. Update Colors (The part you said is working!)
     const allLinks = document.querySelectorAll('.nav-links a');
-    allLinks.forEach(link => {
-        link.setAttribute('data-active', 'false');
-    });
+    allLinks.forEach(link => link.setAttribute('data-active', 'false'));
     element.setAttribute('data-active', 'true');
 
-    // 3. THE SCROLL FIX
+    // 3. The Linker
     if (sectionId === 'home') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-        const target = document.getElementById(sectionId);
-        if (target) {
-            // This method is much more reliable than offsetTop
-            target.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
+        const targetSection = document.getElementById(sectionId);
+        
+        if (targetSection) {
+            // Get the position of the section relative to the top of the page
+            const headerOffset = 80;
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-            // Adjust for your 80px sticky header after the scroll starts
-            setTimeout(() => {
-                window.scrollBy(0, -80);
-            }, 500); // 500ms allows the smooth scroll to finish first
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         } else {
-            console.error("Link failed: Could not find #" + sectionId);
+            // This alert will tell us EXACTLY why it's failing
+            alert("Error: Cannot find a section with id='" + sectionId + "'. Check your HTML tags!");
         }
     }
 }
