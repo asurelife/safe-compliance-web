@@ -55,7 +55,7 @@
 
 .nav-links {
     display: flex !important;
-    gap: 50px !important; /* Forces spacing */
+    gap: 50px !important; 
     align-items: center;
 }
 
@@ -71,9 +71,11 @@
     color: #82bc00 !important;
 }
 
-/* Active: ONLY the link with this class stays green */
+/* Active: This version is more specific to ensure it stays Green */
+/* We target the container + the link + the class */
 .nav-links a.active {
     color: #82bc00 !important;
+    font-weight: 900; /* Optional: adds a slight "bold" to the active section */
 }
 
         /* HERO SECTION */
