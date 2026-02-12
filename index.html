@@ -40,16 +40,31 @@
             width: 100% !important;
             box-sizing: border-box !important;
         }
+/* LOGO STYLING */
+.logo { 
+    color: white; 
+    font-weight: 900; 
+    font-size: 1.4rem; 
+    letter-spacing: -0.5px; 
+    text-transform: uppercase;
+}
+.logo span { 
+    color: #82bc00; /* This makes "COMPLIANCE" Lime */
+}
+        /* NAV LINK STYLING */
+.nav-links a { 
+    text-decoration: none !important; 
+    font-weight: 900 !important; 
+    font-size: 0.7rem !important; 
+    letter-spacing: 2px !important; 
+    text-transform: uppercase;
+    color: #94a3b8; /* Default Gray-Blue */
+    transition: 0.3s;
+}
 
-        .nav-links { display: flex !important; gap: 40px !important; align-items: center !important; }
-        .nav-links a { 
-            text-decoration: none !important; 
-            font-weight: 900 !important; 
-            font-size: 0.7rem !important; 
-            letter-spacing: 2px !important; 
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
+.nav-links a:hover {
+    color: #82bc00; /* Glow Lime on hover */
+}
 
         /* HERO SECTION */
         header#home { padding: 180px 5% 80px 5%; min-height: 80vh; display: flex; align-items: center; }
