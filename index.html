@@ -137,12 +137,14 @@
 <body id="top"> <div class="main-content">
     <header class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
-        <nav class="nav-links">
-            <a href="#top" id="nav-intelligence" onclick="setActive(this)">Intelligence</a>
-            <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
-            <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
-            <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
-        </nav>
+<nav class="nav-links">
+    <a href="javascript:void(0)" id="nav-intelligence" onclick="scrollToPosition(0, this)">Intelligence</a>
+    
+    <a href="#architecture" id="nav-architecture" onclick="scrollToPosition('architecture', this)">Architecture</a>
+    
+    <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
+    <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
+</nav>
     </header>
 
     <header id="home">
@@ -278,25 +280,25 @@
         document.body.style.overflow = 'auto'; 
     }
 
-function setActive(element) {
+function scrollToPosition(target, element) {
+    // 1. Set Active Color Logic
     const links = document.querySelectorAll('.nav-links a');
-    
-    // 1. Reset all links to gray
-    links.forEach(link => {
-        link.style.color = '#94a3b8';
-    });
-
-    // 2. Set clicked link to Lime
+    links.forEach(link => link.style.color = '#94a3b8');
     element.style.color = '#82bc00';
-    
-    // 3. FORCE SCROLL TO TOP for Intelligence
-    // This checks if the ID is intelligence OR if the link points to #top
-    if (element.id === 'nav-intelligence' || element.getAttribute('href') === '#top') {
-        window.scrollTo({ 
-            top: 0, 
-            left: 0, 
-            behavior: 'smooth' 
+
+    // 2. Scroll Logic
+    if (target === 0) {
+        // Force the browser to go to the very top pixel
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
+    } else {
+        // Standard scroll for other sections
+        const section = document.getElementById(target);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
     }
 }
 
