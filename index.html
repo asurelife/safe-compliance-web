@@ -258,32 +258,34 @@
 
 <script>
 function navigate(event, element, sectionId) {
+    // 1. Prevent the 'jump'
     if (event) event.preventDefault();
+    console.log("Navigating to: " + sectionId); // This checks if the script is alive
 
-    // 1. UPDATE COLORS (The working part!)
+    // 2. THE COLOR FIX (Keep this working!)
     const allLinks = document.querySelectorAll('.nav-links a');
-    allLinks.forEach(link => link.setAttribute('data-active', 'false'));
+    allLinks.forEach(link => {
+        link.setAttribute('data-active', 'false');
+    });
     element.setAttribute('data-active', 'true');
 
-    // 2. THE SCROLL LOGIC
+    // 3. THE SCROLL FIX
     if (sectionId === 'home') {
-        // Force the page to the absolute top (X=0, Y=0)
-        window.scrollTo({ 
-            top: 0, 
-            left: 0, 
-            behavior: 'smooth' 
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
+        const target = document.getElementById(sectionId);
+        if (target) {
             const headerOffset = 80;
-            const elementPosition = targetSection.getBoundingClientRect().top;
+            const elementPosition = target.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
             window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
             });
+        } else {
+            // If it can't find the section, it will do a standard scroll to top as a fallback
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 }
