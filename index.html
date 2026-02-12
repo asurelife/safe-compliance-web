@@ -72,7 +72,7 @@
 /* THE CENTERING ENGINE */
 .content-wrapper {
     width: 90%;
-    max-width: 1200px; /* This pulls 'AUTO' and the grid back to the center */
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -82,11 +82,9 @@
 .authority-bar { 
     background: var(--white); 
     color: var(--navy); 
-    padding: 60px 5%; 
-    display: flex;
-    justify-content: center; /* Center the entire group */
+    padding: 40px 0; /* Tightened padding */
     width: 100%;
-    box-sizing: border-box;
+    margin-bottom: 0; /* Force it to touch the grid below if preferred */
     border-top: 5px solid var(--lime);
 }
 
@@ -124,23 +122,21 @@
 }
 /* SECTION 3 WRAPPER */
 #capabilities {
-    min-height: 100vh; /* Forces section to fill the whole screen height */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically centers the content */
-    align-items: center;     /* Horizontally centers the content */
+    justify-content: center; /* Keeps the whole unit centered in the screen */
     background: var(--navy);
-    padding: 80px 0;         /* Ensures breathing room at top and bottom */
-    box-sizing: border-box;
+    padding: 40px 0; /* Reduced from 80px to pull content closer */
 }
 
 /* THE 6-BOX GRID ENGINE */
 .module-grid { 
     display: grid; 
-    grid-template-columns: 1fr; /* Stacked on mobile */
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2px;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px; /* Reduced from 50px to kill the 'huge space' */
 }
 
 @media (min-width: 768px) {
