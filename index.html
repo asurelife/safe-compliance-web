@@ -59,13 +59,16 @@
     align-items: center;
 }
 
+/* This forces the active link to stay Lime regardless of visited status */
+.nav-links a.active {
+    color: #82bc00 !important;
+    opacity: 1 !important;
+}
+
+/* Ensure other links are gray by default */
 .nav-links a {
-    text-decoration: none !important;
-    font-weight: 900;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    /* This forces the color to stay Gray, even if you've clicked it before */
-    color: #94a3b8 !important; 
+    color: #94a3b8 !important;
+    text-decoration: none;
     transition: 0.3s;
 }
 
@@ -280,42 +283,29 @@
 
 <script>
 
-    function updateActiveLink(element) {
-    // 1. Remove 'active' class from all links
+function updateActiveLink(element) {
+    // 1. Find every link in the nav and strip the green class
     const links = document.querySelectorAll('.nav-links a');
     links.forEach(l => l.classList.remove('active'));
 
-    // 2. Add 'active' class to the clicked link
+    // 2. Give the green class ONLY to the one we just clicked
     element.classList.add('active');
 }
 // This function specifically handles the 'Intelligence' link to return to the Hero Screen
 function scrollToTop(e, element) {
-    if (e) e.preventDefault(); // Stop the '#' from jumping instantly
-    
-    // Update colors: Reset all to gray, set this one to Lime
-    const links = document.querySelectorAll('.nav-links a');
-    links.forEach(l => l.style.color = '#94a3b8');
-    element.style.color = '#82bc00';
-
-    // Absolute scroll to the very top (Intelligence-led Screen)
-    window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-    });
+    if (e) e.preventDefault();
+    updateActiveLink(element); // This turns it green
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // This function handles the other sections (Architecture, etc.)
 function setActive(element) {
-    const links = document.querySelectorAll('.nav-links a');
-    links.forEach(l => l.style.color = '#94a3b8');
-    element.style.color = '#82bc00';
+    updateActiveLink(element); // This turns the clicked link green
     
-    // Allow the natural anchor scroll or add an offset for the sticky header
     const targetId = element.getAttribute('href').slice(1);
     const targetSection = document.getElementById(targetId);
     if (targetSection) {
-        const offset = targetSection.offsetTop - 80; // 80 is your header height
+        const offset = targetSection.offsetTop - 80;
         window.scrollTo({ top: offset, behavior: 'smooth' });
     }
 }
