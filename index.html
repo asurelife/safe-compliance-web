@@ -137,12 +137,12 @@
 <div class="main-content">
     <header id="main-header" class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
-        <nav class="nav-links">
-            <a href="#home" id="nav-intelligence" onclick="scrollToTop(event, this)">Intelligence</a>
-            <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
-            <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
-            <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
-        </nav>
+<nav class="nav-links">
+    <a href="#home" id="nav-intelligence" class="active" onclick="scrollToTop(event, this)">Intelligence</a>
+    <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
+    <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
+    <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
+</nav>
     </header>
 
     <header id="home">
@@ -279,6 +279,15 @@
     }
 
 <script>
+
+    function updateActiveLink(element) {
+    // 1. Remove 'active' class from all links
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(l => l.classList.remove('active'));
+
+    // 2. Add 'active' class to the clicked link
+    element.classList.add('active');
+}
 // This function specifically handles the 'Intelligence' link to return to the Hero Screen
 function scrollToTop(e, element) {
     if (e) e.preventDefault(); // Stop the '#' from jumping instantly
