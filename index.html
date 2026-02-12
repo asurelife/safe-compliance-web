@@ -135,10 +135,10 @@
    <header id="home" class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
-    <a href="#home" data-active="true" onclick="navigate(event, this, 'home')">Intelligence</a>
-    <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
-    <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
-    <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
+    <a href="#home" data-active="true" onclick="navigate(event, 'home', this)">Intelligence</a>
+    <a href="#architecture" onclick="navigate(event, 'architecture', this)">Architecture</a>
+    <a href="#capabilities" onclick="navigate(event, 'capabilities', this)">Capabilities</a>
+    <a href="#audit" onclick="navigate(event, 'audit', this)">Execute Audit</a>
 </nav>
     </header>
 
@@ -257,28 +257,26 @@
 </div>
 
 <script>
-function navigate(event, element, sectionId) {
-    // 1. Prevent default jump
-    if (event) event.preventDefault();
+function navigate(event, sectionId, element) {
+    // 1. Stop the browser from jumping
+    event.preventDefault();
 
-    // 2. COLORS: Reset all to gray, then set this one to green
-    const allLinks = document.querySelectorAll('.nav-links a');
-    allLinks.forEach(link => {
-        link.setAttribute('data-active', 'false');
-    });
+    // 2. Change colors
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(l => l.setAttribute('data-active', 'false'));
     element.setAttribute('data-active', 'true');
 
-    // 3. SCROLLING:
+    // 3. Move the screen
     if (sectionId === 'home') {
-        // Just go to the very top of the page, no ID needed
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-        // Find the specific section for Architecture, etc.
         const target = document.getElementById(sectionId);
         if (target) {
-            const headerOffset = 80; // Your sticky header height
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            const offset = 80; // Space for your header
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = target.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
 
             window.scrollTo({
                 top: offsetPosition,
