@@ -32,17 +32,24 @@
 .sticky-header {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(10, 11, 14, 0.95); /* Matches your dark theme */
+    background: rgba(10, 11, 14, 0.9); /* Dark semi-transparent background */
     backdrop-filter: blur(10px);
-    
-    /* THE HEIGHT FIXES */
-    padding: 15px 40px; /* Reduced top/bottom padding from 40px to 15px */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    /* THE HEIGHT FIX */
+    padding: 15px 40px; /* Reduced vertical padding from 40px+ to 15px */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+    height: 70px; /* Forces a specific slim height */
+}
+
+        header#home {
+    padding-top: 100px; /* This ensures your title starts below the navbar */
 }
 /* LOGO STYLING */
 .logo { 
@@ -281,7 +288,7 @@ function navigate(event, element, sectionId) {
         if (mainContent) {
             mainContent.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-            window.scrollBy(0, -60);
+            window.scrollBy(0, -70);
         }
     } else {
         const target = document.getElementById(sectionId);
