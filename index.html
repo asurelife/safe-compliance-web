@@ -53,29 +53,20 @@
     color: #82bc00; /* Lime green for COMPLIANCE */
 }
 
-.nav-links {
-    display: flex !important;
-    gap: 50px !important;
-    align-items: center;
-}
-
-/* 1. The Base Link (Gray) */
+/* Default state for all links */
 .nav-links a {
-    color: #94a3b8 !important;
+    color: #94a3b8 !important; 
     text-decoration: none !important;
-    font-weight: 900;
-    font-size: 0.75rem;
-    text-transform: uppercase;
     transition: 0.3s;
 }
 
-/* 2. The Active Link (Green) - This MUST stay green */
-.nav-links a.active {
+/* Hover state */
+.nav-links a:hover {
     color: #82bc00 !important;
 }
 
-/* 3. The Hover Link (Green) */
-.nav-links a:hover {
+/* THE FIX: This rule forces the green color when data-active is "true" */
+.nav-links a[data-active="true"] {
     color: #82bc00 !important;
 }
 
@@ -144,13 +135,10 @@
     <header id="main-header" class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
-    <a href="#home" id="nav-intelligence" style="color: #82bc00 !important;" onclick="navigate(event, this, 'home')">Intelligence</a>
-    
-    <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
-    
-    <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
-    
-    <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
+    <a href="#home" data-active="true" onclick="navigate(event, this, 'home')">Intelligence</a>
+    <a href="#architecture" data-active="false" onclick="navigate(event, this, 'architecture')">Architecture</a>
+    <a href="#capabilities" data-active="false" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
+    <a href="#audit" data-active="false" onclick="navigate(event, this, 'audit')">Execute Audit</a>
 </nav>
     </header>
 
@@ -270,29 +258,26 @@
 
 <script>
 function navigate(event, element, sectionId) {
-    // 1. Prevent the page from "jumping" instantly
     if (event) event.preventDefault();
 
-    // 2. THE COLOR FIX: Turn all links Gray, then turn clicked one Green
+    // 1. Reset all links to false (turns them Gray)
     const allLinks = document.querySelectorAll('.nav-links a');
     allLinks.forEach(link => {
-        link.style.setProperty('color', '#94a3b8', 'important');
+        link.setAttribute('data-active', 'false');
     });
-    element.style.setProperty('color', '#82bc00', 'important');
 
-    // 3. THE SCROLL FIX:
+    // 2. Set THIS link to true (turns it Green)
+    element.setAttribute('data-active', 'true');
+
+    // 3. Handle Scroll
     if (sectionId === 'home') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         const target = document.getElementById(sectionId);
         if (target) {
-            const headerHeight = 80; // This leaves room for your sticky header
-            const targetPosition = target.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            const offset = 80; 
+            const targetPosition = target.offsetTop - offset;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
     }
 }
