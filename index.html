@@ -59,25 +59,24 @@
     align-items: center;
 }
 
+/* 1. The Base Link (Gray) */
 .nav-links a {
-    color: #94a3b8 !important; /* Default Gray */
+    color: #94a3b8 !important;
     text-decoration: none !important;
     font-weight: 900;
     font-size: 0.75rem;
     text-transform: uppercase;
-    transition: color 0.3s ease;
+    transition: 0.3s;
 }
 
-/* When the link is active OR being hovered, it turns green */
-.nav-links a.active, 
-.nav-links a:hover {
-    color: #82bc00 !important;
-}
-
-/* Active: This version is more specific to ensure it stays Green */
+/* 2. The Active Link (Green) - This MUST stay green */
 .nav-links a.active {
     color: #82bc00 !important;
-    font-weight: 900; /* Optional: adds a slight "bold" to the active section */
+}
+
+/* 3. The Hover Link (Green) */
+.nav-links a:hover {
+    color: #82bc00 !important;
 }
 
         /* HERO SECTION */
@@ -145,10 +144,10 @@
     <header id="main-header" class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
-    <a href="#home" id="nav-intelligence" class="active" onclick="navigate(event, this)">Intelligence</a>
-    <a href="#architecture" onclick="navigate(event, this)">Architecture</a>
-    <a href="#capabilities" onclick="navigate(event, this)">Capabilities</a>
-    <a href="#audit" onclick="navigate(event, this)">Execute Audit</a>
+    <a href="javascript:void(0)" id="nav-intelligence" class="active" onclick="moveToSection('home', this)">Intelligence</a>
+    <a href="javascript:void(0)" id="nav-architecture" onclick="moveToSection('architecture', this)">Architecture</a>
+    <a href="javascript:void(0)" id="nav-capabilities" onclick="moveToSection('capabilities', this)">Capabilities</a>
+    <a href="javascript:void(0)" id="nav-audit" onclick="moveToSection('audit', this)">Execute Audit</a>
 </nav>
     </header>
 
@@ -306,28 +305,32 @@ function scrollToTop(e, element) {
 }
 
 <script>
-function navigate(event, element) {
-    // 1. Prevent default jump behavior
-    event.preventDefault();
-
-    // 2. MOVE THE GREEN COLOR
+function moveToSection(targetId, element) {
+    // 1. CLEAR: Remove 'active' class from every single link in the nav
     const allLinks = document.querySelectorAll('.nav-links a');
-    allLinks.forEach(link => link.classList.remove('active'));
+    for (let i = 0; i < allLinks.length; i++) {
+        allLinks[i].classList.remove('active');
+    }
+
+    // 2. SET: Add 'active' class to the one you just clicked
     element.classList.add('active');
 
-    // 3. HANDLE THE SCROLL
-    const targetId = element.getAttribute('href').replace('#', '');
-    
+    // 3. SCROLL: 
     if (targetId === 'home') {
-        // Intelligence Screen (Absolute Top)
+        // Go to the very top for Intelligence Screen
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-        // Section Scrolling (Architecture, etc.)
-        const destination = document.getElementById(targetId);
-        if (destination) {
-            const headerHeight = 80;
-            const targetPosition = destination.offsetTop - headerHeight;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        // Go to specific section for others
+        const section = document.getElementById(targetId);
+        if (section) {
+            const headerOffset = 80; // Adjusted for your sticky header
+            const elementPosition = section.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         }
     }
 }
