@@ -111,18 +111,14 @@
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); z-index: 10000; backdrop-filter: blur(15px); }
     </style>
 </head>
-<body>
-
-<div class="main-content">
+<body id="top"> <div class="main-content">
     <header class="sticky-header">
-        <div style="color: white; font-weight: 900; font-size: 1.4rem; letter-spacing: -0.5px;">
-            SAFE<span style="color:#82bc00;">COMPLIANCE</span>
-        </div>
+        <div class="logo">SAFE<span>COMPLIANCE</span></div>
         <nav class="nav-links">
-            <a href="#top" id="nav-intelligence" onclick="setActive(this)" style="color: #82bc00;">INTELLIGENCE</a>
-            <a href="#architecture" id="nav-architecture" onclick="setActive(this)" style="color: #94a3b8;">ARCHITECTURE</a>
-            <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)" style="color: #94a3b8;">CAPABILITIES</a>
-            <a href="#audit" id="nav-audit" onclick="setActive(this)" style="color: #94a3b8;">EXECUTE AUDIT</a>
+            <a href="#top" id="nav-intelligence" onclick="setActive(this)">Intelligence</a>
+            <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
+            <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
+            <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
         </nav>
     </header>
 
@@ -241,13 +237,49 @@
 </div>
 
 <script>
-    function openPrivacy() { document.getElementById('privacyModal').style.display = 'block'; document.body.style.overflow = 'hidden'; }
-    function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
-    function openGovernance() { document.getElementById('governanceModal').style.display = 'block'; document.body.style.overflow = 'hidden'; }
-    function closeGovernance() { document.getElementById('governanceModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+    // --- MODAL CONTROLS (Keep these so your footer links work) ---
+    function openPrivacy() { 
+        document.getElementById('privacyModal').style.display = 'block'; 
+        document.body.style.overflow = 'hidden'; 
+    }
+    function closePrivacy() { 
+        document.getElementById('privacyModal').style.display = 'none'; 
+        document.body.style.overflow = 'auto'; 
+    }
+    function openGovernance() { 
+        document.getElementById('governanceModal').style.display = 'block'; 
+        document.body.style.overflow = 'hidden'; 
+    }
+    function closeGovernance() { 
+        document.getElementById('governanceModal').style.display = 'none'; 
+        document.body.style.overflow = 'auto'; 
+    }
+
+    // --- NAVIGATION CONTROLS (Updated for the Scroll-to-Top fix) ---
     function setActive(element) {
-        document.querySelectorAll('.nav-links a').forEach(l => l.style.color = '#94a3b8');
+        // 1. Get all nav links
+        const links = document.querySelectorAll('.nav-links a');
+        
+        // 2. Reset all links to gray
+        links.forEach(link => {
+            link.style.color = '#94a3b8';
+        });
+
+        // 3. Set clicked link to Lime
         element.style.color = '#82bc00';
+        
+        // 4. If Intelligence is clicked, force scroll to top
+        if (element.id === 'nav-intelligence') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    // Close modals if the user clicks the dark background
+    window.onclick = function(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            closePrivacy();
+            closeGovernance();
+        }
     }
 </script>
 </body>
