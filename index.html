@@ -78,26 +78,22 @@
     flex-direction: column;
     align-items: center;
 }
-/* SECTION 3: WHITE BOX AUTHORITY BAR - ALIGNMENT FIX */
+/* THE AUTHORITY BAR (With Edge Protection) */
 .authority-bar { 
     background: var(--white); 
     color: var(--navy); 
-    padding: 40px 0; /* Tightened padding */
     width: 100%;
-    margin-bottom: 0; /* Force it to touch the grid below if preferred */
     border-top: 5px solid var(--lime);
+    padding: 60px 0; /* Vertical breathing room */
 }
 
-/* THE AUTHORITY BAR INNER CONTAINER */
 .auth-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    width: 90%; /* Keeps it from hitting the screen edges */
-    max-width: 1200px; /* Standardises width with the grid below */
-    margin: 0 auto; /* Centers the container */
-    padding: 0 30px; /* THE FIX: Adds space on the left and right inside the white box */
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px; /* THE FIX: Keeps 100% and AUTO away from the ends */
     box-sizing: border-box;
 }
 
@@ -133,27 +129,27 @@
     padding: 40px 0; /* Reduced from 80px to pull content closer */
 }
 
-/* THE MODULE GRID ALIGNMENT */
+/* THE 8-CARD GRID (4 columns on desktop) */
 .module-grid { 
     display: grid; 
+    grid-template-columns: 1fr; /* Mobile */
     gap: 20px;
     width: 90%;
     max-width: 1200px;
-    margin: 40px auto 0 auto; /* Centers the grid under the white bar */
-    padding: 0 30px; /* THE FIX: Aligns the grid padding with the white bar padding */
-    box-sizing: border-box;
+    margin: 50px auto 0 auto;
+    padding: 0 40px; /* Aligns with the white bar padding */
 }
 
 @media (min-width: 768px) {
-    .module-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2x3 on tablets */
-    }
+    .module-grid { grid-template-columns: repeat(2, 1fr); } /* 2x4 on Tablet */
 }
 
 @media (min-width: 1100px) {
-    .module-grid {
-        grid-template-columns: repeat(3, 1fr); /* Perfect 3x2 on desktop */
-    }
+    .module-grid { grid-template-columns: repeat(4, 1fr); } /* 4x2 on Desktop */
+}
+
+.module-card {
+    min-height: 280px; /* Uniform height for the 8-box look */
 }
 
 /* Ensure cards are uniform height for the grid look */
@@ -331,14 +327,27 @@
         </div>
     </div>
 
-    <div class="module-grid">
-        <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>...</p></div>
-        <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>...</p></div>
-        <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>...</p></div>
-        <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>...</p></div>
-        <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>...</p></div>
-        <div class="module-card"><span>[06]</span><h3>SECURITY SYSTEMS</h3><p>...</p></div>
+<div class="module-grid">
+    <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance and telemetry.</p></div>
+    <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment and risk tracking.</p></div>
+    <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets.</p></div>
+    <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO and regulatory standards.</p></div>
+
+    <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>HVAC and air quality monitoring for sustainability.</p></div>
+    <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>Integrated oversight of access and surveillance.</p></div>
+
+    <div class="module-card">
+        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[07]</span>
+        <h3>ELECTRICAL</h3>
+        <p>Fixed wire testing and PAT oversight integrated into a live asset register.</p>
     </div>
+
+    <div class="module-card">
+        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[08]</span>
+        <h3>ASBESTOS</h3>
+        <p>Real-time digital asbestos registers and removal tracking protocols.</p>
+    </div>
+</div>
 
 </section>
     </div> </section>
