@@ -42,28 +42,36 @@
         }
 /* LOGO STYLING */
 .logo { 
-    color: white; 
+    color: #ffffff !important; 
     font-weight: 900; 
     font-size: 1.4rem; 
     letter-spacing: -0.5px; 
     text-transform: uppercase;
+    text-decoration: none;
 }
 .logo span { 
-    color: #82bc00; /* This makes "COMPLIANCE" Lime */
+    color: #82bc00; /* Lime green for COMPLIANCE */
 }
-        /* NAV LINK STYLING */
+
+/* NAVIGATION LINKS */
+.nav-links {
+    display: flex;
+    gap: 30px; /* This creates the spacing between each link */
+    align-items: center;
+}
+
 .nav-links a { 
     text-decoration: none !important; 
     font-weight: 900 !important; 
-    font-size: 0.7rem !important; 
-    letter-spacing: 2px !important; 
+    font-size: 0.75rem !important; 
+    letter-spacing: 1.5px !important; 
     text-transform: uppercase;
-    color: #94a3b8; /* Default Gray-Blue */
+    color: #94a3b8 !important; /* Forces gray color, prevents blue */
     transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: #82bc00; /* Glow Lime on hover */
+    color: #82bc00 !important; /* Glows lime on hover */
 }
 
         /* HERO SECTION */
