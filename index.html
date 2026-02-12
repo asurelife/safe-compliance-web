@@ -432,7 +432,7 @@ function navigate(event, element, sectionId) {
     }
 }
 </script>
-    <script>
+<script>
         // FORCING THE "INTELLIGENCE-LED" START POINT
         window.onload = function() {
             // Ensure the Intelligence-Led section is the starting point
@@ -446,7 +446,23 @@ function navigate(event, element, sectionId) {
             }
         };
 
-        // Your other navigate() functions can stay here too
+        // Your navigate(event, element, sectionId) function should be here too
+        function navigate(event, element, sectionId) {
+            if (event) event.preventDefault();
+            
+            // Logic to handle green font color for Intelligence
+            const allLinks = document.querySelectorAll('.nav-links a');
+            allLinks.forEach(link => link.setAttribute('data-active', 'false'));
+            element.setAttribute('data-active', 'true');
+
+            const target = document.getElementById(sectionId);
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 70, // Adjust for navbar height
+                    behavior: 'smooth'
+                });
+            }
+        }
     </script>
 </body>
 </html>
