@@ -128,36 +128,62 @@
 
 <div class="divider"></div>
 
-<section class="section" id="architecture" style="min-height: 100vh; display: flex; align-items: center;">
-    <div class="grid-2" style="width: 100%;">
+<section class="section" id="architecture" style="min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 70% 30%, rgba(130, 188, 0, 0.05) 0%, transparent 70%);">
+    <div class="grid-2" style="width: 100%; gap: 100px;">
+        
         <div>
             <div class="status-indicator">
-                <span class="pulse"></span> ARCHITECTURE_v4.0 // PREDICTIVE_ENGINE
+                <span class="pulse"></span> COMMAND_LAYER_ESTABLISHED
             </div>
-            <h2 style="font-size: clamp(3rem, 6vw, 5rem); line-height: 1; margin-bottom: 20px;">
+            <h2 style="font-size: clamp(3.5rem, 7vw, 5.5rem); line-height: 0.9; margin-bottom: 30px;">
                 Centralised<br><span style="color:var(--lime)">Dominance.</span>
             </h2>
-            <p style="color:var(--text-gray); font-size: 1.15rem; max-width: 600px; margin-bottom: 40px;">
-                Our proprietary architecture eliminates the friction between physical estates and digital oversight. 
-                We turn raw telemetry into actionable governance, providing the intelligence layer for global 
-                portfolios and mission-critical assets.
+            
+            <p style="color:var(--white); font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; border-left: 3px solid var(--lime); padding-left: 20px;">
+                Eliminating the friction between physical assets and digital oversight.
             </p>
             
-            <div class="tech-specs" style="display: flex; gap: 40px; border-top: 1px solid rgba(130, 188, 0, 0.2); padding-top: 30px;">
-                <div>
-                    <span style="color:var(--lime); font-size: 0.7rem; font-weight: 900; letter-spacing: 2px;">REAL-TIME NODES</span>
-                    <div style="font-size: 1.5rem; font-weight: 800;">412+ ACTIVE</div>
+            <p style="color:var(--text-gray); font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px;">
+                Our proprietary architecture is engineered to dismantle the fragmentation of legacy estate management. By converting raw telemetry into high-fidelity governance data, we provide a single source of truth for complex portfolios. 
+            </p>
+            
+            <p style="color:var(--text-gray); font-size: 1.1rem; line-height: 1.8; margin-bottom: 40px;">
+                From automated Legionella temperature monitoring to real-time Fire Risk Assessments, every compliance node is integrated into a unified command interface. This is not just monitoring; it is the total digital twin of your estate's regulatory health.
+            </p>
+            
+            <div class="tech-specs" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
+                <div><span style="color:var(--lime); font-size:0.65rem; font-weight:900; letter-spacing:1px;">SYNC_RATE</span><br><strong style="font-size:1.4rem;">0.5ms</strong></div>
+                <div><span style="color:var(--lime); font-size:0.65rem; font-weight:900; letter-spacing:1px;">UPTIME</span><br><strong style="font-size:1.4rem;">99.99%</strong></div>
+                <div><span style="color:var(--lime); font-size:0.65rem; font-weight:900; letter-spacing:1px;">ENCRYPTION</span><br><strong style="font-size:1.4rem;">AES-256</strong></div>
+            </div>
+        </div>
+
+        <div class="status-box" style="background: #010409; padding: 45px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); box-shadow: 0 40px 100px rgba(0,0,0,0.6); position: relative;">
+            <div style="font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6; color: #64748b;">
+                <div style="color: var(--lime); margin-bottom: 10px;">> [SYSTEM_BOOT]: SUCCESSFUL</div>
+                <div style="margin-bottom: 5px;">> LOADING_COMPLIANCE_ENGINE... <span style="color:var(--white)">DONE</span></div>
+                <div style="margin-bottom: 5px;">> SCANNING_ACoP_L8_PROTOCOLS... <span style="color:var(--white)">OPTIMAL</span></div>
+                <div style="margin-bottom: 5px;">> FIRE_SAFETY_UPLINK... <span style="color:var(--white)">CONNECTED</span></div>
+                <div style="margin-bottom: 5px;">> TELEMETRY_NODES_ACTIVE... <span style="color:var(--white)">412_COUNT</span></div>
+                
+                <div style="margin: 25px 0; padding: 20px; background: rgba(130, 188, 0, 0.05); border: 1px solid rgba(130, 188, 0, 0.2);">
+                    <div style="color: var(--lime); font-weight: bold; margin-bottom: 10px;">ESTATE_HEALTH_INDEX: 100%</div>
+                    <div style="width: 100%; height: 4px; background: #1e293b; margin-bottom: 10px;">
+                        <div style="width: 100%; height: 100%; background: var(--lime);"></div>
+                    </div>
+                    <div style="font-size: 0.7rem;">NO_RISK_DETECTED // ALL_SYSTEMS_GOVERNED</div>
                 </div>
-                <div>
-                    <span style="color:var(--lime); font-size: 0.7rem; font-weight: 900; letter-spacing: 2px;">LATENCY</span>
-                    <div style="font-size: 1.5rem; font-weight: 800;"><0.5ms</div>
-                </div>
-                <div>
-                    <span style="color:var(--lime); font-size: 0.7rem; font-weight: 900; letter-spacing: 2px;">ENCRYPTION</span>
-                    <div style="font-size: 1.5rem; font-weight: 800;">AES-256</div>
+
+                <div style="margin-bottom: 5px;">> [LOCAL_PORTFOLIO_ID]: <span style="color:var(--white)">GB-LON-449</span></div>
+                <div style="margin-bottom: 5px;">> [LATENCY_CHECK]: <span style="color:var(--white)">PASS_0.48ms</span></div>
+                <div style="margin-bottom: 5px;">> [ENCRYPTION_HASH]: <span style="color:var(--white)">SHA-512_AUTH</span></div>
+                <div style="margin-top: 20px; color: var(--lime); font-weight: bold; animation: pulse-animation 2s infinite;">
+                    > STANDBY: AWAITING_SECURE_SCAN_INITIATION_
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
         <div class="status-box" style="background: #010409; padding: 50px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); position: relative; overflow: hidden;">
             <div style="font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8;">
