@@ -144,10 +144,13 @@
     <header id="main-header" class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
-    <a href="#home" id="nav-intelligence" style="color: #82bc00 !important;" onclick="scrollToTop(event, this)">Intelligence</a>
-    <a href="#architecture" onclick="setActive(this)">Architecture</a>
-    <a href="#capabilities" onclick="setActive(this)">Capabilities</a>
-    <a href="#audit" onclick="setActive(this)">Execute Audit</a>
+    <a href="#home" id="nav-intelligence" style="color: #82bc00 !important;" onclick="navigate(event, this, 'home')">Intelligence</a>
+    
+    <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
+    
+    <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
+    
+    <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
 </nav>
     </header>
 
@@ -266,55 +269,31 @@
 </div>
 
 <script>
-    // --- MODAL CONTROLS (Keep these so your footer links work) ---
-    function openPrivacy() { 
-        document.getElementById('privacyModal').style.display = 'block'; 
-        document.body.style.overflow = 'hidden'; 
-    }
-    function closePrivacy() { 
-        document.getElementById('privacyModal').style.display = 'none'; 
-        document.body.style.overflow = 'auto'; 
-    }
-    function openGovernance() { 
-        document.getElementById('governanceModal').style.display = 'block'; 
-        document.body.style.overflow = 'hidden'; 
-    }
-    function closeGovernance() { 
-        document.getElementById('governanceModal').style.display = 'none'; 
-        document.body.style.overflow = 'auto'; 
-    }
+function navigate(event, element, sectionId) {
+    // 1. Prevent the page from "jumping" instantly
+    if (event) event.preventDefault();
 
-<script>
-function updateNavColors(clickedElement) {
-    // Turn all links Gray
-    const links = document.querySelectorAll('.nav-links a');
-    links.forEach(link => {
+    // 2. THE COLOR FIX: Turn all links Gray, then turn clicked one Green
+    const allLinks = document.querySelectorAll('.nav-links a');
+    allLinks.forEach(link => {
         link.style.setProperty('color', '#94a3b8', 'important');
     });
+    element.style.setProperty('color', '#82bc00', 'important');
 
-    // Turn the clicked link Green
-    clickedElement.style.setProperty('color', '#82bc00', 'important');
-}
-
-function scrollToTop(e, element) {
-    if (e) e.preventDefault();
-    updateNavColors(element);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function setActive(element) {
-    updateNavColors(element);
-    
-    // Get the ID (e.g., #architecture -> architecture)
-    const targetId = element.getAttribute('href').slice(1);
-    const targetSection = document.getElementById(targetId);
-    
-    if (targetSection) {
-        const offset = targetSection.offsetTop - 80; // Accounting for sticky header
-        window.scrollTo({
-            top: offset,
-            behavior: 'smooth'
-        });
+    // 3. THE SCROLL FIX:
+    if (sectionId === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        const target = document.getElementById(sectionId);
+        if (target) {
+            const headerHeight = 80; // This leaves room for your sticky header
+            const targetPosition = target.offsetTop - headerHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
     }
 }
 </script>
