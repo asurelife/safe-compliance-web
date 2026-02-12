@@ -59,23 +59,22 @@
     align-items: center;
 }
 
-/* Base style for all links */
 .nav-links a {
     color: #94a3b8 !important; /* Default Gray */
     text-decoration: none !important;
     font-weight: 900;
     font-size: 0.75rem;
     text-transform: uppercase;
-    transition: 0.3s;
+    transition: color 0.3s ease;
 }
 
-/* Hover effect */
+/* When the link is active OR being hovered, it turns green */
+.nav-links a.active, 
 .nav-links a:hover {
     color: #82bc00 !important;
 }
 
 /* Active: This version is more specific to ensure it stays Green */
-/* We target the container + the link + the class */
 .nav-links a.active {
     color: #82bc00 !important;
     font-weight: 900; /* Optional: adds a slight "bold" to the active section */
@@ -146,10 +145,10 @@
     <header id="main-header" class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
-    <a href="#home" id="nav-intelligence" style="color: #82bc00 !important;" onclick="scrollToTop(event, this)">Intelligence</a>
-    <a href="#architecture" onclick="setActive(this)">Architecture</a>
-    <a href="#capabilities" onclick="setActive(this)">Capabilities</a>
-    <a href="#audit" onclick="setActive(this)">Execute Audit</a>
+    <a href="#home" id="nav-intelligence" class="active" onclick="navigate(event, this)">Intelligence</a>
+    <a href="#architecture" onclick="navigate(event, this)">Architecture</a>
+    <a href="#capabilities" onclick="navigate(event, this)">Capabilities</a>
+    <a href="#audit" onclick="navigate(event, this)">Execute Audit</a>
 </nav>
     </header>
 
@@ -305,6 +304,34 @@ function scrollToTop(e, element) {
     updateNavColors(element); // Forces the color change
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+<script>
+function navigate(event, element) {
+    // 1. Prevent default jump behavior
+    event.preventDefault();
+
+    // 2. MOVE THE GREEN COLOR
+    const allLinks = document.querySelectorAll('.nav-links a');
+    allLinks.forEach(link => link.classList.remove('active'));
+    element.classList.add('active');
+
+    // 3. HANDLE THE SCROLL
+    const targetId = element.getAttribute('href').replace('#', '');
+    
+    if (targetId === 'home') {
+        // Intelligence Screen (Absolute Top)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        // Section Scrolling (Architecture, etc.)
+        const destination = document.getElementById(targetId);
+        if (destination) {
+            const headerHeight = 80;
+            const targetPosition = destination.offsetTop - headerHeight;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+    }
+}
+</script>
 
 function setActive(element) {
     updateNavColors(element); // Forces the color change
