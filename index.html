@@ -264,23 +264,25 @@
 function navigate(event, element, sectionId) {
     if (event) event.preventDefault();
 
-    // 1. UPDATE COLORS (Confirmed Working)
+    // 1. UPDATE COLORS
+    // Keep Intelligence green until another link is selected
     const allLinks = document.querySelectorAll('.nav-links a');
     allLinks.forEach(link => {
         link.setAttribute('data-active', 'false');
     });
     element.setAttribute('data-active', 'true');
 
-    // 2. THE SCROLL FIX
-    // We target the parent container that has the overflow
-    const container = document.querySelector('div[style*="overflow-y: auto"]');
-    
+    // 2. THE SCROLL LOGIC
+    // We find the specific div that is actually scrolling
+    const scrollContainer = document.querySelector('div[style*="overflow-y: auto"]') || window;
+
     if (sectionId === 'home') {
-        if (container) container.scrollTo({ top: 0, behavior: 'smooth' });
-        else window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Force the container back to the absolute top
+        scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         const target = document.getElementById(sectionId);
         if (target) {
+            // This is the most resilient way to find the target inside a scrollable div
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
