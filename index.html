@@ -109,28 +109,66 @@
 }
 
 /* THE MODULE GRID (Centered with Highlighted Boxes) */
+/* THE MODULE GRID */
 .module-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 20px; /* Space between boxes */
-    padding: 60px 5%;
+    gap: 2px; /* Thin line effect between cards */
+    background: rgba(130, 188, 0, 0.1); /* The 'glow' in the cracks */
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 40px auto;
+    width: 90%;
+}
+
+/* THE MODULE CARD - DEFAULT STATE */
+.module-card { 
+    background: var(--navy); 
+    padding: 60px 40px; 
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+/* TITLES SET TO GREEN */
+.module-card h3 { 
+    color: var(--lime); 
+    margin-bottom: 20px; 
+    font-size: 1.4rem; 
+    font-weight: 900; 
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+/* FULL HOVER EFFECT */
+.module-card:hover { 
+    background: #0f172a; /* Slightly lighter navy */
+    transform: translateY(-5px);
+    border-color: var(--lime);
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(130, 188, 0, 0.1);
+}
+
+/* Subtle accent line on hover */
+.module-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: var(--lime);
+    transition: 0.4s;
+}
+
+.module-card:hover::after {
     width: 100%;
 }
 
-.module-card { 
-    background: #0f172a; /* Slightly lighter navy to highlight */
-    padding: 50px 40px; 
-    border: 1px solid rgba(130, 188, 0, 0.2);
-    transition: 0.4s ease;
-    position: relative;
-}
-
-.module-card:hover { 
-    border-color: var(--lime);
-    transform: translateY(-10px);
-    background: #1e293b;
+/* Make text go pure white on hover for readability */
+.module-card:hover p {
+    color: var(--white);
 }
 
 .module-card h3 { 
