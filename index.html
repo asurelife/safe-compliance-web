@@ -80,11 +80,17 @@
     text-align: center; 
 }
 
-@media (min-width: 992px) { 
-    .authority-bar { 
-        display: flex; 
-        justify-content: space-around; 
-    } 
+/* Ensure the Authority Bar and Grid don't stretch too wide */
+.authority-bar, .module-grid {
+    width: 100%;
+    max-width: 1400px; /* Keeps content in the "sweet spot" of the screen */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Space between the white bar and the boxes */
+.authority-bar {
+    margin-bottom: 40px; 
 }
 
 .auth-item strong { 
@@ -101,11 +107,14 @@
 }
 /* SECTION 3 WRAPPER */
 #capabilities {
-    min-height: 100vh;
+    min-height: 100vh; /* Forces section to fill the whole screen height */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Vertically centers the content */
+    align-items: center;     /* Horizontally centers the content */
     background: var(--navy);
+    padding: 80px 0;         /* Ensures breathing room at top and bottom */
+    box-sizing: border-box;
 }
 
 /* THE MODULE GRID (Centered with Highlighted Boxes) */
@@ -358,23 +367,21 @@
 function navigate(event, element, sectionId) {
     if (event) event.preventDefault();
 
-    // 1. Color highlighting logic (Keeping Intelligence Green)
-    if (element) {
-        const allLinks = document.querySelectorAll('.nav-links a');
-        allLinks.forEach(link => link.setAttribute('data-active', 'false'));
-        element.setAttribute('data-active', 'true');
-    }
+    // Color Persistence logic
+    const allLinks = document.querySelectorAll('.nav-links a');
+    allLinks.forEach(link => link.setAttribute('data-active', 'false'));
+    element.setAttribute('data-active', 'true');
 
-    // 2. Scroll Logic
-    if (sectionId === 'top') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-        const target = document.getElementById(sectionId);
-        if (target) {
-            const offset = 70; // Matches navbar height
-            const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({ top: targetPos - offset, behavior: 'smooth' });
-        }
+    // Scroll Logic
+    const target = document.getElementById(sectionId);
+    if (target) {
+        const navbarHeight = 70; // Matches your slim navbar height
+        const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
+        
+        window.scrollTo({
+            top: targetPos - navbarHeight,
+            behavior: 'smooth'
+        });
     }
 }
 </script>
