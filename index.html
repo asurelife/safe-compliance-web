@@ -258,22 +258,24 @@
 
 <script>
 function navigate(event, element, sectionId) {
-    // 1. Prevent the default jump
     if (event) event.preventDefault();
 
-    // 2. Update Colors (The part you said is working!)
+    // 1. UPDATE COLORS (The working part!)
     const allLinks = document.querySelectorAll('.nav-links a');
     allLinks.forEach(link => link.setAttribute('data-active', 'false'));
     element.setAttribute('data-active', 'true');
 
-    // 3. The Linker
+    // 2. THE SCROLL LOGIC
     if (sectionId === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Force the page to the absolute top (X=0, Y=0)
+        window.scrollTo({ 
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth' 
+        });
     } else {
         const targetSection = document.getElementById(sectionId);
-        
         if (targetSection) {
-            // Get the position of the section relative to the top of the page
             const headerOffset = 80;
             const elementPosition = targetSection.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -282,9 +284,6 @@ function navigate(event, element, sectionId) {
                 top: offsetPosition,
                 behavior: 'smooth'
             });
-        } else {
-            // This alert will tell us EXACTLY why it's failing
-            alert("Error: Cannot find a section with id='" + sectionId + "'. Check your HTML tags!");
         }
     }
 }
