@@ -59,20 +59,20 @@
     align-items: center;
 }
 
-/* 1. Default state: All links are Gray */
+/* Default: All links are Gray */
 .nav-links a {
     color: #94a3b8 !important;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: 0.3s;
 }
 
-/* 2. Active state: The link for the section you are currently on stays Green */
-.nav-links a.active {
+/* Hover: Any link turns green when mouse is over it */
+.nav-links a:hover {
     color: #82bc00 !important;
 }
 
-/* 3. Hover state: Any link turns Green when the mouse is over it */
-.nav-links a:hover {
+/* Active: ONLY the link with this class stays green */
+.nav-links a.active {
     color: #82bc00 !important;
 }
 
@@ -142,9 +142,9 @@
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
     <a href="#home" id="nav-intelligence" class="active" onclick="scrollToTop(event, this)">Intelligence</a>
-    <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
-    <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
-    <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
+    <a href="#architecture" onclick="setActive(this)">Architecture</a>
+    <a href="#capabilities" onclick="setActive(this)">Capabilities</a>
+    <a href="#audit" onclick="setActive(this)">Execute Audit</a>
 </nav>
     </header>
 
@@ -282,24 +282,25 @@
     }
 
 <script>
-
-function updateActiveLink(element) {
-    // Remove the 'active' class from all links
+function updateActiveState(clickedElement) {
+    // 1. Remove the 'active' class from ALL links (this stops Intelligence from staying green)
     const links = document.querySelectorAll('.nav-links a');
-    links.forEach(l => l.classList.remove('active'));
+    links.forEach(link => {
+        link.classList.remove('active');
+    });
 
-    // Add the 'active' class to the link that was just clicked
-    element.classList.add('active');
+    // 2. Add the 'active' class ONLY to the one we just clicked
+    clickedElement.classList.add('active');
 }
 
 function scrollToTop(e, element) {
     if (e) e.preventDefault();
-    updateActiveLink(element); // This keeps it green after clicking
+    updateActiveState(element); // Moves the green highlight to Intelligence
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function setActive(element) {
-    updateActiveLink(element); // This moves the green color to the new section
+    updateActiveState(element); // Moves the green highlight to Architecture/Capabilities/etc.
     
     const targetId = element.getAttribute('href').slice(1);
     const targetSection = document.getElementById(targetId);
