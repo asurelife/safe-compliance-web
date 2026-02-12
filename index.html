@@ -278,24 +278,27 @@
         document.body.style.overflow = 'auto'; 
     }
 
-    // --- NAVIGATION CONTROLS (Updated for the Scroll-to-Top fix) ---
-    function setActive(element) {
-        // 1. Get all nav links
-        const links = document.querySelectorAll('.nav-links a');
-        
-        // 2. Reset all links to gray
-        links.forEach(link => {
-            link.style.color = '#94a3b8';
-        });
+function setActive(element) {
+    const links = document.querySelectorAll('.nav-links a');
+    
+    // 1. Reset all links to gray
+    links.forEach(link => {
+        link.style.color = '#94a3b8';
+    });
 
-        // 3. Set clicked link to Lime
-        element.style.color = '#82bc00';
-        
-        // 4. If Intelligence is clicked, force scroll to top
-        if (element.id === 'nav-intelligence') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    // 2. Set clicked link to Lime
+    element.style.color = '#82bc00';
+    
+    // 3. FORCE SCROLL TO TOP for Intelligence
+    // This checks if the ID is intelligence OR if the link points to #top
+    if (element.id === 'nav-intelligence' || element.getAttribute('href') === '#top') {
+        window.scrollTo({ 
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth' 
+        });
     }
+}
 
     // Close modals if the user clicks the dark background
     window.onclick = function(e) {
