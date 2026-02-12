@@ -432,16 +432,22 @@ function navigate(event, element, sectionId) {
     }
 }
 </script>
-window.onload = function() {
-    // Ensure the Intelligence-Led section is the starting point
-    window.scrollTo(0, 0);
-    
-    // Explicitly set the Intelligence link to your preferred green
-    const intelLink = document.querySelector('a[href="#intelligence"]');
-    if (intelLink) {
-        intelLink.setAttribute('data-active', 'true');
-    }
-};
+    <script>
+        // FORCING THE "INTELLIGENCE-LED" START POINT
+        window.onload = function() {
+            // Ensure the Intelligence-Led section is the starting point
+            window.scrollTo(0, 0);
+            
+            // Explicitly set the Intelligence link to your preferred green
+            const intelLink = document.querySelector('a[href="#intelligence"]');
+            if (intelLink) {
+                // This activates the CSS rule that keeps Intelligence green
+                intelLink.setAttribute('data-active', 'true');
+            }
+        };
+
+        // Your other navigate() functions can stay here too
+    </script>
 </body>
 </html>
 
