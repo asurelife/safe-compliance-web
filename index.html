@@ -55,7 +55,7 @@
 
 .nav-links {
     display: flex !important;
-    gap: 50px !important; /* Forces 50px of space between every link */
+    gap: 50px !important; /* Forces spacing */
     align-items: center;
 }
 
@@ -64,12 +64,13 @@
     font-weight: 900;
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: #94a3b8 !important; /* Standard Gray */
+    /* This forces the color to stay Gray, even if you've clicked it before */
+    color: #94a3b8 !important; 
     transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: #82bc00 !important; /* Lime on hover */
+    color: #82bc00 !important;
 }
 
         /* HERO SECTION */
@@ -135,12 +136,12 @@
 <body id="top"> <div class="main-content">
 <header id="main-header" class="sticky-header">
     <div class="logo">SAFE<span>COMPLIANCE</span></div>
-    <nav class="nav-links">
-        <a href="#main-header" id="nav-intelligence" onclick="setActive(this)">Intelligence</a>
-        <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
-        <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
-        <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
-    </nav>
+<nav class="nav-links">
+    <a href="#" id="nav-intelligence" onclick="scrollToTop(event, this)">Intelligence</a>
+    <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
+    <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
+    <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
+</nav>
 </header>
 
     <header id="home">
@@ -276,21 +277,31 @@
         document.body.style.overflow = 'auto'; 
     }
 
-function setActive(element) {
-    // 1. Reset all links to gray
+<script>
+// POSITION 1: Force scroll to absolute top
+function scrollToTop(e, element) {
+    e.preventDefault(); // Stop the browser from jumping
+    
+    // Reset all link colors
     const links = document.querySelectorAll('.nav-links a');
     links.forEach(l => l.style.color = '#94a3b8');
-
-    // 2. Set this link to Lime
+    
+    // Set clicked link to Lime
     element.style.color = '#82bc00';
 
-    // 3. If Intelligence is clicked, force the header into view
-    if (element.id === 'nav-intelligence') {
-        document.getElementById('main-header').scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-        });
-    }
+    // THE FIX: Direct command to the browser window to go to Pixel 0
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+}
+
+// POSITION 2, 3, 4: Standard Section Scrolling
+function setActive(element) {
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(l => l.style.color = '#94a3b8');
+    element.style.color = '#82bc00';
 }
 
     // Close modals if the user clicks the dark background
