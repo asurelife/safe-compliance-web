@@ -8,91 +8,97 @@
     <style>
         :root { --navy: #020617; --lime: #82bc00; --white: #ffffff; --text-gray: #94a3b8; --dark-blue: #0f172a; }
         
-        html { scroll-behavior: smooth; }
-        
+        /* 1. GLOBAL RESET & SMOOTH SCROLL */
+        html { scroll-behavior: smooth; height: 100%; }
         body { 
             margin: 0; 
             background: var(--navy); 
             color: var(--white); 
             font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            overflow-x: hidden;
+            overflow-x: hidden; 
+            display: block; /* Removed flex to stop the 'container trap' */
         }
 
-        /* SLIM NAVBAR FIX */
+        /* 2. SLIM NAVBAR FIX */
         .sticky-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+            height: 70px; /* Force a slim profile */
             z-index: 1000;
             background: rgba(2, 6, 23, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px; /* Slim height */
+            padding: 0 5%;
+            box-sizing: border-box;
         }
 
-        .logo { color: #ffffff !important; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; text-decoration: none; }
+        .logo { 
+            color: #ffffff !important; 
+            font-weight: 900; 
+            font-size: 1.2rem; 
+            text-transform: uppercase; 
+            text-decoration: none;
+            margin: 0;
+        }
         .logo span { color: var(--lime); }
 
-        .nav-links { display: flex; gap: 25px; }
+        .nav-links { display: flex; gap: 30px; }
         .nav-links a {
             color: #94a3b8 !important; 
             text-decoration: none !important;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: 0.3s;
-            font-size: 0.9rem;
-            font-weight: 700;
             cursor: pointer;
         }
 
+        /* Link highlighting */
         .nav-links a:hover, .nav-links a[data-active="true"] {
             color: var(--lime) !important;
         }
 
-        /* HERO SECTION ADJUSTMENT */
+        /* 3. SECTION STYLING */
         #home-hero { 
-            padding: 150px 5% 80px 5%; 
-            min-height: 80vh; 
+            padding: 160px 5% 100px 5%; /* Pushes text below the 70px navbar */
+            min-height: 90vh; 
             display: flex; 
             align-items: center; 
         }
 
-        h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
-        .hero-sub { color: var(--text-gray); margin: 35px 0; font-size: 1.2rem; max-width: 850px; }
-        .btn-main { background: var(--lime); color: var(--navy); padding: 20px 40px; text-decoration: none; font-weight: 900; text-transform: uppercase; display: inline-block; }
+        h1 { font-size: clamp(2.5rem, 8vw, 6rem); text-transform: uppercase; line-height: 0.9; margin: 0; font-weight: 900; letter-spacing: -2px; }
+        .hero-sub { color: var(--text-gray); margin: 30px 0; font-size: 1.1rem; max-width: 800px; }
         
-        .status-indicator { display: flex; align-items: center; gap: 10px; color: var(--lime); font-weight: 900; font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 25px; }
-        .pulse { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; animation: pulse-animation 2s infinite; }
+        .status-indicator { display: flex; align-items: center; gap: 10px; color: var(--lime); font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 20px; }
+        .pulse { width: 7px; height: 7px; background: var(--lime); border-radius: 50%; animation: pulse-animation 2s infinite; }
         @keyframes pulse-animation { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        .divider { border-bottom: 2px solid var(--lime); width: 100%; }
         .section { padding: 100px 5%; }
-        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center; }
+        .divider { border-bottom: 1px solid var(--lime); width: 100%; opacity: 0.3; }
+
+        /* GRID FIXES */
+        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; }
         @media (min-width: 992px) { .grid-2 { grid-template-columns: 1.2fr 0.8fr; } }
         
-        .status-box { background: #010409; padding: 40px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); }
-        .tech-specs { display: flex; gap: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
+        .status-box { background: #010409; padding: 40px; border: 1px solid #1e293b; border-left: 4px solid var(--lime); }
+        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; background: rgba(130, 188, 0, 0.1); }
+        .module-card { background: var(--navy); padding: 50px 40px; }
 
-        .authority-bar { background: var(--white); color: var(--navy); padding: 50px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px; }
-        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2px; background: rgba(130, 188, 0, 0.2); }
-        .module-card { background: var(--navy); padding: 60px 40px; }
-        .audit-section { background: var(--dark-blue); padding: 100px 5%; }
-        .audit-form { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 800px; margin: 40px auto 0; text-align: left;}
+        .audit-form { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 800px; margin: 40px auto; }
         @media (min-width: 768px) { .audit-form { grid-template-columns: 1fr 1fr; } }
-        .input-group { display: flex; flex-direction: column; gap: 8px; }
-        .input-group label { color: var(--lime); font-size: 0.7rem; font-weight: 900; }
-        .input-group input { background: #010409; border: 1px solid #334155; color: white; padding: 15px; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); z-index: 10000; }
+        .btn-submit { grid-column: 1 / -1; background: var(--lime); color: var(--navy); padding: 20px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
 <header class="sticky-header">
-    <div class="logo">SAFE<span>COMPLIANCE</span></div>
+    <a href="#top" class="logo" onclick="navigate(event, this, 'top')">SAFE<span>COMPLIANCE</span></a>
     <nav class="nav-links">
         <a href="#top" data-active="true" onclick="navigate(event, this, 'top')">Intelligence</a>
         <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
@@ -101,14 +107,16 @@
     </nav>
 </header>
 
-<div id="top"></div> <section id="home-hero">
+<div id="top"></div>
+
+<section id="home-hero">
     <div class="hero-content">
         <div class="status-indicator">
             <span class="pulse"></span> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
         </div>
         <h1>INTELLIGENCE-LED<br><span style="color:var(--lime)">ESTATE GOVERNANCE.</span></h1>
-        <p class="hero-sub">The most advanced digital Data Monitoring ecosystem for complex estate governance, precision compliance management, and real-time risk mitigation.</p>
-        <a href="#audit" class="btn-main" onclick="navigate(event, null, 'audit')">Deploy System Architecture</a>
+        <p class="hero-sub">The most advanced digital Data Monitoring ecosystem. We provide the intelligence layer for complex estate governance and real-time risk mitigation.</p>
+        <a href="#audit" class="btn-submit" style="text-decoration:none; display:inline-block; width:auto; padding: 20px 40px;" onclick="navigate(event, null, 'audit')">Initiate Secure Scan</a>
     </div>
 </section>
 
@@ -118,43 +126,39 @@
     <div class="grid-2">
         <div>
             <h2>Centralised<br><span style="color:var(--lime)">Dominance.</span></h2>
-            <p>Our proprietary architecture eliminates the friction between physical estates and digital oversight. We turn raw telemetry into actionable governance.</p>
-            <div class="tech-specs">
-                <div class="spec-item"><span>LATENCY</span> <br> <0.5ms</div>
-                <div class="spec-item"><span>UPTIME</span> <br> 99.99%</div>
-                <div class="spec-item"><span>NODES</span> <br> UNLIMITED</div>
-            </div>
+            <p style="color:var(--text-gray)">Our proprietary architecture eliminates the friction between physical estates and digital oversight. We turn raw telemetry into actionable governance.</p>
         </div>
         <div class="status-box">
-            <div class="status-line">> <span>INITIATING_SYSTEM_SCAN...</span></div>
-            <div class="status-line">> CORE_PROTOCOL: <span>SECURE</span></div>
-            <div class="status-line">> STATUS: <span>OPTIMAL</span></div>
+            <div style="font-family:monospace; font-size:0.8rem;">
+                > SCANNING_NODES... <span style="color:var(--lime)">DONE</span><br>
+                > ENCRYPTION_LAYER... <span style="color:var(--lime)">ACTIVE</span><br>
+                > STATUS: <span style="color:var(--lime)">OPTIMAL</span>
+            </div>
         </div>
     </div>
 </section>
 
-<div class="authority-bar">
-    <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
-    <div class="auth-item"><strong>24/7</strong><span>Real-Time Analysis</span></div>
-    <div class="auth-item"><strong>AUTO</strong><span>Risk Mitigation</span></div>
-</div>
-
 <div class="module-grid" id="capabilities">
-    <div class="module-card"><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols and digital telemetry.</p></div>
-    <div class="module-card"><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment and automated risk assessments.</p></div>
-    <div class="module-card"><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets.</p></div>
-    <div class="module-card"><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards.</p></div>
+    <div class="module-card"><h3>WATER HYGIENE</h3><p style="color:var(--text-gray)">Advanced ACoP L8 compliance and digital telemetry.</p></div>
+    <div class="module-card"><h3>FIRE & SAFETY</h3><p style="color:var(--text-gray)">Full-spectrum RRO alignment and automated assessments.</p></div>
+    <div class="module-card"><h3>INFRASTRUCTURE</h3><p style="color:var(--text-gray)">Precision monitoring of critical physical assets.</p></div>
+    <div class="module-card"><h3>ACCREDITATION</h3><p style="color:var(--text-gray)">Strategic governance for ISO and regulatory standards.</p></div>
 </div>
 
-<section class="audit-section" id="audit">
-    <div style="text-align: center;">
-        <div style="color:var(--lime); font-weight:900; font-size:0.7rem; letter-spacing:3px;">SECURE DATA UPLINK</div>
-        <h2>Initiate <span style="color:var(--lime)">System Audit</span></h2>
-        <form class="audit-form">
-            <div class="input-group" style="grid-column: 1/-1;"><label>Company Name</label><input type="text" required></div>
-            <div class="input-group"><label>Contact Name</label><input type="text" required></div>
-            <div class="input-group"><label>Contact Email</label><input type="email" required></div>
-            <button type="submit" style="grid-column: 1/-1;" class="btn-main">Initiate Secure Scan</button>
+<section class="section" id="audit">
+    <div style="text-align:center;">
+        <h2 style="margin-bottom:10px;">Execute <span style="color:var(--lime)">Audit</span></h2>
+        <p style="color:var(--text-gray)">Initiate a secure system scan for your estate.</p>
+        <form class="audit-form" style="text-align:left;">
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <label style="color:var(--lime); font-size:0.7rem; font-weight:900;">ESTATE NAME</label>
+                <input type="text" style="background:#010409; border:1px solid #334155; padding:15px; color:white;">
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <label style="color:var(--lime); font-size:0.7rem; font-weight:900;">CONTACT EMAIL</label>
+                <input type="email" style="background:#010409; border:1px solid #334155; padding:15px; color:white;">
+            </div>
+            <button type="submit" class="btn-submit">Deploy System Architecture</button>
         </form>
     </div>
 </section>
@@ -163,27 +167,23 @@
 function navigate(event, element, sectionId) {
     if (event) event.preventDefault();
 
-    // 1. Set Colors
+    // 1. Color highlighting logic
     if (element) {
         const allLinks = document.querySelectorAll('.nav-links a');
         allLinks.forEach(link => link.setAttribute('data-active', 'false'));
         element.setAttribute('data-active', 'true');
     }
 
-    // 2. Smooth Scroll Logic
+    // 2. Simple Scroll Logic
     if (sectionId === 'top') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         const target = document.getElementById(sectionId);
         if (target) {
-            const offset = 90; // Accounts for slim navbar
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = target.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
-
+            const navbarHeight = 70;
+            const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
             window.scrollTo({
-                top: offsetPosition,
+                top: targetPos - navbarHeight,
                 behavior: 'smooth'
             });
         }
