@@ -69,41 +69,49 @@
             box-sizing: border-box;
         }
 
-        /* SECTION 3: WHITE BOX AUTHORITY BAR */
+/* SECTION 3: WHITE BOX AUTHORITY BAR - ALIGNMENT FIX */
 .authority-bar { 
     background: var(--white); 
     color: var(--navy); 
-    padding: 50px 5%; 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px; 
-    text-align: center; 
-}
-
-/* Ensure the Authority Bar and Grid don't stretch too wide */
-.authority-bar, .module-grid {
+    padding: 60px 5%; 
+    display: flex;
+    justify-content: center; /* Center the entire group */
     width: 100%;
-    max-width: 1400px; /* Keeps content in the "sweet spot" of the screen */
-    margin-left: auto;
-    margin-right: auto;
+    box-sizing: border-box;
+    border-top: 5px solid var(--lime);
 }
 
-/* Space between the white bar and the boxes */
-.authority-bar {
-    margin-bottom: 40px; 
+/* This inner wrapper prevents items from flying off to the edges */
+.auth-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2x2 on mobile */
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px; /* Pulls "AUTO" back into the safe zone */
+    text-align: center;
+}
+
+@media (min-width: 992px) { 
+    .auth-container { 
+        display: flex; 
+        justify-content: space-between; /* Even spacing within the 1200px limit */
+    } 
 }
 
 .auth-item strong { 
-    font-size: 2.5rem; 
+    font-size: 2.8rem; 
     display: block; 
-    margin-bottom: 10px; 
+    margin-bottom: 5px; 
     font-weight: 900; 
+    line-height: 1;
 }
 
 .auth-item span { 
     font-size: 0.75rem; 
     font-weight: 900; 
     text-transform: uppercase; 
+    letter-spacing: 1px;
+    color: #475569;
 }
 /* SECTION 3 WRAPPER */
 #capabilities {
@@ -303,22 +311,24 @@
     </div>
 </section>
 
-<div class="authority-bar" style="background: var(--white); color: var(--navy); padding: 60px 5%; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 40px; text-align: center; border-top: 5px solid var(--lime);">
-    <div class="auth-item">
-        <strong style="font-size: 3rem; display: block; font-weight: 900; line-height: 1;">100%</strong>
-        <span style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #475569;">Audit Readiness</span>
-    </div>
-    <div class="auth-item">
-        <strong style="font-size: 3rem; display: block; font-weight: 900; line-height: 1;">24/7</strong>
-        <span style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #475569;">Real-Time Analysis</span>
-    </div>
-    <div class="auth-item">
-        <strong style="font-size: 3rem; display: block; font-weight: 900; line-height: 1;">COMPLETE</strong>
-        <span style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #475569;">Centralisation</span>
-    </div>
-    <div class="auth-item">
-        <strong style="font-size: 3rem; display: block; font-weight: 900; line-height: 1;">AUTO</strong>
-        <span style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #475569;">Risk Mitigation</span>
+<div class="authority-bar">
+    <div class="auth-container">
+        <div class="auth-item">
+            <strong>100%</strong>
+            <span>Audit Readiness</span>
+        </div>
+        <div class="auth-item">
+            <strong>24/7</strong>
+            <span>Real-Time Analysis</span>
+        </div>
+        <div class="auth-item">
+            <strong>COMPLETE</strong>
+            <span>Centralisation</span>
+        </div>
+        <div class="auth-item">
+            <strong>AUTO</strong>
+            <span>Risk Mitigation</span>
+        </div>
     </div>
 </div>
 
