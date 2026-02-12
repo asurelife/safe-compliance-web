@@ -262,34 +262,26 @@
 
 <script>
 function navigate(event, element, sectionId) {
-    // 1. Force the browser to stay on the page
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
+    if (event) event.preventDefault();
 
-    // 2. THE COLOR FIX (Keep Intelligence font colour in green until another is selected)
+    // 1. UPDATE COLORS (Confirmed Working)
     const allLinks = document.querySelectorAll('.nav-links a');
     allLinks.forEach(link => {
         link.setAttribute('data-active', 'false');
     });
     element.setAttribute('data-active', 'true');
 
-    // 3. THE SCROLL FIX
+    // 2. THE SCROLL FIX
+    // We target the parent container that has the overflow
+    const container = document.querySelector('div[style*="overflow-y: auto"]');
+    
     if (sectionId === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (container) container.scrollTo({ top: 0, behavior: 'smooth' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         const target = document.getElementById(sectionId);
         if (target) {
-            // Using a simpler offset calculation that GitHub likes better
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 }
