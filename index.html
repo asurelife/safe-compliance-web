@@ -281,7 +281,7 @@ function navigate(event, element, sectionId) {
         if (mainContent) {
             mainContent.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollBy(0, -60);
         }
     } else {
         const target = document.getElementById(sectionId);
