@@ -286,64 +286,35 @@
 
 <script>
 function updateNavColors(clickedElement) {
-    // 1. Target all links in your navigation
+    // Turn all links Gray
     const links = document.querySelectorAll('.nav-links a');
-    
-    // 2. Force every single link to be Gray
     links.forEach(link => {
         link.style.setProperty('color', '#94a3b8', 'important');
     });
 
-    // 3. Force the clicked link to be Green
+    // Turn the clicked link Green
     clickedElement.style.setProperty('color', '#82bc00', 'important');
 }
 
 function scrollToTop(e, element) {
     if (e) e.preventDefault();
-    updateNavColors(element); // Forces the color change
+    updateNavColors(element);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-<script>
-function moveToSection(targetId, element) {
-    // 1. CLEAR: Remove 'active' class from every single link in the nav
-    const allLinks = document.querySelectorAll('.nav-links a');
-    for (let i = 0; i < allLinks.length; i++) {
-        allLinks[i].classList.remove('active');
-    }
-
-    // 2. SET: Add 'active' class to the one you just clicked
-    element.classList.add('active');
-
-    // 3. SCROLL: 
-    if (targetId === 'home') {
-        // Go to the very top for Intelligence Screen
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-        // Go to specific section for others
-        const section = document.getElementById(targetId);
-        if (section) {
-            const headerOffset = 80; // Adjusted for your sticky header
-            const elementPosition = section.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    }
-}
-</script>
-
 function setActive(element) {
-    updateNavColors(element); // Forces the color change
+    updateNavColors(element);
     
+    // Get the ID (e.g., #architecture -> architecture)
     const targetId = element.getAttribute('href').slice(1);
     const targetSection = document.getElementById(targetId);
+    
     if (targetSection) {
-        const offset = targetSection.offsetTop - 80;
-        window.scrollTo({ top: offset, behavior: 'smooth' });
+        const offset = targetSection.offsetTop - 80; // Accounting for sticky header
+        window.scrollTo({
+            top: offset,
+            behavior: 'smooth'
+        });
     }
 }
 </script>
