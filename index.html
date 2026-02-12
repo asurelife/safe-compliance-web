@@ -99,6 +99,46 @@
     font-weight: 900; 
     text-transform: uppercase; 
 }
+/* SECTION 3 WRAPPER */
+#capabilities {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--navy);
+}
+
+/* THE MODULE GRID (Centered with Highlighted Boxes) */
+.module-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 20px; /* Space between boxes */
+    padding: 60px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.module-card { 
+    background: #0f172a; /* Slightly lighter navy to highlight */
+    padding: 50px 40px; 
+    border: 1px solid rgba(130, 188, 0, 0.2);
+    transition: 0.4s ease;
+    position: relative;
+}
+
+.module-card:hover { 
+    border-color: var(--lime);
+    transform: translateY(-10px);
+    background: #1e293b;
+}
+
+.module-card h3 { 
+    color: var(--lime); 
+    margin-bottom: 15px; 
+    font-size: 1.4rem; 
+    font-weight: 900; 
+}
 
         h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
         h2 { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; font-weight: 900; line-height: 1; margin-bottom: 25px; }
@@ -242,12 +282,28 @@
 }
 </style>
 
-<div class="module-grid" id="capabilities">
-    <div class="module-card"><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols and digital telemetry.</p></div>
-    <div class="module-card"><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment and automated risk assessments.</p></div>
-    <div class="module-card"><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets.</p></div>
-    <div class="module-card"><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards and certification.</p></div>
-</div>
+<div class="module-grid">
+        <div class="module-card">
+            <span style="color:var(--lime); font-family:monospace; font-weight:900;">[01]</span>
+            <h3>WATER HYGIENE</h3>
+            <p style="color:var(--text-gray);">Advanced ACoP L8 compliance protocols and digital telemetry. We provide real-time temperature monitoring and asset tracking.</p>
+        </div>
+        <div class="module-card">
+            <span style="color:var(--lime); font-family:monospace; font-weight:900;">[02]</span>
+            <h3>FIRE & SAFETY</h3>
+            <p style="color:var(--text-gray);">Full-spectrum RRO alignment and automated risk assessments. Intelligent tracking for every fire suppression node.</p>
+        </div>
+        <div class="module-card">
+            <span style="color:var(--lime); font-family:monospace; font-weight:900;">[03]</span>
+            <h3>INFRASTRUCTURE</h3>
+            <p style="color:var(--text-gray);">Precision monitoring of physical estate assets. We treat every physical component as a digital data node.</p>
+        </div>
+        <div class="module-card">
+            <span style="color:var(--lime); font-family:monospace; font-weight:900;">[04]</span>
+            <h3>ACCREDITATION</h3>
+            <p style="color:var(--text-gray);">Strategic governance for ISO standards and regulatory certification. We ensure constant audit-readiness across the portfolio.</p>
+        </div>
+    </div>
 
 <section id="audit" style="display:block; text-align:center;">
     <div style="color:var(--lime); font-weight:900; letter-spacing:3px;">SECURE DATA UPLINK</div>
