@@ -302,13 +302,20 @@ function scrollToTop(e, element) {
 }
 
 function setActive(element) {
-    updateActiveState(element); // Moves the green highlight to Architecture/Capabilities/etc.
+    // 1. Wipe the 'active' class from everyone
+    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
     
+    // 2. Give it to the one we just clicked
+    element.classList.add('active');
+    
+    // 3. Handle the scroll (with your 80px offset)
     const targetId = element.getAttribute('href').slice(1);
     const targetSection = document.getElementById(targetId);
     if (targetSection) {
-        const offset = targetSection.offsetTop - 80;
-        window.scrollTo({ top: offset, behavior: 'smooth' });
+        window.scrollTo({
+            top: targetSection.offsetTop - 80,
+            behavior: 'smooth'
+        });
     }
 }
 </script>
