@@ -161,17 +161,17 @@
     </style>
 </head>
     
-<header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 9000; border-bottom: 1px solid rgba(130, 188, 0, 0.1);">
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: #020617; height: 80px; position: sticky; top: 0; z-index: 9999; border-bottom: 1px solid rgba(130, 188, 0, 0.2); width: 100%; box-sizing: border-box;">
     
-    <div style="color:white; font-weight:900; font-size:1.2rem; letter-spacing: -0.5px;">
+    <div style="color:white; font-weight:900; font-size:1.4rem; letter-spacing: -0.5px; white-space: nowrap;">
         SAFE<span style="color:#82bc00;">COMPLIANCE</span>
     </div>
 
-    <nav style="display: flex; gap: 30px; align-items: center;">
-        <a href="#top" id="nav-intelligence" onclick="setActive(this)" style="color: #82bc00; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px;">INTELLIGENCE</a>
-        <a href="#architecture" id="nav-architecture" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px;">ARCHITECTURE</a>
-        <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px;">CAPABILITIES</a>
-        <a href="#audit" id="nav-audit" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px;">EXECUTE AUDIT</a>
+    <nav style="display: flex; gap: 40px; align-items: center;">
+        <a href="#top" id="nav-intelligence" onclick="setActive(this)" style="color: #82bc00; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s;">INTELLIGENCE</a>
+        <a href="#architecture" id="nav-architecture" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s;">ARCHITECTURE</a>
+        <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s;">CAPABILITIES</a>
+        <a href="#audit" id="nav-audit" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s;">EXECUTE AUDIT</a>
     </nav>
 
 </header>
@@ -725,18 +725,18 @@
 
 <script>
 function setActive(element) {
-    // Select all our navigation links
+    // 1. Target only the links inside the navigation
     const links = document.querySelectorAll('nav a');
     
-    // Reset all to the default grey
+    // 2. Reset colors
     links.forEach(link => {
         link.style.color = '#94a3b8';
     });
 
-    // Set the one we clicked to the brand green
+    // 3. Highlight selection
     element.style.color = '#82bc00';
     
-    // If user clicks Intelligence, scroll them to the very top smoothly
+    // 4. Smooth scroll to top if Intelligence is selected
     if (element.id === 'nav-intelligence') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
