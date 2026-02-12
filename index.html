@@ -265,24 +265,28 @@ function navigate(event, element, sectionId) {
     if (event) event.preventDefault();
 
     // 1. UPDATE COLORS
-    // Keep Intelligence green until another link is selected
+    // This keeps the Intelligence link green until another is selected
     const allLinks = document.querySelectorAll('.nav-links a');
     allLinks.forEach(link => {
         link.setAttribute('data-active', 'false');
     });
     element.setAttribute('data-active', 'true');
 
-    // 2. THE SCROLL LOGIC
-    // We find the specific div that is actually scrolling
-    const scrollContainer = document.querySelector('div[style*="overflow-y: auto"]') || window;
+    // 2. TARGET THE ACTUAL SCROLLER
+    // Since your content is inside a div with overflow-y: auto (Line 254)
+    const mainContent = document.querySelector('div[style*="overflow-y: auto"]');
 
     if (sectionId === 'home') {
-        // Force the container back to the absolute top
-        scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+        // Scroll the specific div to the top, not the window
+        if (mainContent) {
+            mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     } else {
         const target = document.getElementById(sectionId);
         if (target) {
-            // This is the most resilient way to find the target inside a scrollable div
+            // scrollIntoView is smart enough to scroll the parent div
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
