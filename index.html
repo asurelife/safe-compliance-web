@@ -159,6 +159,22 @@
     justify-content: flex-start;
     min-height: 250px;
 }
+/* Ensure the numbers [01-08] stay in place */
+.module-card span {
+    display: block;
+    color: var(--lime);
+    font-family: monospace;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+.module-card p {
+    color: #94a3b8; /* Professional slate gray for readability */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 15px;
+    display: block !important; /* Ensures they aren't hidden */
+    transition: 0.3s;
+}
 
 /* TITLES SET TO GREEN */
 .module-card h3 { 
@@ -170,13 +186,9 @@
     transition: 0.3s;
 }
 
-/* FULL HOVER EFFECT */
-.module-card:hover { 
-    background: #0f172a; /* Slightly lighter navy */
-    transform: translateY(-5px);
-    border-color: var(--lime);
-    z-index: 2;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(130, 188, 0, 0.1);
+/* Make text pure white on hover for that 'active' feel */
+.module-card:hover p {
+    color: var(--white);
 }
 
 /* Subtle accent line on hover */
@@ -317,27 +329,73 @@
 </section>
 
 <section id="capabilities">
-    <div class="authority-bar">
-        <div class="auth-container">
-            <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
-            <div class="auth-item"><strong>24/7</strong><span>Real-Time Analysis</span></div>
-            <div class="auth-item"><strong>COMPLETE</strong><span>Centralisation</span></div>
-            <div class="auth-item"><strong>AUTO</strong><span>Risk Mitigation</span></div>
+    <div class="content-wrapper">
+        
+        <div class="authority-bar">
+            <div class="auth-container">
+                <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
+                <div class="auth-item"><strong>24/7</strong><span>Real-Time Analysis</span></div>
+                <div class="auth-item"><strong>COMPLETE</strong><span>Centralisation</span></div>
+                <div class="auth-item"><strong>AUTO</strong><span>Risk Mitigation</span></div>
+            </div>
         </div>
-    </div>
 
-    <div class="module-grid">
-        <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>...</p></div>
-        <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>...</p></div>
-        <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>...</p></div>
-        <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>...</p></div>
-        <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>...</p></div>
-        <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>...</p></div>
-        <div class="module-card"><span>[07]</span><h3>ELECTRICAL</h3><p>...</p></div>
-        <div class="module-card"><span>[08]</span><h3>ASBESTOS</h3><p>...</p></div>
-    </div>
-</section>
-    </div> </section>
+        <div class="module-grid">
+            <div class="module-card">
+                <span>[01]</span>
+                <h3>WATER HYGIENE</h3>
+                <p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring.</p>
+            </div>
+            <div class="module-card">
+                <span>[02]</span>
+                <h3>FIRE & SAFETY</h3>
+                <p>Full-spectrum RRO alignment and automated risk assessments for critical life safety nodes.</p>
+            </div>
+            <div class="module-card">
+                <span>[03]</span>
+                <h3>INFRASTRUCTURE</h3>
+                <p>Precision monitoring of physical estate assets, converting hardware into actionable data nodes.</p>
+            </div>
+            <div class="module-card">
+                <span>[04]</span>
+                <h3>ACCREDITATION</h3>
+                <p>Strategic governance for ISO standards, ensuring constant audit-readiness across your portfolio.</p>
+            </div>
+            <div class="module-card">
+                <span>[05]</span>
+                <h3>ENVIRONMENTAL</h3>
+                <p>Intelligent HVAC and air quality monitoring to drive sustainability and energy efficiency targets.</p>
+            </div>
+            <div class="module-card">
+                <span>[06]</span>
+                <h3>SECURITY</h3>
+                <p>Integrated oversight of access control and surveillance through a unified digital interface.</p>
+            </div>
+            <div class="module-card">
+                <span>[07]</span>
+                <h3>ELECTRICAL</h3>
+                <p>Fixed wire testing and PAT oversight integrated into a live, cloud-based asset register.</p>
+            </div>
+            <div class="module-card">
+                <span>[08]</span>
+                <h3>ASBESTOS</h3>
+                <p>Real-time digital asbestos registers and removal tracking protocols for complete estate safety.</p>
+            </div>
+        </div> </div> </section> 
+
+
+
+---
+
+### What I fixed for you:
+* **The Content Wrapper:** Your snippet opened the `authority-bar` immediately under the `section`. By adding `<div class="content-wrapper">`, we ensure the white bar and the boxes stay centered in the middle of the screen instead of stretching to the far left and right edges.
+* **Tag Symmetry:** In your snippet, you had a floating `</div>` and a displaced `</section>`. In the version above, every "Open" tag has its matching "Close" tag in the correct sequence.
+* **Logical Flow:** This structure snaps the white bar and the grid together as one visual unit.
+
+### Navigation Reminder
+As you requested previously, clicking the **Intelligence** link in your header will still stay green, providing a nice anchor as you scroll through this massive 8-grid of capabilities.
+
+**Does this look clean and correctly centered on your screen now?** If so, would you like me to generate the code for the final **Execute Audit** section?
 
 <style>
 @keyframes scanline {
