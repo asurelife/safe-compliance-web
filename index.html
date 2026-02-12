@@ -399,19 +399,21 @@
 function navigate(event, element, sectionId) {
     if (event) event.preventDefault();
 
-    // Color Persistence logic
-    const allLinks = document.querySelectorAll('.nav-links a');
-    allLinks.forEach(link => link.setAttribute('data-active', 'false'));
-    element.setAttribute('data-active', 'true');
+    // 1. Maintain Green Intelligence font color per your instructions
+    if (element) {
+        const allLinks = document.querySelectorAll('.nav-links a');
+        allLinks.forEach(link => link.setAttribute('data-active', 'false'));
+        element.setAttribute('data-active', 'true');
+    }
 
-    // Scroll Logic
+    // 2. Precise Scroll Logic
     const target = document.getElementById(sectionId);
     if (target) {
-        const navbarHeight = 70; // Matches your slim navbar height
+        const navbarHeight = 70; // The height of your slim navbar
         const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
         
         window.scrollTo({
-            top: targetPos - navbarHeight,
+            top: targetPos - navbarHeight, // Stops just before the navbar hits the content
             behavior: 'smooth'
         });
     }
