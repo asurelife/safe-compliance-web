@@ -69,6 +69,15 @@
             box-sizing: border-box;
         }
 
+/* THE CENTERING ENGINE */
+.content-wrapper {
+    width: 90%;
+    max-width: 1200px; /* This pulls 'AUTO' and the grid back to the center */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /* SECTION 3: WHITE BOX AUTHORITY BAR - ALIGNMENT FIX */
 .authority-bar { 
     background: var(--white); 
@@ -311,26 +320,39 @@
     </div>
 </section>
 
-<div class="authority-bar">
-    <div class="auth-container">
-        <div class="auth-item">
-            <strong>100%</strong>
-            <span>Audit Readiness</span>
+<section id="capabilities" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+    
+    <div class="content-wrapper">
+        
+        <div class="authority-bar">
+            <div class="auth-container">
+                <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
+                <div class="auth-item"><strong>24/7</strong><span>Real-Time Analysis</span></div>
+                <div class="auth-item"><strong>COMPLETE</strong><span>Centralisation</span></div>
+                <div class="auth-item"><strong>AUTO</strong><span>Risk Mitigation</span></div>
+            </div>
         </div>
-        <div class="auth-item">
-            <strong>24/7</strong>
-            <span>Real-Time Analysis</span>
+
+        <div class="module-grid" style="margin-top: 50px;">
+            <div class="module-card">
+                <h3>WATER HYGIENE</h3>
+                <p>Advanced ACoP L8 compliance protocols and digital telemetry.</p>
+            </div>
+            <div class="module-card">
+                <h3>FIRE & SAFETY</h3>
+                <p>Full-spectrum RRO alignment and automated risk assessments.</p>
+            </div>
+            <div class="module-card">
+                <h3>INFRASTRUCTURE</h3>
+                <p>Precision monitoring of physical estate assets.</p>
+            </div>
+            <div class="module-card">
+                <h3>ACCREDITATION</h3>
+                <p>Strategic governance for ISO standards and certification.</p>
+            </div>
         </div>
-        <div class="auth-item">
-            <strong>COMPLETE</strong>
-            <span>Centralisation</span>
-        </div>
-        <div class="auth-item">
-            <strong>AUTO</strong>
-            <span>Risk Mitigation</span>
-        </div>
-    </div>
-</div>
+
+    </div> </section>
 
 <style>
 @keyframes scanline {
