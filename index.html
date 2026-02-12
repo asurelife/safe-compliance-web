@@ -133,16 +133,17 @@
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); z-index: 10000; backdrop-filter: blur(15px); }
     </style>
 </head>
-<body id="top"> <div class="main-content">
-<header id="main-header" class="sticky-header">
-    <div class="logo">SAFE<span>COMPLIANCE</span></div>
-<nav class="nav-links">
-    <a href="#" id="nav-intelligence" onclick="scrollToTop(event, this)">Intelligence</a>
-    <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
-    <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
-    <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
-</nav>
-</header>
+<body id="top"> 
+<div class="main-content">
+    <header id="main-header" class="sticky-header">
+        <div class="logo">SAFE<span>COMPLIANCE</span></div>
+        <nav class="nav-links">
+            <a href="#home" id="nav-intelligence" onclick="scrollToTop(event, this)">Intelligence</a>
+            <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
+            <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
+            <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
+        </nav>
+    </header>
 
     <header id="home">
         <div class="hero-content">
@@ -278,18 +279,16 @@
     }
 
 <script>
-// POSITION 1: Force scroll to absolute top
+// This function specifically handles the 'Intelligence' link to return to the Hero Screen
 function scrollToTop(e, element) {
-    e.preventDefault(); // Stop the browser from jumping
+    if (e) e.preventDefault(); // Stop the '#' from jumping instantly
     
-    // Reset all link colors
+    // Update colors: Reset all to gray, set this one to Lime
     const links = document.querySelectorAll('.nav-links a');
     links.forEach(l => l.style.color = '#94a3b8');
-    
-    // Set clicked link to Lime
     element.style.color = '#82bc00';
 
-    // THE FIX: Direct command to the browser window to go to Pixel 0
+    // Absolute scroll to the very top (Intelligence-led Screen)
     window.scrollTo({
         top: 0,
         left: 0,
@@ -297,20 +296,20 @@ function scrollToTop(e, element) {
     });
 }
 
-// POSITION 2, 3, 4: Standard Section Scrolling
+// This function handles the other sections (Architecture, etc.)
 function setActive(element) {
     const links = document.querySelectorAll('.nav-links a');
     links.forEach(l => l.style.color = '#94a3b8');
     element.style.color = '#82bc00';
-}
-
-    // Close modals if the user clicks the dark background
-    window.onclick = function(e) {
-        if (e.target.classList.contains('modal-overlay')) {
-            closePrivacy();
-            closeGovernance();
-        }
+    
+    // Allow the natural anchor scroll or add an offset for the sticky header
+    const targetId = element.getAttribute('href').slice(1);
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+        const offset = targetSection.offsetTop - 80; // 80 is your header height
+        window.scrollTo({ top: offset, behavior: 'smooth' });
     }
+}
 </script>
 </body>
 </html>
