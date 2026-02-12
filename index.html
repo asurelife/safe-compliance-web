@@ -78,23 +78,21 @@
     flex-direction: column;
     align-items: center;
 }
-/* THE AUTHORITY BAR (With Edge Protection) */
 .authority-bar { 
     background: var(--white); 
     color: var(--navy); 
-    width: 100%;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; /* No bottom margin to snap to grid */
     border-top: 5px solid var(--lime);
-    padding: 60px 0; /* Vertical breathing room */
+    padding: 60px 0;
+    box-sizing: border-box;
 }
 
 .auth-container {
     display: flex;
-    justify-content: space-between;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px; /* THE FIX: Keeps 100% and AUTO away from the ends */
-    box-sizing: border-box;
+    justify-content: space-around; /* Better spacing for 4 items */
+    padding: 0 40px;
 }
 
 @media (min-width: 992px) { 
@@ -119,25 +117,24 @@
     letter-spacing: 1px;
     color: #475569;
 }
-/* SECTION 3 WRAPPER */
+/* SECTION 3: RE-ENGINEERED 8-GRID */
 #capabilities {
     min-height: 100vh;
+    background: var(--navy);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Keeps the whole unit centered in the screen */
-    background: var(--navy);
-    padding: 40px 0; /* Reduced from 80px to pull content closer */
+    padding: 100px 0; /* Vertical breathing room for the whole unit */
 }
 
-/* THE 8-CARD GRID (4 columns on desktop) */
+/* THE SOLID 8-GRID */
 .module-grid { 
     display: grid; 
-    grid-template-columns: 1fr; /* Mobile */
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr); /* Force 4x2 */
     width: 90%;
     max-width: 1200px;
-    margin: 50px auto 0 auto;
-    padding: 0 40px; /* Aligns with the white bar padding */
+    margin: 0 auto; /* Snaps directly to the white bar above */
+    gap: 0; /* Kills the gaps between boxes */
+    border: 1px solid rgba(255,255,255,0.1); /* Subtle outer border */
 }
 
 @media (min-width: 768px) {
@@ -148,8 +145,11 @@
     .module-grid { grid-template-columns: repeat(4, 1fr); } /* 4x2 on Desktop */
 }
 
+/* Add borders to cards so they look like a grid without gaps */
 .module-card {
-    min-height: 280px; /* Uniform height for the 8-box look */
+    border: 1px solid rgba(255,255,255,0.05);
+    min-height: 300px;
+    padding: 40px;
 }
 
 /* Ensure cards are uniform height for the grid look */
@@ -316,8 +316,7 @@
     </div>
 </section>
 
-<section id="capabilities" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; background: var(--navy);">
-    
+<section id="capabilities">
     <div class="authority-bar">
         <div class="auth-container">
             <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
@@ -327,28 +326,16 @@
         </div>
     </div>
 
-<div class="module-grid">
-    <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance and telemetry.</p></div>
-    <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment and risk tracking.</p></div>
-    <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets.</p></div>
-    <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO and regulatory standards.</p></div>
-
-    <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>HVAC and air quality monitoring for sustainability.</p></div>
-    <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>Integrated oversight of access and surveillance.</p></div>
-
-    <div class="module-card">
-        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[07]</span>
-        <h3>ELECTRICAL</h3>
-        <p>Fixed wire testing and PAT oversight integrated into a live asset register.</p>
+    <div class="module-grid">
+        <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>...</p></div>
+        <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>...</p></div>
+        <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>...</p></div>
+        <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>...</p></div>
+        <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>...</p></div>
+        <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>...</p></div>
+        <div class="module-card"><span>[07]</span><h3>ELECTRICAL</h3><p>...</p></div>
+        <div class="module-card"><span>[08]</span><h3>ASBESTOS</h3><p>...</p></div>
     </div>
-
-    <div class="module-card">
-        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[08]</span>
-        <h3>ASBESTOS</h3>
-        <p>Real-time digital asbestos registers and removal tracking protocols.</p>
-    </div>
-</div>
-
 </section>
     </div> </section>
 
