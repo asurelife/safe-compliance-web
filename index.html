@@ -88,20 +88,23 @@
     border-top: 5px solid var(--lime);
 }
 
-/* This inner wrapper prevents items from flying off to the edges */
+/* THE AUTHORITY BAR INNER CONTAINER */
 .auth-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2x2 on mobile */
-    gap: 40px;
-    width: 100%;
-    max-width: 1200px; /* Pulls "AUTO" back into the safe zone */
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 90%; /* Keeps it from hitting the screen edges */
+    max-width: 1200px; /* Standardises width with the grid below */
+    margin: 0 auto; /* Centers the container */
+    padding: 0 30px; /* THE FIX: Adds space on the left and right inside the white box */
     text-align: center;
+    box-sizing: border-box;
 }
 
 @media (min-width: 992px) { 
     .auth-container { 
         display: flex; 
-        justify-content: space-between; /* Even spacing within the 1200px limit */
+        justify-content: space-between; 
     } 
 }
 
@@ -130,13 +133,15 @@
     padding: 40px 0; /* Reduced from 80px to pull content closer */
 }
 
-/* THE 6-BOX GRID ENGINE */
+/* THE MODULE GRID ALIGNMENT */
 .module-grid { 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 2px;
-    width: 100%;
-    margin-top: 20px; /* Reduced from 50px to kill the 'huge space' */
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto 0 auto; /* Centers the grid under the white bar */
+    padding: 0 30px; /* THE FIX: Aligns the grid padding with the white bar padding */
+    box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
