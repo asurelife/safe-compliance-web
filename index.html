@@ -53,25 +53,23 @@
     color: #82bc00; /* Lime green for COMPLIANCE */
 }
 
-/* NAVIGATION LINKS */
 .nav-links {
-    display: flex;
-    gap: 30px; /* This creates the spacing between each link */
+    display: flex !important;
+    gap: 50px !important; /* Forces 50px of space between every link */
     align-items: center;
 }
 
-.nav-links a { 
-    text-decoration: none !important; 
-    font-weight: 900 !important; 
-    font-size: 0.75rem !important; 
-    letter-spacing: 1.5px !important; 
+.nav-links a {
+    text-decoration: none !important;
+    font-weight: 900;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    color: #94a3b8 !important; /* Forces gray color, prevents blue */
+    color: #94a3b8 !important; /* Standard Gray */
     transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: #82bc00 !important; /* Glows lime on hover */
+    color: #82bc00 !important; /* Lime on hover */
 }
 
         /* HERO SECTION */
@@ -135,17 +133,15 @@
     </style>
 </head>
 <body id="top"> <div class="main-content">
-    <header class="sticky-header">
-        <div class="logo">SAFE<span>COMPLIANCE</span></div>
-<nav class="nav-links">
-    <a href="javascript:void(0)" id="nav-intelligence" onclick="scrollToPosition(0, this)">Intelligence</a>
-    
-    <a href="#architecture" id="nav-architecture" onclick="scrollToPosition('architecture', this)">Architecture</a>
-    
-    <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
-    <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
-</nav>
-    </header>
+<header id="main-header" class="sticky-header">
+    <div class="logo">SAFE<span>COMPLIANCE</span></div>
+    <nav class="nav-links">
+        <a href="#main-header" id="nav-intelligence" onclick="setActive(this)">Intelligence</a>
+        <a href="#architecture" id="nav-architecture" onclick="setActive(this)">Architecture</a>
+        <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)">Capabilities</a>
+        <a href="#audit" id="nav-audit" onclick="setActive(this)">Execute Audit</a>
+    </nav>
+</header>
 
     <header id="home">
         <div class="hero-content">
@@ -280,25 +276,20 @@
         document.body.style.overflow = 'auto'; 
     }
 
-function scrollToPosition(target, element) {
-    // 1. Set Active Color Logic
+function setActive(element) {
+    // 1. Reset all links to gray
     const links = document.querySelectorAll('.nav-links a');
-    links.forEach(link => link.style.color = '#94a3b8');
+    links.forEach(l => l.style.color = '#94a3b8');
+
+    // 2. Set this link to Lime
     element.style.color = '#82bc00';
 
-    // 2. Scroll Logic
-    if (target === 0) {
-        // Force the browser to go to the very top pixel
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    // 3. If Intelligence is clicked, force the header into view
+    if (element.id === 'nav-intelligence') {
+        document.getElementById('main-header').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
         });
-    } else {
-        // Standard scroll for other sections
-        const section = document.getElementById(target);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
     }
 }
 
