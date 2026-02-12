@@ -55,18 +55,21 @@
 
 .nav-links {
     display: flex !important;
-    gap: 50px !important; 
+    gap: 50px !important;
     align-items: center;
 }
 
-/* Default: All links are Gray */
+/* Base style for all links */
 .nav-links a {
-    color: #94a3b8 !important;
-    text-decoration: none;
+    color: #94a3b8 !important; /* Default Gray */
+    text-decoration: none !important;
+    font-weight: 900;
+    font-size: 0.75rem;
+    text-transform: uppercase;
     transition: 0.3s;
 }
 
-/* Hover: Any link turns green when mouse is over it */
+/* Hover effect */
 .nav-links a:hover {
     color: #82bc00 !important;
 }
@@ -143,7 +146,7 @@
     <header id="main-header" class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
-    <a href="#home" id="nav-intelligence" class="active" onclick="scrollToTop(event, this)">Intelligence</a>
+    <a href="#home" id="nav-intelligence" style="color: #82bc00 !important;" onclick="scrollToTop(event, this)">Intelligence</a>
     <a href="#architecture" onclick="setActive(this)">Architecture</a>
     <a href="#capabilities" onclick="setActive(this)">Capabilities</a>
     <a href="#audit" onclick="setActive(this)">Execute Audit</a>
@@ -284,38 +287,33 @@
     }
 
 <script>
-function updateActiveState(clickedElement) {
-    // 1. Remove the 'active' class from ALL links (this stops Intelligence from staying green)
+function updateNavColors(clickedElement) {
+    // 1. Target all links in your navigation
     const links = document.querySelectorAll('.nav-links a');
+    
+    // 2. Force every single link to be Gray
     links.forEach(link => {
-        link.classList.remove('active');
+        link.style.setProperty('color', '#94a3b8', 'important');
     });
 
-    // 2. Add the 'active' class ONLY to the one we just clicked
-    clickedElement.classList.add('active');
+    // 3. Force the clicked link to be Green
+    clickedElement.style.setProperty('color', '#82bc00', 'important');
 }
 
 function scrollToTop(e, element) {
     if (e) e.preventDefault();
-    updateActiveState(element); // Moves the green highlight to Intelligence
+    updateNavColors(element); // Forces the color change
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function setActive(element) {
-    // 1. Wipe the 'active' class from everyone
-    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+    updateNavColors(element); // Forces the color change
     
-    // 2. Give it to the one we just clicked
-    element.classList.add('active');
-    
-    // 3. Handle the scroll (with your 80px offset)
     const targetId = element.getAttribute('href').slice(1);
     const targetSection = document.getElementById(targetId);
     if (targetSection) {
-        window.scrollTo({
-            top: targetSection.offsetTop - 80,
-            behavior: 'smooth'
-        });
+        const offset = targetSection.offsetTop - 80;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
     }
 }
 </script>
