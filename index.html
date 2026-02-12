@@ -724,24 +724,19 @@
 </footer>
 
 <script>
-    function setActive(element) {
-    // 1. Find all links in the navigation
-    const navLinks = [
-        document.getElementById('nav-intelligence'),
-        document.getElementById('nav-architecture'),
-        document.getElementById('nav-capabilities'),
-        document.getElementById('nav-audit')
-    ];
-
-    // 2. Set all links to Grey
-    navLinks.forEach(link => {
-        if(link) link.style.color = '#94a3b8';
+function setActive(element) {
+    // Select all our navigation links
+    const links = document.querySelectorAll('nav a');
+    
+    // Reset all to the default grey
+    links.forEach(link => {
+        link.style.color = '#94a3b8';
     });
 
-    // 3. Set the clicked link to Green
+    // Set the one we clicked to the brand green
     element.style.color = '#82bc00';
     
-    // 4. Smooth scroll to the top if 'Intelligence' is clicked
+    // If user clicks Intelligence, scroll them to the very top smoothly
     if (element.id === 'nav-intelligence') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
