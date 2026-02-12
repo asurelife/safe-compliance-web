@@ -6,6 +6,10 @@
     <title>SAFE COMPLIANCE | Precision Estate Governance</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px; /* Adjust this to match your header height */
+        }
         /* Part 1: CSS Foundations & Global Styles */
         :root { --navy: #020617; --lime: #82bc00; --white: #ffffff; --text-gray: #94a3b8; --dark-blue: #0f172a; }
         * { box-sizing: border-box; scroll-behavior: smooth; }
@@ -135,10 +139,10 @@
    <header id="home" class="sticky-header">
         <div class="logo">SAFE<span>COMPLIANCE</span></div>
 <nav class="nav-links">
-    <a href="#home" data-active="true" onclick="navigate(event, this, 'home')">Intelligence</a>
+    <a href="#home" data-active="true" onclick="navigate(event, this)">Intelligence</a>
     <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
-    <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
-    <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
+    <a href="#capabilities" onclick="navigate(event, this)">Capabilities</a>
+    <a href="#audit" onclick="navigate(event, this)">Execute Audit</a>
 </nav>
     </header>
 
@@ -258,33 +262,38 @@
 
 <script>
 function navigate(event, element, sectionId) {
-    // 1. Prevent the default jump
-    if (event) event.preventDefault();
+    // 1. Force the browser to stay on the page
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
 
-    // 2. THE COLOR FIX (This is working, so we keep it exactly the same)
+    // 2. THE COLOR FIX (Keep Intelligence font colour in green until another is selected)
     const allLinks = document.querySelectorAll('.nav-links a');
     allLinks.forEach(link => {
         link.setAttribute('data-active', 'false');
     });
     element.setAttribute('data-active', 'true');
 
-    // 3. THE SCROLL FIX (The simple way)
+    // 3. THE SCROLL FIX
     if (sectionId === 'home') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         const target = document.getElementById(sectionId);
         if (target) {
-            // This is the most compatible way to scroll in modern browsers
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            
-            // Because you have a sticky header, we wait for the scroll to finish 
-            // then nudge it down so the header doesn't cover your title.
-            setTimeout(() => {
-                window.scrollBy(0, -80);
-            }, 600);
+            // Using a simpler offset calculation that GitHub likes better
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         }
     }
 }
+</script>
 </script>
 </body>
 </html>
