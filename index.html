@@ -59,19 +59,19 @@
     align-items: center;
 }
 
-/* This forces the active link to stay Lime regardless of visited status */
-.nav-links a.active {
-    color: #82bc00 !important;
-    opacity: 1 !important;
-}
-
-/* Ensure other links are gray by default */
+/* 1. Default state: All links are Gray */
 .nav-links a {
     color: #94a3b8 !important;
     text-decoration: none;
-    transition: 0.3s;
+    transition: color 0.3s ease;
 }
 
+/* 2. Active state: The link for the section you are currently on stays Green */
+.nav-links a.active {
+    color: #82bc00 !important;
+}
+
+/* 3. Hover state: Any link turns Green when the mouse is over it */
 .nav-links a:hover {
     color: #82bc00 !important;
 }
@@ -284,23 +284,22 @@
 <script>
 
 function updateActiveLink(element) {
-    // 1. Find every link in the nav and strip the green class
+    // Remove the 'active' class from all links
     const links = document.querySelectorAll('.nav-links a');
     links.forEach(l => l.classList.remove('active'));
 
-    // 2. Give the green class ONLY to the one we just clicked
+    // Add the 'active' class to the link that was just clicked
     element.classList.add('active');
 }
-// This function specifically handles the 'Intelligence' link to return to the Hero Screen
+
 function scrollToTop(e, element) {
     if (e) e.preventDefault();
-    updateActiveLink(element); // This turns it green
+    updateActiveLink(element); // This keeps it green after clicking
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// This function handles the other sections (Architecture, etc.)
 function setActive(element) {
-    updateActiveLink(element); // This turns the clicked link green
+    updateActiveLink(element); // This moves the green color to the new section
     
     const targetId = element.getAttribute('href').slice(1);
     const targetSection = document.getElementById(targetId);
