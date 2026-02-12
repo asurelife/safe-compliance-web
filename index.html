@@ -73,13 +73,37 @@
             color: var(--lime) !important;
         }
 
-        /* 3. SECTION STYLING */
-        #home-hero { 
-            padding: 160px 5% 100px 5%; /* Pushes text below the 70px navbar */
-            min-height: 90vh; 
-            display: flex; 
-            align-items: center; 
-        }
+/* FULL SCREEN SECTION LOGIC */
+.section, #home-hero {
+    min-height: 100vh; /* Forces each section to be at least full screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 8%;
+    box-sizing: border-box;
+}
+
+/* RESTORE THE DOMINANCE GRID */
+.grid-2 { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 80px; 
+    align-items: center; 
+    width: 100%;
+}
+
+@media (min-width: 992px) { 
+    .grid-2 { grid-template-columns: 1.2fr 0.8fr; } 
+}
+
+.status-box { 
+    background: #010409; 
+    padding: 60px 40px; 
+    border: 1px solid #1e293b; 
+    border-left: 5px solid var(--lime);
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
 
         h1 { font-size: clamp(2.5rem, 8vw, 6rem); text-transform: uppercase; line-height: 0.9; margin: 0; font-weight: 900; letter-spacing: -2px; }
         .hero-sub { color: var(--text-gray); margin: 30px 0; font-size: 1.1rem; max-width: 800px; }
@@ -136,14 +160,26 @@
 <section class="section" id="architecture">
     <div class="grid-2">
         <div>
-            <h2>Centralised<br><span style="color:var(--lime)">Dominance.</span></h2>
-            <p style="color:var(--text-gray)">Our proprietary architecture eliminates the friction between physical estates and digital oversight. We turn raw telemetry into actionable governance.</p>
+            <div class="status-indicator">
+                <span class="pulse"></span> ARCHITECTURE_v4.0
+            </div>
+            <h2 style="font-size: clamp(3rem, 6vw, 5rem); line-height: 1;">Centralised<br><span style="color:var(--lime)">Dominance.</span></h2>
+            <p class="hero-sub">Our proprietary architecture eliminates the friction between physical estates and digital oversight. We turn raw telemetry into actionable governance, allowing for total visibility across your entire portfolio.</p>
+            
+            <div class="tech-specs">
+                <div class="spec-item"><span style="color:var(--lime); font-size:0.7rem;">LATENCY</span> <br> <0.5ms</div>
+                <div class="spec-item"><span style="color:var(--lime); font-size:0.7rem;">UPTIME</span> <br> 99.99%</div>
+                <div class="spec-item"><span style="color:var(--lime); font-size:0.7rem;">NODES</span> <br> UNLIMITED</div>
+            </div>
         </div>
+
         <div class="status-box">
-            <div style="font-family:monospace; font-size:0.8rem;">
-                > SCANNING_NODES... <span style="color:var(--lime)">DONE</span><br>
-                > ENCRYPTION_LAYER... <span style="color:var(--lime)">ACTIVE</span><br>
-                > STATUS: <span style="color:var(--lime)">OPTIMAL</span>
+            <div style="color:var(--lime); margin-bottom: 20px;">> INITIATING_SYSTEM_SCAN...</div>
+            <div style="margin-bottom: 10px;">CORE_PROTOCOL: <span style="color:var(--white)">SECURE</span></div>
+            <div style="margin-bottom: 10px;">DATA_NODES: <span style="color:var(--white)">412_DETECTED</span></div>
+            <div style="margin-bottom: 10px;">ENCRYPTION: <span style="color:var(--white)">AES-256</span></div>
+            <div style="margin-top: 20px; border-top: 1px solid #1e293b; pt: 20px;">
+                STATUS: <span style="color:var(--lime)">[ OPTIMAL ]</span>
             </div>
         </div>
     </div>
