@@ -269,6 +269,12 @@
     </div>
 </header>
 
+<section id="intelligence" style="min-height: 100vh; background: var(--navy); display: flex; flex-direction: column; justify-content: center;">
+    <div class="content-wrapper">
+        </div>
+</section>
+    
+
 <div class="divider"></div>
 
 <section class="section" id="architecture" style="min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 70% 30%, rgba(130, 188, 0, 0.05) 0%, transparent 70%);">
@@ -384,19 +390,6 @@
         </div> </div> </section> 
 
 
-
----
-
-### What I fixed for you:
-* **The Content Wrapper:** Your snippet opened the `authority-bar` immediately under the `section`. By adding `<div class="content-wrapper">`, we ensure the white bar and the boxes stay centered in the middle of the screen instead of stretching to the far left and right edges.
-* **Tag Symmetry:** In your snippet, you had a floating `</div>` and a displaced `</section>`. In the version above, every "Open" tag has its matching "Close" tag in the correct sequence.
-* **Logical Flow:** This structure snaps the white bar and the grid together as one visual unit.
-
-### Navigation Reminder
-As you requested previously, clicking the **Intelligence** link in your header will still stay green, providing a nice anchor as you scroll through this massive 8-grid of capabilities.
-
-**Does this look clean and correctly centered on your screen now?** If so, would you like me to generate the code for the final **Execute Audit** section?
-
 <style>
 @keyframes scanline {
     0% { top: 0; }
@@ -439,7 +432,16 @@ function navigate(event, element, sectionId) {
     }
 }
 </script>
-
+window.onload = function() {
+    // Ensure the Intelligence-Led section is the starting point
+    window.scrollTo(0, 0);
+    
+    // Explicitly set the Intelligence link to your preferred green
+    const intelLink = document.querySelector('a[href="#intelligence"]');
+    if (intelLink) {
+        intelLink.setAttribute('data-active', 'true');
+    }
+};
 </body>
 </html>
 
