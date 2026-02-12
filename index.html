@@ -682,11 +682,8 @@
         </div>
     </div>
 </div>
-
-<div style="display: flex; flex-direction: column; min-height: 100vh;">
     
-    <div style="flex: 1;">
-        </div>
+    </div>
 
 <footer style="padding: 80px 0 60px 0; background: #000; border-top: 1px solid rgba(130, 188, 0, 0.2); width: 100%;">
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; max-width: 1400px; margin: 0 auto; align-items: start;">
@@ -736,12 +733,13 @@
         document.getElementById('governanceModal').style.display = 'none';
         document.body.style.overflow = 'auto';
     }
-    window.onclick = function(e) {
-        if (e.target.className === 'modal-overlay') {
-            closePrivacy();
-            closeGovernance();
-        }
+   window.onclick = function(e) {
+    // This ensures that clicking the background of EITHER modal closes them
+    if (e.target.classList.contains('modal-overlay')) {
+        closePrivacy();
+        closeGovernance();
     }
+}
 </script>
 </body>
 </html>
