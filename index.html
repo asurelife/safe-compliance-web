@@ -6,299 +6,190 @@
     <title>SAFE COMPLIANCE | Precision Estate Governance</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px; /* Adjust this to match your header height */
-        }
-        /* Part 1: CSS Foundations & Global Styles */
         :root { --navy: #020617; --lime: #82bc00; --white: #ffffff; --text-gray: #94a3b8; --dark-blue: #0f172a; }
-        * { box-sizing: border-box; scroll-behavior: smooth; }
         
-        html, body { 
-            height: 100%; 
+        html { scroll-behavior: smooth; }
+        
+        body { 
             margin: 0; 
             background: var(--navy); 
             color: var(--white); 
             font-family: 'Inter', sans-serif; 
             line-height: 1.6; 
-            display: flex;
-            flex-direction: column;
             overflow-x: hidden;
         }
 
-        .main-content { flex: 1 0 auto; }
-        footer { flex-shrink: 0; }
+        /* SLIM NAVBAR FIX */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px; /* Slim height */
+        }
 
-.sticky-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(10, 11, 14, 0.9); /* Dark semi-transparent background */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .logo { color: #ffffff !important; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; text-decoration: none; }
+        .logo span { color: var(--lime); }
 
-    /* THE HEIGHT FIX */
-    padding: 15px 40px; /* Reduced vertical padding from 40px+ to 15px */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    height: 70px; /* Forces a specific slim height */
-}
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a {
+            color: #94a3b8 !important; 
+            text-decoration: none !important;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
 
-        header#home {
-    padding-top: 100px; /* This ensures your title starts below the navbar */
-}
-/* LOGO STYLING */
-.logo { 
-    color: #ffffff !important; 
-    font-weight: 900; 
-    font-size: 1.4rem; 
-    letter-spacing: -0.5px; 
-    text-transform: uppercase;
-    text-decoration: none;
-}
-.logo span { 
-    color: #82bc00; /* Lime green for COMPLIANCE */
-}
+        .nav-links a:hover, .nav-links a[data-active="true"] {
+            color: var(--lime) !important;
+        }
 
-/* Default state for all links */
-.nav-links a {
-    color: #94a3b8 !important; 
-    text-decoration: none !important;
-    transition: 0.3s;
-}
+        /* HERO SECTION ADJUSTMENT */
+        #home-hero { 
+            padding: 150px 5% 80px 5%; 
+            min-height: 80vh; 
+            display: flex; 
+            align-items: center; 
+        }
 
-/* Hover state */
-.nav-links a:hover {
-    color: #82bc00 !important;
-}
-
-/* THE FIX: This rule forces the green color when data-active is "true" */
-.nav-links a[data-active="true"] {
-    color: #82bc00 !important;
-}
-
-        /* HERO SECTION */
-        header#home { padding: 180px 5% 80px 5%; min-height: 80vh; display: flex; align-items: center; }
         h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
         .hero-sub { color: var(--text-gray); margin: 35px 0; font-size: 1.2rem; max-width: 850px; }
-        .btn-main { background: var(--lime); color: var(--navy); padding: 22px 45px; text-decoration: none; font-weight: 900; text-transform: uppercase; display: inline-block; border-radius: 2px; }
+        .btn-main { background: var(--lime); color: var(--navy); padding: 20px 40px; text-decoration: none; font-weight: 900; text-transform: uppercase; display: inline-block; }
         
         .status-indicator { display: flex; align-items: center; gap: 10px; color: var(--lime); font-weight: 900; font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 25px; }
-        .pulse { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 10px var(--lime); animation: pulse-animation 2s infinite; }
+        .pulse { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; animation: pulse-animation 2s infinite; }
         @keyframes pulse-animation { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        .divider { border-bottom: 2px solid var(--lime); width: 100%; box-shadow: 0 0 20px rgba(130, 188, 0, 0.4); }
-
-        /* ARCHITECTURE SECTION */
-        .section { padding: 120px 5%; }
+        .divider { border-bottom: 2px solid var(--lime); width: 100%; }
+        .section { padding: 100px 5%; }
         .grid-2 { display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center; }
         @media (min-width: 992px) { .grid-2 { grid-template-columns: 1.2fr 0.8fr; } }
         
-        h2 { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; font-weight: 900; line-height: 1; margin-bottom: 25px; }
-        .desc-text { color: var(--text-gray); font-size: 1.15rem; max-width: 650px; margin-bottom: 30px; }
-
-        .status-box { background: #010409; padding: 40px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); position: relative; overflow: hidden; }
-        .status-line { font-family: 'Courier New', monospace; font-size: 0.9rem; margin-bottom: 10px; color: rgba(255,255,255,0.8); }
-        .status-line span { color: var(--lime); }
-
+        .status-box { background: #010409; padding: 40px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); }
         .tech-specs { display: flex; gap: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
-        .spec-item { font-size: 1.1rem; font-weight: 700; color: var(--white); }
-        .spec-item span { font-size: 0.6rem; color: var(--lime); letter-spacing: 1px; }
 
-        /* AUTHORITY BAR */
-        .authority-bar { background: var(--white); color: var(--navy); padding: 50px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px; text-align: center; }
-        .auth-item strong { font-size: 2.5rem; display: block; margin-bottom: 10px; font-weight: 900; }
-        .auth-item span { font-size: 0.75rem; font-weight: 900; text-transform: uppercase; }
-
-        /* MODULE GRID */
-        .module-grid { display: grid; grid-template-columns: 1fr; gap: 2px; background: rgba(130, 188, 0, 0.1); border: 1px solid rgba(130, 188, 0, 0.2); }
-        @media (min-width: 768px) { .module-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1200px) { .module-grid { grid-template-columns: repeat(4, 1fr); } }
-
-        .module-card { background: var(--navy); padding: 60px 40px; transition: 0.4s; position: relative; cursor: pointer; overflow: hidden; }
-        .module-card:hover { background: #0f172a; transform: translateY(-5px); z-index: 2; box-shadow: 0 0 30px rgba(130, 188, 0, 0.15); }
-        .module-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 4px; background: var(--lime); transition: 0.4s; }
-        .module-card:hover::after { width: 100%; }
-        .module-card:hover h3 { color: var(--lime); }
-        .mod-num { color: var(--lime); font-size: 1.2rem; font-weight: 900; margin-bottom: 25px; display: block; opacity: 0.6; }
-
-        /* AUDIT FORM */
-        .audit-section { background: var(--dark-blue); padding: 100px 5%; border-top: 1px solid rgba(130, 188, 0, 0.1); }
-        .audit-form { display: grid; grid-template-columns: 1fr; gap: 25px; background: var(--navy); padding: 50px; border: 1px solid #1e293b; max-width: 900px; margin: 0 auto; }
+        .authority-bar { background: var(--white); color: var(--navy); padding: 50px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px; }
+        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2px; background: rgba(130, 188, 0, 0.2); }
+        .module-card { background: var(--navy); padding: 60px 40px; }
+        .audit-section { background: var(--dark-blue); padding: 100px 5%; }
+        .audit-form { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 800px; margin: 40px auto 0; text-align: left;}
         @media (min-width: 768px) { .audit-form { grid-template-columns: 1fr 1fr; } }
-        .input-group { display: flex; flex-direction: column; gap: 10px; }
-        .input-group label { font-size: 0.75rem; font-weight: 900; color: var(--lime); text-transform: uppercase; letter-spacing: 1px; }
-        .input-group input, .input-group select, .input-group textarea { background: #010409; border: 1px solid #334155; color: white; padding: 18px; outline: none; transition: 0.3s; }
-        .input-group input:focus { border-color: var(--lime); }
-        .btn-submit { grid-column: 1 / -1; background: var(--lime); color: var(--navy); padding: 22px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; font-size: 1rem; transition: 0.3s; }
-        .btn-submit:hover { transform: translateY(-2px); background: #9bd600; }
-
-        /* MODALS */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); z-index: 10000; backdrop-filter: blur(15px); }
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { color: var(--lime); font-size: 0.7rem; font-weight: 900; }
+        .input-group input { background: #010409; border: 1px solid #334155; color: white; padding: 15px; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.98); z-index: 10000; }
     </style>
 </head>
-<body id="top"> 
-<div class="main-content">
-   <header id="home" class="sticky-header">
-        <div class="logo">SAFE<span>COMPLIANCE</span></div>
-<nav class="nav-links">
-    <a href="#home" data-active="true" onclick="navigate(event, this)">Intelligence</a>
-    <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
-    <a href="#capabilities" onclick="navigate(event, this)">Capabilities</a>
-    <a href="#audit" onclick="navigate(event, this)">Execute Audit</a>
-</nav>
-    </header>
+<body>
 
-    <header id="home">
-        <div class="hero-content">
-            <div class="status-indicator">
-                <span class="pulse"></span> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
-            </div>
-            <h1>INTELLIGENCE-LED<br><span style="color:var(--lime)">ESTATE GOVERNANCE.</span></h1>
-            <p class="hero-sub">
-                The most advanced digital Data Monitoring ecosystem. We provide the intelligence layer for complex estate governance, precision compliance management, and real-time risk mitigation. 
-                <br><br>
-                Our architecture is engineered to eliminate the fragmentation of compliance data, providing a single, unified command interface for the modern estate professional.
-            </p>
-            <a href="#audit" class="btn-main">Deploy System Architecture</a>
+<header class="sticky-header">
+    <div class="logo">SAFE<span>COMPLIANCE</span></div>
+    <nav class="nav-links">
+        <a href="#top" data-active="true" onclick="navigate(event, this, 'top')">Intelligence</a>
+        <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
+        <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
+        <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
+    </nav>
+</header>
+
+<div id="top"></div> <section id="home-hero">
+    <div class="hero-content">
+        <div class="status-indicator">
+            <span class="pulse"></span> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
         </div>
-    </header>
-
-    <div class="divider"></div>
-
-    <section class="section" id="architecture">
-        <div class="grid-2">
-            <div>
-                <h2>Centralised<br><span style="color:var(--lime)">Dominance.</span></h2>
-                <p class="desc-text">Our proprietary architecture eliminates the friction between physical estates and digital oversight. We turn raw telemetry into actionable governance, allowing for total visibility across your entire portfolio.</p>
-                <p class="desc-text">From Legionella temperature telemetry to automated Fire Risk Assessments, we centralise the command of every compliance node into a single, high-fidelity dashboard.</p>
-                <div class="tech-specs">
-                    <div class="spec-item"><span>LATENCY</span> <br> <0.5ms</div>
-                    <div class="spec-item"><span>UPTIME</span> <br> 99.99%</div>
-                    <div class="spec-item"><span>NODES</span> <br> UNLIMITED</div>
-                </div>
-            </div>
-            <div class="status-box">
-                <div class="status-line">> <span>INITIATING_SYSTEM_SCAN...</span></div>
-                <div class="status-line">> CORE_PROTOCOL: <span>SECURE</span></div>
-                <div class="status-line">> DATA_NODES: <span>412_DETECTED</span></div>
-                <div class="status-line">> STATUS: <span>OPTIMAL</span></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="authority-bar">
-        <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
-        <div class="auth-item"><strong>24/7</strong><span>Real-Time Analysis</span></div>
-        <div class="auth-item"><strong>COMPLETE</strong><span>Centralisation</span></div>
-        <div class="auth-item"><strong>AUTO</strong><span>Risk Mitigation</span></div>
+        <h1>INTELLIGENCE-LED<br><span style="color:var(--lime)">ESTATE GOVERNANCE.</span></h1>
+        <p class="hero-sub">The most advanced digital Data Monitoring ecosystem for complex estate governance, precision compliance management, and real-time risk mitigation.</p>
+        <a href="#audit" class="btn-main" onclick="navigate(event, null, 'audit')">Deploy System Architecture</a>
     </div>
+</section>
 
-    <div class="divider"></div>
+<div class="divider"></div>
 
-    <div class="module-grid" id="capabilities">
-        <div class="module-card"><span class="mod-num">01</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols and digital Legionella telemetry. We provide real-time temperature monitoring.</p></div>
-        <div class="module-card"><span class="mod-num">02</span><h3>FIRE, HEALTH & SAFETY</h3><p>Full-spectrum RRO alignment and automated risk assessments. Intelligent tracking for fire suppression systems.</p></div>
-        <div class="module-card"><span class="mod-num">03</span><h3>CRITICAL INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets. We treat every component as a data node.</p></div>
-        <div class="module-card"><span class="mod-num">04</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards and regulatory certification. We ensure constant audit-readiness.</p></div>
-    </div>
-
-    <section class="audit-section" id="audit">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <div style="color:var(--lime); font-weight:900; font-size:0.7rem; letter-spacing:3px; margin-bottom:15px;">SECURE DATA UPLINK</div>
-            <h2>Initiate <span style="color:var(--lime)">System Audit</span></h2>
-            <form class="audit-form" style="margin-top:40px; text-align: left;">
-                <div class="input-group" style="grid-column: 1/-1;"><label>Estate / Company Name</label><input type="text" placeholder="e.g. HQ London" required></div>
-                <div class="input-group"><label>Contact Name</label><input type="text" required></div>
-                <div class="input-group"><label>Contact Tel</label><input type="tel" required></div>
-                <div class="input-group" style="grid-column: 1/-1;"><label>Contact Email</label><input type="email" required></div>
-                <button type="submit" class="btn-submit">Initiate Secure Scan</button>
-            </form>
-        </div>
-    </section>
-</div>
-
-<footer style="padding: 80px 5%; background: #000; border-top: 1px solid rgba(130, 188, 0, 0.2);">
-    <div style="display: flex; justify-content: space-between; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; gap: 40px;">
+<section class="section" id="architecture">
+    <div class="grid-2">
         <div>
-            <div style="color:white; font-weight:900; font-size:1.5rem;">SAFE<span style="color:#82bc00;">COMPLIANCE</span></div>
-            <p style="color: #94a3b8; font-size: 0.9rem; max-width: 320px;">The intelligence layer for complex estate governance.</p>
+            <h2>Centralised<br><span style="color:var(--lime)">Dominance.</span></h2>
+            <p>Our proprietary architecture eliminates the friction between physical estates and digital oversight. We turn raw telemetry into actionable governance.</p>
+            <div class="tech-specs">
+                <div class="spec-item"><span>LATENCY</span> <br> <0.5ms</div>
+                <div class="spec-item"><span>UPTIME</span> <br> 99.99%</div>
+                <div class="spec-item"><span>NODES</span> <br> UNLIMITED</div>
+            </div>
         </div>
-        <div style="display: flex; gap: 30px;">
-            <a href="javascript:void(0)" onclick="openPrivacy()" style="color: var(--lime); text-decoration: none; font-weight: 900; font-size: 0.9rem;">PRIVACY PROTOCOL</a>
-            <a href="javascript:void(0)" onclick="openGovernance()" style="color: var(--lime); text-decoration: none; font-weight: 900; font-size: 0.9rem;">GOVERNANCE</a>
+        <div class="status-box">
+            <div class="status-line">> <span>INITIATING_SYSTEM_SCAN...</span></div>
+            <div class="status-line">> CORE_PROTOCOL: <span>SECURE</span></div>
+            <div class="status-line">> STATUS: <span>OPTIMAL</span></div>
         </div>
     </div>
-</footer>
+</section>
 
-<div id="privacyModal" class="modal-overlay">
-    <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 95%; max-width: 650px; background: #010409; border: 1px solid #82bc00; border-radius: 4px; overflow: hidden; max-height: 90vh; display: flex; flex-direction: column;">
-        <div style="background: #82bc00; color: #020617; padding: 20px; font-weight: 900; display: flex; justify-content: space-between;">
-            <span>DATA PRIVACY PROTOCOL</span>
-            <span onclick="closePrivacy()" style="cursor: pointer; font-size: 1.5rem;">&times;</span>
-        </div>
-        <div style="padding: 40px; overflow-y: auto;">
-            <h3 style="color: #82bc00; font-size: 0.9rem; margin-bottom: 10px;">01 // Zero-Knowledge Architecture</h3>
-            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px;">We employ a Zero-Knowledge framework where all estate telemetry is encrypted at the source using AES-256 military-grade standards.</p>
-            <h3 style="color: #82bc00; font-size: 0.9rem; margin-bottom: 10px;">02 // TLS 1.3 Transport Security</h3>
-            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px;">All data in transit utilizes TLS 1.3 encryption protocols, providing a fortified layer of protection against interception.</p>
-            <h3 style="color: #82bc00; font-size: 0.9rem; margin-bottom: 10px;">03 // Data Sovereignty</h3>
-            <p style="color: #94a3b8; font-size: 0.95rem;">Safe Compliance operates strictly under UK Data Protection laws. Data is stored in Tier-3 UK Data Centers.</p>
-        </div>
-    </div>
+<div class="authority-bar">
+    <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
+    <div class="auth-item"><strong>24/7</strong><span>Real-Time Analysis</span></div>
+    <div class="auth-item"><strong>AUTO</strong><span>Risk Mitigation</span></div>
 </div>
 
-<div id="governanceModal" class="modal-overlay">
-    <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 95%; max-width: 650px; background: #010409; border: 1px solid #82bc00; border-radius: 4px; overflow: hidden; max-height: 90vh; display: flex; flex-direction: column;">
-        <div style="background: #82bc00; color: #020617; padding: 20px; font-weight: 900; display: flex; justify-content: space-between;">
-            <span>GOVERNANCE ARCHITECTURE</span>
-            <span onclick="closeGovernance()" style="cursor: pointer; font-size: 1.5rem;">&times;</span>
-        </div>
-        <div style="padding: 40px; overflow-y: auto;">
-            <h3 style="color: #82bc00; font-size: 0.9rem; margin-bottom: 10px;">01 // Data Integrity Protocol</h3>
-            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px;">Once data is committed to the Master Ledger, it becomes an immutable record, ensuring an untampered audit trail.</p>
-            <h3 style="color: #82bc00; font-size: 0.9rem; margin-bottom: 10px;">02 // Redundancy</h3>
-            <p style="color: #94a3b8; font-size: 0.95rem;">Our architecture employs multi-node replication across Tier-3 UK data centres, guaranteeing 99.99% uptime.</p>
-        </div>
-    </div>
+<div class="module-grid" id="capabilities">
+    <div class="module-card"><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols and digital telemetry.</p></div>
+    <div class="module-card"><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment and automated risk assessments.</p></div>
+    <div class="module-card"><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets.</p></div>
+    <div class="module-card"><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards.</p></div>
 </div>
+
+<section class="audit-section" id="audit">
+    <div style="text-align: center;">
+        <div style="color:var(--lime); font-weight:900; font-size:0.7rem; letter-spacing:3px;">SECURE DATA UPLINK</div>
+        <h2>Initiate <span style="color:var(--lime)">System Audit</span></h2>
+        <form class="audit-form">
+            <div class="input-group" style="grid-column: 1/-1;"><label>Company Name</label><input type="text" required></div>
+            <div class="input-group"><label>Contact Name</label><input type="text" required></div>
+            <div class="input-group"><label>Contact Email</label><input type="email" required></div>
+            <button type="submit" style="grid-column: 1/-1;" class="btn-main">Initiate Secure Scan</button>
+        </form>
+    </div>
+</section>
 
 <script>
 function navigate(event, element, sectionId) {
     if (event) event.preventDefault();
 
-    // 1. UPDATE COLORS
-    // This keeps the Intelligence link green until another is selected
-    const allLinks = document.querySelectorAll('.nav-links a');
-    allLinks.forEach(link => {
-        link.setAttribute('data-active', 'false');
-    });
-    element.setAttribute('data-active', 'true');
+    // 1. Set Colors
+    if (element) {
+        const allLinks = document.querySelectorAll('.nav-links a');
+        allLinks.forEach(link => link.setAttribute('data-active', 'false'));
+        element.setAttribute('data-active', 'true');
+    }
 
-    // 2. TARGET THE ACTUAL SCROLLER
-    // Since your content is inside a div with overflow-y: auto (Line 254)
-    const mainContent = document.querySelector('div[style*="overflow-y: auto"]');
-
-    if (sectionId === 'home') {
-        // Scroll the specific div to the top, not the window
-        if (mainContent) {
-            mainContent.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            window.scrollBy(0, -70);
-        }
+    // 2. Smooth Scroll Logic
+    if (sectionId === 'top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         const target = document.getElementById(sectionId);
         if (target) {
-            // scrollIntoView is smart enough to scroll the parent div
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const offset = 90; // Accounts for slim navbar
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = target.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         }
     }
 }
 </script>
-</script>
+
 </body>
 </html>
