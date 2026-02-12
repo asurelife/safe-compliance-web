@@ -20,22 +20,31 @@
         }
 
         /* 2. SLIM NAVBAR FIX */
-        .sticky-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px; /* Force a slim profile */
-            z-index: 1000;
-            background: rgba(2, 6, 23, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            box-sizing: border-box;
-        }
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 1000;
+    background: rgba(2, 6, 23, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center; /* Changed from space-between to center */
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* New inner container to keep things from flying off-screen */
+.nav-container {
+    width: 100%;
+    max-width: 1400px; /* Limits how far apart the logo and links go */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
 
         .logo { 
             color: #ffffff !important; 
@@ -98,13 +107,15 @@
 <body>
 
 <header class="sticky-header">
-    <a href="#top" class="logo" onclick="navigate(event, this, 'top')">SAFE<span>COMPLIANCE</span></a>
-    <nav class="nav-links">
-        <a href="#top" data-active="true" onclick="navigate(event, this, 'top')">Intelligence</a>
-        <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
-        <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
-        <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
-    </nav>
+    <div class="nav-container">
+        <a href="#top" class="logo" onclick="navigate(event, this, 'top')">SAFE<span>COMPLIANCE</span></a>
+        <nav class="nav-links">
+            <a href="#top" data-active="true" onclick="navigate(event, this, 'top')">Intelligence</a>
+            <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
+            <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
+            <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
+        </nav>
+    </div>
 </header>
 
 <div id="top"></div>
