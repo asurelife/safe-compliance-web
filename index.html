@@ -134,27 +134,33 @@
     box-sizing: border-box;
 }
 
-/* THE MODULE GRID (Centered with Highlighted Boxes) */
-/* THE MODULE GRID */
+/* THE 6-BOX GRID ENGINE */
 .module-grid { 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 2px; /* Thin line effect between cards */
-    background: rgba(130, 188, 0, 0.1); /* The 'glow' in the cracks */
-    max-width: 1400px;
-    margin: 40px auto;
-    width: 90%;
+    grid-template-columns: 1fr; /* Stacked on mobile */
+    gap: 20px;
+    width: 100%;
+    margin-top: 50px;
 }
 
-/* THE MODULE CARD - DEFAULT STATE */
-.module-card { 
-    background: var(--navy); 
-    padding: 60px 40px; 
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    overflow: hidden;
+@media (min-width: 768px) {
+    .module-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2x3 on tablets */
+    }
+}
+
+@media (min-width: 1100px) {
+    .module-grid {
+        grid-template-columns: repeat(3, 1fr); /* Perfect 3x2 on desktop */
+    }
+}
+
+/* Ensure cards are uniform height for the grid look */
+.module-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 250px;
 }
 
 /* TITLES SET TO GREEN */
@@ -362,27 +368,42 @@
 </style>
 
 <div class="module-grid">
-        <div class="module-card">
-            <span style="color:var(--lime); font-family:monospace; font-weight:900;">[01]</span>
-            <h3>WATER HYGIENE</h3>
-            <p style="color:var(--text-gray);">Advanced ACoP L8 compliance protocols and digital telemetry. We provide real-time temperature monitoring and asset tracking.</p>
-        </div>
-        <div class="module-card">
-            <span style="color:var(--lime); font-family:monospace; font-weight:900;">[02]</span>
-            <h3>FIRE & SAFETY</h3>
-            <p style="color:var(--text-gray);">Full-spectrum RRO alignment and automated risk assessments. Intelligent tracking for every fire suppression node.</p>
-        </div>
-        <div class="module-card">
-            <span style="color:var(--lime); font-family:monospace; font-weight:900;">[03]</span>
-            <h3>INFRASTRUCTURE</h3>
-            <p style="color:var(--text-gray);">Precision monitoring of physical estate assets. We treat every physical component as a digital data node.</p>
-        </div>
-        <div class="module-card">
-            <span style="color:var(--lime); font-family:monospace; font-weight:900;">[04]</span>
-            <h3>ACCREDITATION</h3>
-            <p style="color:var(--text-gray);">Strategic governance for ISO standards and regulatory certification. We ensure constant audit-readiness across the portfolio.</p>
-        </div>
+    <div class="module-card">
+        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[01]</span>
+        <h3>WATER HYGIENE</h3>
+        <p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring.</p>
     </div>
+    
+    <div class="module-card">
+        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[02]</span>
+        <h3>FIRE & SAFETY</h3>
+        <p>Full-spectrum RRO alignment and automated risk assessments for critical life safety nodes.</p>
+    </div>
+
+    <div class="module-card">
+        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[03]</span>
+        <h3>INFRASTRUCTURE</h3>
+        <p>Precision monitoring of physical estate assets, converting hardware into actionable data nodes.</p>
+    </div>
+
+    <div class="module-card">
+        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[04]</span>
+        <h3>ACCREDITATION</h3>
+        <p>Strategic governance for ISO standards, ensuring constant audit-readiness across your portfolio.</p>
+    </div>
+
+    <div class="module-card">
+        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[05]</span>
+        <h3>ENVIRONMENTAL</h3>
+        <p>Intelligent HVAC and air quality monitoring to drive sustainability and energy efficiency targets.</p>
+    </div>
+
+    <div class="module-card">
+        <span style="color:var(--lime); font-family:monospace; font-weight:900;">[06]</span>
+        <h3>SECURITY SYSTEMS</h3>
+        <p>Integrated oversight of physical access control and surveillance through a unified digital interface.</p>
+    </div>
+</div>
 
 <section id="audit" style="display:block; text-align:center;">
     <div style="color:var(--lime); font-weight:900; letter-spacing:3px;">SECURE DATA UPLINK</div>
