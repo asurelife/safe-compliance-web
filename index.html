@@ -3,6 +3,9 @@
 <head>
     <style>
     /* Ensure the browser uses the full screen height */
+    html {
+    scroll-behavior: smooth;
+}    
     html, body {
         height: 100%;
         margin: 0;
@@ -160,14 +163,12 @@
     
 <body>
     <div class="main-content">
-    <nav>
-        <div class="logo">SAFE<span>COMPLIANCE</span></div>
-        <div class="nav-links">
-            <a href="#architecture">ARCHITECTURE</a>
-            <a href="#capabilities">CAPABILITIES</a>
-            <a href="#audit" style="color: var(--lime);">EXECUTE AUDIT</a>
-        </div>
-    </nav>
+   <nav style="display: flex; gap: 30px; align-items: center;">
+    <a href="#top" id="nav-intelligence" onclick="setActive(this)" style="color: #82bc00; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 2px;">INTELLIGENCE</a>
+    <a href="#architecture" id="nav-architecture" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 2px;">ARCHITECTURE</a>
+    <a href="#capabilities" id="nav-capabilities" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 2px;">CAPABILITIES</a>
+    <a href="#audit" id="nav-audit" onclick="setActive(this)" style="color: #94a3b8; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 2px;">EXECUTE AUDIT</a>
+</nav>
 
 <header id="home">
     <div class="hero-content">
@@ -717,6 +718,28 @@
 </footer>
 
 <script>
+    function setActive(element) {
+    // 1. Find all links in the navigation
+    const navLinks = [
+        document.getElementById('nav-intelligence'),
+        document.getElementById('nav-architecture'),
+        document.getElementById('nav-capabilities'),
+        document.getElementById('nav-audit')
+    ];
+
+    // 2. Set all links to Grey
+    navLinks.forEach(link => {
+        if(link) link.style.color = '#94a3b8';
+    });
+
+    // 3. Set the clicked link to Green
+    element.style.color = '#82bc00';
+    
+    // 4. Smooth scroll to the top if 'Intelligence' is clicked
+    if (element.id === 'nav-intelligence') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
     function openPrivacy() {
         document.getElementById('privacyModal').style.display = 'block';
         document.body.style.overflow = 'hidden';
