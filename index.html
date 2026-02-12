@@ -29,21 +29,21 @@
         .main-content { flex: 1 0 auto; }
         footer { flex-shrink: 0; }
 
-        /* NAVIGATION LOGIC */
-        .sticky-header {
-            display: flex !important; 
-            justify-content: space-between !important; 
-            align-items: center !important; 
-            padding: 0 5% !important; 
-            background: #020617 !important; 
-            height: 80px !important; 
-            position: sticky !important; 
-            top: 0 !important; 
-            z-index: 9999 !important; 
-            border-bottom: 1px solid rgba(130, 188, 0, 0.2) !important; 
-            width: 100% !important;
-            box-sizing: border-box !important;
-        }
+.sticky-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(10, 11, 14, 0.95); /* Matches your dark theme */
+    backdrop-filter: blur(10px);
+    
+    /* THE HEIGHT FIXES */
+    padding: 15px 40px; /* Reduced top/bottom padding from 40px to 15px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 /* LOGO STYLING */
 .logo { 
     color: #ffffff !important; 
