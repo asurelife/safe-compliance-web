@@ -258,26 +258,34 @@
 
 <script>
 function navigate(event, element, sectionId) {
+    // 1. Stop the browser's default "jump"
     if (event) event.preventDefault();
 
-    // 1. Reset all links to false (turns them Gray)
+    // 2. THE COLOR FIX (Using the data-active attribute we set up)
     const allLinks = document.querySelectorAll('.nav-links a');
     allLinks.forEach(link => {
         link.setAttribute('data-active', 'false');
     });
-
-    // 2. Set THIS link to true (turns it Green)
     element.setAttribute('data-active', 'true');
 
-    // 3. Handle Scroll
+    // 3. THE SCROLL FIX
     if (sectionId === 'home') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         const target = document.getElementById(sectionId);
         if (target) {
-            const offset = 80; 
-            const targetPosition = target.offsetTop - offset;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            // This method is much more reliable than offsetTop
+            target.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+
+            // Adjust for your 80px sticky header after the scroll starts
+            setTimeout(() => {
+                window.scrollBy(0, -80);
+            }, 500); // 500ms allows the smooth scroll to finish first
+        } else {
+            console.error("Link failed: Could not find #" + sectionId);
         }
     }
 }
