@@ -127,6 +127,43 @@
             display: grid; grid-template-columns: repeat(4, 1fr); text-align: center;
             z-index: 10; position: relative;
         }
+
+        /* Apply the uniform height and vertical centering to all main blocks */
+#home-hero,
+#architecture, 
+#capabilities-section, 
+#audit {
+    min-height: 100vh !important; /* Each section fills the screen */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* Centers content vertically */
+    padding: 100px 0 !important; /* Equal padding above and below */
+    box-sizing: border-box !important;
+}
+
+        #capabilities-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    background: var(--navy);
+}
+
+/* This creates the gap between the White Bar and the Grid below it */
+.authority-bar {
+    margin-bottom: 80px !important; 
+    /* Keep your existing authority-bar styles below this line */
+    background: #ffffff !important; 
+    color: #000b18 !important;
+    width: 100%; 
+    padding: 70px 0; 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    text-align: center;
+}
+
+        .nav-block a {
+    text-decoration: none !important;
+    font-family: 'Inter', sans-serif !important;
+}
         .authority-bar h2 { font-size: 3.8rem; font-weight: 900; margin: 0; color: #000b18 !important; line-height: 1; }
         .authority-bar p { font-family: monospace; font-weight: 900; letter-spacing: 2px; margin: 12px 0 0 0; color: #000b18 !important; text-transform: uppercase; }
 
