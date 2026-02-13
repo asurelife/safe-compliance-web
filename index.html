@@ -53,13 +53,27 @@ body .authority-bar {
 .authority-bar .bar-item h2 { font-size: 3.5rem; font-weight: 900; margin: 0; line-height: 1; }
 .authority-bar .bar-item p { font-family: monospace; font-weight: 900; letter-spacing: 2px; margin-top: 5px; }
 
+        /* Ensure the White Bar doesn't have a bottom margin pushing the section away */
+.authority-bar {
+    margin-bottom: 0 !important;
+    position: relative;
+    z-index: 20;
+}
 /* CAPABILITIES SECTION - THE GAP FIX */
 #capabilities-section {
     display: block !important;
     min-height: auto !important;
-    padding: 100px 5% !important;
+    
+    /* 1. This creates the dark 'gap' above and below the cards */
+    padding-top: 100px !important; 
+    padding-bottom: 120px !important;
+    
+    /* 2. This tells the link to stop 150px ABOVE the section start */
+    /* This ensures the White Bar is visible when you jump there */
+    scroll-margin-top: 150px !important; 
+    
     background: #000b18 !important;
-    scroll-margin-top: 80px;
+    width: 100%;
 }
 
 .module-grid {
