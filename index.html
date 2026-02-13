@@ -172,37 +172,51 @@
 }
 
 #capabilities-section {
-    /* Stop forcing it to be a tiny box */
-    min-height: 250vh;
+    /* Stop the "squashing" behavior */
     display: block !important; 
+    height: auto !important; 
+    min-height: 100vh !important;
     
-    /* Keep the green lines as simple borders */
-    border-top: 1px solid var(--lime);
-    border-bottom: 1px solid var(--lime);
+    /* Green lines */
+    border-top: 2px solid var(--lime) !important;
+    border-bottom: 2px solid var(--lime) !important;
+    
+    background: #020617 !important;
+    padding-bottom: 60px !important;
 }
 
 .authority-bar {
-    height: auto; /* Let the content define the height */
-    padding: 0px 0; /* This is where we shrink the white box */
-    background: #fff;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Forces the text to separate */
-    margin-bottom: 0px;
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #000b18 !important;
+    
+    /* SHRUNK HEIGHT: Very tight vertical padding */
+    padding: 20px 0 !important; 
+    
+    /* SPACING: Pushes it away from the green line */
+    margin-top: 80px !important;
+    margin-bottom: 40px !important;
+    
+    /* THE FIX: Force 4 columns so text NEVER overlaps */
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    text-align: center !important;
+    align-items: center !important;
 }
 
-/* Ensure the text inside the bar stays clean */
+/* Fix the bunched up text inside the box */
 .authority-bar h2 {
-    font-size: 2.5rem !important; /* Adjust if the numbers are too big */
+    font-size: 2rem !important; /* Smaller numbers */
     margin: 0 !important;
     line-height: 1 !important;
-    font-weight: 900 !important;
+    color: #000b18 !important;
 }
 
 .authority-bar p {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important; /* Small, sharp labels */
     margin: 5px 0 0 0 !important;
-    letter-spacing: 1px !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px;
     color: #000b18 !important;
 }
 
