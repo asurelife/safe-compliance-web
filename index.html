@@ -171,7 +171,32 @@
     overflow: hidden;
     position: relative;
 }
+/* Ensure the internal content stays as a single block */
+.capabilities-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+/* Ensure the White Bar is forced to the full width of the viewport */
+.authority-bar {
+    width: 100vw !important; /* Forces it to span the entire screen */
+    background: #ffffff !important;
+    color: #000b18 !important;
+    padding: 60px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 40px !important;
+}
+
+/* Ensure the cards sit nicely below the bar */
+.module-grid {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
 /* Remove the green line from the very first section so it doesn't sit under the header */
 #home-hero {
     border-top: none !important;
@@ -371,14 +396,15 @@
         </div>
     </section>
 
-    <div id="capabilities-section">
-        <div class="capabilities-content-wrapper">
+<section id="capabilities-section">
+    <div class="capabilities-wrapper">
+        
         <div class="authority-bar">
             <div class="bar-item"><h2>100%</h2><p>AUDIT READINESS</p></div>
             <div class="bar-item"><h2>24/7</h2><p>REAL-TIME ANALYSIS</p></div>
             <div class="bar-item"><h2>COMPLETE</h2><p>CENTRALISATION</p></div>
             <div class="bar-item"><h2>AUTO</h2><p>RISK MITIGATION</p></div>
-        </div>
+        </div></div>
 
         <div class="module-grid">
             <div class="module-card">
