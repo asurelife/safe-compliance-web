@@ -126,43 +126,40 @@
     margin-top: 10px;
 }
 
-/* SECTION 3: 4-COLUMN REWRITE */
+/* SECTION 3: FORCED 4-COLUMN GRID */
 .module-grid {
-    display: grid;
-    /* Force exactly 4 equal columns */
-    grid-template-columns: repeat(4, 1fr); 
+    display: grid !important; /* Force grid mode */
+    grid-template-columns: repeat(4, 1fr) !important; /* Forces exactly 4 columns */
     width: 100%;
-    background: #000b18; /* Matches your navy theme */
+    background: #000b18;
+    margin: 0;
+    padding: 0;
 }
 
 .module-card {
-    padding: 60px 5%; 
+    padding: 60px 5%; /* Aligns text with the site spine */
     border-right: 1px solid rgba(255,255,255,0.1);
     border-bottom: 1px solid rgba(255,255,255,0.1);
     min-height: 350px;
-    position: relative;
     box-sizing: border-box;
 }
 
-/* Remove right border on the 4th and 8th card to keep the edges clean */
+/* Remove the right border on the 4th and 8th items */
 .module-card:nth-child(4n) {
-    border-right: none;
+    border-right: none !important;
 }
 
-/* Titles and Numbers */
-.module-card span {
-    color: #88c425; /* Your Lime Green */
-    font-family: monospace;
-    font-weight: 900;
-    display: block;
-    margin-bottom: 15px;
-}
-
+/* Ensure Titles are Green (as seen in your screenshot) */
 .module-card h3 {
-    color: #88c425;
+    color: #88c425 !important;
     font-weight: 900;
-    letter-spacing: 1px;
+    margin: 15px 0;
     text-transform: uppercase;
+}
+
+.module-card span {
+    color: #88c425;
+    font-family: monospace;
 }
 
         h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
@@ -231,7 +228,6 @@
     </div>
 </section>
     
-
 <div class="divider"></div>
 
 <section class="section" id="architecture" style="min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 70% 30%, rgba(130, 188, 0, 0.05) 0%, transparent 70%);">
