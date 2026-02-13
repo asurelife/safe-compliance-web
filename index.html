@@ -69,16 +69,14 @@
             box-sizing: border-box;
         }
 
-/* Ensure all content wrappers share the same width */
-.content-wrapper {
+/* 1. SECTION 3 WRAPPER */
+#capabilities {
+    padding: 0;
+    background: var(--navy);
     width: 100%;
-    max-width: 1400px; /* Adjust this to match your Hero width */
-    margin: 0 auto;
-    padding: 0 40px; /* Standard side gutter */
-    box-sizing: border-box;
 }
 
-/* FORCE FULL WIDTH BACKGROUND */
+/* 2. THE WHITE BAR (Full Width) */
 .authority-bar {
     background: #ffffff !important;
     width: 100%;
@@ -87,35 +85,19 @@
     margin: 0;
 }
 
-/* KEEP CONTENT ALIGNED TO YOUR SITE MARGINS */
-.auth-content-limited {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 Columns */
-    width: 100%;
-    max-width: 1400px; /* Adjust this to match your Hero text width */
-    margin: 0 auto;
-    padding: 0 5%; /* Side padding to match Section 2 */
-    box-sizing: border-box;
-}
-
+/* 3. THE CONTENT INSIDE THE BAR */
+/* We only use ONE container now to ensure perfect alignment */
 .auth-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 Solid columns - no overlapping */
+    grid-template-columns: repeat(4, 1fr); /* Forces 4 columns on desktop */
     width: 100%;
-    max-width: 100%;        /* Allows it to match the grid below */
-    padding: 0 5%;          /* Matches Section 2 and Card padding exactly */
+    max-width: 1400px; /* Matches your site's spine */
     margin: 0 auto;
+    padding: 0 5%; /* Identical to Section 2 text padding */
     box-sizing: border-box;
 }
 
-@media (min-width: 992px) { 
-    .auth-container { 
-        display: flex; 
-        justify-content: space-between; 
-    } 
-}
-
-/* FORCE BLACK TEXT */
+/* 4. FORCE BLACK TEXT */
 .auth-item {
     text-align: left;
     color: #000000 !important;
@@ -126,6 +108,7 @@
     font-size: 3rem;
     font-weight: 900;
     color: #000000 !important;
+    line-height: 1;
 }
 
 .auth-item span {
@@ -133,97 +116,30 @@
     font-size: 0.8rem;
     font-weight: 800;
     color: #000000 !important;
-}
-/* SECTION 3 ALIGNMENT FIX */
-#capabilities {
-    padding: 0; /* Remove any section-level padding */
-    background: var(--navy);
+    margin-top: 10px;
 }
 
-/* FIX THE GRID PADDING */
+/* 5. THE MODULE GRID */
 .module-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Back to 4 columns to match header items */
     width: 100%;
+    /* Start with 1 column for mobile, then expand */
+    grid-template-columns: repeat(1, 1fr);
 }
 
 @media (min-width: 768px) {
-    .module-grid { grid-template-columns: repeat(2, 1fr); } /* 2x4 on Tablet */
+    .module-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 1100px) {
-    .module-grid { grid-template-columns: repeat(4, 1fr); } /* 4x2 on Desktop */
+    .module-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* Add borders to cards so they look like a grid without gaps */
-/*.module-card {
-    border: 1px solid rgba(255,255,255,0.05);
-    min-height: 300px;
-    padding: 40px;
-}
-
-/* THE GRID CARDS PADDING */
 .module-card {
-    padding: 60px 5%; /* Matches Section 2 */
+    padding: 60px 5%; /* Perfect vertical alignment with the white bar text */
     border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Remove the right border on the last card of each row */
-.module-card:nth-child(3n) {
-    border-right: none;
-}
-        
-/* Ensure the numbers [01-08] stay in place */
-.module-card span {
-    display: block;
-    color: var(--lime);
-    font-family: monospace;
-    font-weight: 900;
-    margin-bottom: 10px;
-}
-.module-card p {
-    color: #94a3b8; /* Professional slate gray for readability */
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-top: 15px;
-    display: block !important; /* Ensures they aren't hidden */
-    transition: 0.3s;
-}
-
-/* TITLES SET TO GREEN */
-.module-card h3 { 
-    color: var(--lime); 
-    margin-bottom: 20px; 
-    font-size: 1.4rem; 
-    font-weight: 900; 
-    letter-spacing: 1px;
-    transition: 0.3s;
-}
-
-/* Make text pure white on hover for that 'active' feel */
-.module-card:hover p {
-    color: var(--white);
-}
-
-/* Subtle accent line on hover */
-.module-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 4px;
-    background: var(--lime);
-    transition: 0.4s;
-}
-
-.module-card:hover::after {
-    width: 100%;
-}
-
-/* Make text go pure white on hover for readability */
-.module-card:hover p {
-    color: var(--white);
+    min-height: 300px;
+    position: relative;
 }
 
         h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
