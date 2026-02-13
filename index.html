@@ -132,22 +132,31 @@
             scroll-margin-top: 70px;
         }
 
-.authority-bar {
+/* 1. SHARED SECTION DEFAULTS */
+#home-hero, #architecture, #capabilities-section, #audit {
     width: 100% !important;
-    background: #ffffff !important;
-    color: #000b18 !important;
-    padding: 60px 0 !important;
-    margin-bottom: 60px !important;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    text-align: center;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    background: #020617 !important;
+    position: relative;
+    box-sizing: border-box !important;
+    border-top: 2px solid var(--lime) !important;
 }
 
-/* CLEAN SLATE FOR ALL SECTIONS */
-#home-hero, 
+/* 2. SCREEN 1: INTELLIGENCE */
+#home-hero {
+    border-top: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 70px 5% 0 5% !important; /* Added 70px top padding for header clearance */
+}
+
+/* 3. SCREEN 2: ARCHITECTURE */
 #architecture {
     display: flex !important;
     align-items: center !important;
+    justify-content: center !important;
     padding: 0 5% !important;
 }
 
@@ -157,64 +166,24 @@
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 60px;
-    margin: 0 auto;
-}
-#capabilities-section {
-    display: block !important; /* Block allows natural stacking so nothing squashes */
-    height: auto !important;   /* Let it grow to fit all cards */
-    padding-top: 100px !important; 
-    padding-bottom: 100px !important;
-}
-#audit {
-    width: 100% !important;
-    min-height: 100vh !important;
-    margin: 0 !important;
-    background: #020617 !important;
-    position: relative;
-    box-sizing: border-box !important;
-    border-top: 2px solid var(--lime) !important;
-    overflow: hidden;
 }
 
-#home-hero { border-top: none !important; }
-#home-hero {
-    display: flex !important;
-    align-items: center !important;
-    padding: 0 5% !important;
-}
-
-/* SECTION 3: ALLOW GROWTH TO PREVENT OVERLAP */
+/* 4. SCREEN 3: CAPABILITIES (The Fix) */
 #capabilities-section {
-    min-height: 100vh !important;
-    height: auto !important; /* This stops the overlap */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    border-top: 2px solid var(--lime) !important;
+    display: block !important; /* Changed to block to prevent squashing cards */
+    height: auto !important;   /* Allows section to grow to fit all 8 cards */
+    padding: 100px 0 !important;
     border-bottom: 2px solid var(--lime) !important;
-    background: #020617 !important;
-    padding-bottom: 100px !important; /* Space at the very bottom */
-    margin: 0 !important;
-}
-
-
-/* Ensure the wrapper doesn't get cut off */
-.capabilities-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .authority-bar {
     width: 100% !important;
     background: #ffffff !important;
     color: #000b18 !important;
-    padding: 40px 0 !important;
-    margin-top: 100px !important; /* Pushes it down away from Section 2 */
+    padding: 60px 0 !important;
     margin-bottom: 60px !important;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     text-align: center;
 }
 
@@ -224,20 +193,23 @@
     gap: 20px !important;
     padding: 0 5% !important;
     max-width: 1400px;
+    margin: 0 auto !important;
 }
 
 .module-card {
-    padding: 20px !important;  /* Reduced internal padding of cards */
+    padding: 20px !important;
 }
 
 .module-card h3 {
-    margin: 10px 0 !important; /* Tighter text spacing */
-    font-size: 1.1rem;        /* Slightly smaller headers to fit 2 rows */
+    margin: 10px 0 !important;
+    font-size: 1.1rem;
 }
-/* Remove the green line from the very first section so it doesn't sit under the header */
-#home-hero {
-    border-top: none !important;
-    padding-top: 70px !important; 
+
+/* 5. SCREEN 4: AUDIT */
+#audit {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 /* Fix Section 2 Left Alignment */
