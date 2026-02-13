@@ -84,13 +84,14 @@
     padding: 60px 5%; /* 5% side padding matches the content above */
     width: 100%;
     box-sizing: border-box;
-    border-top: 6px solid var(--lime);
+    border-top: 4px solid var(--lime);
 }
 
 .auth-container {
     display: flex;
     justify-content: space-between;
-    max-width: 1400px; /* Limits expansion on massive monitors */
+    align-items: flex-start; /* Aligns all items to the top */
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -101,20 +102,28 @@
     } 
 }
 
-.auth-item strong { 
-    font-size: 2.8rem; 
-    display: block; 
-    margin-bottom: 5px; 
-    font-weight: 900; 
-    line-height: 1;
+.auth-item {
+    text-align: center; /* Forces the text below to center under the number */
+    flex: 1; /* Gives each of the 4 items equal space */
+    color: #000b18 !important; /* Force Black text */
 }
 
-.auth-item span { 
-    font-size: 0.75rem; 
-    font-weight: 900; 
-    text-transform: uppercase; 
+.auth-item strong {
+    display: block;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #000b18 !important; /* Force Black numbers */
+    margin-bottom: 10px;
+}
+
+.auth-item span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
     letter-spacing: 1px;
-    color: #475569;
+    text-transform: uppercase;
+    color: #000b18 !important; /* Force Black sub-text */
 }
 /* SECTION 3 ALIGNMENT FIX */
 #capabilities {
@@ -338,16 +347,27 @@
 </section>
 
 <section id="capabilities">
-    <div class="authority-bar">
-        <div class="auth-container">
-            <div class="content-wrapper"> <div class="authority-bar">
-                <div class="auth-container">
-                   <div class="auth-item"><strong>100%</strong><span>AUDIT READINESS</span></div>
-                   <div class="auth-item"><strong>24/7</strong><span>REAL-TIME ANALYSIS</span></div>
-                   <div class="auth-item"><strong>COMPLETE</strong><span>CENTRALISATION</span></div>
-                   <div class="auth-item"><strong>AUTO</strong><span>RISK MITIGATION</span></div>
-            </div>
+    
+<div class="authority-bar">
+    <div class="auth-container">
+        <div class="auth-item">
+            <strong>100%</strong>
+            <span>AUDIT READINESS</span>
         </div>
+        <div class="auth-item">
+            <strong>24/7</strong>
+            <span>REAL-TIME ANALYSIS</span>
+        </div>
+        <div class="auth-item">
+            <strong>COMPLETE</strong>
+            <span>CENTRALISATION</span>
+        </div>
+        <div class="auth-item">
+            <strong>AUTO</strong>
+            <span>RISK MITIGATION</span>
+        </div>
+    </div>
+</div>
 
         <div class="module-grid">
             <div class="module-card">
