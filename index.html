@@ -173,23 +173,21 @@
 
 #capabilities-section {
     /* Stop forcing it to be a tiny box */
-    height: auto !important; 
     min-height: 250vh;
     display: block !important; 
     
     /* Keep the green lines as simple borders */
-    border-top: 2px solid var(--lime);
-    border-bottom: 2px solid var(--lime);
-    padding: 0px 0; /* Natural breathing room */
+    border-top: 1px solid var(--lime);
+    border-bottom: 1px solid var(--lime);
 }
 
 .authority-bar {
     height: auto; /* Let the content define the height */
-    padding: 20px 0; /* This is where we shrink the white box */
+    padding: 0px 0; /* This is where we shrink the white box */
     background: #fff;
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Forces the text to separate */
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 
 /* Ensure the text inside the bar stays clean */
