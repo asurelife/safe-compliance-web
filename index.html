@@ -78,15 +78,9 @@
     flex-direction: column;
     align-items: center;
 }
-.authority-bar { 
-    background: var(--white); 
-    color: var(--navy); 
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto; /* No bottom margin to snap to grid */
-    border-top: 5px solid var(--lime);
-    padding: 60px 0;
-    box-sizing: border-box;
+.authority-bar {
+    width: 100%; /* Spans full width of the wrapper */
+    margin-bottom: 0;
 }
 
 .auth-container {
@@ -117,24 +111,22 @@
     letter-spacing: 1px;
     color: #475569;
 }
-/* SECTION 3: RE-ENGINEERED 8-GRID */
-#capabilities {
-    min-height: 100vh;
-    background: var(--navy);
-    display: flex;
-    flex-direction: column;
-    padding: 100px 0; /* Vertical breathing room for the whole unit */
+/* SECTION 3 ALIGNMENT FIX */
+#capabilities .content-wrapper {
+    width: 100%;
+    max-width: 1400px; /* Increased to match your Hero width */
+    margin: 0 auto;
+    padding: 0 5%; /* Matches standard gutter spacing */
 }
 
 /* THE SOLID 8-GRID */
-.module-grid { 
-    display: grid; 
-    grid-template-columns: repeat(4, 1fr); /* Force 4x2 */
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto; /* Snaps directly to the white bar above */
-    gap: 0; /* Kills the gaps between boxes */
-    border: 1px solid rgba(255,255,255,0.1); /* Subtle outer border */
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%; /* Ensures it fills the wrapper */
+    gap: 0;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255,255,255,0.1);
 }
 
 @media (min-width: 768px) {
@@ -154,10 +146,9 @@
 
 /* Ensure cards are uniform height for the grid look */
 .module-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: 250px;
+    padding: 50px 30px; /* Balanced internal padding */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255,255,255,0.1);
 }
 /* Ensure the numbers [01-08] stay in place */
 .module-card span {
