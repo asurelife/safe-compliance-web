@@ -83,6 +83,22 @@
     box-sizing: border-box;
 }
 
+/* REMOVE GAP BETWEEN AUTHORITY BAR AND CAPABILITIES */
+.authority-bar {
+    margin-bottom: 0 !important;
+    padding-bottom: 20px; /* Minimal breathing room */
+}
+
+#capabilities-section {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.module-grid {
+    margin-top: 0 !important;
+    padding-top: 60px; /* Adjust this to control exactly how close the cards get to the bar */
+}
+
 /* 2. THE CONTENT: Centered over the cards */
 .authority-bar-content {
     display: grid;
