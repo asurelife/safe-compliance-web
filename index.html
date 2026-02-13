@@ -157,15 +157,11 @@
     min-height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important; /* Forces the internal content to the dead center */
-    padding: 0 !important;              /* Remove padding so the bar can hit the edges */
+    justify-content: center !important; /* This is what centers the bar + cards vertically */
+    padding-top: 100px !important;    /* This creates the dark gap ABOVE the bar */
+    padding-bottom: 100px !important; /* This creates the dark gap BELOW the cards */
     background: var(--navy);
-    
-    /* ADJUST THIS VALUE: 
-       A negative margin or a specific offset ensures the 
-       White Bar + Cards are perfectly framed on click */
-    scroll-margin-top: 0px; 
-    position: relative;
+    box-sizing: border-box;
 }
 .capabilities-content-wrapper {
     width: 100%;
@@ -181,8 +177,11 @@
 
 /* This creates the gap between the White Bar and the Grid below it */
 .authority-bar {
-    margin-bottom: 80px !important; 
-    /* Keep your existing authority-bar styles below this line */
+    /* 1. THE POSITIONING FIX */
+    margin-top: 0 !important;
+    margin-bottom: 60px !important; /* Space between bar and cards */
+    
+    /* 2. THE VISUAL STYLING (RETAINED) */
     background: #ffffff !important; 
     color: #000b18 !important;
     width: 100%; 
@@ -190,6 +189,8 @@
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
         .nav-block a {
