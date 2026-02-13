@@ -599,6 +599,17 @@ body .authority-bar {
         .input-group { display: flex; flex-direction: column; gap: 10px; }
         .input-group input { background: #010409; border: 1px solid #334155; color: white; padding: 18px; }
         .btn-main { background: var(--lime); color: var(--navy); padding: 22px 45px; text-decoration: none; font-weight: 900; text-transform: uppercase; border: none; cursor: pointer; }
+        /* FINAL LINK & LAYOUT OVERRIDE */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Adjust this to match your header height */
+}
+
+#capabilities-section {
+    display: block !important;
+    min-height: auto !important;
+    scroll-margin-top: 100px; /* Double-layer protection for the link */
+}
     </style>
 </head>
 <body>
@@ -696,8 +707,7 @@ body .authority-bar {
     </div>
 </section>
 
-    <div class="divider"></div>
-
+<div class="divider"></div>
 
 <div class="authority-bar">
     <div class="bar-item">
