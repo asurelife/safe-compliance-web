@@ -239,7 +239,7 @@
     <div class="nav-container">
         <a href="#" class="logo">SAFE<span>COMPLIANCE</span></a>
         <nav class="nav-links">
-            <a href="#" data-active="true" onclick="navigate(event, this, 'top')">Intelligence</a>
+            <a href="#intelligence" onclick="navigate(event, this, 'intelligence')">Intelligence</a>
             <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
             <a href="#capabilities" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
             <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
@@ -442,22 +442,33 @@ function navigate(event, element, sectionId) {
         };
 
         // Your navigate(event, element, sectionId) function should be here too
-        function navigate(event, element, sectionId) {
-            if (event) event.preventDefault();
-            
-            // Logic to handle green font color for Intelligence
-            const allLinks = document.querySelectorAll('.nav-links a');
-            allLinks.forEach(link => link.setAttribute('data-active', 'false'));
-            element.setAttribute('data-active', 'true');
+function navigate(event, element, sectionId) {
+    if (event) event.preventDefault();
 
-            const target = document.getElementById(sectionId);
-            if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 70, // Adjust for navbar height
-                    behavior: 'smooth'
-                });
-            }
-        }
+    // 1. Handle Link Highlighting
+    const allLinks = document.querySelectorAll('.nav-links a');
+    allLinks.forEach(link => {
+        link.setAttribute('data-active', 'false');
+        link.style.color = ''; // Reset others
+    });
+
+    // 2. Apply Green to Intelligence if active
+    if (element) {
+        element.setAttribute('data-active', 'true');
+    }
+
+    // 3. Precise Scroll Logic
+    const target = document.getElementById(sectionId);
+    if (target) {
+        // If it's the intelligence section, scroll to absolute 0
+        const offset = sectionId === 'intelligence' ? 0 : target.offsetTop - 70;
+        
+        window.scrollTo({
+            top: offset,
+            behavior: 'smooth'
+        });
+    }
+}
     </script>
 </body>
 </html>
