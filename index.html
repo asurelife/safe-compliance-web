@@ -68,6 +68,54 @@
             padding: 100px 5%;
             box-sizing: border-box;
         }
+
+ /* THE WHITE BAR BREAKOUT */
+.authority-bar-breakout {
+    background: #ffffff !important;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 60px 0;
+    border-top: 6px solid #D74A49; /* Matching your RED divider color */
+    box-sizing: border-box;
+}
+
+/* THE CONTENT ALIGNMENT */
+.authority-bar-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Matches the 4 columns below */
+    width: 100%;
+    max-width: 100%; /* Spans the same as the grid */
+    padding: 0 5%;   /* Matches the card padding exactly */
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* THE TEXT STYLING (FORCE BLACK) */
+.auth-stat {
+    text-align: left;
+    color: #000000 !important;
+}
+
+.auth-stat strong {
+    display: block;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: #000000 !important;
+}
+
+.auth-stat span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #000000 !important;
+}       
         
  .authority-inner {
     display: grid;
@@ -289,6 +337,27 @@
 
     <div class="divider"></div>
 
+    <div class="authority-bar-breakout">
+    <div class="authority-bar-content">
+        <div class="auth-stat">
+            <strong>100%</strong>
+            <span>AUDIT READINESS</span>
+        </div>
+        <div class="auth-stat">
+            <strong>24/7</strong>
+            <span>REAL-TIME ANALYSIS</span>
+        </div>
+        <div class="auth-stat">
+            <strong>COMPLETE</strong>
+            <span>CENTRALISATION</span>
+        </div>
+        <div class="auth-stat">
+            <strong>AUTO</strong>
+            <span>RISK MITIGATION</span>
+        </div>
+    </div>
+</div>
+    
         <div class="module-grid">
             <div class="module-card">
                 <span>[01]</span>
