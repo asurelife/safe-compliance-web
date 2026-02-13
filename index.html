@@ -172,12 +172,12 @@
 
 #capabilities-section {
     display: block !important;
-    min-height: 100vh !important;
     height: auto !important;
+    min-height: 100vh !important;
     
-    /* Remove all internal padding so the white bar touches the green line */
-    padding: 0 !important; 
-    margin: 0 !important;
+    /* REMOVE ALL TOP SPACE */
+    padding-top: 0 !important; 
+    margin-top: 0 !important;
     
     background: #020617 !important;
     border-top: 2px solid var(--lime) !important;
@@ -187,20 +187,18 @@
 .authority-bar {
     width: 100% !important;
     background: #ffffff !important;
-    color: #000b18 !important;
     
-    /* SHRUNK HEIGHT: Very thin vertical strip */
+    /* SHRUNK HEIGHT */
     padding: 20px 0 !important; 
     
-    /* THE FIX: Remove the gap above the bar */
+    /* REMOVE SPACE ABOVE */
     margin-top: 0 !important; 
     margin-bottom: 40px !important;
     
-    /* PREVENT TEXT OVERLAP: Force 4 distinct columns */
+    /* FIX BUNCHED TEXT */
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
     text-align: center !important;
-    align-items: center !important;
 }
 
 .module-grid {
