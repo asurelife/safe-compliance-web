@@ -144,52 +144,34 @@
 
         /* Apply the uniform height and vertical centering to all main blocks */
 /* UNIFIED MASTER SLIDE CONTROLLER WITH SEPARATION LINES */
+/* REPAIRING THE SLIDE STRUCTURE */
 #home-hero, 
 #architecture, 
 #capabilities-section {
-    height: 100vh !important;
-    min-height: 100vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important; /* Switch back to center now that we are shrinking items */
-    align-items: center !important;
-    
-    border-top: 2px solid var(--lime) !important;
-    border-bottom: 2px solid var(--lime) !important; /* Explicitly ensure the bottom line is there */
-    
-    padding: 0 !important; 
-    margin: 0 !important;
-    background: #020617 !important;
-    overflow: hidden; /* Prevents the section from expanding past the screen */
-    box-sizing: border-box !important;
+    padding-top: 60px !important; /* Pulls the content closer to the top green line */
 }
 #audit {
-    /* Forces each section to be EXACTLY the height of the screen */
-    height: 100vh !important;
-    min-height: 100vh !important;
-    
-    /* Perfect vertical and horizontal centering */
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important; 
     align-items: center !important;
     
-    /* Removes all gaps between sections */
+    /* CHANGE: allow sections to grow if content is too tall */
+    min-height: 100vh !important; 
+    height: auto !important; 
+    
     margin: 0 !important;
-    padding: 0 5% !important;
+    padding: 100px 5% !important; /* Uniform breathing room */
     box-sizing: border-box !important;
-    
-    /* Snaps the section perfectly to the top of the browser window */
-    scroll-margin-top: 0 !important;
-    
-    /* THE SEPARATION LINE */
-    border-top: 2px solid var(--lime) !important;
-    
-    /* Background and isolation */
-    background: #020617 !important;
-    overflow: hidden;
     position: relative;
+    
+    /* Green Separation Lines */
+    border-top: 2px solid var(--lime) !important;
+    background: #020617 !important;
 }
+
+/* Remove top border from very first screen */
+#home-hero { border-top: none !important; }
 /* Ensure the wrapper doesn't get cut off */
 .capabilities-wrapper {
     width: 100%;
@@ -203,21 +185,20 @@
     width: 100% !important;
     background: #ffffff !important;
     color: #000b18 !important;
-    padding: 25px 0 !important;    /* Reduced padding to save vertical space */
-    margin-top: 0 !important;      /* Removed top margin */
-    margin-bottom: 20px !important; /* Tightened gap to cards */
+    padding: 40px 0 !important;
+    margin-bottom: 50px !important;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    text-align: center;
 }
 
-/* Ensure the cards sit nicely below the bar */
+/* Ensure the grid doesn't overlap anything */
 .module-grid {
     width: 100%;
     max-width: 1400px;
     display: grid !important;
-    grid-template-columns: repeat(4, 2fr);
-    gap: 15px !important;      /* Smaller gap between cards */
-    padding: 0 5% !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 .module-card {
@@ -238,13 +219,12 @@
 #architecture .arch-grid {
     width: 100%;
     max-width: 1400px;
+    padding: 0 5% !important; /* Aligns text with your logo */
     margin: 0 auto !important;
-    padding: 0 5%; /* Restores the alignment with the header logo */
     display: grid !important;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 60px;
     align-items: center;
-    box-sizing: border-box;
 }
 
 /* Specific Adjustment for Capabilities Section */
