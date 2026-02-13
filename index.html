@@ -68,7 +68,28 @@
             padding: 100px 5%;
             box-sizing: border-box;
         }
+        
+/* FORCING THE WHITE BACKGROUND BY SELECTOR SPECIFICITY */
+body .authority-bar {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000b18 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    padding: 60px 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 99 !important;
+}
 
+/* Ensure the text inside is visible against the white */
+body .authority-bar .bar-item, 
+body .authority-bar .bar-item h2, 
+body .authority-bar .bar-item p {
+    color: #000b18 !important;
+}
 /* 1. THE WHITE BAR: Border Removed */
 .authority-bar {
     background: #ffffff !important; /* Forces the white color back */
