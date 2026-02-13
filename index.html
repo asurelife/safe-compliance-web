@@ -172,16 +172,12 @@
 }
 
 #capabilities-section {
-    display: block !important; /* Forces a standard top-to-bottom layout */
+    display: block !important; 
     min-height: 100vh !important;
-    height: auto !important;   /* Prevents the section from squashing its contents */
-    padding: 0 !important;      /* We will use margins on the items instead */
-    margin: 0 !important;
+    height: auto !important;
+    padding-bottom: 80px !important;
     border-top: 2px solid var(--lime) !important;
-    border-bottom: 2px solid var(--lime) !important;
     background: #020617 !important;
-    position: relative;
-    overflow: visible !important; 
 }
 
 .authority-bar {
@@ -189,14 +185,34 @@
     background: #ffffff !important;
     color: #000b18 !important;
     
-    /* This margin creates the "gap" you need so it's not "too high" */
-    margin-top: 120px !important; 
-    margin-bottom: 60px !important;
+    /* SHRUNK HEIGHT: Reduced top/bottom padding */
+    padding: 30px 0 !important; 
     
-    padding: 50px 0 !important;
+    /* POSITIONING: Pushes it down from the green line */
+    margin-top: 100px !important; 
+    margin-bottom: 50px !important;
+    
+    /* FIX TEXT OVERLAP: Force 4 distinct columns */
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    text-align: center;
+    text-align: center !important;
+    align-items: center !important;
+}
+
+/* Ensure the text inside the bar stays clean */
+.authority-bar h2 {
+    font-size: 2.5rem !important; /* Adjust if the numbers are too big */
+    margin: 0 !important;
+    line-height: 1 !important;
+    font-weight: 900 !important;
+}
+
+.authority-bar p {
+    font-size: 0.8rem !important;
+    margin: 5px 0 0 0 !important;
+    letter-spacing: 1px !important;
+    font-weight: 700 !important;
+    color: #000b18 !important;
 }
 
 .module-grid {
