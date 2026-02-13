@@ -143,24 +143,35 @@
 #home-hero, 
 #architecture, 
 #capabilities-section, 
-#audit {
+#architecture, #audit {
     min-height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important; /* Vertically centers the content */
-    align-items: center !important;     /* Horizontally centers the content */
-    padding: 100px 5% !important;       /* Uniform breathing room top/bottom */
-    box-sizing: border-box !important;
-    position: relative;
-    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    scroll-margin-top: 70px; /* Accounts for the height of your sticky header */
 }
 
 /* Specific Adjustment for Capabilities Section */
 #capabilities-section {
-    padding-left: 0 !important;   /* Allows the White Bar to touch edges */
-    padding-right: 0 !important;  /* Allows the White Bar to touch edges */
-    justify-content: flex-start !important; /* Starts content at the top of the 100vh */
-    padding-top: 120px !important; /* Large gap at the top before the white bar */
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* Forces the internal content to the dead center */
+    padding: 0 !important;              /* Remove padding so the bar can hit the edges */
+    background: var(--navy);
+    
+    /* ADJUST THIS VALUE: 
+       A negative margin or a specific offset ensures the 
+       White Bar + Cards are perfectly framed on click */
+    scroll-margin-top: 0px; 
+    position: relative;
+}
+.capabilities-content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Ensure the grid inside Capabilities doesn't touch the bottom of the screen */
@@ -326,6 +337,7 @@
     </section>
 
     <div id="capabilities-section">
+        <div class="capabilities-content-wrapper">
         <div class="authority-bar">
             <div class="bar-item"><h2>100%</h2><p>AUDIT READINESS</p></div>
             <div class="bar-item"><h2>24/7</h2><p>REAL-TIME ANALYSIS</p></div>
