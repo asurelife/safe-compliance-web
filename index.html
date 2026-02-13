@@ -69,25 +69,40 @@
             box-sizing: border-box;
         }
         
-/* FORCING THE WHITE BACKGROUND BY SELECTOR SPECIFICITY */
+/* FORCED WHITE AUTHORITY BAR */
 body .authority-bar {
-    background-color: #ffffff !important;
     background: #ffffff !important;
     color: #000b18 !important;
+    width: 100% !important;
     display: flex !important;
-    flex-direction: row !important;
     justify-content: space-around !important;
+    align-items: center !important;
     padding: 60px 0 !important;
     margin: 0 !important;
-    width: 100% !important;
     position: relative !important;
     z-index: 99 !important;
+    box-sizing: border-box !important;
 }
 
-/* Ensure the text inside is visible against the white */
-body .authority-bar .bar-item, 
-body .authority-bar .bar-item h2, 
-body .authority-bar .bar-item p {
+/* STATS TEXT FORCING BLACK */
+.authority-bar .bar-item {
+    text-align: center;
+    color: #000b18 !important;
+}
+
+.authority-bar .bar-item h2 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin: 0;
+    color: #000b18 !important;
+    line-height: 1;
+}
+
+.authority-bar .bar-item p {
+    font-family: monospace;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin: 10px 0 0 0;
     color: #000b18 !important;
 }
 /* 1. THE WHITE BAR: Border Removed */
@@ -627,69 +642,68 @@ body .authority-bar .bar-item p {
     <div class="divider"></div>
 
 
-    <div class="authority-bar-content">
-        <div class="auth-stat">
-            <strong>100%</strong>
-            <span>AUDIT READINESS</span>
-        </div>
-        <div class="auth-stat">
-            <strong>24/7</strong>
-            <span>REAL-TIME ANALYSIS</span>
-        </div>
-        <div class="auth-stat">
-            <strong>COMPLETE</strong>
-            <span>CENTRALISATION</span>
-        </div>
-        <div class="auth-stat">
-            <strong>AUTO</strong>
-            <span>RISK MITIGATION</span>
-        </div>
+<div class="authority-bar">
+    <div class="bar-item">
+        <h2>100%</h2>
+        <p>AUDIT READINESS</p>
+    </div>
+    <div class="bar-item">
+        <h2>24/7</h2>
+        <p>REAL-TIME ANALYSIS</p>
+    </div>
+    <div class="bar-item">
+        <h2>COMPLETE</h2>
+        <p>CENTRALISATION</p>
+    </div>
+    <div class="bar-item">
+        <h2>AUTO</h2>
+        <p>RISK MITIGATION</p>
     </div>
 </div>
-    <section id="capabilities-section">
-        <div class="module-grid">
-            <div class="module-card">
-                <span>[01]</span>
-                <h3>WATER HYGIENE</h3>
-                <p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring.</p>
-            </div>
-            <div class="module-card">
-                <span>[02]</span>
-                <h3>FIRE, HEALTH & SAFETY</h3>
-                <p>Full-spectrum RRO alignment and automated risk assessments for critical life safety nodes.</p>
-            </div>
-            <div class="module-card">
-                <span>[03]</span>
-                <h3>INFRASTRUCTURE</h3>
-                <p>Precision monitoring of physical estate assets, converting hardware into actionable data nodes.</p>
-            </div>
-            <div class="module-card">
-                <span>[04]</span>
-                <h3>ACCREDITATION</h3>
-                <p>Strategic governance for ISO standards, ensuring constant audit-readiness across your portfolio.</p>
-            </div>
-            <div class="module-card">
-                <span>[05]</span>
-                <h3>ENVIRONMENTAL</h3>
-                <p>Intelligent HVAC and air quality monitoring to drive sustainability and energy efficiency targets.</p>
-            </div>
-            <div class="module-card">
-                <span>[06]</span>
-                <h3>SECURITY</h3>
-                <p>Integrated oversight of access control and surveillance through a unified digital interface.</p>
-            </div>
-            <div class="module-card">
-                <span>[07]</span>
-                <h3>ELECTRICAL</h3>
-                <p>Fixed wire testing and PAT oversight integrated into a live, cloud-based asset register.</p>
-            </div>
-            <div class="module-card">
-                <span>[08]</span>
-                <h3>ASBESTOS</h3>
-                <p>Real-time digital asbestos registers and removal tracking protocols for complete estate safety.</p>
-            </div>
-        </div> </div> </section> 
-</section>
+
+<section id="capabilities-section">
+    <div class="module-grid">
+        <div class="module-card">
+            <span>[01]</span>
+            <h3>WATER HYGIENE</h3>
+            <p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring.</p>
+        </div>
+        <div class="module-card">
+            <span>[02]</span>
+            <h3>FIRE, HEALTH & SAFETY</h3>
+            <p>Full-spectrum RRO alignment and automated risk assessments for critical life safety nodes.</p>
+        </div>
+        <div class="module-card">
+            <span>[03]</span>
+            <h3>INFRASTRUCTURE</h3>
+            <p>Precision monitoring of physical estate assets, converting hardware into actionable data nodes.</p>
+        </div>
+        <div class="module-card">
+            <span>[04]</span>
+            <h3>ACCREDITATION</h3>
+            <p>Strategic governance for ISO standards, ensuring constant audit-readiness across your portfolio.</p>
+        </div>
+        <div class="module-card">
+            <span>[05]</span>
+            <h3>ENVIRONMENTAL</h3>
+            <p>Intelligent HVAC and air quality monitoring to drive sustainability and energy efficiency targets.</p>
+        </div>
+        <div class="module-card">
+            <span>[06]</span>
+            <h3>SECURITY</h3>
+            <p>Integrated oversight of access control and surveillance through a unified digital interface.</p>
+        </div>
+        <div class="module-card">
+            <span>[07]</span>
+            <h3>ELECTRICAL</h3>
+            <p>Fixed wire testing and PAT oversight integrated into a live, cloud-based asset register.</p>
+        </div>
+        <div class="module-card">
+            <span>[08]</span>
+            <h3>ASBESTOS</h3>
+            <p>Real-time digital asbestos registers and removal tracking protocols for complete estate safety.</p>
+        </div>
+    </div> </section>
 
 
 <style>
