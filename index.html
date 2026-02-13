@@ -146,7 +146,35 @@
     align-items: center !important;
     justify-content: center !important;
 }
-#architecture, 
+#architecture {
+    /* 1. Force the section to be exactly one full screen height */
+    min-height: 100vh !important;
+    height: 100vh !important;
+    
+    /* 2. Absolute vertical and horizontal centering */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; 
+    align-items: center !important;
+    
+    /* 3. The 'Snap' adjustment: Stops the scroll exactly at the section start */
+    scroll-margin-top: 70px !important; 
+    
+    /* 4. Visual clearing */
+    background: var(--navy);
+    padding: 0 5% !important;
+    box-sizing: border-box !important;
+    overflow: hidden; /* Prevents Section 1 from peeking in */
+}
+
+/* Ensure the internal grid is centered and takes up appropriate space */
+.arch-grid {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    align-items: center; /* Aligns text with the telemetry box */
+    margin: 0 auto !important;
+}
 #capabilities-section, 
 #architecture, #audit {
     min-height: 100vh !important;
