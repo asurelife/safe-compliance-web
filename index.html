@@ -211,7 +211,6 @@
     font-family: monospace;
 }
 
-/* CONTAINER & HEADER */
 #audit {
     background: #000b18;
     padding: 100px 0;
@@ -221,58 +220,63 @@
 .audit-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
-/* THE GREEN FONT YOU WANTED BACK */
+/* RE-INSTATED GREEN FONT */
 .system-audit-label {
     color: #88c425 !important;
     font-family: monospace;
     font-weight: 900;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     display: block;
     margin-bottom: 10px;
 }
 
-/* THE INPUT GRID */
 .form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two clean columns */
-    gap: 20px;
-    margin-bottom: 25px;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
-.field-group.full-width {
-    grid-column: span 2;
-}
+.field-group.full-width { grid-column: span 2; }
 
 .field-group label {
     display: block;
     text-align: left;
     color: #88c425;
     font-family: monospace;
-    font-size: 0.7rem;
-    margin-bottom: 8px;
+    font-size: 0.75rem;
+    margin-bottom: 10px;
 }
 
+/* INPUT REFINEMENT */
 .field-group input, .field-group select {
     width: 100%;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    color: white;
-    box-sizing: border-box; /* Crucial for alignment */
+    padding: 18px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-/* THE BUTTON: FORCED TO SPAN FULL WIDTH */
+.field-group input:focus {
+    border-color: #88c425;
+    background: rgba(136, 196, 37, 0.05);
+    outline: none;
+}
+
+/* BUTTON FIX: Full width, anchored at bottom */
 .final-submit-btn {
-    width: 100% !important; 
-    display: block;
+    width: 100%;
     background: #88c425;
     color: #000b18;
-    padding: 20px;
+    padding: 22px;
     border: none;
     font-weight: 900;
+    font-size: 1rem;
     letter-spacing: 2px;
     cursor: pointer;
     transition: 0.3s;
@@ -280,7 +284,6 @@
 
 .final-submit-btn:hover {
     background: #ffffff;
-    transform: translateY(-2px);
 }
 
 /* Mobile Fix */
@@ -498,31 +501,36 @@
     <div class="audit-container">
         <div class="audit-header">
             <span class="system-audit-label">SYSTEM AUDIT</span>
-            <h2>EXECUTE PROTOCOL9</h2>
-            <p>Enter estate telemetry to initialize the intelligence-led compliance framework.</p>
+            <h2>EXECUTE PROTOCOL</h2>
+            <p>Initialize estate telemetry for intelligence-led compliance.</p>
         </div>
 
-        <form class="audit-form">
+        <form class="audit-form" id="auditForm">
+            <div class="hp-field" style="display:none;">
+                <label>Leave this field blank</label>
+                <input type="text" name="honeypot" id="honeypot">
+            </div>
+
             <div class="form-grid">
                 <div class="field-group">
                     <label>ESTATE NAME</label>
-                    <input type="text" placeholder="e.g. London Central Campus" required>
+                    <input type="text" name="estate" placeholder="e.g. London Central Campus" required>
                 </div>
                 <div class="field-group">
                     <label>CONTACT NAME</label>
-                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" name="name" placeholder="Full Name" required>
                 </div>
                 <div class="field-group">
                     <label>CONTACT TEL</label>
-                    <input type="tel" placeholder="+44" required>
+                    <input type="tel" name="tel" placeholder="+44" required>
                 </div>
                 <div class="field-group">
                     <label>CONTACT EMAIL</label>
-                    <input type="email" placeholder="name@company.com" required>
+                    <input type="email" name="email" placeholder="name@company.com" required>
                 </div>
                 <div class="field-group full-width">
                     <label>ENQUIRY OPTIONS</label>
-                    <select required>
+                    <select name="discipline" required>
                         <option value="" disabled selected>Select Primary Discipline...</option>
                         <option value="water">01 WATER HYGIENE</option>
                         <option value="fire">02 FIRE & SAFETY</option>
@@ -614,6 +622,19 @@ function navigate(event, element, sectionId) {
         });
     }
 }
+
+    document.getElementById('auditForm').addEventListener('submit', function(e) {
+    const honeypot = document.getElementById('honeypot').value;
+    
+    if (honeypot !== "") {
+        console.warn("Spam Bot Detected.");
+        e.preventDefault(); // Stop the form from submitting
+        return false;
+    }
+    
+    // Otherwise, continue with normal submission
+    alert("Audit Protocol Initialized.");
+});
     </script>
 </body>
 </html>
