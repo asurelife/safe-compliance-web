@@ -258,17 +258,22 @@
 
 <section id="intelligence" style="min-height: 100vh; background: var(--navy); display: flex; flex-direction: column; justify-content: center;">
     <div class="content-wrapper">
-        <div class="hero-content" style="text-align: center;">
-            <div class="status-indicator">
+        <div class="hero-content">
+            <div class="status-indicator" style="text-align: left;">
                 <span class="pulse"></span> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
             </div>
-            <h1>INTELLIGENCE-LED<br><span style="color:var(--lime)">ESTATE GOVERNANCE.</span></h1>
-            <p class="hero-sub" style="max-width: 800px; margin: 20px auto;">
+            
+            <h1 style="text-align: left;">INTELLIGENCE-LED<br><span style="color:var(--lime)">ESTATE GOVERNANCE.</span></h1>
+            
+            <p class="hero-sub" style="max-width: 650px; margin-left: 0; text-align: left;">
                 The most advanced digital Data Monitoring ecosystem. We provide the intelligence layer for complex estate governance and real-time risk mitigation.
             </p>
-            <a href="#audit" class="btn-main" onclick="navigate(event, null, 'audit')" style="margin-top: 30px; display: inline-block;">
-                Deploy System Architecture
-            </a>
+            
+            <div style="text-align: left; margin-top: 30px;">
+                <a href="#audit" class="btn-main" onclick="navigate(event, this, 'audit')">
+                    Deploy System Architecture
+                </a>
+            </div>
         </div>
     </div>
 </section>
