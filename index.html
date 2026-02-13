@@ -212,40 +212,55 @@
 }
 
 #audit {
-    background: #000b18;
-    padding: 100px 0;
-    color: white;
+    background: #000b18; /* Deep Navy */
+    padding: 120px 0;
+    color: #ffffff;
 }
 
 .audit-container {
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 40px;
 }
 
 .audit-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
+/* RE-INSTATED GREEN FONT */
 .audit-label {
-    color: #88c425; /* Your Intelligence Green */
+    color: #88c425 !important;
     font-family: monospace;
-    letter-spacing: 3px;
     font-weight: 900;
+    letter-spacing: 4px;
+    display: block;
+    margin-bottom: 15px;
 }
 
+#audit h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+#audit p {
+    color: #94a3b8;
+    font-size: 1rem;
+}
+
+/* FORM GRID LAYOUT */
 .form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns */
-    gap: 30px;
-    margin-bottom: 40px;
+    grid-template-columns: 1fr 1fr; /* Two clean columns */
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
 .field-group {
     display: flex;
     flex-direction: column;
-    text-align: left;
 }
 
 .field-group.full-width {
@@ -254,20 +269,21 @@
 
 .field-group label {
     font-family: monospace;
-    font-size: 0.75rem;
-    color: #88c425;
-    margin-bottom: 10px;
+    font-size: 0.7rem;
+    color: #88c425; /* Technical Green */
+    margin-bottom: 8px;
     letter-spacing: 1px;
 }
 
-/* DASHBOARD STYLE INPUTS */
+/* INPUT STYLING */
 .field-group input, 
 .field-group select {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px;
+    padding: 16px;
     color: white;
-    font-size: 1rem;
+    font-family: inherit;
+    font-size: 0.95rem;
     outline: none;
     transition: 0.3s;
 }
@@ -275,25 +291,33 @@
 .field-group input:focus, 
 .field-group select:focus {
     border-color: #88c425;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.07);
 }
 
-/* THE BUTTON */
-.btn-primary {
+/* THE BUTTON - Fixed from the green block mess */
+.submit-btn {
     width: 100%;
     background: #88c425;
     color: #000b18;
-    padding: 20px;
+    padding: 22px;
     border: none;
     font-weight: 900;
     letter-spacing: 2px;
+    font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
+    margin-top: 10px;
 }
 
-.btn-primary:hover {
+.submit-btn:hover {
     background: #ffffff;
-    transform: translateY(-3px);
+    letter-spacing: 4px; /* Subtle expansion effect */
+}
+
+/* Mobile Fix */
+@media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .field-group.full-width { grid-column: span 1; }
 }
 
 /* MOBILE RESPONSIVENESS */
@@ -500,12 +524,14 @@
 }
 </style>
 
+ <div class="divider"></div>
+
 <section id="audit">
     <div class="audit-container">
         <div class="audit-header">
-            <span class="audit-label">FINAL STAGE</span>
-            <h2>EXECUTE SYSTEM AUDIT</h2>
-            <p>Enter your estate details below to initialize the intelligence-led compliance framework.</p>
+            <span class="audit-label">SYSTEM AUDIT</span>
+            <h2>EXECUTE PROTOCOL</h2>
+            <p>Enter estate telemetry to initialize the intelligence-led compliance framework.</p>
         </div>
 
         <form class="audit-form">
@@ -518,7 +544,6 @@
                     <label>CONTACT NAME</label>
                     <input type="text" placeholder="Full Name" required>
                 </div>
-
                 <div class="field-group">
                     <label>CONTACT TEL</label>
                     <input type="tel" placeholder="+44" required>
@@ -527,25 +552,24 @@
                     <label>CONTACT EMAIL</label>
                     <input type="email" placeholder="name@company.com" required>
                 </div>
-
                 <div class="field-group full-width">
                     <label>ENQUIRY OPTIONS</label>
                     <select required>
                         <option value="" disabled selected>Select Primary Discipline...</option>
-                        <option value="water">WATER HYGIENE</option>
-                        <option value="fire">FIRE & SAFETY</option>
-                        <option value="infrastructure">INFRASTRUCTURE</option>
-                        <option value="accreditation">ACCREDITATION</option>
-                        <option value="environmental">ENVIRONMENTAL</option>
-                        <option value="security">SECURITY</option>
-                        <option value="electrical">ELECTRICAL</option>
-                        <option value="asbestos">ASBESTOS</option>
+                        <option value="water">01 WATER HYGIENE</option>
+                        <option value="fire">02 FIRE & SAFETY</option>
+                        <option value="infrastructure">03 INFRASTRUCTURE</option>
+                        <option value="accreditation">04 ACCREDITATION</option>
+                        <option value="environmental">05 ENVIRONMENTAL</option>
+                        <option value="security">06 SECURITY</option>
+                        <option value="electrical">07 ELECTRICAL</option>
+                        <option value="asbestos">08 ASBESTOS</option>
                         <option value="full">FULL ESTATE AUDIT</option>
                     </select>
                 </div>
             </div>
 
-            <button type="submit" class="btn-primary">SUBMIT AUDIT REQUEST</button>
+            <button type="submit" class="submit-btn">SUBMIT AUDIT REQUEST</button>
         </form>
     </div>
 </section>
