@@ -148,21 +148,8 @@
 #architecture, 
 #capabilities-section {
     /* Change 'height' to 'min-height' so it can expand for all cards */
-    height: auto !important; 
-    min-height: 100vh !important;
-    
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important; 
-    align-items: center !important;
-    
-    /* Keep the green line and spacing */
-    border-top: 2px solid var(--lime) !important;
-    padding: 100px 0 !important; /* Adds space above bar and below cards */
-    margin: 0 !important;
-    background: #020617 !important;
-    scroll-margin-top: 0 !important;
-    box-sizing: border-box !important;
+    padding-top: 40px !important; /* Reduced from 100px */
+    justify-content: flex-start !important;
 }
 #audit {
     /* Forces each section to be EXACTLY the height of the screen */
@@ -201,13 +188,15 @@
 
 /* Ensure the White Bar is forced to the full width of the viewport */
 .authority-bar {
-    width: 100vw !important; /* Forces it to span the entire screen */
+    margin-top: 30px !important; /* Reduced from 80px to pull it up closer to the green line */
+    margin-bottom: 40px !important;
+    width: 100% !important;
     background: #ffffff !important;
     color: #000b18 !important;
-    padding: 60px 0;
+    padding: 40px 0 !important;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 40px !important;
+    text-align: center;
 }
 
 /* Ensure the cards sit nicely below the bar */
@@ -223,12 +212,17 @@
     padding-top: 70px !important; 
 }
 
-/* Fix for Section 2 specifically: Remove top-heavy drift */
+/* Fix Section 2 Left Alignment */
 #architecture .arch-grid {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    display: grid;
-    align-items: center; /* Ensures the left text and right telemetry box align vertically */
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto !important;
+    padding: 0 5%; /* Restores the alignment with the header logo */
+    display: grid !important;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 /* Specific Adjustment for Capabilities Section */
