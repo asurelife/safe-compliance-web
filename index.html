@@ -213,16 +213,16 @@
 
 #audit {
     background: #000b18;
-    padding: 100px 0;
-    text-align: center;
+    padding: 120px 0;
 }
 
 .audit-container {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* RE-INSTATED GREEN FONT */
+/* THE SYSTEM AUDIT HEADER IN GREEN */
 .system-audit-label {
     color: #88c425 !important;
     font-family: monospace;
@@ -230,45 +230,54 @@
     letter-spacing: 4px;
     display: block;
     margin-bottom: 10px;
+    text-align: center;
+}
+
+.audit-header h2 {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 40px;
+}
+
+/* THE FORM BACKGROUND BOX */
+.form-wrapper {
+    background: rgba(255, 255, 255, 0.03); /* Subtle background lift */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle frame */
+    padding: 40px;
+    border-radius: 4px;
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-bottom: 30px;
+    gap: 30px;
+    margin-bottom: 40px; /* Space before the button */
 }
 
-.field-group.full-width { grid-column: span 2; }
+.field-group.full-width {
+    grid-column: span 2;
+}
 
 .field-group label {
     display: block;
     text-align: left;
-    color: #88c425;
+    color: #88c425; /* Intelligence Green */
     font-family: monospace;
     font-size: 0.75rem;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-/* INPUT REFINEMENT */
 .field-group input, .field-group select {
     width: 100%;
-    background: rgba(255, 255, 255, 0.02);
+    background: #000b18; /* Darker interior for contrast */
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 18px;
-    color: #ffffff;
-    font-size: 0.9rem;
+    color: white;
     box-sizing: border-box;
-    transition: all 0.3s ease;
 }
 
-.field-group input:focus {
-    border-color: #88c425;
-    background: rgba(136, 196, 37, 0.05);
-    outline: none;
-}
-
-/* BUTTON FIX: Full width, anchored at bottom */
+/* THE BUTTON - ANCHORED AT BOTTOM */
 .final-submit-btn {
     width: 100%;
     background: #88c425;
@@ -276,14 +285,15 @@
     padding: 22px;
     border: none;
     font-weight: 900;
-    font-size: 1rem;
     letter-spacing: 2px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
+    text-transform: uppercase;
 }
 
 .final-submit-btn:hover {
     background: #ffffff;
+    letter-spacing: 4px;
 }
 
 /* Mobile Fix */
@@ -502,51 +512,53 @@
         <div class="audit-header">
             <span class="system-audit-label">SYSTEM AUDIT</span>
             <h2>EXECUTE PROTOCOL</h2>
-            <p>Initialize estate telemetry for intelligence-led compliance.</p>
+            <p>Enter estate telemetry to initialize the intelligence-led compliance framework.</p>
         </div>
 
-        <form class="audit-form" id="auditForm">
-            <div class="hp-field" style="display:none;">
-                <label>Leave this field blank</label>
-                <input type="text" name="honeypot" id="honeypot">
-            </div>
+        <div class="form-wrapper">
+            <form class="audit-form" id="auditForm">
+                
+                <div style="display:none;">
+                    <input type="text" name="honeypot" id="honeypot">
+                </div>
 
-            <div class="form-grid">
-                <div class="field-group">
-                    <label>ESTATE NAME</label>
-                    <input type="text" name="estate" placeholder="e.g. London Central Campus" required>
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label>ESTATE NAME</label>
+                        <input type="text" placeholder="e.g. London Central Campus" required>
+                    </div>
+                    <div class="field-group">
+                        <label>CONTACT NAME</label>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="field-group">
+                        <label>CONTACT TEL</label>
+                        <input type="tel" placeholder="+44" required>
+                    </div>
+                    <div class="field-group">
+                        <label>CONTACT EMAIL</label>
+                        <input type="email" placeholder="name@company.com" required>
+                    </div>
+                    <div class="field-group full-width">
+                        <label>ENQUIRY OPTIONS</label>
+                        <select required>
+                            <option value="" disabled selected>Select Primary Discipline...</option>
+                            <option value="water">01 WATER HYGIENE</option>
+                            <option value="fire">02 FIRE & SAFETY</option>
+                            <option value="infrastructure">03 INFRASTRUCTURE</option>
+                            <option value="accreditation">04 ACCREDITATION</option>
+                            <option value="environmental">05 ENVIRONMENTAL</option>
+                            <option value="security">06 SECURITY</option>
+                            <option value="electrical">07 ELECTRICAL</option>
+                            <option value="asbestos">08 ASBESTOS</option>
+                            <option value="full">FULL ESTATE AUDIT</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="field-group">
-                    <label>CONTACT NAME</label>
-                    <input type="text" name="name" placeholder="Full Name" required>
-                </div>
-                <div class="field-group">
-                    <label>CONTACT TEL</label>
-                    <input type="tel" name="tel" placeholder="+44" required>
-                </div>
-                <div class="field-group">
-                    <label>CONTACT EMAIL</label>
-                    <input type="email" name="email" placeholder="name@company.com" required>
-                </div>
-                <div class="field-group full-width">
-                    <label>ENQUIRY OPTIONS</label>
-                    <select name="discipline" required>
-                        <option value="" disabled selected>Select Primary Discipline...</option>
-                        <option value="water">01 WATER HYGIENE</option>
-                        <option value="fire">02 FIRE & SAFETY</option>
-                        <option value="infrastructure">03 INFRASTRUCTURE</option>
-                        <option value="accreditation">04 ACCREDITATION</option>
-                        <option value="environmental">05 ENVIRONMENTAL</option>
-                        <option value="security">06 SECURITY</option>
-                        <option value="electrical">07 ELECTRICAL</option>
-                        <option value="asbestos">08 ASBESTOS</option>
-                        <option value="full">FULL ESTATE AUDIT</option>
-                    </select>
-                </div>
-            </div>
 
-            <button type="submit" class="final-submit-btn">SUBMIT AUDIT REQUEST</button>
-        </form>
+                <button type="submit" class="final-submit-btn">SUBMIT AUDIT REQUEST</button>
+            </form>
+        </div>
     </div>
 </section>
 
