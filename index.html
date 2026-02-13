@@ -78,15 +78,14 @@
     box-sizing: border-box;
 }
 
-/* RESTORE THE WHITE BAR */
+/* THE WHITE BAR PADDING */
 .authority-bar {
-    background: #ffffff !important; /* Forces the white back */
+    background: #ffffff !important;
     color: #000b18;
     width: 100%;
-    padding: 60px 0;
+    /* Vertical padding (60px) keeps it chunky; 0 on sides relies on the wrapper */
+    padding: 60px 0; 
     border-top: 6px solid var(--lime);
-    display: flex;
-    justify-content: center;
 }
 
 .auth-container {
@@ -150,11 +149,16 @@
     padding: 40px;
 }
 
-/* Ensure cards are uniform height for the grid look */
+/* THE GRID CARDS PADDING */
 .module-card {
     border: 1px solid rgba(255,255,255,0.1);
-    padding: 40px 30px; /* Reduced side padding to keep it in keeping with above sections */
+    /* 40px top/bottom, 30px left/right */
+    /* If the cards look too narrow, reduce the 30px to 20px */
+    padding: 40px 30px; 
     min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
         
 /* Ensure the numbers [01-08] stay in place */
@@ -340,11 +344,12 @@
     <div class="content-wrapper">
         
         <div class="authority-bar">
-            <div class="auth-container">
-                <div class="auth-item"><strong>100%</strong><span>AUDIT READINESS</span></div>
-                <div class="auth-item"><strong>24/7</strong><span>REAL-TIME ANALYSIS</span></div>
-                <div class="auth-item"><strong>COMPLETE</strong><span>CENTRALISATION</span></div>
-                <div class="auth-item"><strong>AUTO</strong><span>RISK MITIGATION</span></div>
+            <div class="content-wrapper"> <div class="authority-bar">
+                <div class="auth-container">
+                   <div class="auth-item"><strong>100%</strong><span>AUDIT READINESS</span></div>
+                   <div class="auth-item"><strong>24/7</strong><span>REAL-TIME ANALYSIS</span></div>
+                   <div class="auth-item"><strong>COMPLETE</strong><span>CENTRALISATION</span></div>
+                   <div class="auth-item"><strong>AUTO</strong><span>RISK MITIGATION</span></div>
             </div>
         </div>
 
