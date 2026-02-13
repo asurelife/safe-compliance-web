@@ -69,24 +69,31 @@
             box-sizing: border-box;
         }
 
-/* THE CENTERING ENGINE */
+/* Ensure all content wrappers share the same width */
 .content-wrapper {
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1400px; /* Adjust this to match your Hero width */
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 0 40px; /* Standard side gutter */
+    box-sizing: border-box;
 }
+
+/* RESTORE THE WHITE BAR */
 .authority-bar {
-    width: 100%; /* Spans full width of the wrapper */
-    margin-bottom: 0;
+    background: #ffffff !important; /* Forces the white back */
+    color: #000b18;
+    width: 100%;
+    padding: 60px 0;
+    border-top: 6px solid var(--lime);
+    display: flex;
+    justify-content: center;
 }
 
 .auth-container {
     display: flex;
-    justify-content: space-around; /* Better spacing for 4 items */
-    padding: 0 40px;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1200px;
 }
 
 @media (min-width: 992px) { 
@@ -119,14 +126,13 @@
     padding: 0 5%; /* Matches standard gutter spacing */
 }
 
-/* THE SOLID 8-GRID */
+/* FIX THE GRID PADDING */
 .module-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 100%; /* Ensures it fills the wrapper */
+    width: 100%;
     gap: 0;
-    border-left: 1px solid rgba(255,255,255,0.1);
-    border-right: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 @media (min-width: 768px) {
@@ -138,7 +144,7 @@
 }
 
 /* Add borders to cards so they look like a grid without gaps */
-.module-card {
+/*.module-card {
     border: 1px solid rgba(255,255,255,0.05);
     min-height: 300px;
     padding: 40px;
@@ -146,10 +152,11 @@
 
 /* Ensure cards are uniform height for the grid look */
 .module-card {
-    padding: 50px 30px; /* Balanced internal padding */
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    border-right: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 40px 30px; /* Reduced side padding to keep it in keeping with above sections */
+    min-height: 280px;
 }
+        
 /* Ensure the numbers [01-08] stay in place */
 .module-card span {
     display: block;
@@ -334,10 +341,10 @@
         
         <div class="authority-bar">
             <div class="auth-container">
-                <div class="auth-item"><strong>100%</strong><span>Audit Readiness</span></div>
-                <div class="auth-item"><strong>24/7</strong><span>Real-Time Analysis</span></div>
-                <div class="auth-item"><strong>COMPLETE</strong><span>Centralisation</span></div>
-                <div class="auth-item"><strong>AUTO</strong><span>Risk Mitigation</span></div>
+                <div class="auth-item"><strong>100%</strong><span>AUDIT READINESS</span></div>
+                <div class="auth-item"><strong>24/7</strong><span>REAL-TIME ANALYSIS</span></div>
+                <div class="auth-item"><strong>COMPLETE</strong><span>CENTRALISATION</span></div>
+                <div class="auth-item"><strong>AUTO</strong><span>RISK MITIGATION</span></div>
             </div>
         </div>
 
