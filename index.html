@@ -142,45 +142,38 @@
     margin-bottom: 30px !important;
 }
 
-        /* Apply the uniform height and vertical centering to all main blocks */
-/* UNIFIED MASTER SLIDE CONTROLLER WITH SEPARATION LINES */
-/* REPAIRING THE SLIDE STRUCTURE */
-#home-hero, 
-#architecture, 
-/* SECTION 3: REPAIRING VISIBILITY */
-#capabilities-section {
-    min-height: 100vh !important;
-    height: auto !important; /* Allows section to grow to fit all 8 cards */
-    background: #020617 !important;
-    display: block !important; /* Removes flex conflict to show all children */
-    padding: 0 !important; 
-    margin: 0 !important;
-    border-top: 2px solid var(--lime) !important;
-    border-bottom: 2px solid var(--lime) !important;
-    position: relative;
-}
-#audit {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important; 
-    align-items: center !important;
-    
-    /* CHANGE: allow sections to grow if content is too tall */
-    min-height: 100vh !important; 
-    height: auto !important; 
-    
-    margin: 0 !important;
-    padding: 100px 5% !important; /* Uniform breathing room */
-    box-sizing: border-box !important;
-    position: relative;
-    
-    /* Green Separation Lines */
-    border-top: 2px solid var(--lime) !important;
-    background: #020617 !important;
-}
-
+/* SECTION 1 & 2: LOCK TO SCREEN */
 /* Remove top border from very first screen */
 #home-hero { border-top: none !important; }
+#architecture, 
+#audit {
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-top: 2px solid var(--lime) !important;
+    background: #020617 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    scroll-margin-top: 0 !important;
+}
+
+/* SECTION 3: ALLOW GROWTH TO PREVENT OVERLAP */
+#capabilities-section {
+    min-height: 100vh !important;
+    height: auto !important; /* This stops the overlap */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    border-top: 2px solid var(--lime) !important;
+    border-bottom: 2px solid var(--lime) !important;
+    background: #020617 !important;
+    padding-bottom: 100px !important; /* Space at the very bottom */
+    margin: 0 !important;
+}
+
+
 /* Ensure the wrapper doesn't get cut off */
 .capabilities-wrapper {
     width: 100%;
@@ -189,26 +182,24 @@
     align-items: center;
 }
 
-/* THE WHITE BAR - Restored to full visibility */
 .authority-bar {
     width: 100% !important;
     background: #ffffff !important;
     color: #000b18 !important;
     padding: 40px 0 !important;
-    margin: 60px 0 40px 0 !important; /* Space above and below the bar */
-    display: grid !important;
+    margin-top: 100px !important; /* Pushes it down away from Section 2 */
+    margin-bottom: 60px !important;
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
     text-align: center;
 }
 
-/* THE CARDS - Restored to grid layout */
 .module-grid {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
     gap: 20px !important;
-    padding: 0 5% 80px 5% !important; /* Bottom padding ensures space before the green line */
+    padding: 0 5% !important;
     max-width: 1400px;
-    margin: 0 auto !important;
 }
 
 .module-card {
