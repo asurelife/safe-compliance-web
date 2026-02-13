@@ -968,6 +968,18 @@ document.getElementById('auditForm').addEventListener('submit', function(e) {
     btn.disabled = true;
 });
     </script>
+    <script>
+document.querySelector('a[href="#capabilities-section"]').addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.getElementById('capabilities-section');
+    if (target) {
+        window.scrollTo({
+            top: target.offsetTop - 70, // Adjusts for your 70px header
+            behavior: 'smooth'
+        });
+    }
+});
+</script>
 </body>
 </html>
 
