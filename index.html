@@ -129,22 +129,32 @@
         }
 
         /* Apply the uniform height and vertical centering to all main blocks */
-#home-hero,
+#home-hero, 
 #architecture, 
 #capabilities-section, 
 #audit {
-    min-height: 100vh !important; /* Each section fills the screen */
+    min-height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important; /* Centers content vertically */
-    padding: 100px 0 !important; /* Equal padding above and below */
+    justify-content: center !important; /* Vertically centers the content */
+    align-items: center !important;     /* Horizontally centers the content */
+    padding: 100px 5% !important;       /* Uniform breathing room top/bottom */
     box-sizing: border-box !important;
+    position: relative;
+    width: 100% !important;
 }
 
-        #capabilities-section {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    background: var(--navy);
+/* Specific Adjustment for Capabilities Section */
+#capabilities-section {
+    padding-left: 0 !important;   /* Allows the White Bar to touch edges */
+    padding-right: 0 !important;  /* Allows the White Bar to touch edges */
+    justify-content: flex-start !important; /* Starts content at the top of the 100vh */
+    padding-top: 120px !important; /* Large gap at the top before the white bar */
+}
+
+/* Ensure the grid inside Capabilities doesn't touch the bottom of the screen */
+.module-grid {
+    margin-bottom: 100px !important; 
 }
 
 /* This creates the gap between the White Bar and the Grid below it */
