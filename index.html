@@ -5,622 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAFE COMPLIANCE | Precision Estate Governance</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-        <style>
-        :root { --navy: #020617; --lime: #82bc00; --white: #ffffff; --text-gray: #94a3b8; --dark-blue: #0f172a; }
+    <style>
+        :root { 
+            --navy: #020617; 
+            --lime: #82bc00; 
+            --white: #ffffff; 
+            --text-gray: #94a3b8; 
+        }
         
-        html { scroll-behavior: smooth; }
+        /* 1. GLOBAL & SCROLL LOGIC */
+        html { scroll-behavior: smooth; scroll-padding-top: 70px; }
         body { 
-            margin: 0; 
-            background: var(--navy); 
-            color: var(--white); 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            overflow-x: hidden;
+            margin: 0; background: var(--navy); color: var(--white); 
+            font-family: 'Inter', sans-serif; overflow-x: hidden; 
         }
 
-        /* NAVBAR FIX: Centered & Slim */
+        /* 2. HEADER: Fixed & Interactive */
         .sticky-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            z-index: 1000;
-            background: rgba(2, 6, 23, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: fixed; top: 0; width: 100%; height: 70px;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            display: flex; justify-content: center; align-items: center; z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
-        .nav-container {
-            width: 90%;
-            max-width: 1400px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo { color: #ffffff !important; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; text-decoration: none; }
+        .nav-container { width: 90%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 900; font-size: 1.4rem; text-decoration: none; color: white; text-transform: uppercase; }
         .logo span { color: var(--lime); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+        
+        /* Persistent Green for Intelligence per your instructions */
+        .intelligence-link { color: var(--lime) !important; }
+        .nav-links a:hover { color: var(--lime); }
 
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a {
-            color: #94a3b8 !important; 
-            text-decoration: none !important;
-            transition: 0.3s;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
+        /* 3. HERO SECTION */
+        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 0.9; margin: 0; }
+        .hero p { color: var(--text-gray); max-width: 700px; margin-top: 20px; font-size: 1.2rem; }
+
+        /* 4. THE WHITE AUTHORITY BAR */
+        .authority-bar {
+            background: #ffffff; color: #000b18; width: 100%; 
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            padding: 60px 0; text-align: center;
         }
+        .bar-item h2 { font-size: 3rem; font-weight: 900; margin: 0; }
+        .bar-item p { font-size: 0.8rem; font-weight: 900; letter-spacing: 1px; margin-top: 5px; }
 
-        /* Intelligence Green Persistence */
-        .nav-links a:hover, .nav-links a[data-active="true"] {
-            color: var(--lime) !important;
+        /* 5. CAPABILITIES GRID (Framed Central View) */
+        #capabilities-section { 
+            background: #000b18; 
+            padding: 100px 0 !important; 
+            scroll-margin-top: 0px; 
         }
-
-        /* FULL SCREEN SECTION LOGIC */
-        section, header#home-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 100px 5%;
+        .module-grid { 
+            display: grid; grid-template-columns: repeat(4, 1fr); 
+            width: 100%; border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .module-card { 
+            padding: 60px 10%; border-right: 1px solid rgba(255,255,255,0.1); 
+            border-bottom: 1px solid rgba(255,255,255,0.1); min-height: 350px;
             box-sizing: border-box;
         }
-
-        /* 5. ANIMATIONS (Move your scanline here) */
-    @keyframes scanline {
-        0% { top: 0; }
-        100% { top: 100%; }
-    }
-        
-/* FORCED WHITE AUTHORITY BAR */
-body .authority-bar {
-        background: #ffffff !important;
-        color: #000b18 !important;
-        display: flex !important;
-        padding: 60px 0 !important;
-        position: relative !important;
-        z-index: 99 !important;
-    }
-
-/* STATS TEXT FORCING BLACK */
-.authority-bar .bar-item {
-    text-align: center;
-    color: #000b18 !important;
-}
-
-.authority-bar .bar-item h2 {
-    font-size: 3.5rem;
-    font-weight: 900;
-    margin: 0;
-    color: #000b18 !important;
-    line-height: 1;
-}
-
-.authority-bar .bar-item p {
-    font-family: monospace;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin: 10px 0 0 0;
-    color: #000b18 !important;
-}
-/* 1. THE WHITE BAR: Border Removed */
-.authority-bar {
-    background: #ffffff !important; /* Forces the white color back */
-    width: 100%;
-    padding: 60px 0; /* Vertical breathing room for the stats */
-    margin: 0 !important; /* Ensures no gap above or below */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-    z-index: 10; /* Keeps it on top of any overlapping shadows */
-}
-
-/* REMOVE GAP BETWEEN AUTHORITY BAR AND CAPABILITIES */
-.authority-bar {
-    margin-bottom: 0 !important;
-}
-
-.module-grid {
-    margin-top: 0 !important;
-}
-
-/* 2. THE CONTENT: Centered over the cards */
-.authority-bar-content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Matches 4 columns below */
-    width: 100%;
-    max-width: 100%; 
-    padding: 0; /* Remove side padding to allow true centering over cards */
-    margin: 0 auto;
-    box-sizing: border-box;
-}
-
-.bar-item h2 {
-    color: #000b18 !important; /* Ensures the big numbers are dark navy/black */
-    font-size: 3.5rem;
-    font-weight: 900;
-    margin: 0;
-}
-
-.bar-item p {
-    color: #000b18 !important; /* Ensures the labels below numbers are readable */
-    font-family: monospace;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin-top: 5px;
-}
-
-/* 3. THE STATS: Forced Center */
-.auth-stat {
-    text-align: center; /* Snap text to center of its 25% slice */
-    color: #000000 !important;
-}
-
-.auth-stat strong {
-    display: block;
-    font-size: 3.5rem; /* Bold presence */
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 12px;
-    color: #000000 !important;
-}
-
-.auth-stat span {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #000000 !important;
-    text-transform: uppercase;
-}    
-        
- .authority-inner {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Forces 4 columns */
-    width: 100%;
-    max-width: 1400px; /* Aligns with your main content spine */
-    padding: 0 5%; /* Matches the padding of the sections above */
-    box-sizing: border-box;
-}
-.authority-item {
-    text-align: left; /* Aligns with the left of your hero/cards */
-}
-
-.authority-item strong {
-    display: block;
-    font-size: 3rem;
-    font-weight: 900;
-    color: #000000 !important; /* Force Black */
-    line-height: 1;
-}
-
-.authority-item span {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: #000000 !important; /* Force Black */
-    margin-top: 5px;
-    letter-spacing: 1px;
-}
-
-/* 4. FORCE BLACK TEXT */
-.auth-item {
-    text-align: left;
-    color: #000000 !important;
-}
-
-.auth-item strong {
-    display: block;
-    font-size: 3rem;
-    font-weight: 900;
-    color: #000000 !important;
-    line-height: 1;
-}
-
-.auth-item span {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: #000000 !important;
-    margin-top: 10px;
-}
-
-/* SECTION 3: FORCED 4-COLUMN GRID */
-.module-grid {
-    display: grid !important; /* Force grid mode */
-    grid-template-columns: repeat(4, 1fr) !important; /* Forces exactly 4 columns */
-    width: 100%;
-    background: #000b18;
-    margin: 0;
-    padding: 0;
-}
-
-.module-card {
-    padding: 60px 5%; /* Aligns text with the site spine */
-    border-right: 1px solid rgba(255,255,255,0.1);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    min-height: 350px;
-    box-sizing: border-box;
-}
-
-/* Remove the right border on the 4th and 8th items */
-.module-card:nth-child(4n) {
-    border-right: none !important;
-}
-
-/* Ensure Titles are Green (as seen in your screenshot) */
-.module-card h3 {
-    color: #88c425 !important;
-    font-weight: 900;
-    margin: 15px 0;
-    text-transform: uppercase;
-}
-
-.module-card span {
-    color: #88c425;
-    font-family: monospace;
-}
-
-#audit {
-    background: #000b18;
-    padding: 120px 0;
-    font-family: 'Inter', sans-serif;
-}
-
-.audit-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* RE-INSTATED LIME GREEN TITLE */
-.system-audit-label {
-    color: #88c425 !important;
-    font-family: monospace;
-    font-weight: 900;
-    letter-spacing: 5px;
-    display: block;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.audit-header h2 {
-    color: white;
-    text-align: center;
-    font-size: 2.8rem;
-    font-weight: 900;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-}
-
-/* THE COMPLETE FORM BOX BACKGROUND */
-.audit-form-box {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0; /* Button will touch the bottom edges */
-    overflow: hidden;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    padding: 50px; /* Internal spacing for inputs only */
-}
-
-.field-group.full-width { grid-column: span 2; }
-
-.field-group label {
-    display: block;
-    color: #88c425;
-    font-family: monospace;
-    font-size: 0.7rem;
-    font-weight: 900;
-    margin-bottom: 12px;
-    letter-spacing: 1px;
-}
-
-.field-group input, .field-group select {
-    width: 100%;
-    background: #000b18;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 15px;
-    color: white;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-.field-group input:focus {
-    border-color: #88c425;
-    outline: none;
-}
-
-/* THE FULL-WIDTH BOTTOM BUTTON */
-.execute-btn {
-    width: 100%;
-    background: #88c425;
-    color: #000b18;
-    border: none;
-    padding: 25px;
-    font-weight: 900;
-    font-size: 1.1rem;
-    letter-spacing: 3px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    transition: 0.3s;
-}
-
-.execute-btn:hover {
-    background: #ffffff;
-}
-
-.execute-btn span {
-    margin-top: 2px;
-}
-
-/* GREEN TEXT FOR HEADER */
-.green-text {
-    color: #88c425 !important;
-}
-
-/* BUTTON STYLING - NO WHITE HOVER */
-.execute-btn {
-    width: 100%;
-    background: #88c425;
-    color: #000b18;
-    border: none;
-    padding: 25px;
-    font-weight: 900;
-    font-size: 1.1rem;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
-}
-
-.execute-btn:hover {
-    /* Kept the green background, just adding a slight brightness boost instead of white */
-    filter: brightness(1.1);
-    letter-spacing: 4px;
-}
-
-/* Added a 'sent' state for the button */
-.execute-btn.sent {
-    background: #4a6b10; /* Darker green to show completion */
-    cursor: default;
-}
-
-.site-footer {
-    background: #000b18;
-    padding: 80px 0 60px;
-    border-top: 6px solid #88c425; /* Thicker green line from image */
-}
-
-.footer-container {
-    max-width: 1400px; /* Wider to match your site spine */
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 5%;
-}
-
-/* LOGO STYLING (MATCHING PREVIOUS IMAGE) */
-.footer-logo {
-    font-family: 'Inter', sans-serif;
-    font-size: 2rem;
-    font-weight: 900;
-    letter-spacing: -1px;
-    margin-bottom: 10px;
-}
-
-.safe-text { color: #ffffff !important; }
-.comp-text { color: #88c425 !important; }
-
-/* 1. LARGE LOGO SECTION */
-.footer-branding {
-    flex: 2; /* Takes up approximately 40% of the container */
-    padding-right: 50px;
-}
-
-/* 2. NAVIGATION WRAPPER (Holding the 3 equal columns) */
-.footer-nav {
-    flex: 3; /* Takes up the remaining 60% */
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.footer-branding p {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 0.75rem;
-    font-family: monospace;
-    letter-spacing: 1px;
-}
-
-.nav-col label {
-    display: block;
-    color: #88c425;
-    font-family: monospace;
-    font-weight: 900;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
-
-.nav-col a {
-    color: #ffffff;
-    text-decoration: none !important; /* Removes the underlines */
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: 0.3s;
-    opacity: 0.6;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.nav-col a:hover {
-    opacity: 1;
-    color: #88c425; /* Intelligence Green on hover */
-}
-
-.contact-col address {
-    font-style: normal;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    /* Changed from monospace to match your nav links */
-    font-family: 'Inter', sans-serif; 
-    font-weight: 400;
-    margin-bottom: 10px;
-}
-
-.nav-col label {
-    display: block;
-    color: #88c425;
-    font-family: monospace;
-    font-weight: 900;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-}
-
-.nav-col ul { list-style: none; padding: 0; margin: 0; }
-.nav-col li { margin-bottom: 8px; }
-
-.nav-col a {
-    color: #ffffff;
-    text-decoration: underline; /* Matches the underline style in your image */
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-underline-offset: 4px;
-    transition: 0.3s;
-}
-
-.nav-col a:hover {
-    color: #88c425;
-}
-
-.contact-col address {
-    font-style: normal;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8rem;
-    line-height: 1.6;
-    font-family: monospace;
-}
-
-.footer-tel {
-    margin-top: 15px;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-}
-
-/* Ensure the green intelligence font from your context is respected */
-.footer-logo {
-    color: #88c425 !important;
-}
-
-/* Mobile Fix */
-@media (max-width: 600px) {
-    .form-grid { grid-template-columns: 1fr; }
-    .field-group.full-width { grid-column: span 1; }
-}
-
-/* MOBILE RESPONSIVENESS */
-@media (max-width: 768px) {
-    .form-grid { grid-template-columns: 1fr; }
-    .field-group.full-width { grid-column: span 1; }
-}
-
-        html {
-    scroll-behavior: smooth;
-    /* This creates a buffer so the header doesn't cover the section title */
-    scroll-padding-top: 100px; 
-}
-
-/* Ensure the ID is unique and not being overridden */
-#capabilities-section {
-    display: block !important;
-    min-height: auto !important;
-}
-        
-        h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
-        h2 { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; font-weight: 900; line-height: 1; margin-bottom: 25px; }
-        
-        .hero-sub { color: var(--text-gray); margin: 35px 0; font-size: 1.2rem; max-width: 850px; }
-        .status-indicator { display: flex; align-items: center; gap: 10px; color: var(--lime); font-weight: 900; font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 25px; }
-        .pulse { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; animation: pulse-animation 2s infinite; }
-        @keyframes pulse-animation { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-        .divider { border-bottom: 2px solid var(--lime); width: 100%; opacity: 0.2; }
-
-        /* ARCHITECTURE GRID */
-        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 60px; width: 100%; }
-        @media (min-width: 992px) { .grid-2 { grid-template-columns: 1.2fr 0.8fr; } }
-        
-        .status-box { background: #010409; padding: 40px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); font-family: monospace; }
-        .tech-specs { display: flex; gap: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
-
-        /* MODULES */
-        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; background: rgba(130, 188, 0, 0.1); }
-        .module-card { background: var(--navy); padding: 60px 40px; transition: 0.4s; }
-        .module-card:hover { background: #0f172a; }
-
-        /* FORM */
-        .audit-form { display: grid; grid-template-columns: 1fr; gap: 25px; max-width: 900px; width: 100%; margin: 40px auto; text-align: left; }
-        @media (min-width: 768px) { .audit-form { grid-template-columns: 1fr 1fr; } }
-        .input-group { display: flex; flex-direction: column; gap: 10px; }
-        .input-group input { background: #010409; border: 1px solid #334155; color: white; padding: 18px; }
-        .btn-main { background: var(--lime); color: var(--navy); padding: 22px 45px; text-decoration: none; font-weight: 900; text-transform: uppercase; border: none; cursor: pointer; }
-        /* FINAL LINK & LAYOUT OVERRIDE */
-/* 1. ANCHOR LINK & GAP FIX */
-html { 
-    scroll-behavior: smooth !important; 
-    scroll-padding-top: 70px !important; 
-}
-
-#capabilities-section {
-    display: block !important;
-    min-height: auto !important;
-    padding: 100px 0 !important; /* Creates the top/bottom gap from your screenshot */
-    background: #000b18 !important;
-    scroll-margin-top: 70px !important;
-}
-
-/* 2. FOOTER - NO UNDERLINES & UNIFIED INTER FONT */
-.footer-nav a {
-    text-decoration: none !important; /* Removes underlines */
-    color: #ffffff !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    opacity: 0.7;
-    transition: 0.3s;
-}
-
-.footer-nav a:hover {
-    opacity: 1;
-    color: #82bc00 !important; /* Intelligence Green */
-}
-
-.contact-col address {
-    font-style: normal !important;
-    font-family: 'Inter', sans-serif !important; /* Removed Monospace */
-    color: rgba(255, 255, 255, 0.6) !important;
-    font-size: 0.85rem;
-    line-height: 1.6;
-}
-        
-</style>
+        .module-card:nth-child(4n) { border-right: none; }
+        .module-card h3 { color: var(--lime); font-size: 1.1rem; font-weight: 900; margin: 15px 0; }
+        .module-card span { font-family: monospace; color: var(--lime); font-weight: 700; }
+        .module-card p { font-size: 0.9rem; color: var(--text-gray); line-height: 1.6; }
+
+        /* 6. FOOTER: No Underlines & Unified Font */
+        .site-footer { background: #000b18; padding: 80px 5% 40px; border-top: 6px solid var(--lime); }
+        .footer-container { display: flex; justify-content: space-between; max-width: 1400px; margin: 0 auto; gap: 40px; }
+        .footer-branding { flex: 2; }
+        .footer-nav { flex: 3; display: flex; justify-content: space-between; }
+        .nav-col label { color: var(--lime); font-weight: 900; font-size: 0.8rem; display: block; margin-bottom: 25px; letter-spacing: 1px; }
+        .nav-col a { 
+            color: white; text-decoration: none !important; /* Forces removal of underlines */
+            display: block; margin-bottom: 12px; font-size: 0.85rem; opacity: 0.6; transition: 0.3s;
+        }
+        .nav-col a:hover { opacity: 1; color: var(--lime); }
+        address { font-style: normal; font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.8; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 992px) {
+            .module-grid, .authority-bar, .footer-nav { grid-template-columns: 1fr 1fr; }
+            .footer-container { flex-direction: column; }
+            .module-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
 </head>
 <body>
 
@@ -632,14 +102,16 @@ html {
                 <a href="#architecture">ARCHITECTURE</a>
                 <a href="#capabilities-section">CAPABILITIES</a>
             </nav>
-            <a href="#audit" class="nav-links" style="color: var(--lime); font-weight: 900; text-decoration: none; font-size: 0.8rem;">EXECUTE AUDIT</a>
+            <a href="#" style="color: var(--lime); font-weight: 900; text-decoration: none; font-size: 0.8rem;">EXECUTE AUDIT</a>
         </div>
     </header>
 
-    <section id="intelligence">
-        <div class="status-indicator"><div class="pulse"></div> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256</div>
-        <h1 class="hero-title">INTELLIGENCE-LED<br>ESTATE GOVERNANCE.</h1>
-        <p class="hero-sub">The most advanced digital Data Monitoring ecosystem.</p>
+    <section id="intelligence" class="hero">
+        <div style="color: var(--lime); font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 20px;">
+            SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
+        </div>
+        <h1>INTELLIGENCE-LED<br>ESTATE GOVERNANCE.</h1>
+        <p>The most advanced digital Data Monitoring ecosystem for complex estate governance and real-time risk mitigation.</p>
     </section>
 
     <div id="capabilities-section">
@@ -651,14 +123,14 @@ html {
         </div>
 
         <div class="module-grid">
-            <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols.</p></div>
-            <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment.</p></div>
-            <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>Precision monitoring of estate assets.</p></div>
-            <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards.</p></div>
-            <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>Intelligent HVAC and air quality.</p></div>
-            <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>Integrated access and surveillance.</p></div>
-            <div class="module-card"><span>[07]</span><h3>ELECTRICAL</h3><p>Fixed wire and PAT oversight.</p></div>
-            <div class="module-card"><span>[08]</span><h3>ASBESTOS</h3><p>Real-time digital asbestos registers.</p></div>
+            <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols and digital telemetry.</p></div>
+            <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment and automated risk assessments.</p></div>
+            <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets and hardware.</p></div>
+            <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards and constant readiness.</p></div>
+            <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>Intelligent HVAC and air quality monitoring for sustainability.</p></div>
+            <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>Integrated oversight of access control and surveillance.</p></div>
+            <div class="module-card"><span>[07]</span><h3>ELECTRICAL</h3><p>Fixed wire testing and PAT oversight in a live register.</p></div>
+            <div class="module-card"><span>[08]</span><h3>ASBESTOS</h3><p>Real-time digital asbestos registers and removal tracking.</p></div>
         </div>
     </div>
 
@@ -666,7 +138,7 @@ html {
         <div class="footer-container">
             <div class="footer-branding">
                 <div class="logo">SAFE<span>COMPLIANCE</span></div>
-                <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 10px;">© 2026 ALL RIGHTS RESERVED.</p>
+                <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 15px; font-family: monospace;">© 2026 ALL RIGHTS RESERVED.</p>
             </div>
             <div class="footer-nav">
                 <div class="nav-col">
