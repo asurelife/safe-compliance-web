@@ -68,15 +68,16 @@
             padding: 100px 5%;
             box-sizing: border-box;
         }
-/* STAGE 1: THE FULL WIDTH BAR */
 .authority-bar-row {
-    background: #ffffff !important;
-    width: 100%;
-    border-top: 6px solid #D74A49;
+    background: #D74A49 !important;
+    /* Adding !important here forces the Red line */
+    border-top: 6px solid #D74A49 !important; 
+    
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 60px 0;
-    margin: 0;
-    display: flex; /* Forces items into a row */
-    justify-content: center;
 }
 
  .authority-inner {
