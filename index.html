@@ -581,15 +581,43 @@ body .authority-bar {
         .input-group input { background: #010409; border: 1px solid #334155; color: white; padding: 18px; }
         .btn-main { background: var(--lime); color: var(--navy); padding: 22px 45px; text-decoration: none; font-weight: 900; text-transform: uppercase; border: none; cursor: pointer; }
         /* FINAL LINK & LAYOUT OVERRIDE */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Adjust this to match your header height */
+/* 1. ANCHOR LINK & GAP FIX */
+html { 
+    scroll-behavior: smooth !important; 
+    scroll-padding-top: 70px !important; 
 }
 
 #capabilities-section {
     display: block !important;
     min-height: auto !important;
-    scroll-margin-top: 100px; /* Double-layer protection for the link */
+    padding: 100px 0 !important; /* Creates the top/bottom gap from your screenshot */
+    background: #000b18 !important;
+    scroll-margin-top: 70px !important;
+}
+
+/* 2. FOOTER - NO UNDERLINES & UNIFIED INTER FONT */
+.footer-nav a {
+    text-decoration: none !important; /* Removes underlines */
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.footer-nav a:hover {
+    opacity: 1;
+    color: #82bc00 !important; /* Intelligence Green */
+}
+
+.contact-col address {
+    font-style: normal !important;
+    font-family: 'Inter', sans-serif !important; /* Removed Monospace */
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.85rem;
+    line-height: 1.6;
 }
         
 </style>
