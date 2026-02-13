@@ -132,18 +132,38 @@
             scroll-margin-top: 70px;
         }
 
-        .authority-bar {
-            background: #ffffff !important; color: #000b18 !important;
-            width: 100%; padding: 70px 0; margin: 0;
-            display: grid; grid-template-columns: repeat(4, 1fr); text-align: center;
-            z-index: 10; position: relative;
-        }
+       .authority-bar {
+    width: 100% !important; 
+    background: #ffffff !important;
+    color: #000b18 !important;
+    padding: 40px 0 !important; /* Reduced from 70px */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 30px !important;
+}
 
         /* Apply the uniform height and vertical centering to all main blocks */
 /* UNIFIED MASTER SLIDE CONTROLLER WITH SEPARATION LINES */
 #home-hero, 
 #architecture, 
-#capabilities-section, 
+#capabilities-section {
+    /* Change 'height' to 'min-height' so it can expand for all cards */
+    height: auto !important; 
+    min-height: 100vh !important;
+    
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; 
+    align-items: center !important;
+    
+    /* Keep the green line and spacing */
+    border-top: 2px solid var(--lime) !important;
+    padding: 100px 0 !important; /* Adds space above bar and below cards */
+    margin: 0 !important;
+    background: #020617 !important;
+    scroll-margin-top: 0 !important;
+    box-sizing: border-box !important;
+}
 #audit {
     /* Forces each section to be EXACTLY the height of the screen */
     height: 100vh !important;
@@ -171,7 +191,7 @@
     overflow: hidden;
     position: relative;
 }
-/* Ensure the internal content stays as a single block */
+/* Ensure the wrapper doesn't get cut off */
 .capabilities-wrapper {
     width: 100%;
     display: flex;
