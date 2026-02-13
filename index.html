@@ -140,7 +140,12 @@
         }
 
         /* Apply the uniform height and vertical centering to all main blocks */
-#home-hero, 
+#home-hero {
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
 #architecture, 
 #capabilities-section, 
 #architecture, #audit {
@@ -149,7 +154,21 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    scroll-margin-top: 70px; /* Accounts for the height of your sticky header */
+    
+    /* Increased margin to ensure the header doesn't 'touch' the content on jump */
+    scroll-margin-top: 100px !important; 
+    
+    /* Ensure internal spacing is symmetric */
+    padding: 120px 5% !important; 
+    box-sizing: border-box !important;
+}
+
+/* Fix for Section 2 specifically: Remove top-heavy drift */
+#architecture .arch-grid {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: grid;
+    align-items: center; /* Ensures the left text and right telemetry box align vertically */
 }
 
 /* Specific Adjustment for Capabilities Section */
