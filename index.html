@@ -125,13 +125,6 @@
         }
         @keyframes scanline { 0% { top: 0; } 100% { top: 100%; } }
 
-        /* --- CAPABILITIES: THE WHITE BAR & GRID --- */
-        #capabilities-section {
-            background: var(--navy);
-            padding: 0 !important;
-            scroll-margin-top: 70px;
-        }
-
 /* 1. SHARED SECTION DEFAULTS */
 #home-hero, #architecture, #capabilities-section, #audit {
     width: 100% !important;
@@ -170,35 +163,13 @@
     gap: 60px;
 }
 
-#capabilities-section {
-    display: block !important;
-    height: auto !important;
-    min-height: 100vh !important;
-    
-    /* REMOVE ALL TOP SPACE */
-    padding-top: 0 !important; 
-    margin-top: 0 !important;
-    
-    background: #020617 !important;
-    border-top: 2px solid var(--lime) !important;
-    border-bottom: 2px solid var(--lime) !important;
-}
-
 .authority-bar {
-    width: 100% !important;
-    background: #ffffff !important;
+    margin-top: 0 !important;    /* Ensures it touches the green line */
+    padding: 20px 0 !important;  /* Shrunk height */
     
-    /* SHRUNK HEIGHT */
-    padding: 20px 0 !important; 
-    
-    /* REMOVE SPACE ABOVE */
-    margin-top: 0 !important; 
-    margin-bottom: 40px !important;
-    
-    /* FIX BUNCHED TEXT */
+    /* Fixes the text bunching from your previous screenshots */
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    text-align: center !important;
 }
 
 .module-grid {
