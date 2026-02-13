@@ -428,41 +428,47 @@ function navigate(event, element, sectionId) {
 }
 </script>
 <script>
-        // FORCING THE "INTELLIGENCE-LED" START POINT
-        window.onload = function() {
-            // Ensure the Intelligence-Led section is the starting point
-            window.scrollTo(0, 0);
-            
-            // Explicitly set the Intelligence link to your preferred green
-            const intelLink = document.querySelector('a[href="#intelligence"]');
-            if (intelLink) {
-                // This activates the CSS rule that keeps Intelligence green
-                intelLink.setAttribute('data-active', 'true');
-            }
-        };
+// 1. KILL BROWSER SCROLL MEMORY (Crucial for starting at top)
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
 
-        // Your navigate(event, element, sectionId) function should be here too
+// 2. FORCE TOP ON LOAD
+window.onload = function() {
+    window.scrollTo(0, 0);
+    
+    // Set Intelligence link to green by default
+    const intelLink = document.querySelector('a[href="#intelligence"]');
+    if (intelLink) {
+        intelLink.setAttribute('data-active', 'true');
+        intelLink.style.color = 'var(--lime)'; // Direct override
+    }
+};
+
+// 3. UNIVERSAL NAVIGATION FUNCTION
 function navigate(event, element, sectionId) {
     if (event) event.preventDefault();
 
-    // 1. Handle Link Highlighting
+    // Reset all link colors
     const allLinks = document.querySelectorAll('.nav-links a');
     allLinks.forEach(link => {
         link.setAttribute('data-active', 'false');
-        link.style.color = ''; // Reset others
+        link.style.color = 'white'; 
     });
 
-    // 2. Apply Green to Intelligence if active
+    // Highlight the clicked link (Intelligence will stay green if clicked)
     if (element) {
         element.setAttribute('data-active', 'true');
+        // Your requirement: keep intelligence font green
+        if (sectionId === 'intelligence') {
+            element.style.color = 'var(--lime)';
+        }
     }
 
-    // 3. Precise Scroll Logic
+    // Perform the Scroll
     const target = document.getElementById(sectionId);
     if (target) {
-        // If it's the intelligence section, scroll to absolute 0
-        const offset = sectionId === 'intelligence' ? 0 : target.offsetTop - 70;
-        
+        const offset = (sectionId === 'intelligence') ? 0 : target.offsetTop - 70;
         window.scrollTo({
             top: offset,
             behavior: 'smooth'
