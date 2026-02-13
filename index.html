@@ -12,8 +12,10 @@
             --white: #ffffff; 
             --text-gray: #94a3b8; 
             --dark-blue: #0f172a; 
+            --border-white: rgba(255, 255, 255, 0.1);
         }
         
+        /* --- CORE ARCHITECTURE --- */
         html { 
             scroll-behavior: smooth; 
             scroll-padding-top: 70px; 
@@ -28,11 +30,11 @@
             overflow-x: hidden; 
         }
 
-        /* --- NAVIGATION --- */
+        /* --- STICKY NAVIGATION --- */
         .sticky-header {
             position: fixed; top: 0; left: 0; width: 100%; height: 70px;
             z-index: 1000; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-white);
             display: flex; justify-content: center; align-items: center;
         }
 
@@ -41,101 +43,168 @@
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .logo { color: #ffffff !important; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; text-decoration: none; letter-spacing: -0.5px; }
+        .logo { 
+            color: #ffffff !important; font-weight: 900; font-size: 1.3rem; 
+            text-transform: uppercase; text-decoration: none; letter-spacing: -0.5px; 
+        }
         .logo span { color: var(--lime); }
 
-        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a {
             color: #94a3b8 !important; text-decoration: none !important;
             transition: 0.3s; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
         }
 
-        /* Intelligence Green Persistence */
+        /* PERMANENT GREEN FOR INTELLIGENCE */
         .intelligence-link { color: var(--lime) !important; }
         .nav-links a:hover { color: var(--lime) !important; }
 
-        /* --- HERO SECTION --- */
+        .audit-btn-header {
+            color: var(--lime) !important; border: 1px solid var(--lime);
+            padding: 8px 16px; font-size: 0.75rem; font-weight: 900;
+            text-decoration: none !important; transition: 0.3s;
+        }
+        .audit-btn-header:hover { background: var(--lime); color: var(--navy) !important; }
+
+        /* --- HERO: INTELLIGENCE LAYER --- */
         #home-hero {
             min-height: 100vh; display: flex; align-items: center;
             padding: 100px 5%; box-sizing: border-box; position: relative;
         }
 
-        .hero-content { max-width: 1000px; z-index: 2; }
-        h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
-        .hero-sub { color: var(--text-gray); margin: 35px 0; font-size: 1.2rem; max-width: 850px; }
+        .hero-content { max-width: 1100px; z-index: 2; }
         
-        .status-indicator { display: flex; align-items: center; gap: 10px; color: var(--lime); font-weight: 900; font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 25px; }
-        .pulse { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; animation: pulse-animation 2s infinite; }
-        @keyframes pulse-animation { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .status-line { 
+            display: flex; align-items: center; gap: 12px; color: var(--lime); 
+            font-weight: 900; font-size: 0.75rem; letter-spacing: 3px; margin-bottom: 30px; 
+        }
+        .pulse-dot { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 10px var(--lime); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        /* --- ARCHITECTURE SECTION --- */
-        #architecture { padding: 120px 5%; background: #010409; }
-        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 60px; width: 100%; max-width: 1400px; margin: 0 auto; }
-        @media (min-width: 992px) { .grid-2 { grid-template-columns: 1.2fr 0.8fr; } }
-        
-        .status-box { background: #010409; padding: 40px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); font-family: monospace; position: relative; overflow: hidden; }
-        .status-box::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--lime); opacity: 0.2; animation: scanline 4s linear infinite; }
+        h1 { font-size: clamp(3rem, 10vw, 7rem); text-transform: uppercase; line-height: 0.82; margin: 0; font-weight: 900; letter-spacing: -3px; }
+        .hero-sub { color: var(--text-gray); margin: 40px 0; font-size: 1.25rem; max-width: 800px; line-height: 1.4; }
+
+        /* --- ARCHITECTURE: COMMAND LAYER --- */
+        #architecture { 
+            padding: 140px 5%; background: #010409; 
+            border-top: 1px solid var(--border-white);
+        }
+
+        .arch-grid { 
+            display: grid; grid-template-columns: 1fr; gap: 80px; 
+            width: 100%; max-width: 1400px; margin: 0 auto; 
+        }
+        @media (min-width: 1024px) { .arch-grid { grid-template-columns: 1.2fr 0.8fr; } }
+
+        .arch-text h2 { font-size: 4.5rem; line-height: 0.9; margin: 20px 0; font-weight: 900; }
+        .arch-text p { color: var(--text-gray); font-size: 1.15rem; margin-bottom: 40px; }
+
+        .tech-stats { display: flex; gap: 40px; margin-top: 50px; }
+        .stat-node { border-left: 2px solid var(--lime); padding-left: 20px; }
+        .stat-node span { display: block; font-family: monospace; font-size: 0.7rem; color: var(--lime); letter-spacing: 2px; }
+        .stat-node strong { font-size: 1.8rem; font-weight: 900; }
+
+        .telemetry-box { 
+            background: #020617; padding: 45px; border: 1px solid #1e293b; 
+            position: relative; overflow: hidden; font-family: monospace; 
+        }
+        .telemetry-box::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--lime); opacity: 0.4; animation: scanline 3s linear infinite;
+        }
         @keyframes scanline { 0% { top: 0; } 100% { top: 100%; } }
 
-        /* --- CAPABILITIES SECTION (THE PERFECT JUMP) --- */
+        /* --- CAPABILITIES: THE WHITE BAR & GRID --- */
         #capabilities-section {
             background: var(--navy);
-            padding: 100px 0 !important; /* The gap at top and bottom */
+            padding: 0 !important;
             scroll-margin-top: 70px;
         }
 
         .authority-bar {
             background: #ffffff !important; color: #000b18 !important;
-            width: 100%; padding: 60px 0; margin-bottom: 0;
+            width: 100%; padding: 70px 0; margin: 0;
             display: grid; grid-template-columns: repeat(4, 1fr); text-align: center;
+            z-index: 10; position: relative;
         }
-        .authority-bar h2 { font-size: 3.5rem; font-weight: 900; margin: 0; color: #000b18 !important; line-height: 1; }
-        .authority-bar p { font-family: monospace; font-weight: 900; letter-spacing: 2px; margin: 10px 0 0 0; color: #000b18 !important; text-transform: uppercase; }
+        .authority-bar h2 { font-size: 3.8rem; font-weight: 900; margin: 0; color: #000b18 !important; line-height: 1; }
+        .authority-bar p { font-family: monospace; font-weight: 900; letter-spacing: 2px; margin: 12px 0 0 0; color: #000b18 !important; text-transform: uppercase; }
 
         .module-grid {
             display: grid; grid-template-columns: repeat(4, 1fr);
-            width: 100%; border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%; border-top: 1px solid var(--border-white);
         }
-        @media (max-width: 992px) { .module-grid { grid-template-columns: repeat(2, 1fr); } .authority-bar { grid-template-columns: repeat(2, 1fr); gap: 30px; } }
+        @media (max-width: 1024px) { 
+            .module-grid { grid-template-columns: repeat(2, 1fr); } 
+            .authority-bar { grid-template-columns: repeat(2, 1fr); gap: 40px; } 
+        }
+        @media (max-width: 600px) { .module-grid, .authority-bar { grid-template-columns: 1fr; } }
 
         .module-card {
-            background: var(--navy); padding: 60px 40px; transition: 0.4s;
-            border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);
-            min-height: 350px; box-sizing: border-box;
+            padding: 80px 50px; transition: 0.5s;
+            border-right: 1px solid var(--border-white); 
+            border-bottom: 1px solid var(--border-white);
+            min-height: 400px; box-sizing: border-box; display: flex; flex-direction: column;
         }
-        .module-card:hover { background: #0f172a; }
+        .module-card:hover { background: #0f172a; transform: translateY(-5px); }
         .module-card:nth-child(4n) { border-right: none; }
-        .module-card span { color: var(--lime); font-family: monospace; font-weight: 900; }
-        .module-card h3 { color: var(--lime) !important; font-weight: 900; margin: 20px 0; text-transform: uppercase; }
+        .module-card span { color: var(--lime); font-family: monospace; font-weight: 900; font-size: 0.9rem; }
+        .module-card h3 { color: var(--lime) !important; font-weight: 900; margin: 25px 0; text-transform: uppercase; font-size: 1.3rem; letter-spacing: 1px; }
+        .module-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; }
 
-        /* --- AUDIT FORM --- */
-        #audit { background: #000b18; padding: 120px 0; }
-        .audit-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-        .audit-form-box { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 50px; }
-        .field-group label { display: block; color: var(--lime); font-family: monospace; font-size: 0.7rem; font-weight: 900; margin-bottom: 12px; letter-spacing: 1px; }
-        .field-group input, .field-group select { width: 100%; background: #000b18; border: 1px solid rgba(255, 255, 255, 0.15); padding: 15px; color: white; transition: 0.3s; }
-        .execute-btn { width: 100%; background: var(--lime); color: #000b18; border: none; padding: 25px; font-weight: 900; letter-spacing: 3px; cursor: pointer; text-transform: uppercase; }
+        /* --- AUDIT: PROTOCOL INITIATION --- */
+        #audit { padding: 140px 0; background: #000b18; }
+        .audit-label { color: var(--lime); font-family: monospace; font-weight: 900; letter-spacing: 6px; display: block; text-align: center; margin-bottom: 15px; }
+        .audit-header h2 { text-align: center; font-size: 3rem; font-weight: 900; margin-bottom: 60px; text-transform: uppercase; }
+        
+        .audit-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 5%; }
+        .audit-form-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-white); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 60px; }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
 
-        /* --- FOOTER FIXES --- */
-        .site-footer { background: #000b18; padding: 80px 0 60px; border-top: 6px solid var(--lime); }
-        .footer-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 5%; }
-        .footer-branding { flex: 2; }
-        .footer-nav { flex: 3; display: flex; justify-content: space-between; gap: 20px; }
-        
-        .nav-col label { display: block; color: var(--lime); font-family: monospace; font-weight: 900; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 25px; }
-        .nav-col ul { list-style: none; padding: 0; margin: 0; }
-        .nav-col li { margin-bottom: 12px; }
-        
-        .nav-col a {
-            color: #ffffff; text-decoration: none !important; /* NO UNDERLINES */
-            font-size: 0.85rem; font-weight: 600; opacity: 0.6; transition: 0.3s; text-transform: uppercase;
+        .field-unit label { display: block; color: var(--lime); font-family: monospace; font-size: 0.75rem; font-weight: 900; margin-bottom: 15px; letter-spacing: 2px; }
+        .field-unit input, .field-unit select { 
+            width: 100%; background: #010409; border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 18px; color: white; font-family: 'Inter', sans-serif; transition: 0.3s; 
         }
-        .nav-col a:hover { opacity: 1; color: var(--lime); }
+        .field-unit input:focus { border-color: var(--lime); outline: none; background: #020617; }
+        
+        .execute-btn-main { 
+            grid-column: span 2; background: var(--lime); color: #000b18; border: none; 
+            padding: 30px; font-weight: 900; font-size: 1.2rem; letter-spacing: 4px; 
+            cursor: pointer; text-transform: uppercase; transition: 0.4s; margin-top: 20px;
+        }
+        @media (max-width: 768px) { .execute-btn-main { grid-column: span 1; } }
+        .execute-btn-main:hover { filter: brightness(1.1); letter-spacing: 6px; }
 
-        .contact-col address {
-            font-style: normal; color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem; line-height: 1.6; font-family: 'Inter', sans-serif !important; /* UNIFIED FONT */
+        /* --- FOOTER: FINAL GOVERNANCE --- */
+        .site-footer { 
+            background: #000b18; padding: 100px 0 60px; 
+            border-top: 8px solid var(--lime); 
+        }
+        .footer-wrap { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 5%; }
+        @media (max-width: 1024px) { .footer-wrap { flex-direction: column; gap: 60px; } }
+
+        .brand-col { flex: 2; }
+        .footer-logo { font-size: 2.2rem; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 15px; }
+        
+        .links-col { flex: 3; display: flex; justify-content: space-between; gap: 40px; }
+        .nav-block label { display: block; color: var(--lime); font-family: monospace; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px; }
+        .nav-block ul { list-style: none; padding: 0; margin: 0; }
+        .nav-block li { margin-bottom: 15px; }
+        
+        /* FOOTER LINK CLEANUP */
+        .nav-block a {
+            color: #ffffff; text-decoration: none !important; 
+            font-size: 0.9rem; font-weight: 600; opacity: 0.6; transition: 0.3s; text-transform: uppercase;
+        }
+        .nav-block a:hover { opacity: 1; color: var(--lime); }
+
+        /* ADDRESS FONT SYNC */
+        .contact-details address {
+            font-style: normal; color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem; line-height: 1.8; font-family: 'Inter', sans-serif !important;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -148,40 +217,51 @@
                 <a href="#home-hero" class="intelligence-link">INTELLIGENCE</a>
                 <a href="#architecture">ARCHITECTURE</a>
                 <a href="#capabilities-section">CAPABILITIES</a>
+                <a href="#audit" class="audit-btn-header">EXECUTE AUDIT</a>
             </nav>
-            <a href="#audit" class="nav-links" style="color: var(--lime) !important; font-weight: 900; text-decoration: none;">EXECUTE AUDIT</a>
         </div>
     </header>
 
     <section id="home-hero">
         <div class="hero-content">
-            <div class="status-indicator"><div class="pulse"></div> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256</div>
+            <div class="status-line">
+                <div class="pulse-dot"></div> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
+            </div>
             <h1>INTELLIGENCE-LED<br>ESTATE GOVERNANCE.</h1>
-            <p class="hero-sub">The most advanced digital Data Monitoring ecosystem. We provide the intelligence layer for complex estate governance and real-time risk mitigation.</p>
-            <a href="#architecture" class="execute-btn" style="display:inline-block; padding: 15px 30px; text-decoration:none;">Deploy System Architecture</a>
+            <p class="hero-sub">
+                The most advanced digital Data Monitoring ecosystem. We provide the intelligence layer for complex estate governance and real-time risk mitigation across global portfolios.
+            </p>
+            <div style="display: flex; gap: 20px;">
+                <a href="#architecture" style="background:var(--lime); color:var(--navy); padding: 20px 40px; text-decoration:none; font-weight:900; text-transform:uppercase; letter-spacing:1px;">Deploy Architecture</a>
+                <a href="#capabilities-section" style="border:1px solid rgba(255,255,255,0.2); color:white; padding: 20px 40px; text-decoration:none; font-weight:900; text-transform:uppercase; letter-spacing:1px;">View Modules</a>
+            </div>
         </div>
     </section>
 
     <section id="architecture">
-        <div class="grid-2">
-            <div>
-                <div class="status-indicator">COMMAND_LAYER_ESTABLISHED</div>
-                <h2 style="font-size: 4rem; line-height: 1;">Centralised<br>Dominance.</h2>
-                <p style="color: var(--text-gray); font-size: 1.1rem;">Eliminating the friction between physical assets and digital oversight. Our proprietary architecture is engineered to dismantle fragmentation.</p>
-                <div class="tech-specs">
-                    <div><span style="display:block; font-family:monospace; color:var(--lime);">SYNC_RATE</span><strong>0.5ms</strong></div>
-                    <div><span style="display:block; font-family:monospace; color:var(--lime);">UPTIME</span><strong>99.99%</strong></div>
+        <div class="arch-grid">
+            <div class="arch-text">
+                <div class="status-line" style="margin-bottom:10px;">COMMAND_LAYER_ESTABLISHED</div>
+                <h2>Centralised<br>Dominance.</h2>
+                <p>
+                    Eliminating the friction between physical assets and digital oversight. 
+                    Our proprietary architecture is engineered to dismantle the fragmentation of legacy estate management by converting raw telemetry into high-fidelity governance data.
+                </p>
+                <div class="tech-stats">
+                    <div class="stat-node"><span>SYNC_RATE</span><strong>0.5ms</strong></div>
+                    <div class="stat-node"><span>UPTIME</span><strong>99.99%</strong></div>
+                    <div class="stat-node"><span>ENCRYPTION</span><strong>AES-256</strong></div>
                 </div>
             </div>
-            <div class="status-box">
-                <div style="color:var(--lime); margin-bottom: 20px;">> [SYSTEM_BOOT]: SUCCESSFUL</div>
-                <div style="opacity: 0.6; font-size: 0.8rem;">
-                    > LOADING_COMPLIANCE_ENGINE... DONE<br>
-                    > SCANNING_ACoP_L8_PROTOCOLS... OPTIMAL<br>
-                    > TELEMETRY_NODES_ACTIVE... 412_COUNT
-                </div>
-                <div style="margin-top:30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top:20px;">
-                    <span style="color:var(--lime);">ESTATE_HEALTH_INDEX: 100%</span>
+            <div class="telemetry-box">
+                <div style="color:var(--lime); margin-bottom: 25px;">> [SYSTEM_BOOT]: SUCCESSFUL</div>
+                <div style="color:var(--text-gray); font-size: 0.85rem; line-height: 2;">
+                    > LOADING_COMPLIANCE_ENGINE... <span style="color:white;">DONE</span><br>
+                    > SCANNING_ACoP_L8_PROTOCOLS... <span style="color:white;">OPTIMAL</span><br>
+                    > FIRE_SAFETY_UPLINK... <span style="color:white;">CONNECTED</span><br>
+                    > TELEMETRY_NODES_ACTIVE... <span style="color:white;">412_COUNT</span><br><br>
+                    <span style="color:var(--lime); font-size: 1.1rem;">ESTATE_HEALTH_INDEX: 100%</span><br>
+                    > NO_RISK_DETECTED // ALL_SYSTEMS_GOVERNED
                 </div>
             </div>
         </div>
@@ -196,42 +276,91 @@
         </div>
 
         <div class="module-grid">
-            <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring.</p></div>
-            <div class="module-card"><span>[02]</span><h3>FIRE, H&S</h3><p>Full-spectrum RRO alignment and automated risk assessments for life safety nodes.</p></div>
-            <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets, converting hardware into data nodes.</p></div>
-            <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards, ensuring constant audit-readiness.</p></div>
-            <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>Intelligent HVAC and air quality monitoring to drive sustainability targets.</p></div>
-            <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>Integrated oversight of access control and surveillance through a unified interface.</p></div>
-            <div class="module-card"><span>[07]</span><h3>ELECTRICAL</h3><p>Fixed wire testing and PAT oversight integrated into a live asset register.</p></div>
-            <div class="module-card"><span>[08]</span><h3>ASBESTOS</h3><p>Real-time digital asbestos registers and removal tracking protocols.</p></div>
+            <div class="module-card">
+                <span>[01]</span>
+                <h3>WATER HYGIENE</h3>
+                <p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring of temperature and flow nodes.</p>
+            </div>
+            <div class="module-card">
+                <span>[02]</span>
+                <h3>FIRE, H&S</h3>
+                <p>Full-spectrum RRO alignment and automated risk assessments for critical life safety and evacuation protocols.</p>
+            </div>
+            <div class="module-card">
+                <span>[03]</span>
+                <h3>INFRASTRUCTURE</h3>
+                <p>Precision monitoring of physical estate assets, converting mechanical hardware into actionable governance data.</p>
+            </div>
+            <div class="module-card">
+                <span>[04]</span>
+                <h3>ACCREDITATION</h3>
+                <p>Strategic governance for ISO standards, ensuring constant audit-readiness across diverse portfolio disciplines.</p>
+            </div>
+            <div class="module-card">
+                <span>[05]</span>
+                <h3>ENVIRONMENTAL</h3>
+                <p>Intelligent HVAC and air quality monitoring to drive sustainability targets and optimize energy efficiency.</p>
+            </div>
+            <div class="module-card">
+                <span>[06]</span>
+                <h3>SECURITY</h3>
+                <p>Integrated oversight of access control, perimeter security, and surveillance through a unified digital interface.</p>
+            </div>
+            <div class="module-card">
+                <span>[07]</span>
+                <h3>ELECTRICAL</h3>
+                <p>Fixed wire testing and PAT oversight integrated into a live, cloud-based asset register for instant verification.</p>
+            </div>
+            <div class="module-card">
+                <span>[08]</span>
+                <h3>ASBESTOS</h3>
+                <p>Real-time digital asbestos registers and removal tracking protocols for complete lifecycle safety governance.</p>
+            </div>
         </div>
     </div>
 
     <section id="audit">
-        <div class="audit-container">
-            <span class="system-audit-label">SYSTEM AUDIT</span>
+        <div class="audit-wrapper">
+            <span class="audit-label">SYSTEM AUDIT</span>
             <div class="audit-header"><h2>EXECUTE COMPLIANCE PROTOCOL</h2></div>
             <div class="audit-form-box">
                 <form class="form-grid">
-                    <div class="field-group"><label>ESTATE NAME</label><input type="text"></div>
-                    <div class="field-group"><label>CONTACT NAME</label><input type="text"></div>
-                    <div class="field-group"><label>CONTACT TEL</label><input type="text"></div>
-                    <div class="field-group"><label>CONTACT EMAIL</label><input type="text"></div>
-                    <div class="field-group full-width"><label>ENQUIRY OPTIONS</label><select><option>SELECT DISCIPLINE...</option></select></div>
-                    <button class="execute-btn" style="grid-column: span 2;">Execute Audit Request</button>
+                    <div class="field-unit"><label>ESTATE NAME</label><input type="text" placeholder="ENTER PORTFOLIO ID..."></div>
+                    <div class="field-unit"><label>CONTACT NAME</label><input type="text" placeholder="AUTHORISED PERSONNEL..."></div>
+                    <div class="field-unit"><label>CONTACT TEL</label><input type="text" placeholder="+44..."></div>
+                    <div class="field-unit"><label>CONTACT EMAIL</label><input type="text" placeholder="SECURE_UPLINK@EMAIL.COM"></div>
+                    <div class="field-unit" style="grid-column: span 2;">
+                        <label>ENQUIRY OPTIONS</label>
+                        <select>
+                            <option>SELECT DISCIPLINE...</option>
+                            <option>01 WATER HYGIENE</option>
+                            <option>02 FIRE & SAFETY</option>
+                            <option>03 INFRASTRUCTURE</option>
+                            <option>04 ACCREDITATION</option>
+                            <option>05 ENVIRONMENTAL</option>
+                            <option>06 SECURITY</option>
+                            <option>07 ELECTRICAL</option>
+                            <option>08 ASBESTOS</option>
+                            <option>FULL ESTATE AUDIT</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="execute-btn-main">Execute Audit Request</button>
                 </form>
             </div>
         </div>
     </section>
 
     <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-branding">
-                <div class="logo">SAFE<span>COMPLIANCE</span></div>
-                <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 10px; font-family: monospace;">© 2026 ALL RIGHTS RESERVED.</p>
+        <div class="footer-wrap">
+            <div class="brand-col">
+                <div class="footer-logo logo">SAFE<span>COMPLIANCE</span></div>
+                <p style="opacity: 0.3; font-size: 0.75rem; font-family: monospace; margin-top: 20px;">
+                    ESTABLISHED_2026 // VERSION_4.0.1<br>
+                    © ALL RIGHTS RESERVED.
+                </p>
             </div>
-            <div class="footer-nav">
-                <div class="nav-col">
+            <div class="links-col">
+                <div class="nav-block">
                     <label>SYSTEM</label>
                     <ul>
                         <li><a href="#home-hero">INTELLIGENCE</a></li>
@@ -239,7 +368,7 @@
                         <li><a href="#capabilities-section">CAPABILITIES</a></li>
                     </ul>
                 </div>
-                <div class="nav-col">
+                <div class="nav-block">
                     <label>LEGAL</label>
                     <ul>
                         <li><a href="#">PRIVACY</a></li>
@@ -247,12 +376,12 @@
                         <li><a href="#">PROTOCOLS</a></li>
                     </ul>
                 </div>
-                <div class="nav-col contact-col">
+                <div class="nav-block contact-details">
                     <label>COMMAND CENTRE</label>
                     <address>
                         71-75 Shelton Street<br>
-                        LONDON, WC2H 9JQ<br>
-                        T: 0330 0432153
+                        LONDON, WC2H 9JQ<br><br>
+                        T: 0330 0432153 (local rate)
                     </address>
                 </div>
             </div>
