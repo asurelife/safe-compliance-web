@@ -81,18 +81,17 @@
 /* THE WHITE BAR PADDING */
 .authority-bar {
     background: #ffffff !important;
-    color: #000b18;
+    padding: 60px 5%; /* 5% side padding matches the content above */
     width: 100%;
-    /* Vertical padding (60px) keeps it chunky; 0 on sides relies on the wrapper */
-    padding: 60px 0; 
+    box-sizing: border-box;
     border-top: 6px solid var(--lime);
 }
 
 .auth-container {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 1200px;
+    justify-content: space-between;
+    max-width: 1400px; /* Limits expansion on massive monitors */
+    margin: 0 auto;
 }
 
 @media (min-width: 992px) { 
@@ -118,20 +117,17 @@
     color: #475569;
 }
 /* SECTION 3 ALIGNMENT FIX */
-#capabilities .content-wrapper {
-    width: 100%;
-    max-width: 1400px; /* Increased to match your Hero width */
-    margin: 0 auto;
-    padding: 0 5%; /* Matches standard gutter spacing */
+#capabilities {
+    padding: 0; /* Remove any section-level padding */
+    background: var(--navy);
 }
 
 /* FIX THE GRID PADDING */
 .module-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 3 columns to match the width better */
     width: 100%;
     gap: 0;
-    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 @media (min-width: 768px) {
@@ -151,14 +147,15 @@
 
 /* THE GRID CARDS PADDING */
 .module-card {
-    border: 1px solid rgba(255,255,255,0.1);
-    /* 40px top/bottom, 30px left/right */
-    /* If the cards look too narrow, reduce the 30px to 20px */
-    padding: 40px 30px; 
-    min-height: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 60px 5%; /* Matching the 5% padding for perfect vertical alignment */
+    min-height: 350px;
+}
+
+/* Remove the right border on the last card of each row */
+.module-card:nth-child(3n) {
+    border-right: none;
 }
         
 /* Ensure the numbers [01-08] stay in place */
@@ -341,9 +338,8 @@
 </section>
 
 <section id="capabilities">
-    <div class="content-wrapper">
-        
-        <div class="authority-bar">
+    <div class="authority-bar">
+        <div class="auth-container">
             <div class="content-wrapper"> <div class="authority-bar">
                 <div class="auth-container">
                    <div class="auth-item"><strong>100%</strong><span>AUDIT READINESS</span></div>
