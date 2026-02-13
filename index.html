@@ -158,9 +158,8 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border-top: 2px solid var(--lime) !important;
     padding: 0 5% !important;
-    overflow: hidden; /* Keeps Section 2 contained */
+    border-top: 2px solid var(--lime) !important;
 }
 
 #architecture .arch-grid {
@@ -172,17 +171,17 @@
 }
 
 #capabilities-section {
-    /* Stop the "squashing" behavior */
-    display: block !important; 
-    height: auto !important; 
+    display: block !important;
     min-height: 100vh !important;
+    height: auto !important;
     
-    /* Green lines */
-    border-top: 2px solid var(--lime) !important;
-    border-bottom: 2px solid var(--lime) !important;
+    /* Remove all internal padding so the white bar touches the green line */
+    padding: 0 !important; 
+    margin: 0 !important;
     
     background: #020617 !important;
-    padding-bottom: 60px !important;
+    border-top: 2px solid var(--lime) !important;
+    border-bottom: 2px solid var(--lime) !important;
 }
 
 .authority-bar {
@@ -190,34 +189,18 @@
     background: #ffffff !important;
     color: #000b18 !important;
     
-    /* SHRUNK HEIGHT: Very tight vertical padding */
+    /* SHRUNK HEIGHT: Very thin vertical strip */
     padding: 20px 0 !important; 
     
-    /* SPACING: Pushes it away from the green line */
-    margin-top: 80px !important;
+    /* THE FIX: Remove the gap above the bar */
+    margin-top: 0 !important; 
     margin-bottom: 40px !important;
     
-    /* THE FIX: Force 4 columns so text NEVER overlaps */
+    /* PREVENT TEXT OVERLAP: Force 4 distinct columns */
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
     text-align: center !important;
     align-items: center !important;
-}
-
-/* Fix the bunched up text inside the box */
-.authority-bar h2 {
-    font-size: 2rem !important; /* Smaller numbers */
-    margin: 0 !important;
-    line-height: 1 !important;
-    color: #000b18 !important;
-}
-
-.authority-bar p {
-    font-size: 0.7rem !important; /* Small, sharp labels */
-    margin: 5px 0 0 0 !important;
-    font-weight: 800 !important;
-    letter-spacing: 1px;
-    color: #000b18 !important;
 }
 
 .module-grid {
