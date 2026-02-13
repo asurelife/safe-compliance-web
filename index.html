@@ -311,6 +311,38 @@
     margin-top: 2px;
 }
 
+/* GREEN TEXT FOR HEADER */
+.green-text {
+    color: #88c425 !important;
+}
+
+/* BUTTON STYLING - NO WHITE HOVER */
+.execute-btn {
+    width: 100%;
+    background: #88c425;
+    color: #000b18;
+    border: none;
+    padding: 25px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.execute-btn:hover {
+    /* Kept the green background, just adding a slight brightness boost instead of white */
+    filter: brightness(1.1);
+    letter-spacing: 4px;
+}
+
+/* Added a 'sent' state for the button */
+.execute-btn.sent {
+    background: #4a6b10; /* Darker green to show completion */
+    cursor: default;
+}
+
 /* Mobile Fix */
 @media (max-width: 600px) {
     .form-grid { grid-template-columns: 1fr; }
@@ -526,7 +558,7 @@
     <div class="audit-container">
         <div class="audit-header">
             <span class="system-audit-label">SYSTEM AUDIT</span>
-            <h2>EXECUTE COMPLIANCE PROTOCOL</h2>
+            <h2>EXECUTE <span class="green-text">COMPLIANCE</span> PROTOCOL</h2>
         </div>
 
         <div class="audit-form-box">
@@ -567,9 +599,8 @@
                     </div>
                 </div>
                 
-                <button type="submit" class="execute-btn">
-                    <span>EXECUTE AUDIT REQUEST</span>
-                    <i class="arrow-icon">→</i>
+                <button type="submit" class="execute-btn" id="submitBtn">
+                    <span id="btnText">EXECUTE AUDIT REQUEST</span>
                 </button>
             </form>
         </div>
@@ -649,17 +680,22 @@ function navigate(event, element, sectionId) {
     }
 }
 
-    document.getElementById('auditForm').addEventListener('submit', function(e) {
+document.getElementById('auditForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevents page reload for this demo
+    
     const honeypot = document.getElementById('honeypot').value;
-    
+    const btn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+
+    // Anti-spam Gotcha
     if (honeypot !== "") {
-        console.warn("Spam Bot Detected.");
-        e.preventDefault(); // Stop the form from submitting
-        return false;
+        return; 
     }
-    
-    // Otherwise, continue with normal submission
-    alert("Audit Protocol Initialized.");
+
+    // Change text and state
+    btnText.innerText = "REQUEST SENT";
+    btn.classList.add('sent');
+    btn.disabled = true;
 });
     </script>
 </body>
