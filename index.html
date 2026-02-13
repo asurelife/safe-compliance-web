@@ -88,14 +88,16 @@
     margin-bottom: 0 !important;
 }
 
+/* FORCE CAPABILITIES TO TOP */
 #capabilities-section {
-    padding-top: 0 !important;
+    min-height: auto !important; /* Overrides the 100vh causing the gap */
+    display: block !important;   /* Stops flex-centering from pushing content down */
+    padding-top: 60px !important; /* This is the ONLY space that will remain */
     margin-top: 0 !important;
 }
 
 .module-grid {
     margin-top: 0 !important;
-    padding-top: 40px; /* Adjust this to control exactly how close the cards get to the bar */
 }
 
 /* 2. THE CONTENT: Centered over the cards */
@@ -589,7 +591,7 @@
 
     <div class="divider"></div>
 
-    <div class="authority-bar-breakout">
+
     <div class="authority-bar-content">
         <div class="auth-stat">
             <strong>100%</strong>
