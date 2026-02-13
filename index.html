@@ -147,9 +147,21 @@
 #home-hero, 
 #architecture, 
 #capabilities-section {
-    /* Change 'height' to 'min-height' so it can expand for all cards */
-    padding-top: 40px !important; /* Reduced from 100px */
-    justify-content: flex-start !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* Switch back to center now that we are shrinking items */
+    align-items: center !important;
+    
+    border-top: 2px solid var(--lime) !important;
+    border-bottom: 2px solid var(--lime) !important; /* Explicitly ensure the bottom line is there */
+    
+    padding: 0 !important; 
+    margin: 0 !important;
+    background: #020617 !important;
+    overflow: hidden; /* Prevents the section from expanding past the screen */
+    box-sizing: border-box !important;
 }
 #audit {
     /* Forces each section to be EXACTLY the height of the screen */
@@ -188,23 +200,33 @@
 
 /* Ensure the White Bar is forced to the full width of the viewport */
 .authority-bar {
-    margin-top: 30px !important; /* Reduced from 80px to pull it up closer to the green line */
-    margin-bottom: 40px !important;
     width: 100% !important;
     background: #ffffff !important;
     color: #000b18 !important;
-    padding: 40px 0 !important;
+    padding: 25px 0 !important;    /* Reduced padding to save vertical space */
+    margin-top: 0 !important;      /* Removed top margin */
+    margin-bottom: 20px !important; /* Tightened gap to cards */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    text-align: center;
 }
 
 /* Ensure the cards sit nicely below the bar */
 .module-grid {
     width: 100%;
     max-width: 1400px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: grid !important;
+    grid-template-columns: repeat(4, 2fr);
+    gap: 15px !important;      /* Smaller gap between cards */
+    padding: 0 5% !important;
+}
+
+.module-card {
+    padding: 20px !important;  /* Reduced internal padding of cards */
+}
+
+.module-card h3 {
+    margin: 10px 0 !important; /* Tighter text spacing */
+    font-size: 1.1rem;        /* Slightly smaller headers to fit 2 rows */
 }
 /* Remove the green line from the very first section so it doesn't sit under the header */
 #home-hero {
