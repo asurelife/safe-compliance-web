@@ -6,474 +6,149 @@
     <title>SAFE COMPLIANCE | Precision Estate Governance</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-       :root { --navy: #020617; --lime: #82bc00; --white: #ffffff; --text-gray: #94a3b8; --dark-blue: #0f172a; }
+        :root { --navy: #020617; --lime: #82bc00; --white: #ffffff; --text-gray: #94a3b8; }
+        
+        html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+        body { margin: 0; background: var(--navy); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-html { 
-    scroll-behavior: smooth; 
-    scroll-padding-top: 80px; /* Forces links to stop before hitting the header */
-}
+        /* HEADER & NAV */
+        .sticky-header {
+            position: fixed; top: 0; width: 100%; height: 70px;
+            background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(10px);
+            display: flex; justify-content: center; align-items: center; z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-container { width: 90%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 900; font-size: 1.4rem; text-decoration: none; color: white; }
+        .logo span { color: var(--lime); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+        
+        /* PERSISTENT GREEN FOR INTELLIGENCE */
+        .nav-links a:hover, .intelligence-link { color: var(--lime) !important; }
 
-body { 
-    margin: 0; background: var(--navy); color: var(--white); 
-    font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; 
-}
+        /* HERO & SECTIONS */
+        section { padding: 100px 5%; display: flex; flex-direction: column; align-items: center; }
+        .hero-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; text-transform: uppercase; line-height: 0.9; text-align: center; }
+        
+        /* THE WHITE AUTHORITY BAR */
+        .authority-bar {
+            background: #ffffff; color: #000b18; width: 100%; 
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            padding: 60px 0; text-align: center; margin-top: 50px;
+        }
+        .bar-item h2 { font-size: 3rem; font-weight: 900; margin: 0; }
+        .bar-item p { font-size: 0.8rem; font-weight: 900; letter-spacing: 1px; margin-top: 5px; }
 
-/* NAVBAR */
-.sticky-header {
-    position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-    z-index: 1000; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex; justify-content: center; align-items: center;
-}
+        /* CAPABILITIES GRID (The Frame Fix) */
+        #capabilities-section { 
+            background: #000b18; padding: 100px 0 !important; 
+            scroll-margin-top: 70px; /* This makes the link land perfectly */
+        }
+        .module-grid { 
+            display: grid; grid-template-columns: repeat(4, 1fr); 
+            width: 100%; max-width: 100%; border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .module-card { 
+            padding: 50px 10%; border-right: 1px solid rgba(255,255,255,0.1); 
+            border-bottom: 1px solid rgba(255,255,255,0.1); min-height: 300px;
+        }
+        .module-card h3 { color: var(--lime); font-size: 1.2rem; margin: 15px 0; }
+        .module-card span { font-family: monospace; color: var(--lime); opacity: 0.6; }
 
-.nav-container { width: 90%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
-.logo { color: #ffffff !important; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; text-decoration: none; }
-.logo span { color: var(--lime); }
-.nav-links { display: flex; gap: 25px; }
-.nav-links a {
-    color: #94a3b8 !important; text-decoration: none !important;
-    font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
-}
-.nav-links a:hover { color: var(--lime) !important; }
+        /* FOOTER REPAIR */
+        .site-footer { background: #000b18; padding: 80px 5%; border-top: 4px solid var(--lime); }
+        .footer-container { display: flex; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
+        .footer-branding { flex: 2; }
+        .footer-nav { flex: 3; display: flex; justify-content: space-between; }
+        .nav-col a { 
+            color: white; text-decoration: none !important; /* NO UNDERLINES */
+            display: block; margin-bottom: 10px; font-size: 0.85rem; opacity: 0.7; 
+        }
+        .nav-col a:hover { opacity: 1; color: var(--lime); }
+        .nav-col label { color: var(--lime); font-weight: 900; font-size: 0.8rem; display: block; margin-bottom: 20px; letter-spacing: 1px; }
+        
+        /* COMMAND CENTRE FONT SYNC */
+        address { font-style: normal; font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.6; }
 
-/* THE WHITE AUTHORITY BAR - FORCED */
-body .authority-bar {
-    background: #ffffff !important;
-    width: 100% !important;
-    display: flex !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-    padding: 60px 0 !important;
-    margin: 0 !important;
-    position: relative !important;
-    z-index: 99 !important;
-}
-
-.authority-bar .bar-item { text-align: center; color: #000b18 !important; }
-.authority-bar .bar-item h2 { font-size: 3.5rem; font-weight: 900; margin: 0; line-height: 1; }
-.authority-bar .bar-item p { font-family: monospace; font-weight: 900; letter-spacing: 2px; margin-top: 5px; }
-
-        /* Ensure the White Bar doesn't have a bottom margin pushing the section away */
-.authority-bar {
-    margin-bottom: 0 !important;
-    position: relative;
-    z-index: 20;
-}
-/* CAPABILITIES SECTION - THE GAP FIX */
-#capabilities-section {
-    display: block !important;
-    min-height: auto !important;
-    
-    /* 1. This creates the dark 'gap' above and below the cards */
-    padding-top: 100px !important; 
-    padding-bottom: 120px !important;
-    
-    /* 2. This tells the link to stop 150px ABOVE the section start */
-    /* This ensures the White Bar is visible when you jump there */
-    scroll-margin-top: 150px !important; 
-    
-    background: #000b18 !important;
-    width: 100%;
-}
-
-.module-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    width: 100%;
-}
-
-.module-card {
-    padding: 60px 10%;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.module-card:nth-child(4n) { border-right: none !important; }
-.module-card h3 { color: var(--lime) !important; font-weight: 900; text-transform: uppercase; }
-
-/* FOOTER - CLEAN TYPOGRAPHY */
-.site-footer { background: #000b18; padding: 80px 0 60px; border-top: 6px solid var(--lime); }
-.footer-branding { flex: 2; }
-.footer-nav { flex: 3; display: flex; justify-content: space-between; }
-
-.nav-col ul { list-style: none; padding: 0; }
-.nav-col a {
-    color: #ffffff !important;
-    text-decoration: none !important; /* REMOVES UNDERLINES */
-    font-size: 0.85rem;
-    font-weight: 600;
-    opacity: 0.7;
-}
-.nav-col a:hover { opacity: 1; color: var(--lime) !important; }
-
-.contact-col address {
-    font-style: normal;
-    font-family: 'Inter', sans-serif !important; /* SYNCED FONT */
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.85rem;
-}
-
-@keyframes scanline { 0% { top: 0; } 100% { top: 100%; } }
-</style>
+        @media (max-width: 992px) {
+            .module-grid { grid-template-columns: repeat(2, 1fr); }
+            .authority-bar { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .footer-container { flex-direction: column; gap: 50px; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="sticky-header">
-    <div class="nav-container">
-        <a href="#" class="logo">SAFE<span>COMPLIANCE</span></a>
-        <nav class="nav-links">
-            <a href="#intelligence" onclick="navigate(event, this, 'intelligence')">Intelligence</a>
-            <a href="#architecture" onclick="navigate(event, this, 'architecture')">Architecture</a>
-            <a href="#capabilities-section" onclick="navigate(event, this, 'capabilities')">Capabilities</a>
-            <a href="#audit" onclick="navigate(event, this, 'audit')">Execute Audit</a>
-        </nav>
-    </div>
-</header>
-
-<section id="intelligence" style="min-height: 100vh; background: var(--navy); display: flex; flex-direction: column; justify-content: center;">
-    <div id="top-anchor"></div> <div class="content-wrapper">
-        <div class="hero-content">
-            <div class="status-indicator" style="text-align: left;">
-                <span class="pulse"></span> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
-            </div>
-            
-            <h1 style="text-align: left;">INTELLIGENCE-LED<br><span style="color:var(--lime)">ESTATE GOVERNANCE.</span></h1>
-            
-            <p class="hero-sub" style="max-width: 650px; margin-left: 0; text-align: left;">
-                The most advanced digital Data Monitoring ecosystem. We provide the intelligence layer for complex estate governance and real-time risk mitigation.
-            </p>
-            
-            <div style="text-align: left; margin-top: 30px;">
-                <a href="#audit" class="btn-main" onclick="navigate(event, this, 'audit')">
-                    Deploy System Architecture
-                </a>
-            </div>
+    <header class="sticky-header">
+        <div class="nav-container">
+            <a href="#" class="logo">SAFE<span>COMPLIANCE</span></a>
+            <nav class="nav-links">
+                <a href="#intelligence" class="intelligence-link">INTELLIGENCE</a>
+                <a href="#architecture">ARCHITECTURE</a>
+                <a href="#capabilities-section">CAPABILITIES</a>
+            </nav>
+            <a href="#audit" class="nav-links" style="color: var(--lime); font-weight: 900; text-decoration: none; font-size: 0.8rem;">EXECUTE AUDIT</a>
         </div>
-    </div>
-</section>
-    
-<div class="divider"></div>
+    </header>
 
-<section class="section" id="architecture" style="min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 70% 30%, rgba(130, 188, 0, 0.05) 0%, transparent 70%);">
-    <div class="grid-2" style="width: 100%; gap: 100px;">
-        
-        <div>
-            <div class="status-indicator">
-                <span class="pulse"></span> COMMAND_LAYER_ESTABLISHED
-            </div>
-            <h2 style="font-size: clamp(3.5rem, 7vw, 5.5rem); line-height: 0.9; margin-bottom: 30px;">
-                Centralised<br><span style="color:var(--lime)">Dominance.</span>
-            </h2>
-            
-            <p style="color:var(--white); font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; border-left: 3px solid var(--lime); padding-left: 20px;">
-                Eliminating the friction between physical assets and digital oversight.
-            </p>
-            
-            <p style="color:var(--text-gray); font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px;">
-                Our proprietary architecture is engineered to dismantle the fragmentation of legacy estate management. By converting raw telemetry into high-fidelity governance data, we provide a single source of truth for complex portfolios. 
-            </p>
-            
-            <p style="color:var(--text-gray); font-size: 1.1rem; line-height: 1.8; margin-bottom: 40px;">
-                From automated Legionella temperature monitoring to real-time Fire Risk Assessments, every compliance node is integrated into a unified command interface. This is not just monitoring; it is the total digital twin of your estate's regulatory health.
-            </p>
-            
-            <div class="tech-specs" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
-                <div><span style="color:var(--lime); font-size:0.65rem; font-weight:900; letter-spacing:1px;">SYNC_RATE</span><br><strong style="font-size:1.4rem;">0.5ms</strong></div>
-                <div><span style="color:var(--lime); font-size:0.65rem; font-weight:900; letter-spacing:1px;">UPTIME</span><br><strong style="font-size:1.4rem;">99.99%</strong></div>
-                <div><span style="color:var(--lime); font-size:0.65rem; font-weight:900; letter-spacing:1px;">ENCRYPTION</span><br><strong style="font-size:1.4rem;">AES-256</strong></div>
-            </div>
+    <section id="intelligence">
+        <div class="status-indicator"><div class="pulse"></div> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256</div>
+        <h1 class="hero-title">INTELLIGENCE-LED<br>ESTATE GOVERNANCE.</h1>
+        <p class="hero-sub">The most advanced digital Data Monitoring ecosystem.</p>
+    </section>
+
+    <div id="capabilities-section">
+        <div class="authority-bar">
+            <div class="bar-item"><h2>100%</h2><p>AUDIT READINESS</p></div>
+            <div class="bar-item"><h2>24/7</h2><p>REAL-TIME ANALYSIS</p></div>
+            <div class="bar-item"><h2>COMPLETE</h2><p>CENTRALISATION</p></div>
+            <div class="bar-item"><h2>AUTO</h2><p>RISK MITIGATION</p></div>
         </div>
 
-        <div class="status-box" style="background: #010409; padding: 45px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); box-shadow: 0 40px 100px rgba(0,0,0,0.6); position: relative;">
-            <div style="font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6; color: #64748b;">
-                <div style="color: var(--lime); margin-bottom: 10px;">> [SYSTEM_BOOT]: SUCCESSFUL</div>
-                <div style="margin-bottom: 5px;">> LOADING_COMPLIANCE_ENGINE... <span style="color:var(--white)">DONE</span></div>
-                <div style="margin-bottom: 5px;">> SCANNING_ACoP_L8_PROTOCOLS... <span style="color:var(--white)">OPTIMAL</span></div>
-                <div style="margin-bottom: 5px;">> FIRE_SAFETY_UPLINK... <span style="color:var(--white)">CONNECTED</span></div>
-                <div style="margin-bottom: 5px;">> TELEMETRY_NODES_ACTIVE... <span style="color:var(--white)">412_COUNT</span></div>
-                
-                <div style="margin: 25px 0; padding: 20px; background: rgba(130, 188, 0, 0.05); border: 1px solid rgba(130, 188, 0, 0.2);">
-                    <div style="color: var(--lime); font-weight: bold; margin-bottom: 10px;">ESTATE_HEALTH_INDEX: 100%</div>
-                    <div style="width: 100%; height: 4px; background: #1e293b; margin-bottom: 10px;">
-                        <div style="width: 100%; height: 100%; background: var(--lime);"></div>
-                    </div>
-                    <div style="font-size: 0.7rem;">NO_RISK_DETECTED // ALL_SYSTEMS_GOVERNED</div>
+        <div class="module-grid">
+            <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols.</p></div>
+            <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment.</p></div>
+            <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>Precision monitoring of estate assets.</p></div>
+            <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards.</p></div>
+            <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>Intelligent HVAC and air quality.</p></div>
+            <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>Integrated access and surveillance.</p></div>
+            <div class="module-card"><span>[07]</span><h3>ELECTRICAL</h3><p>Fixed wire and PAT oversight.</p></div>
+            <div class="module-card"><span>[08]</span><h3>ASBESTOS</h3><p>Real-time digital asbestos registers.</p></div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-branding">
+                <div class="logo">SAFE<span>COMPLIANCE</span></div>
+                <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 10px;">© 2026 ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="footer-nav">
+                <div class="nav-col">
+                    <label>SYSTEM</label>
+                    <a href="#intelligence">INTELLIGENCE</a>
+                    <a href="#architecture">ARCHITECTURE</a>
+                    <a href="#capabilities-section">CAPABILITIES</a>
                 </div>
-
-                <div style="margin-bottom: 5px;">> [LOCAL_PORTFOLIO_ID]: <span style="color:var(--white)">GB-LON-449</span></div>
-                <div style="margin-bottom: 5px;">> [LATENCY_CHECK]: <span style="color:var(--white)">PASS_0.48ms</span></div>
-                <div style="margin-bottom: 5px;">> [ENCRYPTION_HASH]: <span style="color:var(--white)">SHA-512_AUTH</span></div>
-                <div style="margin-top: 20px; color: var(--lime); font-weight: bold; animation: pulse-animation 2s infinite;">
-                    > STANDBY: AWAITING_SECURE_SCAN_INITIATION_
+                <div class="nav-col">
+                    <label>LEGAL</label>
+                    <a href="#">PRIVACY</a>
+                    <a href="#">TERMS</a>
+                    <a href="#">PROTOCOLS</a>
+                </div>
+                <div class="nav-col">
+                    <label>COMMAND CENTRE</label>
+                    <address>
+                        71-75 Shelton Street<br>
+                        LONDON, WC2H 9JQ<br>
+                        T: 0330 0432153
+                    </address>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </footer>
 
-<div class="divider"></div>
-
-<div class="authority-bar">
-    <div class="bar-item">
-        <h2>100%</h2>
-        <p>AUDIT READINESS</p>
-    </div>
-    <div class="bar-item">
-        <h2>24/7</h2>
-        <p>REAL-TIME ANALYSIS</p>
-    </div>
-    <div class="bar-item">
-        <h2>COMPLETE</h2>
-        <p>CENTRALISATION</p>
-    </div>
-    <div class="bar-item">
-        <h2>AUTO</h2>
-        <p>RISK MITIGATION</p>
-    </div>
-</div>
-
-<section id="capabilities-section">
-    <div class="module-grid">
-        <div class="module-card">
-            <span>[01]</span>
-            <h3>WATER HYGIENE</h3>
-            <p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring.</p>
-        </div>
-        <div class="module-card">
-            <span>[02]</span>
-            <h3>FIRE, HEALTH & SAFETY</h3>
-            <p>Full-spectrum RRO alignment and automated risk assessments for critical life safety nodes.</p>
-        </div>
-        <div class="module-card">
-            <span>[03]</span>
-            <h3>INFRASTRUCTURE</h3>
-            <p>Precision monitoring of physical estate assets, converting hardware into actionable data nodes.</p>
-        </div>
-        <div class="module-card">
-            <span>[04]</span>
-            <h3>ACCREDITATION</h3>
-            <p>Strategic governance for ISO standards, ensuring constant audit-readiness across your portfolio.</p>
-        </div>
-        <div class="module-card">
-            <span>[05]</span>
-            <h3>ENVIRONMENTAL</h3>
-            <p>Intelligent HVAC and air quality monitoring to drive sustainability and energy efficiency targets.</p>
-        </div>
-        <div class="module-card">
-            <span>[06]</span>
-            <h3>SECURITY</h3>
-            <p>Integrated oversight of access control and surveillance through a unified digital interface.</p>
-        </div>
-        <div class="module-card">
-            <span>[07]</span>
-            <h3>ELECTRICAL</h3>
-            <p>Fixed wire testing and PAT oversight integrated into a live, cloud-based asset register.</p>
-        </div>
-        <div class="module-card">
-            <span>[08]</span>
-            <h3>ASBESTOS</h3>
-            <p>Real-time digital asbestos registers and removal tracking protocols for complete estate safety.</p>
-        </div>
-    </div> </section>
-
-<section id="audit">
-    <div class="audit-container">
-        <div class="audit-header">
-            <span class="system-audit-label">SYSTEM AUDIT</span>
-            <h2>EXECUTE <span class="green-text">COMPLIANCE</span> PROTOCOL</h2>
-        </div>
-
-        <div class="audit-form-box">
-            <form id="auditForm">
-                <div style="display:none;"><input type="text" id="honeypot"></div>
-
-                <div class="form-grid">
-                    <div class="field-group">
-                        <label>ESTATE NAME</label>
-                        <input type="text" placeholder="e.g. LONDON CENTRAL" required>
-                    </div>
-                    <div class="field-group">
-                        <label>CONTACT NAME</label>
-                        <input type="text" placeholder="FULL NAME" required>
-                    </div>
-                    <div class="field-group">
-                        <label>CONTACT TEL</label>
-                        <input type="tel" placeholder="+44" required>
-                    </div>
-                    <div class="field-group">
-                        <label>CONTACT EMAIL</label>
-                        <input type="email" placeholder="ADMIN@ESTATE.COM" required>
-                    </div>
-                    <div class="field-group full-width">
-                        <label>ENQUIRY OPTIONS</label>
-                        <select required>
-                            <option value="" disabled selected>SELECT DISCIPLINE...</option>
-                            <option>01 WATER HYGIENE</option>
-                            <option>02 FIRE & SAFETY</option>
-                            <option>03 INFRASTRUCTURE</option>
-                            <option>04 ACCREDITATION</option>
-                            <option>05 ENVIRONMENTAL</option>
-                            <option>06 SECURITY</option>
-                            <option>07 ELECTRICAL</option>
-                            <option>08 ASBESTOS</option>
-                            <option>FULL ESTATE AUDIT</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <button type="submit" class="execute-btn" id="submitBtn">
-                    <span id="btnText">EXECUTE AUDIT REQUEST</span>
-                </button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<footer class="site-footer">
-    <div class="footer-container">
-        
-        <div class="footer-branding">
-            <div class="footer-logo">
-                <span class="safe-text">SAFE</span><span class="comp-text">COMPLIANCE</span>
-            </div>
-            <p>© 2026 ALL RIGHTS RESERVED.</p>
-        </div>
-        
-        <nav class="footer-nav">
-            <div class="nav-col">
-                <label>SYSTEM</label>
-                <ul>
-                    <li><a href="#intelligence">INTELLIGENCE</a></li>
-                    <li><a href="#architecture">ARCHITECTURE</a></li>
-                    <li><a href="#capabilities-section">CAPABILITIES</a></li>
-                </ul>
-            </div>
-
-            <div class="nav-col">
-                <label>LEGAL</label>
-                <ul>
-                    <li><a href="#">PRIVACY</a></li>
-                    <li><a href="#">TERMS</a></li>
-                    <li><a href="#">PROTOCOLS</a></li>
-                </ul>
-            </div>
-
-            <div class="nav-col contact-col">
-    <label>COMMAND CENTRE</label>
-    <address>
-        71-75 Shelton Street<br>
-        LONDON, WC2H 9JQ<br>
-    </address>
-    <div class="footer-tel">T: 0330 0432153 (local rate)</div>
-</div>
-        </nav>
-
-    </div>
-</footer>
-
-<script>
-function navigate(event, element, sectionId) {
-    if (event) event.preventDefault();
-
-    // 1. Maintain Green Intelligence font color per your instructions
-    if (element) {
-        const allLinks = document.querySelectorAll('.nav-links a');
-        allLinks.forEach(link => link.setAttribute('data-active', 'false'));
-        element.setAttribute('data-active', 'true');
-    }
-
-    // 2. Precise Scroll Logic
-    const target = document.getElementById(sectionId);
-    if (target) {
-        const navbarHeight = 70; // The height of your slim navbar
-        const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
-        
-        window.scrollTo({
-            top: targetPos - navbarHeight, // Stops just before the navbar hits the content
-            behavior: 'smooth'
-        });
-    }
-}
-</script>
-<script>
-// 1. KILL BROWSER SCROLL MEMORY (Crucial for starting at top)
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
-
-// 2. FORCE TOP ON LOAD
-window.onload = function() {
-    window.scrollTo(0, 0);
-    
-    // Set Intelligence link to green by default
-    const intelLink = document.querySelector('a[href="#intelligence"]');
-    if (intelLink) {
-        intelLink.setAttribute('data-active', 'true');
-        intelLink.style.color = 'var(--lime)'; // Direct override
-    }
-};
-
-// 3. UNIVERSAL NAVIGATION FUNCTION
-function navigate(event, element, sectionId) {
-    if (event) event.preventDefault();
-
-    // Reset all link colors
-    const allLinks = document.querySelectorAll('.nav-links a');
-    allLinks.forEach(link => {
-        link.setAttribute('data-active', 'false');
-        link.style.color = 'white'; 
-    });
-
-    // Highlight the clicked link (Intelligence will stay green if clicked)
-    if (element) {
-        element.setAttribute('data-active', 'true');
-        // Your requirement: keep intelligence font green
-        if (sectionId === 'intelligence') {
-            element.style.color = 'var(--lime)';
-        }
-    }
-
-    // Perform the Scroll
-    const target = document.getElementById(sectionId);
-    if (target) {
-        const offset = (sectionId === 'intelligence') ? 0 : target.offsetTop - 70;
-        window.scrollTo({
-            top: offset,
-            behavior: 'smooth'
-        });
-    }
-}
-
-document.getElementById('auditForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevents page reload for this demo
-    
-    const honeypot = document.getElementById('honeypot').value;
-    const btn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-
-    // Anti-spam Gotcha
-    if (honeypot !== "") {
-        return; 
-    }
-
-    // Change text and state
-    btnText.innerText = "REQUEST SENT";
-    btn.classList.add('sent');
-    btn.disabled = true;
-});
-    </script>
-    <script>
-document.querySelector('a[href="#capabilities-section"]').addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.getElementById('capabilities-section');
-    if (target) {
-        window.scrollTo({
-            top: target.offsetTop - 70, // Adjusts for your 70px header
-            behavior: 'smooth'
-        });
-    }
-});
-</script>
 </body>
 </html>
 
