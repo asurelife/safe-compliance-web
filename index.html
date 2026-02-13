@@ -147,33 +147,36 @@
     justify-content: center !important;
 }
 #architecture {
-    /* 1. Force the section to be exactly one full screen height */
+    /* 1. FORCE THE HEIGHT & CLEARANCE */
     min-height: 100vh !important;
     height: 100vh !important;
+    background: #020617 !important; /* Forces the solid dark navy background */
     
-    /* 2. Absolute vertical and horizontal centering */
+    /* 2. ABSOLUTE CENTERING */
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important; 
+    justify-content: center !important; /* This pulls the content down from the top */
     align-items: center !important;
     
-    /* 3. The 'Snap' adjustment: Stops the scroll exactly at the section start */
-    scroll-margin-top: 70px !important; 
+    /* 3. THE JUMP CORRECTION */
+    scroll-margin-top: 0 !important; /* Snaps exactly to the start of the section */
     
-    /* 4. Visual clearing */
-    background: var(--navy);
+    /* 4. REMOVE BLEED */
+    margin: 0 !important;
     padding: 0 5% !important;
+    border-top: 1px solid rgba(255,255,255,0.05); /* Optional: subtle separator */
     box-sizing: border-box !important;
-    overflow: hidden; /* Prevents Section 1 from peeking in */
+    overflow: hidden;
 }
 
-/* Ensure the internal grid is centered and takes up appropriate space */
+/* Fix the internal grid to ensure it doesn't drift */
 .arch-grid {
     width: 100%;
     max-width: 1400px;
-    display: grid;
-    align-items: center; /* Aligns text with the telemetry box */
-    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center; /* Aligns text perfectly with the telemetry box */
 }
 #capabilities-section, 
 #architecture, #audit {
