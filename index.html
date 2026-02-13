@@ -172,36 +172,24 @@
 }
 
 #capabilities-section {
-    height: 100vh !important;
-    min-height: 100vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important; /* Centers everything between the lines */
-    align-items: center !important;
+    /* Stop forcing it to be a tiny box */
+    height: auto !important; 
+    min-height: 100vh;
+    display: block !important; 
     
-    /* Green Separation Lines */
-    border-top: 2px solid var(--lime) !important;
-    border-bottom: 2px solid var(--lime) !important;
-    
-    background: #020617 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important; /* Prevents content from pushing the bottom line away */
-    box-sizing: border-box !important;
+    /* Keep the green lines as simple borders */
+    border-top: 2px solid var(--lime);
+    border-bottom: 2px solid var(--lime);
+    padding: 80px 0; /* Natural breathing room */
 }
 
 .authority-bar {
-    width: 100% !important;
-    background: #ffffff !important;
-    color: #000b18 !important;
-    
-    /* Extreme shrink to save vertical space */
-    padding: 15px 0 !important; 
-    margin-bottom: 20px !important; 
-    
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    text-align: center !important;
+    height: auto; /* Let the content define the height */
+    padding: 20px 0; /* This is where we shrink the white box */
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Forces the text to separate */
+    margin-bottom: 50px;
 }
 
 /* Ensure the text inside the bar stays clean */
