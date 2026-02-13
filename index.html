@@ -11,84 +11,131 @@
             --lime: #82bc00; 
             --white: #ffffff; 
             --text-gray: #94a3b8; 
+            --dark-blue: #0f172a; 
         }
         
-        /* 1. GLOBAL & SCROLL LOGIC */
-        html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: 70px; 
+        }
+
         body { 
-            margin: 0; background: var(--navy); color: var(--white); 
-            font-family: 'Inter', sans-serif; overflow-x: hidden; 
+            margin: 0; 
+            background: var(--navy); 
+            color: var(--white); 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden; 
         }
 
-        /* 2. HEADER: Fixed & Interactive */
+        /* --- NAVIGATION --- */
         .sticky-header {
-            position: fixed; top: 0; width: 100%; height: 70px;
-            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
-            display: flex; justify-content: center; align-items: center; z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            z-index: 1000; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex; justify-content: center; align-items: center;
         }
-        .nav-container { width: 90%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 900; font-size: 1.4rem; text-decoration: none; color: white; text-transform: uppercase; }
+
+        .nav-container {
+            width: 90%; max-width: 1400px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo { color: #ffffff !important; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; text-decoration: none; letter-spacing: -0.5px; }
         .logo span { color: var(--lime); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
-        
-        /* Persistent Green for Intelligence per your instructions */
+
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            color: #94a3b8 !important; text-decoration: none !important;
+            transition: 0.3s; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+        }
+
+        /* Intelligence Green Persistence */
         .intelligence-link { color: var(--lime) !important; }
-        .nav-links a:hover { color: var(--lime); }
+        .nav-links a:hover { color: var(--lime) !important; }
 
-        /* 3. HERO SECTION */
-        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; }
-        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 0.9; margin: 0; }
-        .hero p { color: var(--text-gray); max-width: 700px; margin-top: 20px; font-size: 1.2rem; }
+        /* --- HERO SECTION --- */
+        #home-hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 100px 5%; box-sizing: border-box; position: relative;
+        }
 
-        /* 4. THE WHITE AUTHORITY BAR */
+        .hero-content { max-width: 1000px; z-index: 2; }
+        h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
+        .hero-sub { color: var(--text-gray); margin: 35px 0; font-size: 1.2rem; max-width: 850px; }
+        
+        .status-indicator { display: flex; align-items: center; gap: 10px; color: var(--lime); font-weight: 900; font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 25px; }
+        .pulse { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; animation: pulse-animation 2s infinite; }
+        @keyframes pulse-animation { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        /* --- ARCHITECTURE SECTION --- */
+        #architecture { padding: 120px 5%; background: #010409; }
+        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 60px; width: 100%; max-width: 1400px; margin: 0 auto; }
+        @media (min-width: 992px) { .grid-2 { grid-template-columns: 1.2fr 0.8fr; } }
+        
+        .status-box { background: #010409; padding: 40px; border: 1px solid #1e293b; border-left: 5px solid var(--lime); font-family: monospace; position: relative; overflow: hidden; }
+        .status-box::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--lime); opacity: 0.2; animation: scanline 4s linear infinite; }
+        @keyframes scanline { 0% { top: 0; } 100% { top: 100%; } }
+
+        /* --- CAPABILITIES SECTION (THE PERFECT JUMP) --- */
+        #capabilities-section {
+            background: var(--navy);
+            padding: 100px 0 !important; /* The gap at top and bottom */
+            scroll-margin-top: 70px;
+        }
+
         .authority-bar {
-            background: #ffffff; color: #000b18; width: 100%; 
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            padding: 60px 0; text-align: center;
+            background: #ffffff !important; color: #000b18 !important;
+            width: 100%; padding: 60px 0; margin-bottom: 0;
+            display: grid; grid-template-columns: repeat(4, 1fr); text-align: center;
         }
-        .bar-item h2 { font-size: 3rem; font-weight: 900; margin: 0; }
-        .bar-item p { font-size: 0.8rem; font-weight: 900; letter-spacing: 1px; margin-top: 5px; }
+        .authority-bar h2 { font-size: 3.5rem; font-weight: 900; margin: 0; color: #000b18 !important; line-height: 1; }
+        .authority-bar p { font-family: monospace; font-weight: 900; letter-spacing: 2px; margin: 10px 0 0 0; color: #000b18 !important; text-transform: uppercase; }
 
-        /* 5. CAPABILITIES GRID (Framed Central View) */
-        #capabilities-section { 
-            background: #000b18; 
-            padding: 100px 0 !important; 
-            scroll-margin-top: 0px; 
-        }
-        .module-grid { 
-            display: grid; grid-template-columns: repeat(4, 1fr); 
+        .module-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
             width: 100%; border-top: 1px solid rgba(255,255,255,0.1);
         }
-        .module-card { 
-            padding: 60px 10%; border-right: 1px solid rgba(255,255,255,0.1); 
-            border-bottom: 1px solid rgba(255,255,255,0.1); min-height: 350px;
-            box-sizing: border-box;
-        }
-        .module-card:nth-child(4n) { border-right: none; }
-        .module-card h3 { color: var(--lime); font-size: 1.1rem; font-weight: 900; margin: 15px 0; }
-        .module-card span { font-family: monospace; color: var(--lime); font-weight: 700; }
-        .module-card p { font-size: 0.9rem; color: var(--text-gray); line-height: 1.6; }
+        @media (max-width: 992px) { .module-grid { grid-template-columns: repeat(2, 1fr); } .authority-bar { grid-template-columns: repeat(2, 1fr); gap: 30px; } }
 
-        /* 6. FOOTER: No Underlines & Unified Font */
-        .site-footer { background: #000b18; padding: 80px 5% 40px; border-top: 6px solid var(--lime); }
-        .footer-container { display: flex; justify-content: space-between; max-width: 1400px; margin: 0 auto; gap: 40px; }
+        .module-card {
+            background: var(--navy); padding: 60px 40px; transition: 0.4s;
+            border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);
+            min-height: 350px; box-sizing: border-box;
+        }
+        .module-card:hover { background: #0f172a; }
+        .module-card:nth-child(4n) { border-right: none; }
+        .module-card span { color: var(--lime); font-family: monospace; font-weight: 900; }
+        .module-card h3 { color: var(--lime) !important; font-weight: 900; margin: 20px 0; text-transform: uppercase; }
+
+        /* --- AUDIT FORM --- */
+        #audit { background: #000b18; padding: 120px 0; }
+        .audit-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        .audit-form-box { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 50px; }
+        .field-group label { display: block; color: var(--lime); font-family: monospace; font-size: 0.7rem; font-weight: 900; margin-bottom: 12px; letter-spacing: 1px; }
+        .field-group input, .field-group select { width: 100%; background: #000b18; border: 1px solid rgba(255, 255, 255, 0.15); padding: 15px; color: white; transition: 0.3s; }
+        .execute-btn { width: 100%; background: var(--lime); color: #000b18; border: none; padding: 25px; font-weight: 900; letter-spacing: 3px; cursor: pointer; text-transform: uppercase; }
+
+        /* --- FOOTER FIXES --- */
+        .site-footer { background: #000b18; padding: 80px 0 60px; border-top: 6px solid var(--lime); }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 5%; }
         .footer-branding { flex: 2; }
-        .footer-nav { flex: 3; display: flex; justify-content: space-between; }
-        .nav-col label { color: var(--lime); font-weight: 900; font-size: 0.8rem; display: block; margin-bottom: 25px; letter-spacing: 1px; }
-        .nav-col a { 
-            color: white; text-decoration: none !important; /* Forces removal of underlines */
-            display: block; margin-bottom: 12px; font-size: 0.85rem; opacity: 0.6; transition: 0.3s;
+        .footer-nav { flex: 3; display: flex; justify-content: space-between; gap: 20px; }
+        
+        .nav-col label { display: block; color: var(--lime); font-family: monospace; font-weight: 900; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 25px; }
+        .nav-col ul { list-style: none; padding: 0; margin: 0; }
+        .nav-col li { margin-bottom: 12px; }
+        
+        .nav-col a {
+            color: #ffffff; text-decoration: none !important; /* NO UNDERLINES */
+            font-size: 0.85rem; font-weight: 600; opacity: 0.6; transition: 0.3s; text-transform: uppercase;
         }
         .nav-col a:hover { opacity: 1; color: var(--lime); }
-        address { font-style: normal; font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.8; }
 
-        /* Mobile Adjustments */
-        @media (max-width: 992px) {
-            .module-grid, .authority-bar, .footer-nav { grid-template-columns: 1fr 1fr; }
-            .footer-container { flex-direction: column; }
-            .module-grid { grid-template-columns: 1fr 1fr; }
+        .contact-col address {
+            font-style: normal; color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem; line-height: 1.6; font-family: 'Inter', sans-serif !important; /* UNIFIED FONT */
         }
     </style>
 </head>
@@ -98,20 +145,46 @@
         <div class="nav-container">
             <a href="#" class="logo">SAFE<span>COMPLIANCE</span></a>
             <nav class="nav-links">
-                <a href="#intelligence" class="intelligence-link">INTELLIGENCE</a>
+                <a href="#home-hero" class="intelligence-link">INTELLIGENCE</a>
                 <a href="#architecture">ARCHITECTURE</a>
                 <a href="#capabilities-section">CAPABILITIES</a>
             </nav>
-            <a href="#" style="color: var(--lime); font-weight: 900; text-decoration: none; font-size: 0.8rem;">EXECUTE AUDIT</a>
+            <a href="#audit" class="nav-links" style="color: var(--lime) !important; font-weight: 900; text-decoration: none;">EXECUTE AUDIT</a>
         </div>
     </header>
 
-    <section id="intelligence" class="hero">
-        <div style="color: var(--lime); font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 20px;">
-            SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
+    <section id="home-hero">
+        <div class="hero-content">
+            <div class="status-indicator"><div class="pulse"></div> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256</div>
+            <h1>INTELLIGENCE-LED<br>ESTATE GOVERNANCE.</h1>
+            <p class="hero-sub">The most advanced digital Data Monitoring ecosystem. We provide the intelligence layer for complex estate governance and real-time risk mitigation.</p>
+            <a href="#architecture" class="execute-btn" style="display:inline-block; padding: 15px 30px; text-decoration:none;">Deploy System Architecture</a>
         </div>
-        <h1>INTELLIGENCE-LED<br>ESTATE GOVERNANCE.</h1>
-        <p>The most advanced digital Data Monitoring ecosystem for complex estate governance and real-time risk mitigation.</p>
+    </section>
+
+    <section id="architecture">
+        <div class="grid-2">
+            <div>
+                <div class="status-indicator">COMMAND_LAYER_ESTABLISHED</div>
+                <h2 style="font-size: 4rem; line-height: 1;">Centralised<br>Dominance.</h2>
+                <p style="color: var(--text-gray); font-size: 1.1rem;">Eliminating the friction between physical assets and digital oversight. Our proprietary architecture is engineered to dismantle fragmentation.</p>
+                <div class="tech-specs">
+                    <div><span style="display:block; font-family:monospace; color:var(--lime);">SYNC_RATE</span><strong>0.5ms</strong></div>
+                    <div><span style="display:block; font-family:monospace; color:var(--lime);">UPTIME</span><strong>99.99%</strong></div>
+                </div>
+            </div>
+            <div class="status-box">
+                <div style="color:var(--lime); margin-bottom: 20px;">> [SYSTEM_BOOT]: SUCCESSFUL</div>
+                <div style="opacity: 0.6; font-size: 0.8rem;">
+                    > LOADING_COMPLIANCE_ENGINE... DONE<br>
+                    > SCANNING_ACoP_L8_PROTOCOLS... OPTIMAL<br>
+                    > TELEMETRY_NODES_ACTIVE... 412_COUNT
+                </div>
+                <div style="margin-top:30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top:20px;">
+                    <span style="color:var(--lime);">ESTATE_HEALTH_INDEX: 100%</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <div id="capabilities-section">
@@ -123,37 +196,58 @@
         </div>
 
         <div class="module-grid">
-            <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols and digital telemetry.</p></div>
-            <div class="module-card"><span>[02]</span><h3>FIRE & SAFETY</h3><p>Full-spectrum RRO alignment and automated risk assessments.</p></div>
-            <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets and hardware.</p></div>
-            <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards and constant readiness.</p></div>
-            <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>Intelligent HVAC and air quality monitoring for sustainability.</p></div>
-            <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>Integrated oversight of access control and surveillance.</p></div>
-            <div class="module-card"><span>[07]</span><h3>ELECTRICAL</h3><p>Fixed wire testing and PAT oversight in a live register.</p></div>
-            <div class="module-card"><span>[08]</span><h3>ASBESTOS</h3><p>Real-time digital asbestos registers and removal tracking.</p></div>
+            <div class="module-card"><span>[01]</span><h3>WATER HYGIENE</h3><p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring.</p></div>
+            <div class="module-card"><span>[02]</span><h3>FIRE, H&S</h3><p>Full-spectrum RRO alignment and automated risk assessments for life safety nodes.</p></div>
+            <div class="module-card"><span>[03]</span><h3>INFRASTRUCTURE</h3><p>Precision monitoring of physical estate assets, converting hardware into data nodes.</p></div>
+            <div class="module-card"><span>[04]</span><h3>ACCREDITATION</h3><p>Strategic governance for ISO standards, ensuring constant audit-readiness.</p></div>
+            <div class="module-card"><span>[05]</span><h3>ENVIRONMENTAL</h3><p>Intelligent HVAC and air quality monitoring to drive sustainability targets.</p></div>
+            <div class="module-card"><span>[06]</span><h3>SECURITY</h3><p>Integrated oversight of access control and surveillance through a unified interface.</p></div>
+            <div class="module-card"><span>[07]</span><h3>ELECTRICAL</h3><p>Fixed wire testing and PAT oversight integrated into a live asset register.</p></div>
+            <div class="module-card"><span>[08]</span><h3>ASBESTOS</h3><p>Real-time digital asbestos registers and removal tracking protocols.</p></div>
         </div>
     </div>
+
+    <section id="audit">
+        <div class="audit-container">
+            <span class="system-audit-label">SYSTEM AUDIT</span>
+            <div class="audit-header"><h2>EXECUTE COMPLIANCE PROTOCOL</h2></div>
+            <div class="audit-form-box">
+                <form class="form-grid">
+                    <div class="field-group"><label>ESTATE NAME</label><input type="text"></div>
+                    <div class="field-group"><label>CONTACT NAME</label><input type="text"></div>
+                    <div class="field-group"><label>CONTACT TEL</label><input type="text"></div>
+                    <div class="field-group"><label>CONTACT EMAIL</label><input type="text"></div>
+                    <div class="field-group full-width"><label>ENQUIRY OPTIONS</label><select><option>SELECT DISCIPLINE...</option></select></div>
+                    <button class="execute-btn" style="grid-column: span 2;">Execute Audit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-branding">
                 <div class="logo">SAFE<span>COMPLIANCE</span></div>
-                <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 15px; font-family: monospace;">© 2026 ALL RIGHTS RESERVED.</p>
+                <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 10px; font-family: monospace;">© 2026 ALL RIGHTS RESERVED.</p>
             </div>
             <div class="footer-nav">
                 <div class="nav-col">
                     <label>SYSTEM</label>
-                    <a href="#intelligence">INTELLIGENCE</a>
-                    <a href="#architecture">ARCHITECTURE</a>
-                    <a href="#capabilities-section">CAPABILITIES</a>
+                    <ul>
+                        <li><a href="#home-hero">INTELLIGENCE</a></li>
+                        <li><a href="#architecture">ARCHITECTURE</a></li>
+                        <li><a href="#capabilities-section">CAPABILITIES</a></li>
+                    </ul>
                 </div>
                 <div class="nav-col">
                     <label>LEGAL</label>
-                    <a href="#">PRIVACY</a>
-                    <a href="#">TERMS</a>
-                    <a href="#">PROTOCOLS</a>
+                    <ul>
+                        <li><a href="#">PRIVACY</a></li>
+                        <li><a href="#">TERMS</a></li>
+                        <li><a href="#">PROTOCOLS</a></li>
+                    </ul>
                 </div>
-                <div class="nav-col">
+                <div class="nav-col contact-col">
                     <label>COMMAND CENTRE</label>
                     <address>
                         71-75 Shelton Street<br>
