@@ -78,16 +78,24 @@
     box-sizing: border-box;
 }
 
-/* THE WHITE BAR PADDING */
+/* FORCE FULL WIDTH BACKGROUND */
 .authority-bar {
     background: #ffffff !important;
-    width: 100vw;           /* Forces exactly 100% of the screen width */
-    margin-left: calc(-50vw + 50%); /* Centers the full-width bar if inside a container */
-    padding: 60px 0;        /* Vertical padding only */
+    width: 100%;
     border-top: 6px solid #88c425;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 60px 0;
+    margin: 0;
+}
+
+/* KEEP CONTENT ALIGNED TO YOUR SITE MARGINS */
+.auth-content-limited {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+    width: 100%;
+    max-width: 1400px; /* Adjust this to match your Hero text width */
+    margin: 0 auto;
+    padding: 0 5%; /* Side padding to match Section 2 */
+    box-sizing: border-box;
 }
 
 .auth-container {
@@ -107,25 +115,23 @@
     } 
 }
 
+/* FORCE BLACK TEXT */
 .auth-item {
-    text-align: left;       /* Aligns numbers with the left of your cards */
+    text-align: left;
     color: #000000 !important;
 }
 
 .auth-item strong {
     display: block;
-    font-size: clamp(2rem, 4vw, 3rem); /* Responsive sizing so it doesn't crush */
+    font-size: 3rem;
     font-weight: 900;
-    line-height: 1;
-    margin-bottom: 10px;
     color: #000000 !important;
 }
 
 .auth-item span {
     display: block;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 800;
-    letter-spacing: 1px;
     color: #000000 !important;
 }
 /* SECTION 3 ALIGNMENT FIX */
@@ -347,26 +353,26 @@
 </section>
 
 <section id="capabilities" style="overflow-x: hidden;">
-    <div class="authority-bar">
-        <div class="auth-container">
-            <div class="auth-item">
-                <strong>100%</strong>
-                <span>AUDIT READINESS</span>
-            </div>
-            <div class="auth-item">
-                <strong>24/7</strong>
-                <span>REAL-TIME ANALYSIS</span>
-            </div>
-            <div class="auth-item">
-                <strong>COMPLETE</strong>
-                <span>CENTRALISATION</span>
-            </div>
-            <div class="auth-item">
-                <strong>AUTO</strong>
-                <span>RISK MITIGATION</span>
-            </div>
+<div class="authority-bar">
+    <div class="auth-content-limited">
+        <div class="auth-item">
+            <strong>100%</strong>
+            <span>AUDIT READINESS</span>
+        </div>
+        <div class="auth-item">
+            <strong>24/7</strong>
+            <span>REAL-TIME ANALYSIS</span>
+        </div>
+        <div class="auth-item">
+            <strong>COMPLETE</strong>
+            <span>CENTRALISATION</span>
+        </div>
+        <div class="auth-item">
+            <strong>AUTO</strong>
+            <span>RISK MITIGATION</span>
         </div>
     </div>
+</div>
 
         <div class="module-grid">
             <div class="module-card">
