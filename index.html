@@ -132,31 +132,55 @@
             scroll-margin-top: 70px;
         }
 
-       .authority-bar {
-    width: 100% !important; 
+.authority-bar {
+    width: 100% !important;
     background: #ffffff !important;
     color: #000b18 !important;
-    padding: 40px 0 !important; /* Reduced from 70px */
+    padding: 60px 0 !important;
+    margin-bottom: 60px !important;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 30px !important;
+    text-align: center;
 }
 
-/* SECTION 1 & 2: LOCK TO SCREEN */
-/* Remove top border from very first screen */
-#home-hero { border-top: none !important; }
-#architecture, 
-#audit {
-    height: 100vh !important;
+/* CLEAN SLATE FOR ALL SECTIONS */
+#home-hero, 
+#architecture {
     display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
     align-items: center !important;
-    border-top: 2px solid var(--lime) !important;
-    background: #020617 !important;
+    padding: 0 5% !important;
+}
+
+#architecture .arch-grid {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    margin: 0 auto;
+}
+#capabilities-section {
+    display: block !important; /* Block allows natural stacking so nothing squashes */
+    height: auto !important;   /* Let it grow to fit all cards */
+    padding-top: 100px !important; 
+    padding-bottom: 100px !important;
+}
+#audit {
+    width: 100% !important;
+    min-height: 100vh !important;
     margin: 0 !important;
+    background: #020617 !important;
+    position: relative;
+    box-sizing: border-box !important;
+    border-top: 2px solid var(--lime) !important;
     overflow: hidden;
-    scroll-margin-top: 0 !important;
+}
+
+#home-hero { border-top: none !important; }
+#home-hero {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 5% !important;
 }
 
 /* SECTION 3: ALLOW GROWTH TO PREVENT OVERLAP */
