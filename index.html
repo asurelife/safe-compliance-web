@@ -417,36 +417,75 @@ body .authority-bar {
 }
 
 .footer-container {
-    max-width: 900px;
+    max-width: 1400px; /* Wider to match your site spine */
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 0 20px;
+    padding: 0 5%;
 }
 
-/* LOGO FONT - Matching the heavy weight in the image */
+/* LOGO STYLING (MATCHING PREVIOUS IMAGE) */
 .footer-logo {
-    font-family: 'Inter', sans-serif; /* Or 'Arial Black' if Inter isn't loaded */
-    font-size: 1.8rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
     font-weight: 900;
-    letter-spacing: -0.5px; /* Tighter tracking like the image */
-    margin-bottom: 15px;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
 }
 
 .safe-text { color: #ffffff !important; }
 .comp-text { color: #88c425 !important; }
 
-.footer-branding p {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 0.7rem;
-    font-family: monospace;
+/* 1. LARGE LOGO SECTION */
+.footer-branding {
+    flex: 2; /* Takes up approximately 40% of the container */
+    padding-right: 50px;
 }
 
-/* NAV COLUMNS */
+/* 2. NAVIGATION WRAPPER (Holding the 3 equal columns) */
 .footer-nav {
+    flex: 3; /* Takes up the remaining 60% */
     display: flex;
-    gap: 50px;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-branding p {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.75rem;
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+.nav-col label {
+    display: block;
+    color: #88c425;
+    font-family: monospace;
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.nav-col a {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.nav-col a:hover {
+    opacity: 1;
+    color: #88c425;
+}
+
+.contact-col address {
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    line-height: 1.6;
 }
 
 .nav-col label {
@@ -768,6 +807,7 @@ body .authority-bar {
 
 <footer class="site-footer">
     <div class="footer-container">
+        
         <div class="footer-branding">
             <div class="footer-logo">
                 <span class="safe-text">SAFE</span><span class="comp-text">COMPLIANCE</span>
@@ -804,6 +844,7 @@ body .authority-bar {
                 <div class="footer-tel">+44 (0) 20 7123 4567</div>
             </div>
         </nav>
+
     </div>
 </footer>
 
