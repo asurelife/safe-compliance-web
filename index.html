@@ -345,8 +345,8 @@
 
 .site-footer {
     background: #000b18;
-    padding: 80px 0 40px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 80px 0 60px;
+    border-top: 6px solid #88c425; /* Thicker green line from image */
 }
 
 .footer-container {
@@ -358,13 +358,17 @@
     padding: 0 20px;
 }
 
+/* LOGO FONT - Matching the heavy weight in the image */
 .footer-logo {
-    color: #88c425; /* Your Intelligence Green */
+    font-family: 'Inter', sans-serif; /* Or 'Arial Black' if Inter isn't loaded */
+    font-size: 1.8rem;
     font-weight: 900;
-    letter-spacing: 5px;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    letter-spacing: -0.5px; /* Tighter tracking like the image */
+    margin-bottom: 15px;
 }
+
+.safe-text { color: #ffffff !important; }
+.comp-text { color: #88c425 !important; }
 
 .footer-branding p {
     color: rgba(255, 255, 255, 0.3);
@@ -383,8 +387,8 @@
     color: #88c425;
     font-family: monospace;
     font-weight: 900;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
     margin-bottom: 20px;
 }
 
@@ -393,14 +397,14 @@
 
 .nav-col a {
     color: #ffffff;
-    text-decoration: none;
-    font-size: 0.8rem;
-    opacity: 0.6;
+    text-decoration: underline; /* Matches the underline style in your image */
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-underline-offset: 4px;
     transition: 0.3s;
 }
 
 .nav-col a:hover {
-    opacity: 1;
     color: #88c425;
 }
 
@@ -693,7 +697,7 @@
     <div class="footer-container">
         <div class="footer-branding">
             <div class="footer-logo">
-                <span class="white-text">SAFE</span><span class="green-text">COMPLIANCE</span>
+                <span class="safe-text">SAFE</span><span class="comp-text">COMPLIANCE</span>
             </div>
             <p>© 2026 ALL RIGHTS RESERVED.</p>
         </div>
@@ -704,7 +708,7 @@
                 <ul>
                     <li><a href="#intelligence">INTELLIGENCE</a></li>
                     <li><a href="#architecture">ARCHITECTURE</a></li>
-                    <li><a href="#capabilities">CAPABILITIES</a></li>
+                    <li><a href="#capabilities-section">CAPABILITIES</a></li>
                 </ul>
             </div>
 
@@ -717,7 +721,7 @@
                 </ul>
             </div>
 
-            <div class="nav-col contact-col">
+            <div class="nav-col">
                 <label>COMMAND CENTRE</label>
                 <address>
                     124 CITY ROAD<br>
