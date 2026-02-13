@@ -154,10 +154,13 @@
 
 /* 3. SCREEN 2: ARCHITECTURE */
 #architecture {
+    height: 100vh !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    border-top: 2px solid var(--lime) !important;
     padding: 0 5% !important;
+    overflow: hidden; /* Keeps Section 2 contained */
 }
 
 #architecture .arch-grid {
@@ -168,20 +171,29 @@
     gap: 60px;
 }
 
-/* 4. SCREEN 3: CAPABILITIES (The Fix) */
 #capabilities-section {
-    display: block !important; /* Changed to block to prevent squashing cards */
-    height: auto !important;   /* Allows section to grow to fit all 8 cards */
-    padding: 100px 0 !important;
+    display: block !important; /* Forces a standard top-to-bottom layout */
+    min-height: 100vh !important;
+    height: auto !important;   /* Prevents the section from squashing its contents */
+    padding: 0 !important;      /* We will use margins on the items instead */
+    margin: 0 !important;
+    border-top: 2px solid var(--lime) !important;
     border-bottom: 2px solid var(--lime) !important;
+    background: #020617 !important;
+    position: relative;
+    overflow: visible !important; 
 }
 
 .authority-bar {
     width: 100% !important;
     background: #ffffff !important;
     color: #000b18 !important;
-    padding: 60px 0 !important;
+    
+    /* This margin creates the "gap" you need so it's not "too high" */
+    margin-top: 120px !important; 
     margin-bottom: 60px !important;
+    
+    padding: 50px 0 !important;
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
     text-align: center;
