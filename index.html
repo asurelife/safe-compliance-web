@@ -172,12 +172,22 @@
 }
 
 #capabilities-section {
-    display: block !important; 
+    height: 100vh !important;
     min-height: 100vh !important;
-    height: auto !important;
-    padding-bottom: 80px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* Centers everything between the lines */
+    align-items: center !important;
+    
+    /* Green Separation Lines */
     border-top: 2px solid var(--lime) !important;
+    border-bottom: 2px solid var(--lime) !important;
+    
     background: #020617 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important; /* Prevents content from pushing the bottom line away */
+    box-sizing: border-box !important;
 }
 
 .authority-bar {
@@ -185,18 +195,13 @@
     background: #ffffff !important;
     color: #000b18 !important;
     
-    /* SHRUNK HEIGHT: Reduced top/bottom padding */
-    padding: 30px 0 !important; 
+    /* Extreme shrink to save vertical space */
+    padding: 15px 0 !important; 
+    margin-bottom: 20px !important; 
     
-    /* POSITIONING: Pushes it down from the green line */
-    margin-top: 100px !important; 
-    margin-bottom: 50px !important;
-    
-    /* FIX TEXT OVERLAP: Force 4 distinct columns */
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
     text-align: center !important;
-    align-items: center !important;
 }
 
 /* Ensure the text inside the bar stays clean */
@@ -218,19 +223,25 @@
 .module-grid {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 20px !important;
+    gap: 12px !important; /* Tighter gap */
     padding: 0 5% !important;
     max-width: 1400px;
-    margin: 0 auto !important;
 }
 
 .module-card {
-    padding: 20px !important;
+    padding: 15px !important; /* Shrunk from 20px+ */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .module-card h3 {
-    margin: 10px 0 !important;
-    font-size: 1.1rem;
+    font-size: 1rem !important; /* Smaller titles */
+    margin: 8px 0 !important;
+}
+
+.module-card p {
+    font-size: 0.75rem !important; /* Smaller description text */
+    line-height: 1.3 !important;
 }
 
 /* 5. SCREEN 4: AUDIT */
