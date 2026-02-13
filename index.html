@@ -68,7 +68,45 @@
             padding: 100px 5%;
             box-sizing: border-box;
         }
+/* STAGE 1: THE FULL WIDTH BAR */
+.authority-bar-row {
+    background: #ffffff !important;
+    width: 100%;
+    border-top: 6px solid #88c425;
+    padding: 60px 0;
+    margin: 0;
+    display: flex; /* Forces items into a row */
+    justify-content: center;
+}
 
+ .authority-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Forces 4 columns */
+    width: 100%;
+    max-width: 1400px; /* Aligns with your main content spine */
+    padding: 0 5%; /* Matches the padding of the sections above */
+    box-sizing: border-box;
+}
+.authority-item {
+    text-align: left; /* Aligns with the left of your hero/cards */
+}
+
+.authority-item strong {
+    display: block;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #000000 !important; /* Force Black */
+    line-height: 1;
+}
+
+.authority-item span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #000000 !important; /* Force Black */
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
 /* 1. SECTION 3 WRAPPER */
 #capabilities {
     padding: 0;
