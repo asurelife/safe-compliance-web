@@ -558,6 +558,18 @@ body .authority-bar {
     .form-grid { grid-template-columns: 1fr; }
     .field-group.full-width { grid-column: span 1; }
 }
+
+        html {
+    scroll-behavior: smooth;
+    /* This creates a buffer so the header doesn't cover the section title */
+    scroll-padding-top: 100px; 
+}
+
+/* Ensure the ID is unique and not being overridden */
+#capabilities-section {
+    display: block !important;
+    min-height: auto !important;
+}
         
         h1 { font-size: clamp(2.8rem, 9vw, 6.5rem); text-transform: uppercase; line-height: 0.85; margin: 0; font-weight: 900; letter-spacing: -2px; }
         h2 { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; font-weight: 900; line-height: 1; margin-bottom: 25px; }
