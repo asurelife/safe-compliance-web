@@ -372,9 +372,10 @@
     font-family: monospace;
 }
 
+/* NAV COLUMNS */
 .footer-nav {
     display: flex;
-    gap: 60px;
+    gap: 50px;
 }
 
 .nav-col label {
@@ -387,28 +388,36 @@
     margin-bottom: 20px;
 }
 
-.nav-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-col li {
-    margin-bottom: 10px;
-}
+.nav-col ul { list-style: none; padding: 0; margin: 0; }
+.nav-col li { margin-bottom: 8px; }
 
 .nav-col a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: 0.3s;
+    font-size: 0.8rem;
     opacity: 0.6;
+    transition: 0.3s;
 }
 
 .nav-col a:hover {
     opacity: 1;
     color: #88c425;
+}
+
+.contact-col address {
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    font-family: monospace;
+}
+
+.footer-tel {
+    margin-top: 15px;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 0.85rem;
+    font-family: monospace;
 }
 
 /* Ensure the green intelligence font from your context is respected */
@@ -683,7 +692,9 @@
 <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-branding">
-            <div class="footer-logo">INTELLIGENCE</div>
+            <div class="footer-logo">
+                <span class="white-text">SAFE</span><span class="green-text">COMPLIANCE</span>
+            </div>
             <p>© 2026 ALL RIGHTS RESERVED.</p>
         </div>
         
@@ -696,6 +707,7 @@
                     <li><a href="#capabilities">CAPABILITIES</a></li>
                 </ul>
             </div>
+
             <div class="nav-col">
                 <label>LEGAL</label>
                 <ul>
@@ -703,6 +715,16 @@
                     <li><a href="#">TERMS</a></li>
                     <li><a href="#">PROTOCOLS</a></li>
                 </ul>
+            </div>
+
+            <div class="nav-col contact-col">
+                <label>COMMAND CENTRE</label>
+                <address>
+                    124 CITY ROAD<br>
+                    LONDON, EC1V 2NX<br>
+                    UNITED KINGDOM
+                </address>
+                <div class="footer-tel">+44 (0) 20 7123 4567</div>
             </div>
         </nav>
     </div>
