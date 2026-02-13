@@ -469,16 +469,18 @@ body .authority-bar {
 
 .nav-col a {
     color: #ffffff;
-    text-decoration: underline;
-    text-underline-offset: 5px;
-    font-size: 0.9rem;
-    opacity: 0.7;
+    text-decoration: none !important; /* Removes the underlines */
+    font-size: 0.85rem;
+    font-weight: 600;
     transition: 0.3s;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .nav-col a:hover {
     opacity: 1;
-    color: #88c425;
+    color: #88c425; /* Intelligence Green on hover */
 }
 
 .contact-col address {
@@ -486,6 +488,10 @@ body .authority-bar {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.85rem;
     line-height: 1.6;
+    /* Changed from monospace to match your nav links */
+    font-family: 'Inter', sans-serif; 
+    font-weight: 400;
+    margin-bottom: 10px;
 }
 
 .nav-col label {
@@ -531,9 +537,9 @@ body .authority-bar {
 .footer-tel {
     margin-top: 15px;
     color: #ffffff;
-    font-weight: 900;
+    font-weight: 700;
     font-size: 0.85rem;
-    font-family: monospace;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Ensure the green intelligence font from your context is respected */
