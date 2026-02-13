@@ -214,86 +214,101 @@
 #audit {
     background: #000b18;
     padding: 120px 0;
+    font-family: 'Inter', sans-serif;
 }
 
 .audit-container {
-    max-width: 850px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* THE SYSTEM AUDIT HEADER IN GREEN */
+/* RE-INSTATED LIME GREEN TITLE */
 .system-audit-label {
     color: #88c425 !important;
     font-family: monospace;
     font-weight: 900;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
     display: block;
-    margin-bottom: 10px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .audit-header h2 {
     color: white;
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 40px;
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin-bottom: 50px;
+    text-transform: uppercase;
 }
 
-/* THE FORM BACKGROUND BOX */
-.form-wrapper {
-    background: rgba(255, 255, 255, 0.03); /* Subtle background lift */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle frame */
-    padding: 40px;
-    border-radius: 4px;
+/* THE COMPLETE FORM BOX BACKGROUND */
+.audit-form-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0; /* Button will touch the bottom edges */
+    overflow: hidden;
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    margin-bottom: 40px; /* Space before the button */
+    padding: 50px; /* Internal spacing for inputs only */
 }
 
-.field-group.full-width {
-    grid-column: span 2;
-}
+.field-group.full-width { grid-column: span 2; }
 
 .field-group label {
     display: block;
-    text-align: left;
-    color: #88c425; /* Intelligence Green */
+    color: #88c425;
     font-family: monospace;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 900;
     margin-bottom: 12px;
+    letter-spacing: 1px;
 }
 
 .field-group input, .field-group select {
     width: 100%;
-    background: #000b18; /* Darker interior for contrast */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 18px;
+    background: #000b18;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 15px;
     color: white;
-    box-sizing: border-box;
+    font-size: 0.9rem;
+    transition: 0.3s;
 }
 
-/* THE BUTTON - ANCHORED AT BOTTOM */
-.final-submit-btn {
+.field-group input:focus {
+    border-color: #88c425;
+    outline: none;
+}
+
+/* THE FULL-WIDTH BOTTOM BUTTON */
+.execute-btn {
     width: 100%;
     background: #88c425;
     color: #000b18;
-    padding: 22px;
     border: none;
+    padding: 25px;
     font-weight: 900;
-    letter-spacing: 2px;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
     cursor: pointer;
-    transition: 0.3s ease;
-    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
 }
 
-.final-submit-btn:hover {
+.execute-btn:hover {
     background: #ffffff;
-    letter-spacing: 4px;
+}
+
+.execute-btn span {
+    margin-top: 2px;
 }
 
 /* Mobile Fix */
@@ -511,25 +526,21 @@
     <div class="audit-container">
         <div class="audit-header">
             <span class="system-audit-label">SYSTEM AUDIT</span>
-            <h2>EXECUTE PROTOCOL</h2>
-            <p>Enter estate telemetry to initialize the intelligence-led compliance framework.</p>
+            <h2>EXECUTE COMPLIANCE PROTOCOL</h2>
         </div>
 
-        <div class="form-wrapper">
-            <form class="audit-form" id="auditForm">
-                
-                <div style="display:none;">
-                    <input type="text" name="honeypot" id="honeypot">
-                </div>
+        <div class="audit-form-box">
+            <form id="auditForm">
+                <div style="display:none;"><input type="text" id="honeypot"></div>
 
                 <div class="form-grid">
                     <div class="field-group">
                         <label>ESTATE NAME</label>
-                        <input type="text" placeholder="e.g. London Central Campus" required>
+                        <input type="text" placeholder="e.g. LONDON CENTRAL" required>
                     </div>
                     <div class="field-group">
                         <label>CONTACT NAME</label>
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" placeholder="FULL NAME" required>
                     </div>
                     <div class="field-group">
                         <label>CONTACT TEL</label>
@@ -537,26 +548,29 @@
                     </div>
                     <div class="field-group">
                         <label>CONTACT EMAIL</label>
-                        <input type="email" placeholder="name@company.com" required>
+                        <input type="email" placeholder="ADMIN@ESTATE.COM" required>
                     </div>
                     <div class="field-group full-width">
                         <label>ENQUIRY OPTIONS</label>
                         <select required>
-                            <option value="" disabled selected>Select Primary Discipline...</option>
-                            <option value="water">01 WATER HYGIENE</option>
-                            <option value="fire">02 FIRE & SAFETY</option>
-                            <option value="infrastructure">03 INFRASTRUCTURE</option>
-                            <option value="accreditation">04 ACCREDITATION</option>
-                            <option value="environmental">05 ENVIRONMENTAL</option>
-                            <option value="security">06 SECURITY</option>
-                            <option value="electrical">07 ELECTRICAL</option>
-                            <option value="asbestos">08 ASBESTOS</option>
-                            <option value="full">FULL ESTATE AUDIT</option>
+                            <option value="" disabled selected>SELECT DISCIPLINE...</option>
+                            <option>01 WATER HYGIENE</option>
+                            <option>02 FIRE & SAFETY</option>
+                            <option>03 INFRASTRUCTURE</option>
+                            <option>04 ACCREDITATION</option>
+                            <option>05 ENVIRONMENTAL</option>
+                            <option>06 SECURITY</option>
+                            <option>07 ELECTRICAL</option>
+                            <option>08 ASBESTOS</option>
+                            <option>FULL ESTATE AUDIT</option>
                         </select>
                     </div>
                 </div>
-
-                <button type="submit" class="final-submit-btn">SUBMIT AUDIT REQUEST</button>
+                
+                <button type="submit" class="execute-btn">
+                    <span>EXECUTE AUDIT REQUEST</span>
+                    <i class="arrow-icon">→</i>
+                </button>
             </form>
         </div>
     </div>
