@@ -68,21 +68,22 @@
             padding: 100px 5%;
             box-sizing: border-box;
         }
+
+        /* 5. ANIMATIONS (Move your scanline here) */
+    @keyframes scanline {
+        0% { top: 0; }
+        100% { top: 100%; }
+    }
         
 /* FORCED WHITE AUTHORITY BAR */
 body .authority-bar {
-    background: #ffffff !important;
-    color: #000b18 !important;
-    width: 100% !important;
-    display: flex !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-    padding: 60px 0 !important;
-    margin: 0 !important;
-    position: relative !important;
-    z-index: 99 !important;
-    box-sizing: border-box !important;
-}
+        background: #ffffff !important;
+        color: #000b18 !important;
+        display: flex !important;
+        padding: 60px 0 !important;
+        position: relative !important;
+        z-index: 99 !important;
+    }
 
 /* STATS TEXT FORCING BLACK */
 .authority-bar .bar-item {
@@ -125,11 +126,10 @@ body .authority-bar {
 
 /* FORCE CAPABILITIES TO TOP */
 #capabilities-section {
-    min-height: auto !important; /* Overrides the 100vh causing the gap */
-    display: block !important;   /* Stops flex-centering from pushing content down */
-    padding-top: 60px !important; /* This is the ONLY space that will remain */
-    margin-top: 0 !important;
-}
+        min-height: auto !important;
+        padding: 80px 0 100px !important;
+        background: var(--navy);
+    }
 
 .module-grid {
     margin-top: 0 !important;
@@ -743,14 +743,6 @@ body .authority-bar {
             <p>Real-time digital asbestos registers and removal tracking protocols for complete estate safety.</p>
         </div>
     </div> </section>
-
-
-<style>
-@keyframes scanline {
-    0% { top: 0; }
-    100% { top: 100%; }
-}
-</style>
 
 <section id="audit">
     <div class="audit-container">
