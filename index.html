@@ -52,12 +52,21 @@
     }
 
     /* ====== SECTION FULL HEIGHT + GREEN SEPARATORS ====== */
- .fullscreen{
+.fullscreen{
   min-height: 100vh;
   position: relative;
   padding: 120px 0;
   overflow: visible;
+
+  /* restore “content enters the screen” */
+  display: flex;
+  align-items: center;
 }
+
+.fullscreen > .container{
+  width: 100%;
+}
+
     .separator-top{
       position:absolute; left:0; top:0; width:100%;
       height:3px;
@@ -1414,37 +1423,43 @@ ${notes || "(none)"}
 ---
 Submitted via SafeCompliance.com`;
 
-    // Animate SYSTEM_BOOT log
-    const bootLog = document.getElementById("bootLog");
-    const healthIndex = document.getElementById("healthIndex");
-    const liveChecks = [
-      { t: "CHECKING_SSL_CERTIFICATE...", r: "VALID" },
-      { t: "VALIDATING_NAV_LINKS...", r: "PASS" },
-      { t: "SCANNING_SECTION_RENDER...", r: "OK" },
-      { t: "VERIFYING_FORM_ENDPOINT...", r: "READY" },
-      { t: "PING_TELEMETRY_GATEWAY...", r: "OK" },
-      { t: "HASHING_ASSET_MANIFEST...", r: "DONE" },
-      { t: "AUDIT_PIPELINE_STATUS...", r: "ONLINE" }
-    ];
-    function addLiveLine(){
-      const pick = liveChecks[Math.floor(Math.random()*liveChecks.length)];
-      const line = document.createElement("div");
-      line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
-      const divider = bootLog.querySelector(".terminal-divider");
-      bootLog.insertBefore(line, divider);
+// SYSTEM_BOOT log (safe)
+const bootLog = document.getElementById("bootLog");
+const healthIndex = document.getElementById("healthIndex");
 
-      const lines = bootLog.querySelectorAll("div");
-      if (lines.length > 12){
-        bootLog.removeChild(lines[4]);
-      }
-    }
-    setInterval(addLiveLine, 1400);
+if (bootLog && healthIndex) {
+  const liveChecks = [
+    { t: "CHECKING_SSL_CERTIFICATE...", r: "VALID" },
+    { t: "VALIDATING_NAV_LINKS...", r: "PASS" },
+    { t: "SCANNING_SECTION_RENDER...", r: "OK" },
+    { t: "VERIFYING_FORM_ENDPOINT...", r: "READY" },
+    { t: "PING_TELEMETRY_GATEWAY...", r: "OK" },
+    { t: "HASHING_ASSET_MANIFEST...", r: "DONE" },
+    { t: "AUDIT_PIPELINE_STATUS...", r: "ONLINE" }
+  ];
 
-    let hi = 100;
-    setInterval(() => {
-      hi = Math.max(96, Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1))));
-      healthIndex.textContent = String(Math.round(hi));
-    }, 1200);
+  function addLiveLine() {
+    const pick = liveChecks[Math.floor(Math.random() * liveChecks.length)];
+    const line = document.createElement("div");
+    line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
+
+    const divider = bootLog.querySelector(".terminal-divider");
+    if (!divider) return;
+
+    bootLog.insertBefore(line, divider);
+
+    const lines = bootLog.querySelectorAll("div");
+    if (lines.length > 12) bootLog.removeChild(lines[4]);
+  }
+
+  setInterval(addLiveLine, 1400);
+
+  let hi = 100;
+  setInterval(() => {
+    hi = Math.max(96, Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1))));
+    healthIndex.textContent = String(Math.round(hi));
+  }, 1200);
+}
 
     // Animate KPI numbers
     function tickLiveKpis(){
