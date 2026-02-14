@@ -1544,7 +1544,7 @@ document.addEventListener("DOMContentLoaded", () => {
   auditForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    formNotice.textContent = "Transmitting audit request…";
+    if (formNotice) formNotice.textContent = "Transmitting audit request…";
 
     const payload = {
       estateName: document.getElementById("estateName").value.trim(),
@@ -1565,20 +1565,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok || !data.ok) {
-        formNotice.textContent = `Failed to send request. ${data?.error ? "Error: " + data.error : ""}`.trim();
+        if (formNotice) formNotice.textContent =
+          `Failed to send request. ${data?.error ? "Error: " + data.error : ""}`.trim();
         return;
       }
 
-      formNotice.textContent = "Request sent successfully ✅";
+      if (formNotice) formNotice.textContent = "Request sent successfully ✅";
       auditForm.reset();
-      setTimeout(() => (formNotice.textContent = ""), 7000);
+      setTimeout(() => { if (formNotice) formNotice.textContent = ""; }, 7000);
 
     } catch (err) {
-      formNotice.textContent = `Network error: ${err?.message || "Please try again."}`;
+      if (formNotice) formNotice.textContent = "Network error. Please try again.";
     }
   });
 });
 </script>
+
 
 </body>
 </html>
