@@ -1,1 +1,9 @@
+{
+  "name": "safe-compliance-web",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}
 
