@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SAFE COMPLIANCE | Intelligence-Led Estate Governance</title>
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
@@ -15,7 +14,6 @@
       --dark-blue:#0f172a;
       --lime:#82bc00;
       --white:#ffffff;
-      --text-gray:#94a3b8;
       --muted:rgba(255,255,255,.65);
       --border-white:rgba(255,255,255,.10);
       --border-white-2:rgba(255,255,255,.16);
@@ -37,7 +35,7 @@
     .container{width:min(1200px, 92vw); margin:0 auto;}
     .sr{position:absolute; left:-9999px;}
 
-    /* ====== GLOBAL “FUTURISTIC” BACKDROP ====== */
+    /* ====== FUTURISTIC BACKDROP ====== */
     .scanlines{
       position:absolute; inset:0;
       pointer-events:none;
@@ -56,7 +54,32 @@
       background:
         radial-gradient(900px 520px at 18% 10%, rgba(130,188,0,.12), transparent 60%),
         radial-gradient(900px 520px at 82% 38%, rgba(56,189,248,.08), transparent 60%);
-      opacity:1;
+    }
+
+    /* ====== SECTION FULL HEIGHT + GREEN SEPARATORS ====== */
+    .fullscreen{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:110px 0; /* gives breathing room while still "full screen" */
+      position:relative;
+      overflow:hidden;
+      background:var(--navy);
+    }
+    .separator-top{
+      position:absolute; left:0; top:0; width:100%;
+      height:3px;
+      background:linear-gradient(90deg, rgba(130,188,0,.0), rgba(130,188,0,.9), rgba(130,188,0,.0));
+      box-shadow: 0 0 18px rgba(130,188,0,.22);
+      opacity:.95;
+      pointer-events:none;
+    }
+    .separator-bottom{
+      position:absolute; left:0; bottom:0; width:100%;
+      height:1px;
+      background:rgba(130,188,0,.35);
+      box-shadow: 0 0 18px rgba(130,188,0,.14);
+      pointer-events:none;
     }
 
     /* ====== NAV ====== */
@@ -71,12 +94,20 @@
       padding:18px 0;
       gap:16px;
     }
+
+    /* FIXED LOGO SPACING */
     .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900; letter-spacing:.02em;
+      display:inline-flex;
+      align-items:baseline;
+      gap:0;                 /* removes the weird “gap” */
+      font-weight:900;
+      letter-spacing:.02em;
+      line-height:1;
+      font-size:18px;
     }
-    .brand .safe{color:#fff;}
-    .brand .comp{color:var(--lime);}
+    .brand .safe{color:#fff; padding-right:0;}
+    .brand .comp{color:var(--lime); margin-left:-1px;} /* tight join like your screenshot */
+
     .nav-links{
       display:flex; align-items:center; gap:22px;
       font-size:12px; letter-spacing:.18em;
@@ -159,14 +190,7 @@
     .mobile-menu a:last-child{border-bottom:none;}
     .mobile-menu a.active{color:var(--lime);}
 
-    /* ====== HERO / INTELLIGENCE ====== */
-    .hero{
-      position:relative;
-      padding:90px 0 70px;
-      background:var(--navy);
-      overflow:hidden;
-    }
-    .hero .container{position:relative; z-index:1;}
+    /* ====== HERO ====== */
     .statusline{
       display:flex; align-items:center; gap:10px;
       font-size:11px;
@@ -178,16 +202,16 @@
       width:6px;height:6px;border-radius:999px;background:var(--lime);
       box-shadow:0 0 16px rgba(130,188,0,.35);
     }
+
     .hero-grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
       gap:26px;
-      margin-top:18px;
       align-items:center;
+      width:100%;
     }
-    @media (max-width:980px){
-      .hero-grid{grid-template-columns:1fr;}
-    }
+    @media (max-width:980px){ .hero-grid{grid-template-columns:1fr;} }
+
     .hero h1{
       margin:18px 0 16px;
       font-size: clamp(44px, 6vw, 86px);
@@ -237,25 +261,10 @@
     }
     .terminal-lines .ok{color:rgba(130,188,0,.9); font-weight:700;}
     .terminal-lines .strong{color:#fff; font-weight:700;}
-    .terminal-divider{
-      height:1px; background:rgba(130,188,0,.35);
-      margin:10px 0 10px;
-    }
-    .terminal-big{
-      color:rgba(130,188,0,.95);
-      font-weight:900;
-      letter-spacing:.04em;
-      margin-top:10px;
-    }
+    .terminal-divider{height:1px; background:rgba(130,188,0,.35); margin:10px 0;}
+    .terminal-big{color:rgba(130,188,0,.95); font-weight:900; letter-spacing:.04em; margin-top:10px;}
 
-    /* ====== ARCHITECTURE ====== */
-    .section{
-      position:relative;
-      padding:90px 0;
-      background:var(--navy);
-      overflow:hidden;
-    }
-    .section .container{position:relative; z-index:1;}
+    /* ====== SECTION HEADERS ====== */
     .kicker{
       display:flex; align-items:center; gap:10px;
       font-size:11px;
@@ -281,16 +290,17 @@
       line-height:1.7;
     }
 
+    /* ====== ARCHITECTURE ====== */
     .arch-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:22px;
       margin-top:26px;
       align-items:start;
+      width:100%;
     }
-    @media (max-width:980px){
-      .arch-grid{grid-template-columns:1fr;}
-    }
+    @media (max-width:980px){ .arch-grid{grid-template-columns:1fr;} }
+
     .stats{
       display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;
       align-items:stretch;
@@ -304,38 +314,56 @@
       font-size:10px; letter-spacing:.28em; text-transform:uppercase;
       color:rgba(130,188,0,.85);
     }
-    .stat .value{
-      margin-top:6px;
-      font-size:26px;
-      font-weight:900;
-      letter-spacing:-.02em;
-    }
-    .stat .sub{
-      margin-top:2px;
-      font-size:12px;
-      color:rgba(255,255,255,.55);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
+    .stat .value{margin-top:6px; font-size:26px; font-weight:900; letter-spacing:-.02em;}
+    .stat .sub{margin-top:2px; font-size:12px; color:rgba(255,255,255,.55); letter-spacing:.12em; text-transform:uppercase;}
 
-    /* ====== CAPABILITIES (Option B) ====== */
-    .capabilities{
-      position:relative;
-      padding:90px 0;
-      background:var(--navy);
+    /* MOVED: Live computing ticker in Section 2 */
+    .compute-strip{
+      margin-top:14px;
+      border:1px solid rgba(130,188,0,.22);
+      background:rgba(0,0,0,.22);
+      border-radius:14px;
       overflow:hidden;
+      position:relative;
     }
-    .capabilities .container{position:relative; z-index:1;}
+    .compute-strip .label{
+      position:absolute; left:12px; top:8px;
+      font-size:10px; letter-spacing:.28em; text-transform:uppercase;
+      color:rgba(130,188,0,.75);
+      z-index:2;
+    }
+    .ticker{
+      display:flex;
+      gap:38px;
+      padding:28px 12px 12px 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      color:rgba(255,255,255,.60);
+      white-space:nowrap;
+      will-change:transform;
+      animation: scrollLeft 18s linear infinite;
+    }
+    .ticker span{opacity:.95}
+    .ticker .ok{color:rgba(130,188,0,.9); font-weight:700;}
+    .ticker .warn{color:rgba(253,224,71,.85); font-weight:700;}
+    @keyframes scrollLeft{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(-50%)}
+    }
+    .ticker-wrap{
+      display:flex;
+      width:200%;
+    }
 
+    /* ====== CAPABILITIES (kept as you love it) ====== */
     .cap-layout{
       display:grid;
       grid-template-columns: 420px 1fr;
       gap:18px;
       margin-top:26px;
+      width:100%;
     }
-    @media (max-width:980px){
-      .cap-layout{grid-template-columns:1fr;}
-    }
+    @media (max-width:980px){ .cap-layout{grid-template-columns:1fr;} }
 
     .panel{
       border:1px solid var(--border-white);
@@ -352,21 +380,13 @@
       box-shadow: inset 0 0 0 1px rgba(130,188,0,.06);
     }
 
-    /* Left list */
     .cap-list{padding:14px;}
-    .cap-list-top{
-      display:flex; align-items:center; justify-content:space-between;
-      margin-bottom:10px;
-    }
+    .cap-list-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
     .cap-list-title{
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
+      font-size:11px; letter-spacing:.28em; text-transform:uppercase;
       color:rgba(130,188,0,.9);
     }
-    .cap-list-count{
-      font-size:11px; color:rgba(255,255,255,.5);
-    }
+    .cap-list-count{font-size:11px; color:rgba(255,255,255,.5);}
     .cap-items{display:flex; flex-direction:column; gap:10px;}
     .cap-item{
       width:100%;
@@ -379,30 +399,18 @@
       transition:.18s ease;
       text-align:left;
     }
-    .cap-item:hover{
-      border-color:rgba(255,255,255,.22);
-      background:rgba(255,255,255,.04);
-    }
+    .cap-item:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.04);}
     .cap-item.active{
       border-color:rgba(130,188,0,.40);
       background:rgba(130,188,0,.06);
       box-shadow:0 0 0 1px rgba(130,188,0,.18);
     }
     .cap-item-left{width:92px; flex:0 0 92px;}
-    .cap-index{
-      font-size:10px;
-      letter-spacing:.30em;
-      color:rgba(130,188,0,.80);
-    }
+    .cap-index{font-size:10px; letter-spacing:.30em; color:rgba(130,188,0,.80);}
     .cap-index.big{font-size:12px;}
     .cap-status{margin-top:6px; display:flex; align-items:center; gap:8px;}
     .s-dot{width:6px;height:6px;border-radius:999px; display:inline-block;}
-    .s-text{
-      font-size:10px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      font-weight:700;
-    }
+    .s-text{font-size:10px; letter-spacing:.22em; text-transform:uppercase; font-weight:700;}
     .monitoring{color:rgba(130,188,0,.85);}
     .monitoring.s-dot{background:rgba(130,188,0,.95);}
     .activeS{color:rgba(52,211,153,.95);}
@@ -412,14 +420,7 @@
 
     .cap-item-mid{min-width:0; flex:1;}
     .cap-item-row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
-    .cap-title{
-      font-size:13px;
-      font-weight:800;
-      letter-spacing:.08em;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
+    .cap-title{font-size:13px; font-weight:800; letter-spacing:.08em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
     .cap-pill{
       flex:0 0 auto;
       border:1px solid rgba(255,255,255,.10);
@@ -440,11 +441,7 @@
       -webkit-box-orient:vertical;
       overflow:hidden;
     }
-    .cap-arrow{
-      color:rgba(255,255,255,.45);
-      margin-top:2px;
-      transition:.18s ease;
-    }
+    .cap-arrow{color:rgba(255,255,255,.45); margin-top:2px; transition:.18s ease;}
     .cap-item:hover .cap-arrow{color:rgba(255,255,255,.75);}
     .cap-item.active .cap-arrow{color:rgba(163,230,53,.95);}
 
@@ -465,16 +462,10 @@
       margin-bottom:6px;
     }
 
-    /* Right detail panel */
     .cap-panel{padding:18px;}
-    .cap-panel-top{
-      display:flex; align-items:flex-start; justify-content:space-between;
-      gap:14px; flex-wrap:wrap;
-    }
+    .cap-panel-top{display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap;}
     .cap-panel-meta{
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
+      font-size:11px; letter-spacing:.28em; text-transform:uppercase;
       display:flex; align-items:center; gap:10px;
       color:rgba(255,255,255,.60);
     }
@@ -487,32 +478,12 @@
       padding:12px 14px;
       min-width:200px;
     }
-    .status-label{
-      font-size:10px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.45);
-    }
-    .status-value{
-      margin-top:6px;
-      display:flex; align-items:center; gap:10px;
-    }
+    .status-label{font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:rgba(255,255,255,.45);}
+    .status-value{margin-top:6px; display:flex; align-items:center; gap:10px;}
     .status-value .s-text{font-size:11px;}
-    .cap-panel-title{
-      margin-top:14px;
-      display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
-    }
-    .cap-panel-title h3{
-      margin:0;
-      font-size: clamp(22px, 2.6vw, 34px);
-      font-weight:900;
-      letter-spacing:-.02em;
-    }
-    .cap-panel-blurb{
-      margin:12px 0 0;
-      color:rgba(255,255,255,.70);
-      max-width:860px;
-    }
+    .cap-panel-title{margin-top:14px; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+    .cap-panel-title h3{margin:0; font-size: clamp(22px, 2.6vw, 34px); font-weight:900; letter-spacing:-.02em;}
+    .cap-panel-blurb{margin:12px 0 0; color:rgba(255,255,255,.70); max-width:860px;}
 
     .cap-kpis{
       margin-top:16px;
@@ -520,34 +491,16 @@
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap:10px;
     }
-    @media (max-width:720px){
-      .cap-kpis{grid-template-columns:1fr;}
-    }
+    @media (max-width:720px){ .cap-kpis{grid-template-columns:1fr;} }
     .kpi{
       border:1px solid rgba(255,255,255,.10);
       background:rgba(0,0,0,.22);
       border-radius:14px;
       padding:12px 14px;
     }
-    .kpi .k-label{
-      font-size:10px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:rgba(130,188,0,.80);
-    }
-    .kpi .k-value{
-      margin-top:8px;
-      font-weight:900;
-      font-size:22px;
-      letter-spacing:-.02em;
-    }
-    .kpi .k-sub{
-      margin-top:4px;
-      font-size:11px;
-      color:rgba(255,255,255,.45);
-      letter-spacing:.22em;
-      text-transform:uppercase;
-    }
+    .kpi .k-label{font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:rgba(130,188,0,.80);}
+    .kpi .k-value{margin-top:8px; font-weight:900; font-size:22px; letter-spacing:-.02em;}
+    .kpi .k-sub{margin-top:4px; font-size:11px; color:rgba(255,255,255,.45); letter-spacing:.22em; text-transform:uppercase;}
 
     .cap-columns{
       margin-top:14px;
@@ -555,9 +508,7 @@
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap:10px;
     }
-    @media (max-width:980px){
-      .cap-columns{grid-template-columns:1fr;}
-    }
+    @media (max-width:980px){ .cap-columns{grid-template-columns:1fr;} }
     .cap-box{
       border:1px solid rgba(255,255,255,.10);
       background:rgba(0,0,0,.22);
@@ -568,20 +519,9 @@
       border-color:rgba(130,188,0,.25);
       background:rgba(130,188,0,.05);
     }
-    .cap-box-head{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      margin-bottom:10px;
-    }
-    .cap-box-title{
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:rgba(130,188,0,.90);
-    }
-    .cap-box-count{
-      font-size:11px;
-      color:rgba(255,255,255,.40);
-    }
+    .cap-box-head{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px;}
+    .cap-box-title{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:rgba(130,188,0,.90);}
+    .cap-box-count{font-size:11px; color:rgba(255,255,255,.40);}
     .cap-box-list{display:flex; flex-direction:column; gap:8px;}
     .cap-tag{
       display:flex; align-items:center; gap:10px;
@@ -605,7 +545,6 @@
       box-shadow:0 0 14px rgba(130,188,0,.22);
       flex:0 0 6px;
     }
-
     .cap-actionbar{
       margin-top:16px;
       display:flex;
@@ -614,27 +553,13 @@
       gap:14px;
       flex-wrap:wrap;
     }
-    .cap-actiontext{
-      font-size:12px;
-      color:rgba(255,255,255,.55);
-    }
+    .cap-actiontext{font-size:12px; color:rgba(255,255,255,.55);}
     .cap-actiontext .lime{color:rgba(130,188,0,.9); font-weight:800;}
     .cap-actiontext .sep{color:rgba(255,255,255,.28); margin:0 6px;}
     .cap-actions{display:flex; gap:10px; flex-wrap:wrap;}
 
     /* ====== EXECUTE AUDIT ====== */
-    .audit{
-      position:relative;
-      padding:90px 0;
-      background:var(--navy);
-      overflow:hidden;
-    }
-    .audit .container{position:relative; z-index:1;}
-    .audit-center{
-      display:grid;
-      place-items:center;
-      margin-top:24px;
-    }
+    .audit-center{display:grid; place-items:center; width:100%; margin-top:24px;}
     .audit-card{
       width:min(900px, 92vw);
       border:1px solid var(--border-white);
@@ -659,15 +584,8 @@
       letter-spacing:-.02em;
       margin:0 0 18px;
     }
-    .form-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:14px;
-    }
-    @media (max-width:780px){
-      .form-grid{grid-template-columns:1fr;}
-    }
+    .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px;}
+    @media (max-width:780px){ .form-grid{grid-template-columns:1fr;} }
     label{
       display:block;
       font-size:10px;
@@ -693,44 +611,34 @@
       box-shadow:0 0 0 3px rgba(130,188,0,.10);
     }
     textarea{min-height:120px; resize:vertical;}
-    .audit-actions{
-      margin-top:18px;
-      display:flex; justify-content:center;
-    }
-    .audit-actions .btn{
-      width:min(520px, 100%);
-      padding:18px 18px;
-      border-radius:16px;
-      font-size:12px;
-    }
-    .notice{
-      margin-top:12px;
-      text-align:center;
-      color:rgba(255,255,255,.50);
-      font-size:12px;
-    }
+    .audit-actions{margin-top:18px; display:flex; justify-content:center;}
+    .audit-actions .btn{width:min(520px, 100%); padding:18px 18px; border-radius:16px; font-size:12px;}
+    .notice{margin-top:12px; text-align:center; color:rgba(255,255,255,.50); font-size:12px;}
 
-    /* ====== FOOTER ====== */
+    /* ====== FOOTER (added Legal column) ====== */
     footer{
       border-top:1px solid rgba(255,255,255,.06);
       background:linear-gradient(to top, rgba(2,6,23,.98), rgba(2,6,23,.88));
       padding:60px 0;
+      position:relative;
+      overflow:hidden;
     }
+    footer .separator-top{top:0;}
     .footer-grid{
       display:grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr; /* added column */
       gap:18px;
       align-items:start;
     }
-    @media (max-width:980px){
-      .footer-grid{grid-template-columns:1fr;}
-    }
+    @media (max-width:980px){ .footer-grid{grid-template-columns:1fr;} }
     .footer-brand{
       font-weight:900;
       letter-spacing:.02em;
       font-size:20px;
       margin-bottom:10px;
+      line-height:1;
     }
+    .footer-brand .comp{color:var(--lime); margin-left:-1px;}
     .footer-meta{
       color:rgba(255,255,255,.55);
       font-size:12px;
@@ -753,12 +661,7 @@
     }
     .footer-links a:last-child{border-bottom:none;}
     .footer-links a:hover{color:#fff;}
-    .footer-contact{
-      color:rgba(255,255,255,.70);
-      line-height:1.8;
-    }
-
-    /* utility spacing between sections on small screens */
+    .footer-contact{color:rgba(255,255,255,.70); line-height:1.8;}
     .mt-26{margin-top:26px;}
   </style>
 </head>
@@ -794,8 +697,10 @@
     </div>
   </header>
 
-  <!-- INTELLIGENCE (Hero) -->
-  <section id="intelligence" class="hero">
+  <!-- INTELLIGENCE -->
+  <section id="intelligence" class="fullscreen hero">
+    <div class="separator-top"></div>
+    <div class="separator-bottom"></div>
     <div class="scanlines"></div>
     <div class="glow"></div>
 
@@ -825,7 +730,7 @@
 
         <div class="terminal" aria-label="System console panel">
           <div class="terminal-head">
-            <span>COMMAND_LAYER_ESTABLISHED</span>
+            <span>SYSTEM_CONSOLE</span>
             <span class="ok">LIVE</span>
           </div>
           <div class="terminal-lines">
@@ -843,12 +748,43 @@
   </section>
 
   <!-- ARCHITECTURE -->
-  <section id="architecture" class="section">
+  <section id="architecture" class="fullscreen">
+    <div class="separator-top"></div>
+    <div class="separator-bottom"></div>
     <div class="scanlines"></div>
     <div class="glow"></div>
 
     <div class="container">
-      <div class="kicker"><span class="dot"></span> COMMAND_LAYER_ESTABLISHED</div>
+      <div class="kicker"><span class="dot"></span> ARCHITECTURE // CENTRAL COMMAND</div>
+
+      <!-- moved + animated “computing” strip -->
+      <div class="compute-strip" aria-label="Live computing ticker">
+        <div class="label">COMMAND_LAYER_ESTABLISHED</div>
+
+        <!-- doubled content for seamless scroll -->
+        <div class="ticker-wrap">
+          <div class="ticker" aria-hidden="true">
+            <span><span class="ok">&gt;</span> INIT_UPLINK</span>
+            <span><span class="ok">&gt;</span> LOAD_COMPLIANCE_ENGINE</span>
+            <span><span class="ok">&gt;</span> SYNC_TELEMETRY_NODES</span>
+            <span><span class="ok">&gt;</span> MAP_PORTFOLIO_REGISTERS</span>
+            <span><span class="warn">&gt;</span> VERIFY_EVIDENCE_PACKS</span>
+            <span><span class="ok">&gt;</span> HARDEN_AES256</span>
+            <span><span class="ok">&gt;</span> RISK_MODEL_ONLINE</span>
+            <span><span class="ok">&gt;</span> HEALTH_INDEX_STABLE</span>
+
+            <span><span class="ok">&gt;</span> INIT_UPLINK</span>
+            <span><span class="ok">&gt;</span> LOAD_COMPLIANCE_ENGINE</span>
+            <span><span class="ok">&gt;</span> SYNC_TELEMETRY_NODES</span>
+            <span><span class="ok">&gt;</span> MAP_PORTFOLIO_REGISTERS</span>
+            <span><span class="warn">&gt;</span> VERIFY_EVIDENCE_PACKS</span>
+            <span><span class="ok">&gt;</span> HARDEN_AES256</span>
+            <span><span class="ok">&gt;</span> RISK_MODEL_ONLINE</span>
+            <span><span class="ok">&gt;</span> HEALTH_INDEX_STABLE</span>
+          </div>
+        </div>
+      </div>
+
       <div class="arch-grid">
         <div>
           <h2 class="title">Centralised Dominance.</h2>
@@ -892,8 +828,10 @@
     </div>
   </section>
 
-  <!-- CAPABILITIES (Option B: list + detail panel) -->
-  <section id="capabilities" class="capabilities">
+  <!-- CAPABILITIES (unchanged layout, still full-screen) -->
+  <section id="capabilities" class="fullscreen">
+    <div class="separator-top"></div>
+    <div class="separator-bottom"></div>
     <div class="scanlines"></div>
     <div class="glow"></div>
 
@@ -905,16 +843,13 @@
       </p>
 
       <div class="cap-layout">
-        <!-- LEFT -->
         <aside class="panel cap-list">
           <div class="cap-list-top">
             <div class="cap-list-title">MODULE LIST</div>
             <div class="cap-list-count"><span id="moduleCount">08</span> modules</div>
           </div>
 
-          <div class="cap-items" id="capItems">
-            <!-- buttons injected by JS (keeps it clean & editable) -->
-          </div>
+          <div class="cap-items" id="capItems"></div>
 
           <div class="cap-tip">
             <div class="cap-tip-title">TIP</div>
@@ -924,7 +859,6 @@
           <div class="inner-frame"></div>
         </aside>
 
-        <!-- RIGHT -->
         <div class="panel cap-panel" aria-live="polite">
           <div class="cap-panel-top">
             <div class="cap-panel-meta">
@@ -994,7 +928,9 @@
   </section>
 
   <!-- EXECUTE AUDIT -->
-  <section id="execute-audit" class="audit">
+  <section id="execute-audit" class="fullscreen">
+    <div class="separator-top"></div>
+    <div class="separator-bottom"></div>
     <div class="scanlines"></div>
     <div class="glow"></div>
 
@@ -1061,11 +997,15 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="container">
+    <div class="separator-top"></div>
+    <div class="scanlines"></div>
+    <div class="glow"></div>
+
+    <div class="container" style="position:relative; z-index:1;">
       <div class="footer-grid">
         <div>
           <div class="footer-brand">
-            <span class="safe">SAFE</span><span class="comp" style="color:var(--lime);">COMPLIANCE</span>
+            <span class="safe">SAFE</span><span class="comp">COMPLIANCE</span>
           </div>
           <div class="footer-meta">
             ESTABLISHED 2026 // VERSION 4.0.1<br/>
@@ -1080,6 +1020,15 @@
             <a href="#architecture">Architecture</a>
             <a href="#capabilities">Capabilities</a>
             <a href="#execute-audit">Execute Audit</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">LEGAL</div>
+          <div class="footer-links">
+            <a href="#terms">Terms</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#protocols">Protocols</a>
           </div>
         </div>
 
@@ -1099,14 +1048,12 @@
     // ===== Mobile menu =====
     const hamburger = document.getElementById("hamburger");
     const mobileMenu = document.getElementById("mobileMenu");
-    hamburger?.addEventListener("click", () => {
-      mobileMenu.classList.toggle("open");
-    });
+    hamburger?.addEventListener("click", () => mobileMenu.classList.toggle("open"));
     mobileMenu?.addEventListener("click", (e) => {
       if (e.target && e.target.tagName === "A") mobileMenu.classList.remove("open");
     });
 
-    // ===== Capabilities data (edit text here freely) =====
+    // ===== Capabilities data =====
     const CAPS = [
       {
         id: "water",
@@ -1328,7 +1275,6 @@
       const cap = CAPS.find(c => c.id === id) || CAPS[0];
       const sClass = statusToClass(cap.status);
 
-      // Update right panel
       panelCategory.textContent = cap.category;
       panelIndex.textContent = `[${cap.index}]`;
       panelTitle.textContent = cap.title;
@@ -1347,15 +1293,13 @@
       outputsCount.textContent = String(cap.outputs.length).padStart(2,"0") + "x";
       protocolsCount.textContent = String(cap.protocols.length).padStart(2,"0") + "x";
 
-      // Update left list active state
       renderLeftList(cap.id);
     }
 
-    // Initial render
     renderLeftList(CAPS[0].id);
     setActive(CAPS[0].id);
 
-    // ===== Nav active highlighting on scroll =====
+    // Nav active highlighting on scroll
     const navLinks = Array.from(document.querySelectorAll(".nav-link"));
     const sections = ["intelligence","architecture","capabilities","execute-audit"]
       .map(id => document.getElementById(id))
@@ -1374,10 +1318,9 @@
 
     sections.forEach(sec => observer.observe(sec));
 
-    // ===== Execute Audit form (demo behaviour) =====
+    // Execute Audit form demo
     const auditForm = document.getElementById("auditForm");
     const formNotice = document.getElementById("formNotice");
-
     auditForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(auditForm);
@@ -1390,5 +1333,6 @@
   </script>
 </body>
 </html>
+
 
 
