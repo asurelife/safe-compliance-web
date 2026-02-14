@@ -1417,7 +1417,7 @@ ${notes || "(none)"}
 ---
 Submitted via SafeCompliance.com`;
 
-      try {
+try {
   formNotice.textContent = "Transmitting audit request...";
 
   const payload = {
@@ -1448,13 +1448,6 @@ Submitted via SafeCompliance.com`;
 } catch (err) {
   formNotice.textContent = "Network error. Please try again.";
 }
-
-
-      formNotice.textContent = "Opening your email client to send this request to hello@safecompliance.com...";
-      setTimeout(() => (formNotice.textContent = ""), 6500);
-
-      auditForm.reset();
-    });
 
     // Animate SYSTEM_BOOT log
     const bootLog = document.getElementById("bootLog");
@@ -1532,47 +1525,48 @@ Submitted via SafeCompliance.com`;
   </script>
 <script>
   (function () {
-    const auditForm = document.getElementById("auditForm");
-    const formNotice = document.getElementById("formNotice");
+const auditForm = document.getElementById("auditForm");
+const formNotice = document.getElementById("formNotice");
 
-    if (!auditForm) return;
+if (auditForm) {
+  auditForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    auditForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      formNotice.textContent = "Transmitting audit request…";
+    try {
+      formNotice.textContent = "Transmitting audit request...";
 
       const payload = {
-        estateName: document.getElementById("estateName")?.value?.trim(),
-        contactName: document.getElementById("contactName")?.value?.trim(),
-        contactTel: document.getElementById("contactTel")?.value?.trim(),
-        contactEmail: document.getElementById("contactEmail")?.value?.trim(),
-        discipline: document.getElementById("discipline")?.value?.trim(),
-        notes: document.getElementById("notes")?.value?.trim(),
+        estateName: document.getElementById("estateName").value.trim(),
+        contactName: document.getElementById("contactName").value.trim(),
+        contactTel: document.getElementById("contactTel").value.trim(),
+        contactEmail: document.getElementById("contactEmail").value.trim(),
+        discipline: document.getElementById("discipline").value.trim(),
+        notes: document.getElementById("notes").value.trim(),
       };
 
-      try {
-        const res = await fetch("/api/audit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+      const res = await fetch("/api/audit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-        const data = await res.json().catch(() => ({}));
+      const data = await res.json().catch(() => ({}));
 
-        if (!res.ok) {
-          formNotice.textContent = data.message || "Failed to send request. Please try again.";
-          return;
-        }
-
-        formNotice.textContent = "Audit request sent successfully. We'll respond shortly.";
-        auditForm.reset();
-        setTimeout(() => (formNotice.textContent = ""), 5000);
-      } catch (err) {
-        formNotice.textContent = "Network error. Please try again.";
+      if (!res.ok) {
+        formNotice.textContent =
+          data.message || "Failed to send request. Please try again.";
+        return;
       }
-    });
-  })();
+
+      formNotice.textContent = "Audit request sent successfully.";
+      auditForm.reset();
+      setTimeout(() => (formNotice.textContent = ""), 5000);
+    } catch (err) {
+      formNotice.textContent = "Network error. Please try again.";
+    }
+  });
+}
+
 </script>
 
 </body>
