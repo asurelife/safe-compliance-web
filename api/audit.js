@@ -31,42 +31,42 @@ export default async function handler(req, res) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const subject = `Safe Compliance Audit Request — ${estateName}`;
-    const text = [
-      "NEW AUDIT REQUEST",
-      "",
-      `ESTATE: ${estateName}`,
-      `DISCIPLINE: ${discipline}`,
-      "",
-      `CONTACT NAME: ${contactName}`,
-      `CONTACT EMAIL: ${contactEmail}`,
-      `CONTACT TEL: ${contactTel || "(not provided)"}`,
-      "",
-      "NOTES:",
-      notes?.trim() ? notes.trim() : "(none)",
-      "",
-      "---",
-      "Submitted via SafeCompliance.com",
-    ].join("\n");
+const text = [
+  "NEW AUDIT REQUEST",
+  "",
+  `ESTATE: ${estateName}`,
+  `DISCIPLINE: ${discipline}`,
+  "",
+  `CONTACT NAME: ${contactName}`,
+  `CONTACT EMAIL: ${contactEmail}`,
+  `CONTACT TEL: ${contactTel || "(not provided)"}`,
+  "",
+  "NOTES:",
+  notes?.trim() ? notes.trim() : "(none)",
+  "",
+  "----",
+  "Submitted via SafeCompliance.com",
+].join("\n");
+"Submitted via SafeCompliance.com",
+`;
 
-    // IMPORTANT:
-    // - If you haven't verified your domain in Resend, use onboarding@resend.dev as FROM
-    // - Once you verify safecompliance.com, switch FROM to e.g. audits@safecompliance.com
-    const { data, error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "hello@safecompliance.com",
-      replyTo: contactEmail,
+    const { error } = await resend.emails.send({
+      from: process.env.FROM_EMAIL,
+      to: process.env.TO_EMAIL,
+      reply_to: contactEmail,
       subject,
       text,
     });
 
     if (error) {
-      console.error("Resend error:", error);
-      return res.status(500).json({ message: "Email provider error" });
+      console.error(error);
+      return res.status(500).json({ message: "Email send failed" });
     }
 
-    return res.status(200).json({ success: true, id: data?.id });
+    return res.status(200).json({ success: true });
+
   } catch (err) {
-    console.error("Server error:", err);
+    console.error(err);
     return res.status(500).json({ message: "Server error" });
   }
 }
