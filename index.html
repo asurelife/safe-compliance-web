@@ -51,16 +51,32 @@
         radial-gradient(900px 520px at 82% 38%, rgba(56,189,248,.08), transparent 60%);
     }
 
+    /* Capabilities: allow internal scrolling so content isn't clipped */
+#capabilities{
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* Keep separators visible while scrolling inside Capabilities */
+#capabilities .separator-top,
+#capabilities .separator-bottom{
+  position: sticky;
+  left: 0;
+  right: 0;
+  z-index: 6;
+}
+
+#capabilities .separator-top{ top: 0; }
+#capabilities .separator-bottom{ bottom: 0; }
+
+
     /* ====== SECTION FULL HEIGHT + GREEN SEPARATORS ====== */
-    .fullscreen{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      padding:110px 0;
-      position:relative;
-      overflow:hidden;
-      background:var(--navy);
-    }
+.fullscreen{
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
     .separator-top{
       position:absolute; left:0; top:0; width:100%;
       height:3px;
@@ -717,6 +733,31 @@
     }
     .footer-lines .line:last-child{border-bottom:none;}
     .footer-lines .muted{color:rgba(255,255,255,.55)}
+
+    /* Allow scroll only in Capabilities so content isn't clipped */
+.scroll-section{
+  overflow:auto;                  /* enables scrolling */
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width: thin;
+}
+
+/* Optional: keep the separators fixed while scrolling */
+.scroll-section .separator-top,
+.scroll-section .separator-bottom{
+  position: sticky;
+  left: 0;
+  right: 0;
+  z-index: 6;
+}
+.scroll-section .separator-top{ top: 0; }
+.scroll-section .separator-bottom{ bottom: 0; }
+
+/* Ensure your content sits above scanlines/glow */
+.scroll-section .container{
+  position: relative;
+  z-index: 3;
+}
+
   </style>
 </head>
 
@@ -868,7 +909,7 @@
   </section>
 
   <!-- CAPABILITIES -->
-  <section id="capabilities" class="fullscreen">
+  <section id="capabilities" class="fullscreen scroll-section">
     <div class="separator-top"></div>
     <div class="separator-bottom"></div>
     <div class="scanlines"></div>
