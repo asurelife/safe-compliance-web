@@ -1,553 +1,1394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAFE COMPLIANCE | Precision Estate Governance</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root { 
-            --navy: #020617; 
-            --lime: #82bc00; 
-            --white: #ffffff; 
-            --text-gray: #94a3b8; 
-            --dark-blue: #0f172a; 
-            --border-white: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* --- CORE ARCHITECTURE --- */
-        html { 
-            scroll-behavior: smooth; 
-            scroll-padding-top: 70px; 
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAFE COMPLIANCE | Intelligence-Led Estate Governance</title>
 
-        body { 
-            margin: 0; 
-            background: var(--navy); 
-            color: var(--white); 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            overflow-x: hidden; 
-        }
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
-        /* --- STICKY NAVIGATION --- */
-        .sticky-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-            z-index: 1000; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-white);
-            display: flex; justify-content: center; align-items: center;
-        }
+  <style>
+    :root{
+      --navy:#020617;
+      --navy-2:#050A18;
+      --dark-blue:#0f172a;
+      --lime:#82bc00;
+      --white:#ffffff;
+      --text-gray:#94a3b8;
+      --muted:rgba(255,255,255,.65);
+      --border-white:rgba(255,255,255,.10);
+      --border-white-2:rgba(255,255,255,.16);
+      --panel:rgba(255,255,255,.03);
+      --panel2:rgba(0,0,0,.22);
+      --shadow:0 0 0 1px rgba(255,255,255,.06);
+    }
 
-        .nav-container {
-            width: 90%; max-width: 1400px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth; scroll-padding-top:84px;}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--white);
+      background:var(--navy);
+      line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1200px, 92vw); margin:0 auto;}
+    .sr{position:absolute; left:-9999px;}
 
-        .logo { 
-            color: #ffffff !important; font-weight: 900; font-size: 1.3rem; 
-            text-transform: uppercase; text-decoration: none; letter-spacing: -0.5px; 
-        }
-        .logo span { color: var(--lime); }
+    /* ====== GLOBAL “FUTURISTIC” BACKDROP ====== */
+    .scanlines{
+      position:absolute; inset:0;
+      pointer-events:none;
+      opacity:.08;
+      background:
+        repeating-linear-gradient(to bottom,
+          rgba(255,255,255,.12) 0px,
+          rgba(255,255,255,.12) 1px,
+          transparent 2px,
+          transparent 6px
+        );
+    }
+    .glow{
+      position:absolute; inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 520px at 18% 10%, rgba(130,188,0,.12), transparent 60%),
+        radial-gradient(900px 520px at 82% 38%, rgba(56,189,248,.08), transparent 60%);
+      opacity:1;
+    }
 
-        .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a {
-            color: #94a3b8 !important; text-decoration: none !important;
-            transition: 0.3s; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
-        }
-        /* Intelligence Green Persistence */
-.nav-links a[href="#home-hero"], 
-.nav-links a.intelligence-link { 
-    color: var(--lime) !important; 
-}
+    /* ====== NAV ====== */
+    .nav{
+      position:sticky; top:0; z-index:1000;
+      background:linear-gradient(to bottom, rgba(2,6,23,.92), rgba(2,6,23,.78));
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 0;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900; letter-spacing:.02em;
+    }
+    .brand .safe{color:#fff;}
+    .brand .comp{color:var(--lime);}
+    .nav-links{
+      display:flex; align-items:center; gap:22px;
+      font-size:12px; letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.70);
+      white-space:nowrap;
+    }
+    .nav-links a{
+      padding:8px 0;
+      border-bottom:1px solid transparent;
+      transition:.18s ease;
+    }
+    .nav-links a:hover{color:#fff;}
+    .nav-links a.active{
+      color:var(--lime);
+      border-bottom-color:rgba(130,188,0,.55);
+    }
 
-/* Footer Link Cleanup */
-.nav-col a {
-    text-decoration: none !important;
-    transition: 0.3s;
-}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:14px;
+      padding:14px 18px;
+      font-size:12px; letter-spacing:.22em;
+      text-transform:uppercase;
+      font-weight:800;
+      border:1px solid var(--border-white-2);
+      background:transparent;
+      color:rgba(255,255,255,.88);
+      transition:.18s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{border-color:rgba(255,255,255,.28); background:rgba(255,255,255,.04);}
+    .btn.primary{
+      background:var(--lime);
+      color:#000;
+      border-color:rgba(130,188,0,.6);
+    }
+    .btn.primary:hover{background:#9be300;}
+    .btn.ghost{
+      background:rgba(255,255,255,.03);
+      border-color:rgba(255,255,255,.14);
+    }
 
-        /* PERMANENT GREEN FOR INTELLIGENCE */
-        .intelligence-link { color: var(--lime) !important; }
-        .nav-links a:hover { color: var(--lime) !important; }
+    .nav-cta{display:flex; gap:10px; align-items:center;}
+    .hamburger{
+      display:none;
+      width:44px; height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      cursor:pointer;
+    }
+    .hamburger span{display:block; height:2px; width:18px; margin:0 auto; background:rgba(255,255,255,.75); position:relative;}
+    .hamburger span:before,.hamburger span:after{
+      content:""; position:absolute; left:0; width:18px; height:2px;
+      background:rgba(255,255,255,.75);
+    }
+    .hamburger span:before{top:-6px;}
+    .hamburger span:after{top:6px;}
+    @media (max-width:900px){
+      .nav-links{display:none;}
+      .hamburger{display:inline-flex; align-items:center; justify-content:center;}
+    }
+    .mobile-menu{
+      display:none;
+      border-top:1px solid rgba(255,255,255,.06);
+      padding:12px 0 18px;
+    }
+    .mobile-menu.open{display:block;}
+    .mobile-menu a{
+      display:block;
+      padding:12px 0;
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.78);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .mobile-menu a:last-child{border-bottom:none;}
+    .mobile-menu a.active{color:var(--lime);}
 
-        .audit-btn-header {
-            color: var(--lime) !important; border: 1px solid var(--lime);
-            padding: 8px 16px; font-size: 0.75rem; font-weight: 900;
-            text-decoration: none !important; transition: 0.3s;
-        }
-        .audit-btn-header:hover { background: var(--lime); color: var(--navy) !important; }
+    /* ====== HERO / INTELLIGENCE ====== */
+    .hero{
+      position:relative;
+      padding:90px 0 70px;
+      background:var(--navy);
+      overflow:hidden;
+    }
+    .hero .container{position:relative; z-index:1;}
+    .statusline{
+      display:flex; align-items:center; gap:10px;
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.85);
+    }
+    .statusline .dot{
+      width:6px;height:6px;border-radius:999px;background:var(--lime);
+      box-shadow:0 0 16px rgba(130,188,0,.35);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:26px;
+      margin-top:18px;
+      align-items:center;
+    }
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr;}
+    }
+    .hero h1{
+      margin:18px 0 16px;
+      font-size: clamp(44px, 6vw, 86px);
+      line-height:.92;
+      letter-spacing:-.03em;
+      font-weight:900;
+    }
+    .hero h1 .break{display:block;}
+    .hero p{
+      max-width:680px;
+      color:rgba(255,255,255,.68);
+      font-size:16px;
+      line-height:1.7;
+      margin:0 0 26px;
+    }
+    .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
 
-        /* --- HERO: INTELLIGENCE LAYER --- */
-        #home-hero {
-            min-height: 100vh; display: flex; align-items: center;
-            padding: 100px 5%; box-sizing: border-box; position: relative;
-        }
+    .terminal{
+      border:1px solid var(--border-white);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .terminal:before{
+      content:"";
+      position:absolute; inset:0;
+      box-shadow:inset 0 0 0 1px rgba(130,188,0,.06);
+      pointer-events:none;
+      border-radius:18px;
+    }
+    .terminal-head{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:10px;
+      font-size:11px;
+      letter-spacing:.26em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+    }
+    .terminal-lines{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      color:rgba(255,255,255,.62);
+      line-height:1.75;
+    }
+    .terminal-lines .ok{color:rgba(130,188,0,.9); font-weight:700;}
+    .terminal-lines .strong{color:#fff; font-weight:700;}
+    .terminal-divider{
+      height:1px; background:rgba(130,188,0,.35);
+      margin:10px 0 10px;
+    }
+    .terminal-big{
+      color:rgba(130,188,0,.95);
+      font-weight:900;
+      letter-spacing:.04em;
+      margin-top:10px;
+    }
 
-        .hero-content { max-width: 1100px; z-index: 2; }
-        
-        .status-line { 
-            display: flex; align-items: center; gap: 12px; color: var(--lime); 
-            font-weight: 900; font-size: 0.75rem; letter-spacing: 3px; margin-bottom: 30px; 
-        }
-        .pulse-dot { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 10px var(--lime); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    /* ====== ARCHITECTURE ====== */
+    .section{
+      position:relative;
+      padding:90px 0;
+      background:var(--navy);
+      overflow:hidden;
+    }
+    .section .container{position:relative; z-index:1;}
+    .kicker{
+      display:flex; align-items:center; gap:10px;
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.9);
+    }
+    .kicker .dot{
+      width:6px;height:6px;border-radius:999px;background:var(--lime);
+      box-shadow:0 0 16px rgba(130,188,0,.35);
+    }
+    .title{
+      margin:14px 0 10px;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight:900;
+      letter-spacing:-.02em;
+      line-height:1.05;
+    }
+    .lead{
+      margin:0;
+      max-width:720px;
+      color:rgba(255,255,255,.70);
+      line-height:1.7;
+    }
 
-        h1 { font-size: clamp(3rem, 10vw, 7rem); text-transform: uppercase; line-height: 0.82; margin: 0; font-weight: 900; letter-spacing: -3px; }
-        .hero-sub { color: var(--text-gray); margin: 40px 0; font-size: 1.25rem; max-width: 800px; line-height: 1.4; }
+    .arch-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:22px;
+      margin-top:26px;
+      align-items:start;
+    }
+    @media (max-width:980px){
+      .arch-grid{grid-template-columns:1fr;}
+    }
+    .stats{
+      display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;
+      align-items:stretch;
+    }
+    .stat{
+      border-left:1px solid rgba(130,188,0,.35);
+      padding-left:16px;
+      min-width:160px;
+    }
+    .stat .label{
+      font-size:10px; letter-spacing:.28em; text-transform:uppercase;
+      color:rgba(130,188,0,.85);
+    }
+    .stat .value{
+      margin-top:6px;
+      font-size:26px;
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .stat .sub{
+      margin-top:2px;
+      font-size:12px;
+      color:rgba(255,255,255,.55);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
 
-        /* --- ARCHITECTURE: COMMAND LAYER --- */
-        #architecture { 
-            padding: 140px 5%; background: #010409; 
-            border-top: 1px solid var(--border-white);
-        }
+    /* ====== CAPABILITIES (Option B) ====== */
+    .capabilities{
+      position:relative;
+      padding:90px 0;
+      background:var(--navy);
+      overflow:hidden;
+    }
+    .capabilities .container{position:relative; z-index:1;}
 
-        .arch-grid { 
-            display: grid; grid-template-columns: 1fr; gap: 80px; 
-            width: 100%; max-width: 1400px; margin: 0 auto; 
-        }
-        @media (min-width: 1024px) { .arch-grid { grid-template-columns: 1.2fr 0.8fr; } }
+    .cap-layout{
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap:18px;
+      margin-top:26px;
+    }
+    @media (max-width:980px){
+      .cap-layout{grid-template-columns:1fr;}
+    }
 
-        .arch-text h2 { font-size: 4.5rem; line-height: 0.9; margin: 20px 0; font-weight: 900; }
-        .arch-text p { color: var(--text-gray); font-size: 1.15rem; margin-bottom: 40px; }
+    .panel{
+      border:1px solid var(--border-white);
+      background:var(--panel);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .panel .inner-frame{
+      pointer-events:none;
+      position:absolute; inset:0;
+      border-radius:18px;
+      box-shadow: inset 0 0 0 1px rgba(130,188,0,.06);
+    }
 
-        .tech-stats { display: flex; gap: 40px; margin-top: 50px; }
-        .stat-node { border-left: 2px solid var(--lime); padding-left: 20px; }
-        .stat-node span { display: block; font-family: monospace; font-size: 0.7rem; color: var(--lime); letter-spacing: 2px; }
-        .stat-node strong { font-size: 1.8rem; font-weight: 900; }
+    /* Left list */
+    .cap-list{padding:14px;}
+    .cap-list-top{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .cap-list-title{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.9);
+    }
+    .cap-list-count{
+      font-size:11px; color:rgba(255,255,255,.5);
+    }
+    .cap-items{display:flex; flex-direction:column; gap:10px;}
+    .cap-item{
+      width:100%;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.02);
+      border-radius:14px;
+      padding:12px;
+      display:flex; gap:12px; align-items:flex-start;
+      cursor:pointer;
+      transition:.18s ease;
+      text-align:left;
+    }
+    .cap-item:hover{
+      border-color:rgba(255,255,255,.22);
+      background:rgba(255,255,255,.04);
+    }
+    .cap-item.active{
+      border-color:rgba(130,188,0,.40);
+      background:rgba(130,188,0,.06);
+      box-shadow:0 0 0 1px rgba(130,188,0,.18);
+    }
+    .cap-item-left{width:92px; flex:0 0 92px;}
+    .cap-index{
+      font-size:10px;
+      letter-spacing:.30em;
+      color:rgba(130,188,0,.80);
+    }
+    .cap-index.big{font-size:12px;}
+    .cap-status{margin-top:6px; display:flex; align-items:center; gap:8px;}
+    .s-dot{width:6px;height:6px;border-radius:999px; display:inline-block;}
+    .s-text{
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+    .monitoring{color:rgba(130,188,0,.85);}
+    .monitoring.s-dot{background:rgba(130,188,0,.95);}
+    .activeS{color:rgba(52,211,153,.95);}
+    .activeS.s-dot{background:rgba(52,211,153,.95);}
+    .optimal{color:rgba(163,230,53,.95);}
+    .optimal.s-dot{background:rgba(163,230,53,.95);}
 
-        .telemetry-box { 
-            background: #020617; padding: 45px; border: 1px solid #1e293b; 
-            position: relative; overflow: hidden; font-family: monospace; 
-        }
-        .telemetry-box::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--lime); opacity: 0.4; animation: scanline 3s linear infinite;
-        }
-        @keyframes scanline { 0% { top: 0; } 100% { top: 100%; } }
+    .cap-item-mid{min-width:0; flex:1;}
+    .cap-item-row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+    .cap-title{
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.08em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .cap-pill{
+      flex:0 0 auto;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.62);
+      background:rgba(0,0,0,.18);
+    }
+    .cap-desc{
+      margin-top:6px;
+      font-size:12px;
+      color:rgba(255,255,255,.55);
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+    .cap-arrow{
+      color:rgba(255,255,255,.45);
+      margin-top:2px;
+      transition:.18s ease;
+    }
+    .cap-item:hover .cap-arrow{color:rgba(255,255,255,.75);}
+    .cap-item.active .cap-arrow{color:rgba(163,230,53,.95);}
 
-/* 1. SHARED SECTION DEFAULTS */
-#home-hero, #architecture, #capabilities-section, #audit {
-    width: 100% !important;
-    min-height: 100vh !important;
-    margin: 0 !important;
-    background: #020617 !important;
-    position: relative;
-    box-sizing: border-box !important;
-    border-top: 2px solid var(--lime) !important;
-}
+    .cap-tip{
+      margin-top:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+      border-radius:14px;
+      padding:12px;
+      color:rgba(255,255,255,.55);
+      font-size:12px;
+    }
+    .cap-tip-title{
+      font-size:10px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.8);
+      margin-bottom:6px;
+    }
 
-/* 2. SCREEN 1: INTELLIGENCE */
-#home-hero {
-    border-top: none !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 70px 5% 0 5% !important; /* Added 70px top padding for header clearance */
-}
+    /* Right detail panel */
+    .cap-panel{padding:18px;}
+    .cap-panel-top{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:14px; flex-wrap:wrap;
+    }
+    .cap-panel-meta{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      display:flex; align-items:center; gap:10px;
+      color:rgba(255,255,255,.60);
+    }
+    .cap-panel-meta .meta-slash{color:rgba(255,255,255,.25);}
+    .cap-panel-meta .meta-accent{color:rgba(163,230,53,.95); font-weight:800;}
+    .cap-panel-status{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+      border-radius:14px;
+      padding:12px 14px;
+      min-width:200px;
+    }
+    .status-label{
+      font-size:10px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.45);
+    }
+    .status-value{
+      margin-top:6px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .status-value .s-text{font-size:11px;}
+    .cap-panel-title{
+      margin-top:14px;
+      display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+    }
+    .cap-panel-title h3{
+      margin:0;
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .cap-panel-blurb{
+      margin:12px 0 0;
+      color:rgba(255,255,255,.70);
+      max-width:860px;
+    }
 
-/* 3. SCREEN 2: ARCHITECTURE */
-#architecture {
-    height: 100vh !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 5% !important;
-    border-top: 2px solid var(--lime) !important;
-}
+    .cap-kpis{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width:720px){
+      .cap-kpis{grid-template-columns:1fr;}
+    }
+    .kpi{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+      border-radius:14px;
+      padding:12px 14px;
+    }
+    .kpi .k-label{
+      font-size:10px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.80);
+    }
+    .kpi .k-value{
+      margin-top:8px;
+      font-weight:900;
+      font-size:22px;
+      letter-spacing:-.02em;
+    }
+    .kpi .k-sub{
+      margin-top:4px;
+      font-size:11px;
+      color:rgba(255,255,255,.45);
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
 
-#architecture .arch-grid {
-    width: 100%;
-    max-width: 1400px;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 60px;
-}
+    .cap-columns{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width:980px){
+      .cap-columns{grid-template-columns:1fr;}
+    }
+    .cap-box{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+      border-radius:16px;
+      padding:14px;
+    }
+    .cap-box.accent{
+      border-color:rgba(130,188,0,.25);
+      background:rgba(130,188,0,.05);
+    }
+    .cap-box-head{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .cap-box-title{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.90);
+    }
+    .cap-box-count{
+      font-size:11px;
+      color:rgba(255,255,255,.40);
+    }
+    .cap-box-list{display:flex; flex-direction:column; gap:8px;}
+    .cap-tag{
+      display:flex; align-items:center; gap:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.02);
+      border-radius:14px;
+      padding:10px 12px;
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+    .cap-box.accent .cap-tag{
+      border-color:rgba(130,188,0,.25);
+      background:rgba(130,188,0,.06);
+      color:rgba(255,255,255,.82);
+    }
+    .cap-tag .mini-dot{
+      width:6px;height:6px;border-radius:999px;background:rgba(130,188,0,.85);
+      box-shadow:0 0 14px rgba(130,188,0,.22);
+      flex:0 0 6px;
+    }
 
-.authority-bar {
-    margin-top: 0 !important;    /* Ensures it touches the green line */
-    padding: 0px 0 !important;  /* Shrunk height */
-    
-    /* Fixes the text bunching from your previous screenshots */
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-}
+    .cap-actionbar{
+      margin-top:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .cap-actiontext{
+      font-size:12px;
+      color:rgba(255,255,255,.55);
+    }
+    .cap-actiontext .lime{color:rgba(130,188,0,.9); font-weight:800;}
+    .cap-actiontext .sep{color:rgba(255,255,255,.28); margin:0 6px;}
+    .cap-actions{display:flex; gap:10px; flex-wrap:wrap;}
 
-.module-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 12px !important; /* Tighter gap */
-    padding: 0 5% !important;
-    max-width: 1400px;
-}
+    /* ====== EXECUTE AUDIT ====== */
+    .audit{
+      position:relative;
+      padding:90px 0;
+      background:var(--navy);
+      overflow:hidden;
+    }
+    .audit .container{position:relative; z-index:1;}
+    .audit-center{
+      display:grid;
+      place-items:center;
+      margin-top:24px;
+    }
+    .audit-card{
+      width:min(900px, 92vw);
+      border:1px solid var(--border-white);
+      background:var(--panel);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:26px;
+      position:relative;
+      overflow:hidden;
+    }
+    .audit-card:before{
+      content:"";
+      position:absolute; inset:0;
+      border-radius:18px;
+      box-shadow:inset 0 0 0 1px rgba(130,188,0,.06);
+      pointer-events:none;
+    }
+    .audit-title{
+      text-align:center;
+      font-size: clamp(28px, 3.8vw, 52px);
+      font-weight:900;
+      letter-spacing:-.02em;
+      margin:0 0 18px;
+    }
+    .form-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width:780px){
+      .form-grid{grid-template-columns:1fr;}
+    }
+    label{
+      display:block;
+      font-size:10px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.85);
+      margin:10px 0 8px;
+    }
+    input, select, textarea{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.22);
+      color:rgba(255,255,255,.85);
+      padding:12px 12px;
+      outline:none;
+      transition:.18s ease;
+      font-family:inherit;
+      font-size:14px;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(130,188,0,.35);
+      box-shadow:0 0 0 3px rgba(130,188,0,.10);
+    }
+    textarea{min-height:120px; resize:vertical;}
+    .audit-actions{
+      margin-top:18px;
+      display:flex; justify-content:center;
+    }
+    .audit-actions .btn{
+      width:min(520px, 100%);
+      padding:18px 18px;
+      border-radius:16px;
+      font-size:12px;
+    }
+    .notice{
+      margin-top:12px;
+      text-align:center;
+      color:rgba(255,255,255,.50);
+      font-size:12px;
+    }
 
-.module-card {
-    padding: 15px !important; /* Shrunk from 20px+ */
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
+    /* ====== FOOTER ====== */
+    footer{
+      border-top:1px solid rgba(255,255,255,.06);
+      background:linear-gradient(to top, rgba(2,6,23,.98), rgba(2,6,23,.88));
+      padding:60px 0;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width:980px){
+      .footer-grid{grid-template-columns:1fr;}
+    }
+    .footer-brand{
+      font-weight:900;
+      letter-spacing:.02em;
+      font-size:20px;
+      margin-bottom:10px;
+    }
+    .footer-meta{
+      color:rgba(255,255,255,.55);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      line-height:1.8;
+    }
+    .footer-col-title{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.85);
+      margin-bottom:12px;
+    }
+    .footer-links a{
+      display:block;
+      padding:8px 0;
+      color:rgba(255,255,255,.65);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .footer-links a:last-child{border-bottom:none;}
+    .footer-links a:hover{color:#fff;}
+    .footer-contact{
+      color:rgba(255,255,255,.70);
+      line-height:1.8;
+    }
 
-.module-card h3 {
-    font-size: 1rem !important; /* Smaller titles */
-    margin: 8px 0 !important;
-}
-
-.module-card p {
-    font-size: 0.75rem !important; /* Smaller description text */
-    line-height: 1.3 !important;
-}
-
-/* 5. SCREEN 4: AUDIT */
-#audit {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-/* Fix Section 2 Left Alignment */
-#architecture .arch-grid {
-    width: 100%;
-    max-width: 1400px;
-    padding: 0 5% !important; /* Aligns text with your logo */
-    margin: 0 auto !important;
-    display: grid !important;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 60px;
-    align-items: center;
-}
-
-/* Specific Adjustment for Capabilities Section */
-#capabilities-section {
-    min-height: 100vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important; /* This is what centers the bar + cards vertically */
-    padding-top: 100px !important;    /* This creates the dark gap ABOVE the bar */
-    padding-bottom: 100px !important; /* This creates the dark gap BELOW the cards */
-    background: var(--navy);
-    box-sizing: border-box;
-}
-.capabilities-content-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Ensure the grid inside Capabilities doesn't touch the bottom of the screen */
-.module-grid {
-    margin-bottom: 100px !important; 
-}
-
-/* This creates the gap between the White Bar and the Grid below it */
-.authority-bar {
-    width: 100% !important;
-    background: #ffffff !important;
-    color: #000b18 !important;
-    
-    /* SHRUNK HEIGHT: Reduced padding from 60px to 25px */
-    padding: 25px 0 !important; 
-    
-    /* POSITIONING: Pushes it down from the green line */
-    margin-top: 100px !important; 
-    margin-bottom: 50px !important;
-    
-    /* THE FIX: Force 4 equal columns so text cannot touch */
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 0 !important;
-    text-align: center !important;
-    align-items: center !important;
-}
-
-/* Ensure each item inside the grid is treated as a block */
-.bar-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-}
-
-.authority-bar h2 {
-    font-size: 2.2rem !important; /* Smaller numbers to save space */
-    margin: 0 !important;
-    line-height: 1.1 !important;
-    color: #000b18 !important;
-}
-
-.authority-bar p {
-    font-size: 0.75rem !important; /* Smaller sub-text */
-    margin: 4px 0 0 0 !important;
-    font-weight: 800 !important;
-    color: #000b18 !important;
-    white-space: nowrap !important; /* Prevents text from wrapping awkwardly */
-}
-
-        .nav-block a {
-    text-decoration: none !important;
-    font-family: 'Inter', sans-serif !important;
-}
-        .authority-bar h2 { font-size: 3.8rem; font-weight: 900; margin: 0; color: #000b18 !important; line-height: 1; }
-        .authority-bar p { font-family: monospace; font-weight: 900; letter-spacing: 2px; margin: 12px 0 0 0; color: #000b18 !important; text-transform: uppercase; }
-
-        .module-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            width: 100%; border-top: 1px solid var(--border-white);
-        }
-        @media (max-width: 1024px) { 
-            .module-grid { grid-template-columns: repeat(2, 1fr); } 
-            .authority-bar { grid-template-columns: repeat(2, 1fr); gap: 40px; } 
-        }
-        @media (max-width: 600px) { .module-grid, .authority-bar { grid-template-columns: 1fr; } }
-
-        .module-card {
-            padding: 80px 50px; transition: 0.5s;
-            border-right: 1px solid var(--border-white); 
-            border-bottom: 1px solid var(--border-white);
-            min-height: 400px; box-sizing: border-box; display: flex; flex-direction: column;
-        }
-        .module-card:hover { background: #0f172a; transform: translateY(-5px); }
-        .module-card:nth-child(4n) { border-right: none; }
-        .module-card span { color: var(--lime); font-family: monospace; font-weight: 900; font-size: 0.9rem; }
-        .module-card h3 { color: var(--lime) !important; font-weight: 900; margin: 25px 0; text-transform: uppercase; font-size: 1.3rem; letter-spacing: 1px; }
-        .module-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; }
-
-        /* --- AUDIT: PROTOCOL INITIATION --- */
-        #audit { padding: 140px 0; background: #000b18; }
-        .audit-label { color: var(--lime); font-family: monospace; font-weight: 900; letter-spacing: 6px; display: block; text-align: center; margin-bottom: 15px; }
-        .audit-header h2 { text-align: center; font-size: 3rem; font-weight: 900; margin-bottom: 60px; text-transform: uppercase; }
-        
-        .audit-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 5%; }
-        .audit-form-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-white); }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 60px; }
-        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
-
-        .field-unit label { display: block; color: var(--lime); font-family: monospace; font-size: 0.75rem; font-weight: 900; margin-bottom: 15px; letter-spacing: 2px; }
-        .field-unit input, .field-unit select { 
-            width: 100%; background: #010409; border: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 18px; color: white; font-family: 'Inter', sans-serif; transition: 0.3s; 
-        }
-        .field-unit input:focus { border-color: var(--lime); outline: none; background: #020617; }
-        
-        .execute-btn-main { 
-            grid-column: span 2; background: var(--lime); color: #000b18; border: none; 
-            padding: 30px; font-weight: 900; font-size: 1.2rem; letter-spacing: 4px; 
-            cursor: pointer; text-transform: uppercase; transition: 0.4s; margin-top: 20px;
-        }
-        @media (max-width: 768px) { .execute-btn-main { grid-column: span 1; } }
-        .execute-btn-main:hover { filter: brightness(1.1); letter-spacing: 6px; }
-
-        /* --- FOOTER: FINAL GOVERNANCE --- */
-        .site-footer { 
-            background: #000b18; padding: 100px 0 60px; 
-            border-top: 8px solid var(--lime); 
-        }
-        .footer-wrap { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 5%; }
-        @media (max-width: 1024px) { .footer-wrap { flex-direction: column; gap: 60px; } }
-
-        .brand-col { flex: 2; }
-        .footer-logo { font-size: 2.2rem; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 15px; }
-        
-        .links-col { flex: 3; display: flex; justify-content: space-between; gap: 40px; }
-        .nav-block label { display: block; color: var(--lime); font-family: monospace; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px; }
-        .nav-block ul { list-style: none; padding: 0; margin: 0; }
-        .nav-block li { margin-bottom: 15px; }
-        
-        /* FOOTER LINK CLEANUP */
-        .nav-block a {
-            color: #ffffff; text-decoration: none !important; 
-            font-size: 0.9rem; font-weight: 600; opacity: 0.6; transition: 0.3s; text-transform: uppercase;
-        }
-        .nav-block a:hover { opacity: 1; color: var(--lime); }
-
-        /* ADDRESS FONT SYNC */
-        .contact-details address {
-            font-style: normal; color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem; line-height: 1.8; font-family: 'Inter', sans-serif !important;
-            letter-spacing: 0.5px;
-        }
-    </style>
+    /* utility spacing between sections on small screens */
+    .mt-26{margin-top:26px;}
+  </style>
 </head>
+
 <body>
 
-    <header class="sticky-header">
-        <div class="nav-container">
-            <a href="#" class="logo">SAFE<span>COMPLIANCE</span></a>
-            <nav class="nav-links">
-                <a href="#home-hero" class="intelligence-link">INTELLIGENCE</a>
-                <a href="#architecture">ARCHITECTURE</a>
-                <a href="#capabilities-section">CAPABILITIES</a>
-                <a href="#audit" class="audit-btn-header">EXECUTE AUDIT</a>
-            </nav>
-        </div>
-    </header>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#intelligence" aria-label="Safe Compliance Home">
+          <span class="safe">SAFE</span><span class="comp">COMPLIANCE</span>
+        </a>
 
-    <section id="home-hero">
-        <div class="hero-content">
-            <div class="status-line">
-                <div class="pulse-dot"></div> SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
-            </div>
-            <h1>INTELLIGENCE-LED<br>ESTATE GOVERNANCE.</h1>
-            <p class="hero-sub">
-                The most advanced digital Data Monitoring ecosystem. We provide the intelligence layer for complex estate governance and real-time risk mitigation across global portfolios.
-            </p>
-            <div style="display: flex; gap: 20px;">
-                <a href="#architecture" style="background:var(--lime); color:var(--navy); padding: 20px 40px; text-decoration:none; font-weight:900; text-transform:uppercase; letter-spacing:1px;">Deploy Architecture</a>
-                <a href="#capabilities-section" style="border:1px solid rgba(255,255,255,0.2); color:white; padding: 20px 40px; text-decoration:none; font-weight:900; text-transform:uppercase; letter-spacing:1px;">View Modules</a>
-            </div>
-        </div>
-    </section>
+        <nav class="nav-links" aria-label="Primary Navigation">
+          <a href="#intelligence" class="nav-link active">INTELLIGENCE</a>
+          <a href="#architecture" class="nav-link">ARCHITECTURE</a>
+          <a href="#capabilities" class="nav-link">CAPABILITIES</a>
+        </nav>
 
-    <section id="architecture">
-        <div class="arch-grid">
-            <div class="arch-text">
-                <div class="status-line" style="margin-bottom:10px;">COMMAND_LAYER_ESTABLISHED</div>
-                <h2>Centralised<br>Dominance.</h2>
-                <p>
-                    Eliminating the friction between physical assets and digital oversight. 
-                    Our proprietary architecture is engineered to dismantle the fragmentation of legacy estate management by converting raw telemetry into high-fidelity governance data.
-                </p>
-                <div class="tech-stats">
-                    <div class="stat-node"><span>SYNC_RATE</span><strong>0.5ms</strong></div>
-                    <div class="stat-node"><span>UPTIME</span><strong>99.99%</strong></div>
-                    <div class="stat-node"><span>ENCRYPTION</span><strong>AES-256</strong></div>
-                </div>
-            </div>
-            <div class="telemetry-box">
-                <div style="color:var(--lime); margin-bottom: 25px;">> [SYSTEM_BOOT]: SUCCESSFUL</div>
-                <div style="color:var(--text-gray); font-size: 0.85rem; line-height: 2;">
-                    > LOADING_COMPLIANCE_ENGINE... <span style="color:white;">DONE</span><br>
-                    > SCANNING_ACoP_L8_PROTOCOLS... <span style="color:white;">OPTIMAL</span><br>
-                    > FIRE_SAFETY_UPLINK... <span style="color:white;">CONNECTED</span><br>
-                    > TELEMETRY_NODES_ACTIVE... <span style="color:white;">412_COUNT</span><br><br>
-                    <span style="color:var(--lime); font-size: 1.1rem;">ESTATE_HEALTH_INDEX: 100%</span><br>
-                    > NO_RISK_DETECTED // ALL_SYSTEMS_GOVERNED
-                </div>
-            </div>
+        <div class="nav-cta">
+          <a class="btn ghost" href="#execute-audit">EXECUTE AUDIT</a>
+          <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
         </div>
-    </section>
+      </div>
 
-<section id="capabilities-section">
-    <div class="authority-bar">
-        
-        <div class="authority-bar">
-            <div class="bar-item"><h2>100%</h2><p>AUDIT READINESS</p></div>
-            <div class="bar-item"><h2>24/7</h2><p>REAL-TIME ANALYSIS</p></div>
-            <div class="bar-item"><h2>COMPLETE</h2><p>CENTRALISATION</p></div>
-            <div class="bar-item"><h2>AUTO</h2><p>RISK MITIGATION</p></div>
-        </div></div>
-
-        <div class="module-grid">
-            <div class="module-card">
-                <span>[01]</span>
-                <h3>WATER HYGIENE</h3>
-                <p>Advanced ACoP L8 compliance protocols and digital telemetry for real-time monitoring of temperature and flow nodes.</p>
-            </div>
-            <div class="module-card">
-                <span>[02]</span>
-                <h3>FIRE, H&S</h3>
-                <p>Full-spectrum RRO alignment and automated risk assessments for critical life safety and evacuation protocols.</p>
-            </div>
-            <div class="module-card">
-                <span>[03]</span>
-                <h3>INFRASTRUCTURE</h3>
-                <p>Precision monitoring of physical estate assets, converting mechanical hardware into actionable governance data.</p>
-            </div>
-            <div class="module-card">
-                <span>[04]</span>
-                <h3>ACCREDITATION</h3>
-                <p>Strategic governance for ISO standards, ensuring constant audit-readiness across diverse portfolio disciplines.</p>
-            </div>
-            <div class="module-card">
-                <span>[05]</span>
-                <h3>ENVIRONMENTAL</h3>
-                <p>Intelligent HVAC and air quality monitoring to drive sustainability targets and optimize energy efficiency.</p>
-            </div>
-            <div class="module-card">
-                <span>[06]</span>
-                <h3>SECURITY</h3>
-                <p>Integrated oversight of access control, perimeter security, and surveillance through a unified digital interface.</p>
-            </div>
-            <div class="module-card">
-                <span>[07]</span>
-                <h3>ELECTRICAL</h3>
-                <p>Fixed wire testing and PAT oversight integrated into a live, cloud-based asset register for instant verification.</p>
-            </div>
-            <div class="module-card">
-                <span>[08]</span>
-                <h3>ASBESTOS</h3>
-                <p>Real-time digital asbestos registers and removal tracking protocols for complete lifecycle safety governance.</p>
-            </div>
-        </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation">
+        <a href="#intelligence" class="nav-link">INTELLIGENCE</a>
+        <a href="#architecture" class="nav-link">ARCHITECTURE</a>
+        <a href="#capabilities" class="nav-link">CAPABILITIES</a>
+        <a href="#execute-audit" class="nav-link">EXECUTE AUDIT</a>
+      </nav>
     </div>
+  </header>
 
-    <section id="audit">
-        <div class="audit-wrapper">
-            <span class="audit-label">SYSTEM AUDIT</span>
-            <div class="audit-header"><h2>EXECUTE COMPLIANCE PROTOCOL</h2></div>
-            <div class="audit-form-box">
-                <form class="form-grid">
-                    <div class="field-unit"><label>ESTATE NAME</label><input type="text" placeholder="ENTER PORTFOLIO ID..."></div>
-                    <div class="field-unit"><label>CONTACT NAME</label><input type="text" placeholder="AUTHORISED PERSONNEL..."></div>
-                    <div class="field-unit"><label>CONTACT TEL</label><input type="text" placeholder="+44..."></div>
-                    <div class="field-unit"><label>CONTACT EMAIL</label><input type="text" placeholder="SECURE_UPLINK@EMAIL.COM"></div>
-                    <div class="field-unit" style="grid-column: span 2;">
-                        <label>ENQUIRY OPTIONS</label>
-                        <select>
-                            <option>SELECT DISCIPLINE...</option>
-                            <option>01 WATER HYGIENE</option>
-                            <option>02 FIRE & SAFETY</option>
-                            <option>03 INFRASTRUCTURE</option>
-                            <option>04 ACCREDITATION</option>
-                            <option>05 ENVIRONMENTAL</option>
-                            <option>06 SECURITY</option>
-                            <option>07 ELECTRICAL</option>
-                            <option>08 ASBESTOS</option>
-                            <option>FULL ESTATE AUDIT</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="execute-btn-main">Execute Audit Request</button>
-                </form>
-            </div>
+  <!-- INTELLIGENCE (Hero) -->
+  <section id="intelligence" class="hero">
+    <div class="scanlines"></div>
+    <div class="glow"></div>
+
+    <div class="container">
+      <div class="statusline">
+        <span class="dot"></span>
+        SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <h1>
+            <span class="break">INTELLIGENCE-LED</span>
+            <span class="break">ESTATE</span>
+            <span class="break">GOVERNANCE.</span>
+          </h1>
+          <p>
+            A complete compliance management program for any sized business.
+            Safe Compliance provides a unified intelligence layer for estate governance and real-time risk mitigation across complex portfolios.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#architecture">DEPLOY ARCHITECTURE</a>
+            <a class="btn ghost" href="#capabilities">VIEW MODULES</a>
+          </div>
         </div>
-    </section>
 
-    <footer class="site-footer">
-        <div class="footer-wrap">
-            <div class="brand-col">
-                <div class="footer-logo logo">SAFE<span>COMPLIANCE</span></div>
-                <p style="opacity: 0.3; font-size: 0.75rem; font-family: monospace; margin-top: 20px;">
-                    ESTABLISHED_2026 // VERSION_4.0.1<br>
-                    © ALL RIGHTS RESERVED.
-                </p>
-            </div>
-            <div class="links-col">
-                <div class="nav-block">
-                    <label>SYSTEM</label>
-                    <ul>
-                        <li><a href="#home-hero">INTELLIGENCE</a></li>
-                        <li><a href="#architecture">ARCHITECTURE</a></li>
-                        <li><a href="#capabilities-section">CAPABILITIES</a></li>
-                    </ul>
-                </div>
-                <div class="nav-block">
-                    <label>LEGAL</label>
-                    <ul>
-                        <li><a href="#">PRIVACY</a></li>
-                        <li><a href="#">TERMS</a></li>
-                        <li><a href="#">PROTOCOLS</a></li>
-                    </ul>
-                </div>
-                <div class="nav-block contact-details">
-                    <label>COMMAND CENTRE</label>
-                    <address>
-                        71-75 Shelton Street<br>
-                        LONDON, WC2H 9JQ<br><br>
-                        T: 0330 0432153 (local rate)
-                    </address>
-                </div>
-            </div>
+        <div class="terminal" aria-label="System console panel">
+          <div class="terminal-head">
+            <span>COMMAND_LAYER_ESTABLISHED</span>
+            <span class="ok">LIVE</span>
+          </div>
+          <div class="terminal-lines">
+            <div><span class="ok">&gt; [SYSTEM_BOOT]</span> : <span class="strong">SUCCESSFUL</span></div>
+            <div>&gt; LOADING_COMPLIANCE_ENGINE... <span class="strong">DONE</span></div>
+            <div>&gt; SCANNING_PROTOCOLS... <span class="strong">OPTIMAL</span></div>
+            <div>&gt; TELEMETRY_NODES_ACTIVE... <span class="strong">412_COUNT</span></div>
+            <div class="terminal-divider"></div>
+            <div class="terminal-big">ESTATE_HEALTH_INDEX: 100%</div>
+            <div>&gt; NO_RISK_DETECTED // ALL_SYSTEMS_GOVERNED</div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
+  <!-- ARCHITECTURE -->
+  <section id="architecture" class="section">
+    <div class="scanlines"></div>
+    <div class="glow"></div>
+
+    <div class="container">
+      <div class="kicker"><span class="dot"></span> COMMAND_LAYER_ESTABLISHED</div>
+      <div class="arch-grid">
+        <div>
+          <h2 class="title">Centralised Dominance.</h2>
+          <p class="lead">
+            Eliminating the friction between physical assets and digital oversight.
+            Our proprietary architecture dismantles fragmentation by converting raw telemetry into high-fidelity governance data.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="label">SYNC_RATE</div>
+              <div class="value">0.5ms</div>
+              <div class="sub">REAL-TIME</div>
+            </div>
+            <div class="stat">
+              <div class="label">UPTIME</div>
+              <div class="value">99.99%</div>
+              <div class="sub">AVAILABILITY</div>
+            </div>
+            <div class="stat">
+              <div class="label">ENCRYPTION</div>
+              <div class="value">AES-256</div>
+              <div class="sub">SECURE</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terminal">
+          <div class="terminal-lines">
+            <div><span class="ok">&gt; [SYSTEM_BOOT]</span> : <span class="strong">SUCCESSFUL</span></div>
+            <div>&gt; LOADING_COMPLIANCE_ENGINE... <span class="strong">DONE</span></div>
+            <div>&gt; SCANNING_AcoP_L8_PROTOCOLS... <span class="strong">OPTIMAL</span></div>
+            <div>&gt; FIRE_SAFETY_UPLINK... <span class="strong">CONNECTED</span></div>
+            <div>&gt; TELEMETRY_NODES_ACTIVE... <span class="strong">412_COUNT</span></div>
+            <div class="terminal-divider"></div>
+            <div class="terminal-big">ESTATE_HEALTH_INDEX: 100%</div>
+            <div>&gt; NO_RISK_DETECTED // ALL_SYSTEMS_GOVERNED</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES (Option B: list + detail panel) -->
+  <section id="capabilities" class="capabilities">
+    <div class="scanlines"></div>
+    <div class="glow"></div>
+
+    <div class="container">
+      <div class="kicker"><span class="dot"></span> CAPABILITIES // COMMAND_LAYER</div>
+      <h2 class="title">Command Centre Modules.</h2>
+      <p class="lead">
+        Select a discipline to inspect live signals, governance outputs, and protocol coverage — all from a unified control surface.
+      </p>
+
+      <div class="cap-layout">
+        <!-- LEFT -->
+        <aside class="panel cap-list">
+          <div class="cap-list-top">
+            <div class="cap-list-title">MODULE LIST</div>
+            <div class="cap-list-count"><span id="moduleCount">08</span> modules</div>
+          </div>
+
+          <div class="cap-items" id="capItems">
+            <!-- buttons injected by JS (keeps it clean & editable) -->
+          </div>
+
+          <div class="cap-tip">
+            <div class="cap-tip-title">TIP</div>
+            <div>Click a module to load its governance profile in the right panel.</div>
+          </div>
+
+          <div class="inner-frame"></div>
+        </aside>
+
+        <!-- RIGHT -->
+        <div class="panel cap-panel" aria-live="polite">
+          <div class="cap-panel-top">
+            <div class="cap-panel-meta">
+              <span class="meta-muted">SELECTED_MODULE</span>
+              <span class="meta-slash">/</span>
+              <span class="meta-accent" id="panelCategory">COMPLIANCE</span>
+            </div>
+
+            <div class="cap-panel-status">
+              <div class="status-label">MODULE STATUS</div>
+              <div class="status-value">
+                <span id="panelStatusDot" class="s-dot monitoring"></span>
+                <span id="panelStatusText" class="s-text monitoring">MONITORING</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cap-panel-title">
+            <div class="cap-index big" id="panelIndex">[01]</div>
+            <h3 id="panelTitle">WATER HYGIENE</h3>
+          </div>
+
+          <p class="cap-panel-blurb" id="panelBlurb"></p>
+
+          <div class="cap-kpis" id="panelKpis"></div>
+
+          <div class="cap-columns">
+            <div class="cap-box">
+              <div class="cap-box-head">
+                <div class="cap-box-title">SIGNALS MONITORED</div>
+                <div class="cap-box-count" id="signalsCount">00x</div>
+              </div>
+              <div class="cap-box-list" id="panelSignals"></div>
+            </div>
+
+            <div class="cap-box">
+              <div class="cap-box-head">
+                <div class="cap-box-title">OUTPUTS GENERATED</div>
+                <div class="cap-box-count" id="outputsCount">00x</div>
+              </div>
+              <div class="cap-box-list" id="panelOutputs"></div>
+            </div>
+
+            <div class="cap-box accent">
+              <div class="cap-box-head">
+                <div class="cap-box-title">PROTOCOL COVERAGE</div>
+                <div class="cap-box-count" id="protocolsCount">00x</div>
+              </div>
+              <div class="cap-box-list" id="panelProtocols"></div>
+            </div>
+          </div>
+
+          <div class="cap-actionbar">
+            <div class="cap-actiontext">
+              <span class="lime">SYSTEM_STATUS:</span> READY <span class="sep">//</span> AUDIT_INTERFACE_AVAILABLE
+            </div>
+            <div class="cap-actions">
+              <a href="#architecture" class="btn ghost">VIEW MODULE</a>
+              <a href="#execute-audit" class="btn primary">EXECUTE AUDIT</a>
+            </div>
+          </div>
+
+          <div class="inner-frame"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTE AUDIT -->
+  <section id="execute-audit" class="audit">
+    <div class="scanlines"></div>
+    <div class="glow"></div>
+
+    <div class="container">
+      <div class="kicker" style="justify-content:center;"><span class="dot"></span> SYSTEM AUDIT</div>
+      <h2 class="audit-title">EXECUTE COMPLIANCE PROTOCOL</h2>
+
+      <div class="audit-center">
+        <div class="audit-card">
+          <form id="auditForm">
+            <div class="form-grid">
+              <div>
+                <label for="estateName">ESTATE NAME</label>
+                <input id="estateName" name="estateName" type="text" placeholder="Enter portfolio / estate name..." required />
+              </div>
+
+              <div>
+                <label for="contactName">CONTACT NAME</label>
+                <input id="contactName" name="contactName" type="text" placeholder="Authorised personnel..." required />
+              </div>
+
+              <div>
+                <label for="contactTel">CONTACT TEL</label>
+                <input id="contactTel" name="contactTel" type="tel" placeholder="+44..." />
+              </div>
+
+              <div>
+                <label for="contactEmail">CONTACT EMAIL</label>
+                <input id="contactEmail" name="contactEmail" type="email" placeholder="secure_uplink@email.com" required />
+              </div>
+            </div>
+
+            <div class="mt-26">
+              <label for="discipline">ENQUIRY OPTIONS</label>
+              <select id="discipline" name="discipline" required>
+                <option value="" selected disabled>Select discipline...</option>
+                <option>Water Hygiene</option>
+                <option>Fire, Health & Safety</option>
+                <option>Infrastructure</option>
+                <option>Accreditation / ISO</option>
+                <option>Environmental</option>
+                <option>Security</option>
+                <option>Electrical</option>
+                <option>Asbestos</option>
+                <option>Full Portfolio Audit</option>
+              </select>
+            </div>
+
+            <div class="mt-26">
+              <label for="notes">NOTES</label>
+              <textarea id="notes" name="notes" placeholder="Add any context (sites, timelines, compliance concerns)..."></textarea>
+            </div>
+
+            <div class="audit-actions">
+              <button class="btn primary" type="submit">EXECUTE AUDIT REQUEST</button>
+            </div>
+
+            <div class="notice" id="formNotice" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="safe">SAFE</span><span class="comp" style="color:var(--lime);">COMPLIANCE</span>
+          </div>
+          <div class="footer-meta">
+            ESTABLISHED 2026 // VERSION 4.0.1<br/>
+            © ALL RIGHTS RESERVED.
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">SYSTEM</div>
+          <div class="footer-links">
+            <a href="#intelligence">Intelligence</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#execute-audit">Execute Audit</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">COMMAND CENTRE</div>
+          <div class="footer-contact">
+            71–75 Shelton Street<br/>
+            London, WC2H 9JQ<br/><br/>
+            T: 0330 0432153 (local rate)
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Mobile menu =====
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    hamburger?.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+    });
+    mobileMenu?.addEventListener("click", (e) => {
+      if (e.target && e.target.tagName === "A") mobileMenu.classList.remove("open");
+    });
+
+    // ===== Capabilities data (edit text here freely) =====
+    const CAPS = [
+      {
+        id: "water",
+        index: "01",
+        title: "WATER HYGIENE",
+        category: "COMPLIANCE",
+        status: "MONITORING",
+        blurb: "Advanced water compliance protocols and telemetry for real-time temperature and flow oversight across distributed nodes.",
+        kpis: [
+          { label: "SYNC_RATE", value: "0.5ms", sub: "real-time" },
+          { label: "COVERAGE", value: "99.9%", sub: "nodes" },
+          { label: "ENCRYPTION", value: "AES-256", sub: "secure" }
+        ],
+        signals: ["Temp probes", "Flow meters", "Stagnation windows", "Sampling logs"],
+        outputs: ["Risk scoring", "Auto escalation", "Audit-ready registers", "Remediation tasks"],
+        protocols: ["ACoP L8", "HSG274", "Legionella controls"]
+      },
+      {
+        id: "fire",
+        index: "02",
+        title: "FIRE, H&S",
+        category: "SAFETY",
+        status: "ACTIVE",
+        blurb: "Full-spectrum risk alignment and automated assessments for critical life safety and evacuation readiness.",
+        kpis: [
+          { label: "READINESS", value: "100%", sub: "status" },
+          { label: "CHECKS", value: "24/7", sub: "real-time" },
+          { label: "UPTIME", value: "99.99%", sub: "availability" }
+        ],
+        signals: ["Alarm health", "Device tests", "Evac routes", "Drill outcomes"],
+        outputs: ["Nonconformance alerts", "Auto schedules", "Compliance timeline", "Evidence packs"],
+        protocols: ["RRO alignment", "Evacuation protocols", "Life safety controls"]
+      },
+      {
+        id: "infrastructure",
+        index: "03",
+        title: "INFRASTRUCTURE",
+        category: "OPERATIONS",
+        status: "OPTIMAL",
+        blurb: "Precision monitoring of physical estate assets, converting mechanical telemetry into actionable governance data.",
+        kpis: [
+          { label: "HEALTH_INDEX", value: "98%", sub: "estate" },
+          { label: "ASSETS", value: "412", sub: "tracked" },
+          { label: "LATENCY", value: "1.2ms", sub: "uplink" }
+        ],
+        signals: ["Plant runtime", "Fault codes", "Energy draw", "Maintenance logs"],
+        outputs: ["Predictive flags", "Register updates", "Work orders", "SLA variance reports"],
+        protocols: ["Asset governance", "Planned maintenance controls"]
+      },
+      {
+        id: "accreditation",
+        index: "04",
+        title: "ACCREDITATION",
+        category: "GOVERNANCE",
+        status: "MONITORING",
+        blurb: "Strategic governance for ISO frameworks, ensuring constant audit-readiness across complex portfolios.",
+        kpis: [
+          { label: "AUDIT_READY", value: "YES", sub: "state" },
+          { label: "GAPS", value: "0", sub: "critical" },
+          { label: "CYCLE", value: "LIVE", sub: "continuous" }
+        ],
+        signals: ["Evidence expiry", "Policy deltas", "Training cadence", "Supplier status"],
+        outputs: ["Gap analysis", "Evidence packs", "Policy mappings", "CI log"],
+        protocols: ["ISO 9001", "ISO 14001", "ISO 45001"]
+      },
+      {
+        id: "environmental",
+        index: "05",
+        title: "ENVIRONMENTAL",
+        category: "SUSTAINABILITY",
+        status: "OPTIMAL",
+        blurb: "Intelligent HVAC and air quality monitoring to drive sustainability targets and optimise energy efficiency.",
+        kpis: [
+          { label: "AIR_SCORE", value: "A", sub: "quality" },
+          { label: "EFFICIENCY", value: "+12%", sub: "YoY" },
+          { label: "STREAM", value: "LIVE", sub: "telemetry" }
+        ],
+        signals: ["CO₂", "PM2.5", "Temp/Humidity", "kWh telemetry"],
+        outputs: ["Threshold alerts", "Trend reports", "Efficiency actions", "ESG signals"],
+        protocols: ["Air quality controls", "Energy governance"]
+      },
+      {
+        id: "security",
+        index: "06",
+        title: "SECURITY",
+        category: "SECURITY",
+        status: "ACTIVE",
+        blurb: "Unified oversight of access control, perimeter security, and surveillance through a single command interface.",
+        kpis: [
+          { label: "ALERTS", value: "LOW", sub: "current" },
+          { label: "VISIBILITY", value: "100%", sub: "coverage" },
+          { label: "CONTROL", value: "CENTRAL", sub: "command" }
+        ],
+        signals: ["Door events", "CCTV status", "Perimeter alarms", "Visitor logs"],
+        outputs: ["Incident trails", "Anomaly detection", "Access reviews", "Response workflows"],
+        protocols: ["Access governance", "Incident handling"]
+      },
+      {
+        id: "electrical",
+        index: "07",
+        title: "ELECTRICAL",
+        category: "SAFETY",
+        status: "MONITORING",
+        blurb: "Fixed wire testing and PAT oversight integrated into a live register for instant verification and compliance trails.",
+        kpis: [
+          { label: "EXPIRY", value: "0", sub: "overdue" },
+          { label: "REGISTER", value: "LIVE", sub: "status" },
+          { label: "VERIFY", value: "INSTANT", sub: "checks" }
+        ],
+        signals: ["EICR dates", "PAT checks", "Defect logs", "Remedial actions"],
+        outputs: ["Expiry alerts", "Engineer scheduling", "Evidence packs", "Defect dashboards"],
+        protocols: ["EICR", "PAT", "Electrical safety controls"]
+      },
+      {
+        id: "asbestos",
+        index: "08",
+        title: "ASBESTOS",
+        category: "SAFETY",
+        status: "ACTIVE",
+        blurb: "Digital asbestos registers and removal tracking for complete lifecycle governance and dutyholder confidence.",
+        kpis: [
+          { label: "REGISTER", value: "100%", sub: "coverage" },
+          { label: "RISK", value: "MANAGED", sub: "state" },
+          { label: "TRAIL", value: "COMPLETE", sub: "audit" }
+        ],
+        signals: ["Survey records", "Material changes", "Removals", "Re-inspections"],
+        outputs: ["Dutyholder pack", "Lifecycle tracking", "Contractor controls", "Risk mapping"],
+        protocols: ["Asbestos regs", "Register governance"]
+      }
+    ];
+
+    const statusToClass = (status) => {
+      if (status === "ACTIVE") return "activeS";
+      if (status === "OPTIMAL") return "optimal";
+      return "monitoring";
+    };
+
+    // Render left list
+    const capItemsEl = document.getElementById("capItems");
+    const moduleCountEl = document.getElementById("moduleCount");
+    moduleCountEl.textContent = String(CAPS.length).padStart(2,"0");
+
+    function createCapButton(cap, isActive){
+      const sClass = statusToClass(cap.status);
+      const btn = document.createElement("button");
+      btn.className = "cap-item" + (isActive ? " active" : "");
+      btn.type = "button";
+      btn.dataset.id = cap.id;
+
+      btn.innerHTML = `
+        <div class="cap-item-left">
+          <div class="cap-index">[${cap.index}]</div>
+          <div class="cap-status">
+            <span class="s-dot ${sClass}"></span>
+            <span class="s-text ${sClass}">${cap.status}</span>
+          </div>
+        </div>
+        <div class="cap-item-mid">
+          <div class="cap-item-row">
+            <div class="cap-title">${cap.title}</div>
+            <div class="cap-pill">${cap.category}</div>
+          </div>
+          <div class="cap-desc">${cap.blurb}</div>
+        </div>
+        <div class="cap-arrow">→</div>
+      `;
+      return btn;
+    }
+
+    function renderLeftList(activeId){
+      capItemsEl.innerHTML = "";
+      CAPS.forEach((cap) => {
+        const btn = createCapButton(cap, cap.id === activeId);
+        btn.addEventListener("click", () => setActive(cap.id));
+        capItemsEl.appendChild(btn);
+      });
+    }
+
+    // Right panel elements
+    const panelCategory = document.getElementById("panelCategory");
+    const panelStatusDot = document.getElementById("panelStatusDot");
+    const panelStatusText = document.getElementById("panelStatusText");
+    const panelIndex = document.getElementById("panelIndex");
+    const panelTitle = document.getElementById("panelTitle");
+    const panelBlurb = document.getElementById("panelBlurb");
+    const panelKpis = document.getElementById("panelKpis");
+    const panelSignals = document.getElementById("panelSignals");
+    const panelOutputs = document.getElementById("panelOutputs");
+    const panelProtocols = document.getElementById("panelProtocols");
+    const signalsCount = document.getElementById("signalsCount");
+    const outputsCount = document.getElementById("outputsCount");
+    const protocolsCount = document.getElementById("protocolsCount");
+
+    function renderTags(el, items){
+      el.innerHTML = "";
+      items.forEach((t) => {
+        const div = document.createElement("div");
+        div.className = "cap-tag";
+        div.innerHTML = `<span class="mini-dot"></span><span>${t}</span>`;
+        el.appendChild(div);
+      });
+    }
+
+    function renderKpis(kpis){
+      panelKpis.innerHTML = "";
+      kpis.forEach((k) => {
+        const div = document.createElement("div");
+        div.className = "kpi";
+        div.innerHTML = `
+          <div class="k-label">${k.label}</div>
+          <div class="k-value">${k.value}</div>
+          ${k.sub ? `<div class="k-sub">${k.sub}</div>` : ""}
+        `;
+        panelKpis.appendChild(div);
+      });
+    }
+
+    function setActive(id){
+      const cap = CAPS.find(c => c.id === id) || CAPS[0];
+      const sClass = statusToClass(cap.status);
+
+      // Update right panel
+      panelCategory.textContent = cap.category;
+      panelIndex.textContent = `[${cap.index}]`;
+      panelTitle.textContent = cap.title;
+      panelBlurb.textContent = cap.blurb;
+
+      panelStatusDot.className = `s-dot ${sClass}`;
+      panelStatusText.className = `s-text ${sClass}`;
+      panelStatusText.textContent = cap.status;
+
+      renderKpis(cap.kpis);
+      renderTags(panelSignals, cap.signals);
+      renderTags(panelOutputs, cap.outputs);
+      renderTags(panelProtocols, cap.protocols);
+
+      signalsCount.textContent = String(cap.signals.length).padStart(2,"0") + "x";
+      outputsCount.textContent = String(cap.outputs.length).padStart(2,"0") + "x";
+      protocolsCount.textContent = String(cap.protocols.length).padStart(2,"0") + "x";
+
+      // Update left list active state
+      renderLeftList(cap.id);
+    }
+
+    // Initial render
+    renderLeftList(CAPS[0].id);
+    setActive(CAPS[0].id);
+
+    // ===== Nav active highlighting on scroll =====
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+    const sections = ["intelligence","architecture","capabilities","execute-audit"]
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach(a => {
+          const href = a.getAttribute("href") || "";
+          a.classList.toggle("active", href === "#" + id);
+        });
+      });
+    }, { root: null, threshold: 0.35 });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // ===== Execute Audit form (demo behaviour) =====
+    const auditForm = document.getElementById("auditForm");
+    const formNotice = document.getElementById("formNotice");
+
+    auditForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(auditForm);
+      const estate = (data.get("estateName") || "").toString().trim();
+      const discipline = (data.get("discipline") || "").toString().trim();
+      formNotice.textContent = `Request queued: ${estate} // ${discipline}. (Connect this to your email/CRM endpoint when ready.)`;
+      auditForm.reset();
+      setTimeout(() => (formNotice.textContent = ""), 7000);
+    });
+  </script>
 </body>
 </html>
+
 
