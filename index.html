@@ -10,15 +10,11 @@
   <style>
     :root{
       --navy:#020617;
-      --navy-2:#050A18;
-      --dark-blue:#0f172a;
       --lime:#82bc00;
       --white:#ffffff;
-      --muted:rgba(255,255,255,.65);
       --border-white:rgba(255,255,255,.10);
       --border-white-2:rgba(255,255,255,.16);
       --panel:rgba(255,255,255,.03);
-      --panel2:rgba(0,0,0,.22);
       --shadow:0 0 0 1px rgba(255,255,255,.06);
     }
 
@@ -33,7 +29,6 @@
     }
     a{color:inherit; text-decoration:none}
     .container{width:min(1200px, 92vw); margin:0 auto;}
-    .sr{position:absolute; left:-9999px;}
 
     /* ====== FUTURISTIC BACKDROP ====== */
     .scanlines{
@@ -61,7 +56,7 @@
       min-height:100vh;
       display:flex;
       align-items:center;
-      padding:110px 0; /* gives breathing room while still "full screen" */
+      padding:110px 0;
       position:relative;
       overflow:hidden;
       background:var(--navy);
@@ -82,6 +77,30 @@
       pointer-events:none;
     }
 
+    /* ====== PULSING DOT (use everywhere) ====== */
+    .pulse-dot{
+      width:6px;height:6px;border-radius:999px;
+      background:var(--lime);
+      box-shadow:0 0 16px rgba(130,188,0,.35);
+      position:relative;
+      flex:0 0 6px;
+    }
+    .pulse-dot:after{
+      content:"";
+      position:absolute; inset:-8px;
+      border-radius:999px;
+      border:1px solid rgba(130,188,0,.55);
+      opacity:.0;
+      animation:pulse 1.6s ease-out infinite;
+    }
+    @keyframes pulse{
+      0%{transform:scale(.35); opacity:.0}
+      25%{opacity:.55}
+      100%{transform:scale(1.35); opacity:0}
+    }
+
+    .green{ color:var(--lime); }
+
     /* ====== NAV ====== */
     .nav{
       position:sticky; top:0; z-index:1000;
@@ -95,18 +114,18 @@
       gap:16px;
     }
 
-    /* FIXED LOGO SPACING */
+    /* Logo spacing (tight join) */
     .brand{
       display:inline-flex;
       align-items:baseline;
-      gap:0;                 /* removes the weird “gap” */
+      gap:0;
       font-weight:900;
       letter-spacing:.02em;
       line-height:1;
       font-size:18px;
     }
-    .brand .safe{color:#fff; padding-right:0;}
-    .brand .comp{color:var(--lime); margin-left:-1px;} /* tight join like your screenshot */
+    .brand .safe{color:#fff;}
+    .brand .comp{color:var(--lime); margin-left:-1px;}
 
     .nav-links{
       display:flex; align-items:center; gap:22px;
@@ -146,10 +165,11 @@
       color:#000;
       border-color:rgba(130,188,0,.6);
     }
-    .btn.primary:hover{background:#9be300;}
-    .btn.ghost{
-      background:rgba(255,255,255,.03);
-      border-color:rgba(255,255,255,.14);
+    /* (1) Header Execute Audit: green + hover colour change */
+    .btn.primary:hover{
+      background:#a6f100; /* brighter */
+      border-color:rgba(166,241,0,.65);
+      transform:translateY(-1px);
     }
 
     .nav-cta{display:flex; gap:10px; align-items:center;}
@@ -198,19 +218,9 @@
       text-transform:uppercase;
       color:rgba(130,188,0,.85);
     }
-    .statusline .dot{
-      width:6px;height:6px;border-radius:999px;background:var(--lime);
-      box-shadow:0 0 16px rgba(130,188,0,.35);
-    }
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:26px;
-      align-items:center;
-      width:100%;
-    }
-    @media (max-width:980px){ .hero-grid{grid-template-columns:1fr;} }
+    /* (5) Removed system console, so single column hero */
+    .hero-grid{display:block; width:100%;}
 
     .hero h1{
       margin:18px 0 16px;
@@ -219,9 +229,8 @@
       letter-spacing:-.03em;
       font-weight:900;
     }
-    .hero h1 .break{display:block;}
     .hero p{
-      max-width:680px;
+      max-width:760px;
       color:rgba(255,255,255,.68);
       font-size:16px;
       line-height:1.7;
@@ -229,6 +238,87 @@
     }
     .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
 
+    /* ====== SECTION HEADERS ====== */
+    .kicker{
+      display:flex; align-items:center; gap:10px;
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(130,188,0,.9);
+    }
+    .title{
+      margin:14px 0 10px;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight:900;
+      letter-spacing:-.02em;
+      line-height:1.05;
+    }
+    .lead{
+      margin:0;
+      max-width:760px;
+      color:rgba(255,255,255,.70);
+      line-height:1.7;
+    }
+
+    /* ====== ARCHITECTURE ====== */
+    .arch-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:22px;
+      margin-top:22px;
+      align-items:start;
+      width:100%;
+    }
+    @media (max-width:980px){ .arch-grid{grid-template-columns:1fr;} }
+
+    .stats{
+      display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;
+      align-items:stretch;
+    }
+    .stat{
+      border-left:1px solid rgba(130,188,0,.35);
+      padding-left:16px;
+      min-width:160px;
+    }
+    .stat .label{
+      font-size:10px; letter-spacing:.28em; text-transform:uppercase;
+      color:rgba(130,188,0,.85);
+    }
+    .stat .value{margin-top:6px; font-size:26px; font-weight:900; letter-spacing:-.02em;}
+    .stat .sub{margin-top:2px; font-size:12px; color:rgba(255,255,255,.55); letter-spacing:.12em; text-transform:uppercase;}
+
+    /* live computing ticker */
+    .compute-strip{
+      margin-top:14px;
+      border:1px solid rgba(130,188,0,.22);
+      background:rgba(0,0,0,.22);
+      border-radius:14px;
+      overflow:hidden;
+      position:relative;
+    }
+    .compute-strip .label{
+      position:absolute; left:12px; top:8px;
+      font-size:10px; letter-spacing:.28em; text-transform:uppercase;
+      color:rgba(130,188,0,.75);
+      z-index:2;
+    }
+    .ticker{
+      display:flex;
+      gap:38px;
+      padding:28px 12px 12px 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      color:rgba(255,255,255,.60);
+      white-space:nowrap;
+      will-change:transform;
+      animation: scrollLeft 18s linear infinite;
+    }
+    .ticker .ok{color:rgba(130,188,0,.9); font-weight:700;}
+    .ticker .warn{color:rgba(253,224,71,.85); font-weight:700;}
+    @keyframes scrollLeft{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .ticker-wrap{display:flex; width:200%;}
+
+    /* (7) System boot card enhanced + animated */
     .terminal{
       border:1px solid var(--border-white);
       background:rgba(255,255,255,.03);
@@ -263,99 +353,16 @@
     .terminal-lines .strong{color:#fff; font-weight:700;}
     .terminal-divider{height:1px; background:rgba(130,188,0,.35); margin:10px 0;}
     .terminal-big{color:rgba(130,188,0,.95); font-weight:900; letter-spacing:.04em; margin-top:10px;}
-
-    /* ====== SECTION HEADERS ====== */
-    .kicker{
-      display:flex; align-items:center; gap:10px;
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:rgba(130,188,0,.9);
-    }
-    .kicker .dot{
-      width:6px;height:6px;border-radius:999px;background:var(--lime);
-      box-shadow:0 0 16px rgba(130,188,0,.35);
-    }
-    .title{
-      margin:14px 0 10px;
-      font-size: clamp(32px, 4vw, 56px);
+    .cursor{
+      display:inline-block;
+      width:10px;
+      animation: blink 1s steps(2, end) infinite;
+      color:rgba(130,188,0,.95);
       font-weight:900;
-      letter-spacing:-.02em;
-      line-height:1.05;
     }
-    .lead{
-      margin:0;
-      max-width:720px;
-      color:rgba(255,255,255,.70);
-      line-height:1.7;
-    }
+    @keyframes blink{ 0%,49%{opacity:1} 50%,100%{opacity:0} }
 
-    /* ====== ARCHITECTURE ====== */
-    .arch-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:22px;
-      margin-top:26px;
-      align-items:start;
-      width:100%;
-    }
-    @media (max-width:980px){ .arch-grid{grid-template-columns:1fr;} }
-
-    .stats{
-      display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;
-      align-items:stretch;
-    }
-    .stat{
-      border-left:1px solid rgba(130,188,0,.35);
-      padding-left:16px;
-      min-width:160px;
-    }
-    .stat .label{
-      font-size:10px; letter-spacing:.28em; text-transform:uppercase;
-      color:rgba(130,188,0,.85);
-    }
-    .stat .value{margin-top:6px; font-size:26px; font-weight:900; letter-spacing:-.02em;}
-    .stat .sub{margin-top:2px; font-size:12px; color:rgba(255,255,255,.55); letter-spacing:.12em; text-transform:uppercase;}
-
-    /* MOVED: Live computing ticker in Section 2 */
-    .compute-strip{
-      margin-top:14px;
-      border:1px solid rgba(130,188,0,.22);
-      background:rgba(0,0,0,.22);
-      border-radius:14px;
-      overflow:hidden;
-      position:relative;
-    }
-    .compute-strip .label{
-      position:absolute; left:12px; top:8px;
-      font-size:10px; letter-spacing:.28em; text-transform:uppercase;
-      color:rgba(130,188,0,.75);
-      z-index:2;
-    }
-    .ticker{
-      display:flex;
-      gap:38px;
-      padding:28px 12px 12px 12px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:12px;
-      color:rgba(255,255,255,.60);
-      white-space:nowrap;
-      will-change:transform;
-      animation: scrollLeft 18s linear infinite;
-    }
-    .ticker span{opacity:.95}
-    .ticker .ok{color:rgba(130,188,0,.9); font-weight:700;}
-    .ticker .warn{color:rgba(253,224,71,.85); font-weight:700;}
-    @keyframes scrollLeft{
-      0%{transform:translateX(0)}
-      100%{transform:translateX(-50%)}
-    }
-    .ticker-wrap{
-      display:flex;
-      width:200%;
-    }
-
-    /* ====== CAPABILITIES (kept as you love it) ====== */
+    /* ====== CAPABILITIES ====== */
     .cap-layout{
       display:grid;
       grid-template-columns: 420px 1fr;
@@ -382,9 +389,10 @@
 
     .cap-list{padding:14px;}
     .cap-list-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+    /* (8) module list title white */
     .cap-list-title{
       font-size:11px; letter-spacing:.28em; text-transform:uppercase;
-      color:rgba(130,188,0,.9);
+      color:rgba(255,255,255,.92);
     }
     .cap-list-count{font-size:11px; color:rgba(255,255,255,.5);}
     .cap-items{display:flex; flex-direction:column; gap:10px;}
@@ -420,7 +428,16 @@
 
     .cap-item-mid{min-width:0; flex:1;}
     .cap-item-row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
-    .cap-title{font-size:13px; font-weight:800; letter-spacing:.08em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    /* (8) module title white (inside each item) */
+    .cap-title{
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.08em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      color:rgba(255,255,255,.95);
+    }
     .cap-pill{
       flex:0 0 auto;
       border:1px solid rgba(255,255,255,.10);
@@ -615,7 +632,7 @@
     .audit-actions .btn{width:min(520px, 100%); padding:18px 18px; border-radius:16px; font-size:12px;}
     .notice{margin-top:12px; text-align:center; color:rgba(255,255,255,.50); font-size:12px;}
 
-    /* ====== FOOTER (added Legal column) ====== */
+    /* ====== FOOTER ====== */
     footer{
       border-top:1px solid rgba(255,255,255,.06);
       background:linear-gradient(to top, rgba(2,6,23,.98), rgba(2,6,23,.88));
@@ -623,10 +640,9 @@
       position:relative;
       overflow:hidden;
     }
-    footer .separator-top{top:0;}
     .footer-grid{
       display:grid;
-      grid-template-columns: 1.2fr 1fr 1fr 1fr; /* added column */
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
       gap:18px;
       align-items:start;
     }
@@ -683,7 +699,8 @@
         </nav>
 
         <div class="nav-cta">
-          <a class="btn ghost" href="#execute-audit">EXECUTE AUDIT</a>
+          <!-- (1) green execute audit button in header -->
+          <a class="btn primary" href="#execute-audit">EXECUTE AUDIT</a>
           <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
         </div>
       </div>
@@ -704,19 +721,21 @@
     <div class="scanlines"></div>
     <div class="glow"></div>
 
-    <div class="container">
+    <div class="container" style="position:relative; z-index:1;">
       <div class="statusline">
-        <span class="dot"></span>
+        <!-- (2) pulsing dot -->
+        <span class="pulse-dot"></span>
         SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
       </div>
 
       <div class="hero-grid">
         <div>
           <h1>
-            <span class="break">INTELLIGENCE-LED</span>
-            <span class="break">ESTATE</span>
-            <span class="break">GOVERNANCE.</span>
+            <!-- (3) INTELLIGENCE-LED on same line; (4) ESTATE GOVERNANCE green -->
+            <span class="break">INTELLIGENCE-LED ESTATE</span>
+            <span class="break green">GOVERNANCE.</span>
           </h1>
+
           <p>
             A complete compliance management program for any sized business.
             Safe Compliance provides a unified intelligence layer for estate governance and real-time risk mitigation across complex portfolios.
@@ -724,25 +743,11 @@
 
           <div class="hero-actions">
             <a class="btn primary" href="#architecture">DEPLOY ARCHITECTURE</a>
-            <a class="btn ghost" href="#capabilities">VIEW MODULES</a>
+            <a class="btn" href="#capabilities">VIEW MODULES</a>
           </div>
         </div>
 
-        <div class="terminal" aria-label="System console panel">
-          <div class="terminal-head">
-            <span>SYSTEM_CONSOLE</span>
-            <span class="ok">LIVE</span>
-          </div>
-          <div class="terminal-lines">
-            <div><span class="ok">&gt; [SYSTEM_BOOT]</span> : <span class="strong">SUCCESSFUL</span></div>
-            <div>&gt; LOADING_COMPLIANCE_ENGINE... <span class="strong">DONE</span></div>
-            <div>&gt; SCANNING_PROTOCOLS... <span class="strong">OPTIMAL</span></div>
-            <div>&gt; TELEMETRY_NODES_ACTIVE... <span class="strong">412_COUNT</span></div>
-            <div class="terminal-divider"></div>
-            <div class="terminal-big">ESTATE_HEALTH_INDEX: 100%</div>
-            <div>&gt; NO_RISK_DETECTED // ALL_SYSTEMS_GOVERNED</div>
-          </div>
-        </div>
+        <!-- (5) Removed the system console card from this section -->
       </div>
     </div>
   </section>
@@ -754,14 +759,11 @@
     <div class="scanlines"></div>
     <div class="glow"></div>
 
-    <div class="container">
-      <div class="kicker"><span class="dot"></span> ARCHITECTURE // CENTRAL COMMAND</div>
+    <div class="container" style="position:relative; z-index:1;">
+      <div class="kicker"><span class="pulse-dot"></span> ARCHITECTURE // CENTRAL COMMAND</div>
 
-      <!-- moved + animated “computing” strip -->
       <div class="compute-strip" aria-label="Live computing ticker">
         <div class="label">COMMAND_LAYER_ESTABLISHED</div>
-
-        <!-- doubled content for seamless scroll -->
         <div class="ticker-wrap">
           <div class="ticker" aria-hidden="true">
             <span><span class="ok">&gt;</span> INIT_UPLINK</span>
@@ -787,7 +789,8 @@
 
       <div class="arch-grid">
         <div>
-          <h2 class="title">Centralised Dominance.</h2>
+          <!-- (6) Dominance text green -->
+          <h2 class="title"><span class="green">Centralised Dominance.</span></h2>
           <p class="lead">
             Eliminating the friction between physical assets and digital oversight.
             Our proprietary architecture dismantles fragmentation by converting raw telemetry into high-fidelity governance data.
@@ -796,12 +799,12 @@
           <div class="stats">
             <div class="stat">
               <div class="label">SYNC_RATE</div>
-              <div class="value">0.5ms</div>
+              <div class="value" data-live="ms">0.5ms</div>
               <div class="sub">REAL-TIME</div>
             </div>
             <div class="stat">
               <div class="label">UPTIME</div>
-              <div class="value">99.99%</div>
+              <div class="value" data-live="pct">99.99%</div>
               <div class="sub">AVAILABILITY</div>
             </div>
             <div class="stat">
@@ -812,32 +815,39 @@
           </div>
         </div>
 
-        <div class="terminal">
-          <div class="terminal-lines">
+        <!-- (7) Enhanced + animated system boot card -->
+        <div class="terminal" aria-label="Live system boot checks">
+          <div class="terminal-head">
+            <span>SYSTEM_BOOT // LIVE_CHECK</span>
+            <span class="green" style="font-weight:900; letter-spacing:.26em;">RUNNING</span>
+          </div>
+          <div class="terminal-lines" id="bootLog">
             <div><span class="ok">&gt; [SYSTEM_BOOT]</span> : <span class="strong">SUCCESSFUL</span></div>
             <div>&gt; LOADING_COMPLIANCE_ENGINE... <span class="strong">DONE</span></div>
-            <div>&gt; SCANNING_AcoP_L8_PROTOCOLS... <span class="strong">OPTIMAL</span></div>
-            <div>&gt; FIRE_SAFETY_UPLINK... <span class="strong">CONNECTED</span></div>
-            <div>&gt; TELEMETRY_NODES_ACTIVE... <span class="strong">412_COUNT</span></div>
+            <div>&gt; VERIFYING_SITE_INTEGRITY... <span class="strong">PASS</span></div>
+            <div>&gt; PING_TELEMETRY_NODES... <span class="strong">OK</span></div>
             <div class="terminal-divider"></div>
-            <div class="terminal-big">ESTATE_HEALTH_INDEX: 100%</div>
-            <div>&gt; NO_RISK_DETECTED // ALL_SYSTEMS_GOVERNED</div>
+            <div class="terminal-big">ESTATE_HEALTH_INDEX: <span id="healthIndex">100</span>%</div>
+            <div>&gt; LIVE_MONITOR: ENABLED <span class="cursor">▌</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CAPABILITIES (unchanged layout, still full-screen) -->
+  <!-- CAPABILITIES -->
   <section id="capabilities" class="fullscreen">
     <div class="separator-top"></div>
     <div class="separator-bottom"></div>
     <div class="scanlines"></div>
     <div class="glow"></div>
 
-    <div class="container">
-      <div class="kicker"><span class="dot"></span> CAPABILITIES // COMMAND_LAYER</div>
-      <h2 class="title">Command Centre Modules.</h2>
+    <div class="container" style="position:relative; z-index:1;">
+      <div class="kicker"><span class="pulse-dot"></span> CAPABILITIES // COMMAND_LAYER</div>
+
+      <!-- (7) Centre Modules text green -->
+      <h2 class="title">Command <span class="green">Centre Modules.</span></h2>
+
       <p class="lead">
         Select a discipline to inspect live signals, governance outputs, and protocol coverage — all from a unified control surface.
       </p>
@@ -915,8 +925,9 @@
             <div class="cap-actiontext">
               <span class="lime">SYSTEM_STATUS:</span> READY <span class="sep">//</span> AUDIT_INTERFACE_AVAILABLE
             </div>
+
             <div class="cap-actions">
-              <a href="#architecture" class="btn ghost">VIEW MODULE</a>
+              <!-- (10) Removed View Module button -->
               <a href="#execute-audit" class="btn primary">EXECUTE AUDIT</a>
             </div>
           </div>
@@ -934,9 +945,11 @@
     <div class="scanlines"></div>
     <div class="glow"></div>
 
-    <div class="container">
-      <div class="kicker" style="justify-content:center;"><span class="dot"></span> SYSTEM AUDIT</div>
-      <h2 class="audit-title">EXECUTE COMPLIANCE PROTOCOL</h2>
+    <div class="container" style="position:relative; z-index:1;">
+      <div class="kicker" style="justify-content:center;"><span class="pulse-dot"></span> SYSTEM AUDIT</div>
+
+      <!-- (11) Compliance Protocol green -->
+      <h2 class="audit-title">EXECUTE <span class="green">COMPLIANCE PROTOCOL</span></h2>
 
       <div class="audit-center">
         <div class="audit-card">
@@ -1033,6 +1046,7 @@
         </div>
 
         <div>
+          <!-- (12) Use same title class as others -->
           <div class="footer-col-title">COMMAND CENTRE</div>
           <div class="footer-contact">
             71–75 Shelton Street<br/>
@@ -1063,9 +1077,9 @@
         status: "MONITORING",
         blurb: "Advanced water compliance protocols and telemetry for real-time temperature and flow oversight across distributed nodes.",
         kpis: [
-          { label: "SYNC_RATE", value: "0.5ms", sub: "real-time" },
-          { label: "COVERAGE", value: "99.9%", sub: "nodes" },
-          { label: "ENCRYPTION", value: "AES-256", sub: "secure" }
+          { label: "SYNC_RATE", value: 0.5, suffix: "ms", live: "ms", sub: "real-time" },
+          { label: "COVERAGE", value: 99.9, suffix: "%", live: "pct", sub: "nodes" },
+          { label: "ENCRYPTION", value: "AES-256", live: null, sub: "secure" }
         ],
         signals: ["Temp probes", "Flow meters", "Stagnation windows", "Sampling logs"],
         outputs: ["Risk scoring", "Auto escalation", "Audit-ready registers", "Remediation tasks"],
@@ -1079,9 +1093,9 @@
         status: "ACTIVE",
         blurb: "Full-spectrum risk alignment and automated assessments for critical life safety and evacuation readiness.",
         kpis: [
-          { label: "READINESS", value: "100%", sub: "status" },
-          { label: "CHECKS", value: "24/7", sub: "real-time" },
-          { label: "UPTIME", value: "99.99%", sub: "availability" }
+          { label: "READINESS", value: 100, suffix: "%", live: "pctSmall", sub: "status" },
+          { label: "CHECKS", value: "24/7", live: null, sub: "real-time" },
+          { label: "UPTIME", value: 99.99, suffix: "%", live: "pct", sub: "availability" }
         ],
         signals: ["Alarm health", "Device tests", "Evac routes", "Drill outcomes"],
         outputs: ["Nonconformance alerts", "Auto schedules", "Compliance timeline", "Evidence packs"],
@@ -1095,9 +1109,9 @@
         status: "OPTIMAL",
         blurb: "Precision monitoring of physical estate assets, converting mechanical telemetry into actionable governance data.",
         kpis: [
-          { label: "HEALTH_INDEX", value: "98%", sub: "estate" },
-          { label: "ASSETS", value: "412", sub: "tracked" },
-          { label: "LATENCY", value: "1.2ms", sub: "uplink" }
+          { label: "HEALTH_INDEX", value: 98, suffix: "%", live: "pctSmall", sub: "estate" },
+          { label: "ASSETS", value: 412, suffix: "", live: "int", sub: "tracked" },
+          { label: "LATENCY", value: 1.2, suffix: "ms", live: "ms", sub: "uplink" }
         ],
         signals: ["Plant runtime", "Fault codes", "Energy draw", "Maintenance logs"],
         outputs: ["Predictive flags", "Register updates", "Work orders", "SLA variance reports"],
@@ -1111,9 +1125,9 @@
         status: "MONITORING",
         blurb: "Strategic governance for ISO frameworks, ensuring constant audit-readiness across complex portfolios.",
         kpis: [
-          { label: "AUDIT_READY", value: "YES", sub: "state" },
-          { label: "GAPS", value: "0", sub: "critical" },
-          { label: "CYCLE", value: "LIVE", sub: "continuous" }
+          { label: "AUDIT_READY", value: "YES", live: null, sub: "state" },
+          { label: "GAPS", value: 0, suffix: "", live: "int", sub: "critical" },
+          { label: "CYCLE", value: "LIVE", live: null, sub: "continuous" }
         ],
         signals: ["Evidence expiry", "Policy deltas", "Training cadence", "Supplier status"],
         outputs: ["Gap analysis", "Evidence packs", "Policy mappings", "CI log"],
@@ -1127,9 +1141,9 @@
         status: "OPTIMAL",
         blurb: "Intelligent HVAC and air quality monitoring to drive sustainability targets and optimise energy efficiency.",
         kpis: [
-          { label: "AIR_SCORE", value: "A", sub: "quality" },
-          { label: "EFFICIENCY", value: "+12%", sub: "YoY" },
-          { label: "STREAM", value: "LIVE", sub: "telemetry" }
+          { label: "AIR_SCORE", value: "A", live: null, sub: "quality" },
+          { label: "EFFICIENCY", value: 12, suffix: "%", live: "pctSmall", sub: "YoY" },
+          { label: "STREAM", value: "LIVE", live: null, sub: "telemetry" }
         ],
         signals: ["CO₂", "PM2.5", "Temp/Humidity", "kWh telemetry"],
         outputs: ["Threshold alerts", "Trend reports", "Efficiency actions", "ESG signals"],
@@ -1143,9 +1157,9 @@
         status: "ACTIVE",
         blurb: "Unified oversight of access control, perimeter security, and surveillance through a single command interface.",
         kpis: [
-          { label: "ALERTS", value: "LOW", sub: "current" },
-          { label: "VISIBILITY", value: "100%", sub: "coverage" },
-          { label: "CONTROL", value: "CENTRAL", sub: "command" }
+          { label: "ALERTS", value: 3, suffix: "", live: "int", sub: "current" },
+          { label: "VISIBILITY", value: 100, suffix: "%", live: "pctSmall", sub: "coverage" },
+          { label: "CONTROL", value: "CENTRAL", live: null, sub: "command" }
         ],
         signals: ["Door events", "CCTV status", "Perimeter alarms", "Visitor logs"],
         outputs: ["Incident trails", "Anomaly detection", "Access reviews", "Response workflows"],
@@ -1159,9 +1173,9 @@
         status: "MONITORING",
         blurb: "Fixed wire testing and PAT oversight integrated into a live register for instant verification and compliance trails.",
         kpis: [
-          { label: "EXPIRY", value: "0", sub: "overdue" },
-          { label: "REGISTER", value: "LIVE", sub: "status" },
-          { label: "VERIFY", value: "INSTANT", sub: "checks" }
+          { label: "EXPIRY", value: 0, suffix: "", live: "int", sub: "overdue" },
+          { label: "REGISTER", value: "LIVE", live: null, sub: "status" },
+          { label: "VERIFY", value: "INSTANT", live: null, sub: "checks" }
         ],
         signals: ["EICR dates", "PAT checks", "Defect logs", "Remedial actions"],
         outputs: ["Expiry alerts", "Engineer scheduling", "Evidence packs", "Defect dashboards"],
@@ -1175,9 +1189,9 @@
         status: "ACTIVE",
         blurb: "Digital asbestos registers and removal tracking for complete lifecycle governance and dutyholder confidence.",
         kpis: [
-          { label: "REGISTER", value: "100%", sub: "coverage" },
-          { label: "RISK", value: "MANAGED", sub: "state" },
-          { label: "TRAIL", value: "COMPLETE", sub: "audit" }
+          { label: "REGISTER", value: 100, suffix: "%", live: "pctSmall", sub: "coverage" },
+          { label: "RISK", value: "MANAGED", live: null, sub: "state" },
+          { label: "TRAIL", value: "COMPLETE", live: null, sub: "audit" }
         ],
         signals: ["Survey records", "Material changes", "Removals", "Re-inspections"],
         outputs: ["Dutyholder pack", "Lifecycle tracking", "Contractor controls", "Risk mapping"],
@@ -1247,6 +1261,9 @@
     const outputsCount = document.getElementById("outputsCount");
     const protocolsCount = document.getElementById("protocolsCount");
 
+    // (9) track live KPI nodes so we can animate them
+    let liveKpiNodes = []; // [{el, type, base, suffix}]
+
     function renderTags(el, items){
       el.innerHTML = "";
       items.forEach((t) => {
@@ -1257,17 +1274,45 @@
       });
     }
 
+    function formatValue(type, value, suffix){
+      if (type === "ms") return value.toFixed(1) + (suffix || "ms");
+      if (type === "pct") return value.toFixed(2) + (suffix || "%");
+      if (type === "pctSmall") return Math.round(value) + (suffix || "%");
+      if (type === "int") return Math.max(0, Math.round(value)) + (suffix || "");
+      return String(value) + (suffix || "");
+    }
+
     function renderKpis(kpis){
       panelKpis.innerHTML = "";
+      liveKpiNodes = [];
+
       kpis.forEach((k) => {
         const div = document.createElement("div");
         div.className = "kpi";
+
+        // store live type on the value span if numeric
+        const isLive = !!k.live;
+        const safeText = isLive ? formatValue(k.live, Number(k.value), k.suffix) : String(k.value);
+
         div.innerHTML = `
           <div class="k-label">${k.label}</div>
-          <div class="k-value">${k.value}</div>
+          <div class="k-value" ${isLive ? `data-live="${k.live}" data-base="${k.value}" data-suffix="${k.suffix || ""}"` : ""}>
+            ${safeText}
+          </div>
           ${k.sub ? `<div class="k-sub">${k.sub}</div>` : ""}
         `;
+
         panelKpis.appendChild(div);
+
+        if (isLive){
+          const valueEl = div.querySelector(".k-value");
+          liveKpiNodes.push({
+            el: valueEl,
+            type: k.live,
+            base: Number(k.value),
+            suffix: k.suffix || ""
+          });
+        }
       });
     }
 
@@ -1330,9 +1375,94 @@
       auditForm.reset();
       setTimeout(() => (formNotice.textContent = ""), 7000);
     });
+
+    // ===== (7) Animate SYSTEM_BOOT log so it looks live =====
+    const bootLog = document.getElementById("bootLog");
+    const healthIndex = document.getElementById("healthIndex");
+
+    const liveChecks = [
+      { t: "CHECKING_SSL_CERTIFICATE...", r: "VALID" },
+      { t: "VALIDATING_NAV_LINKS...", r: "PASS" },
+      { t: "SCANNING_SECTION_RENDER...", r: "OK" },
+      { t: "VERIFYING_FORM_ENDPOINT...", r: "READY" },
+      { t: "PING_TELEMETRY_GATEWAY...", r: "OK" },
+      { t: "HASHING_ASSET_MANIFEST...", r: "DONE" },
+      { t: "AUDIT_PIPELINE_STATUS...", r: "ONLINE" }
+    ];
+
+    function addLiveLine(){
+      const pick = liveChecks[Math.floor(Math.random()*liveChecks.length)];
+      const line = document.createElement("div");
+      line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
+      // insert just above divider
+      const divider = bootLog.querySelector(".terminal-divider");
+      bootLog.insertBefore(line, divider);
+
+      // keep it tidy (limit lines)
+      const lines = bootLog.querySelectorAll("div");
+      // allow a few fixed lines + some live ones
+      if (lines.length > 12){
+        // remove the oldest dynamic line after the initial 4
+        bootLog.removeChild(lines[4]);
+      }
+    }
+
+    setInterval(addLiveLine, 1400);
+
+    // live health index slight drift
+    let hi = 100;
+    setInterval(() => {
+      hi = Math.max(96, Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1))));
+      healthIndex.textContent = String(Math.round(hi));
+    }, 1200);
+
+    // ===== (9) Animate some KPI numbers in Capabilities right panel =====
+    function tickLiveKpis(){
+      liveKpiNodes.forEach(node => {
+        const { el, type, base, suffix } = node;
+
+        let v = base;
+        if (type === "ms"){
+          v = base + (Math.random() * 0.3 - 0.15); // +/- 0.15ms
+          v = Math.max(0.1, v);
+        } else if (type === "pct"){
+          v = base + (Math.random() * 0.03 - 0.015); // +/- 0.015
+          v = Math.max(90, Math.min(100, v));
+        } else if (type === "pctSmall"){
+          v = base + (Math.random() < 0.2 ? (Math.random() < 0.5 ? -1 : 1) : 0);
+          v = Math.max(0, Math.min(100, v));
+        } else if (type === "int"){
+          v = base + (Math.random() < 0.25 ? (Math.random() < 0.5 ? -1 : 1) : 0);
+          v = Math.max(0, v);
+        }
+
+        el.textContent = formatValue(type, Number(v), suffix);
+      });
+    }
+    setInterval(tickLiveKpis, 900);
+
+    // also animate the Architecture stats values (optional subtle)
+    const statLive = document.querySelectorAll("[data-live]");
+    setInterval(() => {
+      statLive.forEach(el => {
+        const mode = el.getAttribute("data-live");
+        const txt = el.textContent || "";
+        if (mode === "ms"){
+          const base = 0.5;
+          const v = Math.max(0.1, base + (Math.random()*0.2 - 0.1));
+          el.textContent = v.toFixed(1) + "ms";
+        }
+        if (mode === "pct"){
+          const base = 99.99;
+          const v = Math.max(99.90, Math.min(100, base + (Math.random()*0.03 - 0.015)));
+          el.textContent = v.toFixed(2) + "%";
+        }
+      });
+    }, 1000);
   </script>
 </body>
 </html>
+
 
 
 
