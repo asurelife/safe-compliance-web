@@ -1417,15 +1417,6 @@ ${notes || "(none)"}
 ---
 Submitted via SafeCompliance.com`;
 
-      const mailto = `mailto:hello@safecompliance.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
-
-      formNotice.textContent = "Opening your email client to send this request to hello@safecompliance.com...";
-      setTimeout(() => (formNotice.textContent = ""), 6500);
-
-      auditForm.reset();
-    });
-
     // Animate SYSTEM_BOOT log
     const bootLog = document.getElementById("bootLog");
     const healthIndex = document.getElementById("healthIndex");
