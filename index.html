@@ -1384,74 +1384,12 @@
     }, { root: null, threshold: 0.35 });
     sections.forEach(sec => observer.observe(sec));
 
-    // ===== (3) "Send to email" via mailto (opens user email client) =====
-    // For automatic sending without the visitor's email app, you need a backend endpoint (I can provide one if you want).
-    const auditForm = document.getElementById("auditForm");
-    const formNotice = document.getElementById("formNotice");
+    <script>
+  // Animate SYSTEM_BOOT log (guarded)
+  const bootLog = document.getElementById("bootLog");
+  const healthIndex = document.getElementById("healthIndex");
 
-    auditForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const data = new FormData(auditForm);
-
-      const estate = (data.get("estateName") || "").toString().trim();
-      const name = (data.get("contactName") || "").toString().trim();
-      const tel = (data.get("contactTel") || "").toString().trim();
-      const email = (data.get("contactEmail") || "").toString().trim();
-      const discipline = (data.get("discipline") || "").toString().trim();
-      const notes = (data.get("notes") || "").toString().trim();
-
-      const subject = `Safe Compliance Audit Request — ${estate || "New Enquiry"}`;
-      const body =
-`NEW AUDIT REQUEST
-
-ESTATE: ${estate}
-DISCIPLINE: ${discipline}
-
-CONTACT NAME: ${name}
-CONTACT EMAIL: ${email}
-CONTACT TEL: ${tel}
-
-NOTES:
-${notes || "(none)"}
-
----
-Submitted via SafeCompliance.com`;
-
-try {
-  formNotice.textContent = "Transmitting audit request...";
-
-  const payload = {
-    estateName: document.getElementById("estateName").value.trim(),
-    contactName: document.getElementById("contactName").value.trim(),
-    contactTel: document.getElementById("contactTel").value.trim(),
-    contactEmail: document.getElementById("contactEmail").value.trim(),
-    discipline: document.getElementById("discipline").value.trim(),
-    notes: document.getElementById("notes").value.trim(),
-  };
-
-  const res = await fetch("/api/audit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  const data = await res.json().catch(() => ({}));
-
-  if (!res.ok) {
-    formNotice.textContent = data.message || "Failed to send request. Please try again.";
-    return;
-  }
-
-  formNotice.textContent = "Audit request sent successfully.";
-  auditForm.reset();
-  setTimeout(() => (formNotice.textContent = ""), 5000);
-} catch (err) {
-  formNotice.textContent = "Network error. Please try again.";
-}
-
-    // Animate SYSTEM_BOOT log
-    const bootLog = document.getElementById("bootLog");
-    const healthIndex = document.getElementById("healthIndex");
+  if (bootLog && healthIndex) {
     const liveChecks = [
       { t: "CHECKING_SSL_CERTIFICATE...", r: "VALID" },
       { t: "VALIDATING_NAV_LINKS...", r: "PASS" },
@@ -1461,74 +1399,85 @@ try {
       { t: "HASHING_ASSET_MANIFEST...", r: "DONE" },
       { t: "AUDIT_PIPELINE_STATUS...", r: "ONLINE" }
     ];
-    function addLiveLine(){
-      const pick = liveChecks[Math.floor(Math.random()*liveChecks.length)];
+
+    function addLiveLine() {
+      const pick = liveChecks[Math.floor(Math.random() * liveChecks.length)];
       const line = document.createElement("div");
       line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
       const divider = bootLog.querySelector(".terminal-divider");
-      bootLog.insertBefore(line, divider);
+      if (divider) bootLog.insertBefore(line, divider);
 
       const lines = bootLog.querySelectorAll("div");
-      if (lines.length > 12){
+      if (lines.length > 12 && lines[4]) {
         bootLog.removeChild(lines[4]);
       }
     }
+
     setInterval(addLiveLine, 1400);
 
     let hi = 100;
     setInterval(() => {
-      hi = Math.max(96, Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1))));
+      hi = Math.max(
+        96,
+        Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1)))
+      );
       healthIndex.textContent = String(Math.round(hi));
     }, 1200);
+  }
 
-    // Animate KPI numbers
-    function tickLiveKpis(){
-      liveKpiNodes.forEach(node => {
+  // Animate KPI numbers (guarded)
+  if (typeof liveKpiNodes !== "undefined" && typeof formatValue === "function") {
+    function tickLiveKpis() {
+      liveKpiNodes.forEach((node) => {
         const { el, type, base, suffix } = node;
 
         let v = base;
-        if (type === "ms"){
-          v = base + (Math.random() * 0.3 - 0.15);
-          v = Math.max(0.1, v);
-        } else if (type === "pct"){
-          v = base + (Math.random() * 0.03 - 0.015);
-          v = Math.max(90, Math.min(100, v));
-        } else if (type === "pctSmall"){
-          v = base + (Math.random() < 0.2 ? (Math.random() < 0.5 ? -1 : 1) : 0);
-          v = Math.max(0, Math.min(100, v));
-        } else if (type === "int"){
-          v = base + (Math.random() < 0.25 ? (Math.random() < 0.5 ? -1 : 1) : 0);
-          v = Math.max(0, v);
+        if (type === "ms") {
+          v = Math.max(0.1, base + (Math.random() * 0.3 - 0.15));
+        } else if (type === "pct") {
+          v = Math.max(90, Math.min(100, base + (Math.random() * 0.03 - 0.015)));
+        } else if (type === "pctSmall") {
+          v = Math.max(
+            0,
+            Math.min(100, base + (Math.random() < 0.2 ? (Math.random() < 0.5 ? -1 : 1) : 0))
+          );
+        } else if (type === "int") {
+          v = Math.max(0, base + (Math.random() < 0.25 ? (Math.random() < 0.5 ? -1 : 1) : 0));
         }
+
         el.textContent = formatValue(type, Number(v), suffix);
       });
     }
-    setInterval(tickLiveKpis, 900);
 
-    // Animate Architecture stats values
-    const statLive = document.querySelectorAll("[data-live]");
+    setInterval(tickLiveKpis, 900);
+  }
+
+  // Animate Architecture stats values (safe)
+  const statLive = document.querySelectorAll("[data-live]");
+  if (statLive.length) {
     setInterval(() => {
-      statLive.forEach(el => {
+      statLive.forEach((el) => {
         const mode = el.getAttribute("data-live");
-        if (mode === "ms"){
+        if (mode === "ms") {
           const base = 0.5;
-          const v = Math.max(0.1, base + (Math.random()*0.2 - 0.1));
+          const v = Math.max(0.1, base + (Math.random() * 0.2 - 0.1));
           el.textContent = v.toFixed(1) + "ms";
-        }
-        if (mode === "pct"){
+        } else if (mode === "pct") {
           const base = 99.99;
-          const v = Math.max(99.90, Math.min(100, base + (Math.random()*0.03 - 0.015)));
+          const v = Math.max(99.9, Math.min(100, base + (Math.random() * 0.03 - 0.015)));
           el.textContent = v.toFixed(2) + "%";
         }
       });
     }, 1000);
-  </script>
-<script>
-  (function () {
-const auditForm = document.getElementById("auditForm");
-const formNotice = document.getElementById("formNotice");
+  }
+</script>
 
-if (auditForm) {
+<script>
+(() => {
+  const auditForm = document.getElementById("auditForm");
+  const formNotice = document.getElementById("formNotice");
+  if (!auditForm || !formNotice) return;
+
   auditForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -1553,8 +1502,7 @@ if (auditForm) {
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        formNotice.textContent =
-          data.message || "Failed to send request. Please try again.";
+        formNotice.textContent = data.message || "Failed to send request. Please try again.";
         return;
       }
 
@@ -1565,9 +1513,6 @@ if (auditForm) {
       formNotice.textContent = "Network error. Please try again.";
     }
   });
-}
-
+})();
 </script>
-
 </body>
-</html>
