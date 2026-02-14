@@ -52,12 +52,15 @@
     }
 
     /* ====== SECTION FULL HEIGHT + GREEN SEPARATORS ====== */
- .fullscreen{
-  min-height: 100vh;
-  position: relative;
-  padding: 120px 0;
-  overflow: visible;
-}
+    .fullscreen{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:110px 0;
+      position:relative;
+      overflow:hidden;
+      background:var(--navy);
+    }
     .separator-top{
       position:absolute; left:0; top:0; width:100%;
       height:3px;
@@ -1413,6 +1416,15 @@ ${notes || "(none)"}
 
 ---
 Submitted via SafeCompliance.com`;
+
+      const mailto = `mailto:hello@safecompliance.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+
+      formNotice.textContent = "Opening your email client to send this request to hello@safecompliance.com...";
+      setTimeout(() => (formNotice.textContent = ""), 6500);
+
+      auditForm.reset();
+    });
 
     // Animate SYSTEM_BOOT log
     const bootLog = document.getElementById("bootLog");
