@@ -114,7 +114,6 @@
       gap:16px;
     }
 
-    /* Logo spacing (tight join) */
     .brand{
       display:inline-flex;
       align-items:baseline;
@@ -165,9 +164,8 @@
       color:#000;
       border-color:rgba(130,188,0,.6);
     }
-    /* (1) Header Execute Audit: green + hover colour change */
     .btn.primary:hover{
-      background:#a6f100; /* brighter */
+      background:#a6f100;
       border-color:rgba(166,241,0,.65);
       transform:translateY(-1px);
     }
@@ -218,10 +216,7 @@
       text-transform:uppercase;
       color:rgba(130,188,0,.85);
     }
-
-    /* (5) Removed system console, so single column hero */
     .hero-grid{display:block; width:100%;}
-
     .hero h1{
       margin:18px 0 16px;
       font-size: clamp(44px, 6vw, 86px);
@@ -229,8 +224,9 @@
       letter-spacing:-.03em;
       font-weight:900;
     }
+    .hero h1 .break{display:block;}
     .hero p{
-      max-width:760px;
+      max-width:980px;
       color:rgba(255,255,255,.68);
       font-size:16px;
       line-height:1.7;
@@ -255,9 +251,22 @@
     }
     .lead{
       margin:0;
-      max-width:760px;
+      max-width:980px;
       color:rgba(255,255,255,.70);
       line-height:1.7;
+    }
+    /* (4) force single-line on wider screens, wrap on mobile */
+    .lead.one-line{
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    @media (max-width:820px){
+      .lead.one-line{
+        white-space:normal;
+        overflow:visible;
+        text-overflow:clip;
+      }
     }
 
     /* ====== ARCHITECTURE ====== */
@@ -287,7 +296,6 @@
     .stat .value{margin-top:6px; font-size:26px; font-weight:900; letter-spacing:-.02em;}
     .stat .sub{margin-top:2px; font-size:12px; color:rgba(255,255,255,.55); letter-spacing:.12em; text-transform:uppercase;}
 
-    /* live computing ticker */
     .compute-strip{
       margin-top:14px;
       border:1px solid rgba(130,188,0,.22);
@@ -318,7 +326,6 @@
     @keyframes scrollLeft{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
     .ticker-wrap{display:flex; width:200%;}
 
-    /* (7) System boot card enhanced + animated */
     .terminal{
       border:1px solid var(--border-white);
       background:rgba(255,255,255,.03);
@@ -389,7 +396,6 @@
 
     .cap-list{padding:14px;}
     .cap-list-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
-    /* (8) module list title white */
     .cap-list-title{
       font-size:11px; letter-spacing:.28em; text-transform:uppercase;
       color:rgba(255,255,255,.92);
@@ -428,7 +434,6 @@
 
     .cap-item-mid{min-width:0; flex:1;}
     .cap-item-row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
-    /* (8) module title white (inside each item) */
     .cap-title{
       font-size:13px;
       font-weight:800;
@@ -677,7 +682,15 @@
     }
     .footer-links a:last-child{border-bottom:none;}
     .footer-links a:hover{color:#fff;}
-    .footer-contact{color:rgba(255,255,255,.70); line-height:1.8;}
+    .footer-contact{
+      color:rgba(255,255,255,.70);
+      line-height:1.8;
+      /* (5) keep address on one line (so it aligns with “Privacy” row height better) */
+      white-space:nowrap;
+    }
+    @media (max-width:980px){
+      .footer-contact{white-space:normal;}
+    }
     .mt-26{margin-top:26px;}
   </style>
 </head>
@@ -699,7 +712,6 @@
         </nav>
 
         <div class="nav-cta">
-          <!-- (1) green execute audit button in header -->
           <a class="btn primary" href="#execute-audit">EXECUTE AUDIT</a>
           <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span></button>
         </div>
@@ -723,7 +735,7 @@
 
     <div class="container" style="position:relative; z-index:1;">
       <div class="statusline">
-        <!-- (2) pulsing dot -->
+        <!-- (1) pulsing dot -->
         <span class="pulse-dot"></span>
         SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
       </div>
@@ -731,8 +743,9 @@
       <div class="hero-grid">
         <div>
           <h1>
-            <!-- (3) INTELLIGENCE-LED on same line; (4) ESTATE GOVERNANCE green -->
-            <span class="break">INTELLIGENCE-LED ESTATE</span>
+            <!-- (2) INTELLIGENCE-LED (white), ESTATE (green) underneath, then GOVERNANCE (green) -->
+            <span class="break">INTELLIGENCE-LED</span>
+            <span class="break green">ESTATE</span>
             <span class="break green">GOVERNANCE.</span>
           </h1>
 
@@ -746,8 +759,6 @@
             <a class="btn" href="#capabilities">VIEW MODULES</a>
           </div>
         </div>
-
-        <!-- (5) Removed the system console card from this section -->
       </div>
     </div>
   </section>
@@ -760,6 +771,7 @@
     <div class="glow"></div>
 
     <div class="container" style="position:relative; z-index:1;">
+      <!-- (1) pulsing dot here too -->
       <div class="kicker"><span class="pulse-dot"></span> ARCHITECTURE // CENTRAL COMMAND</div>
 
       <div class="compute-strip" aria-label="Live computing ticker">
@@ -789,8 +801,8 @@
 
       <div class="arch-grid">
         <div>
-          <!-- (6) Dominance text green -->
-          <h2 class="title"><span class="green">Centralised Dominance.</span></h2>
+          <!-- (3) Centralised white, DOMINANCE. uppercase -->
+          <h2 class="title"><span style="color:#fff;">Centralised</span> <span class="green">DOMINANCE.</span></h2>
           <p class="lead">
             Eliminating the friction between physical assets and digital oversight.
             Our proprietary architecture dismantles fragmentation by converting raw telemetry into high-fidelity governance data.
@@ -815,7 +827,6 @@
           </div>
         </div>
 
-        <!-- (7) Enhanced + animated system boot card -->
         <div class="terminal" aria-label="Live system boot checks">
           <div class="terminal-head">
             <span>SYSTEM_BOOT // LIVE_CHECK</span>
@@ -843,12 +854,12 @@
     <div class="glow"></div>
 
     <div class="container" style="position:relative; z-index:1;">
+      <!-- (1) pulsing dot -->
       <div class="kicker"><span class="pulse-dot"></span> CAPABILITIES // COMMAND_LAYER</div>
-
-      <!-- (7) Centre Modules text green -->
       <h2 class="title">Command <span class="green">Centre Modules.</span></h2>
 
-      <p class="lead">
+      <!-- (4) keep on one line (wrap on mobile) -->
+      <p class="lead one-line">
         Select a discipline to inspect live signals, governance outputs, and protocol coverage — all from a unified control surface.
       </p>
 
@@ -927,7 +938,6 @@
             </div>
 
             <div class="cap-actions">
-              <!-- (10) Removed View Module button -->
               <a href="#execute-audit" class="btn primary">EXECUTE AUDIT</a>
             </div>
           </div>
@@ -946,10 +956,9 @@
     <div class="glow"></div>
 
     <div class="container" style="position:relative; z-index:1;">
+      <!-- (1) pulsing dot -->
       <div class="kicker" style="justify-content:center;"><span class="pulse-dot"></span> SYSTEM AUDIT</div>
-
-      <!-- (11) Compliance Protocol green -->
-      <h2 class="audit-title">EXECUTE <span class="green">COMPLIANCE PROTOCOL</span></h2>
+      <h2 class="title" style="text-align:center; margin-top:18px;">EXECUTE <span class="green">COMPLIANCE PROTOCOL</span></h2>
 
       <div class="audit-center">
         <div class="audit-card">
@@ -1027,7 +1036,7 @@
         </div>
 
         <div>
-          <div class="footer-col-title">SYSTEM</div>
+          <div class="footer-col-title"><span class="pulse-dot" style="margin-right:10px; vertical-align:middle;"></span>SYSTEM</div>
           <div class="footer-links">
             <a href="#intelligence">Intelligence</a>
             <a href="#architecture">Architecture</a>
@@ -1037,7 +1046,7 @@
         </div>
 
         <div>
-          <div class="footer-col-title">LEGAL</div>
+          <div class="footer-col-title"><span class="pulse-dot" style="margin-right:10px; vertical-align:middle;"></span>LEGAL</div>
           <div class="footer-links">
             <a href="#terms">Terms</a>
             <a href="#privacy">Privacy</a>
@@ -1046,8 +1055,8 @@
         </div>
 
         <div>
-          <!-- (12) Use same title class as others -->
-          <div class="footer-col-title">COMMAND CENTRE</div>
+          <!-- (1) pulsing dot; (5) keep address in one line -->
+          <div class="footer-col-title"><span class="pulse-dot" style="margin-right:10px; vertical-align:middle;"></span>COMMAND CENTRE</div>
           <div class="footer-contact">
             71–75 Shelton Street<br/>
             London, WC2H 9JQ<br/><br/>
@@ -1205,10 +1214,11 @@
       return "monitoring";
     };
 
-    // Render left list
     const capItemsEl = document.getElementById("capItems");
     const moduleCountEl = document.getElementById("moduleCount");
     moduleCountEl.textContent = String(CAPS.length).padStart(2,"0");
+
+    let liveKpiNodes = [];
 
     function createCapButton(cap, isActive){
       const sClass = statusToClass(cap.status);
@@ -1246,7 +1256,6 @@
       });
     }
 
-    // Right panel elements
     const panelCategory = document.getElementById("panelCategory");
     const panelStatusDot = document.getElementById("panelStatusDot");
     const panelStatusText = document.getElementById("panelStatusText");
@@ -1260,9 +1269,6 @@
     const signalsCount = document.getElementById("signalsCount");
     const outputsCount = document.getElementById("outputsCount");
     const protocolsCount = document.getElementById("protocolsCount");
-
-    // (9) track live KPI nodes so we can animate them
-    let liveKpiNodes = []; // [{el, type, base, suffix}]
 
     function renderTags(el, items){
       el.innerHTML = "";
@@ -1290,7 +1296,6 @@
         const div = document.createElement("div");
         div.className = "kpi";
 
-        // store live type on the value span if numeric
         const isLive = !!k.live;
         const safeText = isLive ? formatValue(k.live, Number(k.value), k.suffix) : String(k.value);
 
@@ -1376,7 +1381,7 @@
       setTimeout(() => (formNotice.textContent = ""), 7000);
     });
 
-    // ===== (7) Animate SYSTEM_BOOT log so it looks live =====
+    // Animate SYSTEM_BOOT log
     const bootLog = document.getElementById("bootLog");
     const healthIndex = document.getElementById("healthIndex");
 
@@ -1394,39 +1399,34 @@
       const pick = liveChecks[Math.floor(Math.random()*liveChecks.length)];
       const line = document.createElement("div");
       line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
-      // insert just above divider
       const divider = bootLog.querySelector(".terminal-divider");
       bootLog.insertBefore(line, divider);
 
-      // keep it tidy (limit lines)
       const lines = bootLog.querySelectorAll("div");
-      // allow a few fixed lines + some live ones
       if (lines.length > 12){
-        // remove the oldest dynamic line after the initial 4
         bootLog.removeChild(lines[4]);
       }
     }
-
     setInterval(addLiveLine, 1400);
 
-    // live health index slight drift
+    // health index slight drift
     let hi = 100;
     setInterval(() => {
       hi = Math.max(96, Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1))));
       healthIndex.textContent = String(Math.round(hi));
     }, 1200);
 
-    // ===== (9) Animate some KPI numbers in Capabilities right panel =====
+    // Animate KPI numbers
     function tickLiveKpis(){
       liveKpiNodes.forEach(node => {
         const { el, type, base, suffix } = node;
 
         let v = base;
         if (type === "ms"){
-          v = base + (Math.random() * 0.3 - 0.15); // +/- 0.15ms
+          v = base + (Math.random() * 0.3 - 0.15);
           v = Math.max(0.1, v);
         } else if (type === "pct"){
-          v = base + (Math.random() * 0.03 - 0.015); // +/- 0.015
+          v = base + (Math.random() * 0.03 - 0.015);
           v = Math.max(90, Math.min(100, v));
         } else if (type === "pctSmall"){
           v = base + (Math.random() < 0.2 ? (Math.random() < 0.5 ? -1 : 1) : 0);
@@ -1441,12 +1441,11 @@
     }
     setInterval(tickLiveKpis, 900);
 
-    // also animate the Architecture stats values (optional subtle)
+    // Animate Architecture stats values
     const statLive = document.querySelectorAll("[data-live]");
     setInterval(() => {
       statLive.forEach(el => {
         const mode = el.getAttribute("data-live");
-        const txt = el.textContent || "";
         if (mode === "ms"){
           const base = 0.5;
           const v = Math.max(0.1, base + (Math.random()*0.2 - 0.1));
@@ -1462,6 +1461,7 @@
   </script>
 </body>
 </html>
+
 
 
 
