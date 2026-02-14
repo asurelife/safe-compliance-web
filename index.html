@@ -77,26 +77,40 @@
       pointer-events:none;
     }
 
-    /* ====== PULSING DOT (use everywhere) ====== */
-    .pulse-dot{
-      width:6px;height:6px;border-radius:999px;
-      background:var(--lime);
-      box-shadow:0 0 16px rgba(130,188,0,.35);
-      position:relative;
-      flex:0 0 6px;
-    }
-    .pulse-dot:after{
-      content:"";
-      position:absolute; inset:-8px;
-      border-radius:999px;
-      border:1px solid rgba(130,188,0,.55);
-      opacity:.0;
-      animation:pulse 1.6s ease-out infinite;
-    }
+    /* ====== (1) LIVE PULSING DOTS — APPLIES TO ALL DOT TYPES ====== */
     @keyframes pulse{
       0%{transform:scale(.35); opacity:.0}
       25%{opacity:.55}
       100%{transform:scale(1.35); opacity:0}
+    }
+
+    /* base dot + ring */
+    .pulse-dot,
+    .s-dot,
+    .mini-dot{
+      position:relative;
+      border-radius:999px;
+      box-shadow:0 0 16px rgba(130,188,0,.22);
+    }
+    .pulse-dot::after,
+    .s-dot::after,
+    .mini-dot::after{
+      content:"";
+      position:absolute;
+      inset:-8px;
+      border-radius:999px;
+      border:1px solid var(--dotcolor, rgba(130,188,0,.55));
+      opacity:0;
+      animation:pulse 1.6s ease-out infinite;
+      pointer-events:none;
+    }
+
+    .pulse-dot{
+      width:6px;height:6px;
+      background:var(--lime);
+      --dotcolor: rgba(130,188,0,.55);
+      box-shadow:0 0 16px rgba(130,188,0,.35);
+      flex:0 0 6px;
     }
 
     .green{ color:var(--lime); }
@@ -113,7 +127,6 @@
       padding:18px 0;
       gap:16px;
     }
-
     .brand{
       display:inline-flex;
       align-items:baseline;
@@ -255,7 +268,6 @@
       color:rgba(255,255,255,.70);
       line-height:1.7;
     }
-    /* (4) force single-line on wider screens, wrap on mobile */
     .lead.one-line{
       white-space:nowrap;
       overflow:hidden;
@@ -423,14 +435,25 @@
     .cap-index{font-size:10px; letter-spacing:.30em; color:rgba(130,188,0,.80);}
     .cap-index.big{font-size:12px;}
     .cap-status{margin-top:6px; display:flex; align-items:center; gap:8px;}
-    .s-dot{width:6px;height:6px;border-radius:999px; display:inline-block;}
+
+    /* status dots (now pulsing too) */
+    .s-dot{
+      width:6px;height:6px;
+      display:inline-block;
+      background:var(--dotfill, rgba(130,188,0,.95));
+      --dotcolor: var(--dotring, rgba(130,188,0,.55));
+      box-shadow:0 0 16px rgba(130,188,0,.18);
+    }
     .s-text{font-size:10px; letter-spacing:.22em; text-transform:uppercase; font-weight:700;}
+
     .monitoring{color:rgba(130,188,0,.85);}
-    .monitoring.s-dot{background:rgba(130,188,0,.95);}
+    .monitoring.s-dot{ --dotfill: rgba(130,188,0,.95); --dotring: rgba(130,188,0,.55); box-shadow:0 0 16px rgba(130,188,0,.22); }
+
     .activeS{color:rgba(52,211,153,.95);}
-    .activeS.s-dot{background:rgba(52,211,153,.95);}
+    .activeS.s-dot{ --dotfill: rgba(52,211,153,.95); --dotring: rgba(52,211,153,.55); box-shadow:0 0 16px rgba(52,211,153,.18); }
+
     .optimal{color:rgba(163,230,53,.95);}
-    .optimal.s-dot{background:rgba(163,230,53,.95);}
+    .optimal.s-dot{ --dotfill: rgba(163,230,53,.95); --dotring: rgba(163,230,53,.55); box-shadow:0 0 16px rgba(163,230,53,.18); }
 
     .cap-item-mid{min-width:0; flex:1;}
     .cap-item-row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
@@ -545,6 +568,7 @@
     .cap-box-title{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:rgba(130,188,0,.90);}
     .cap-box-count{font-size:11px; color:rgba(255,255,255,.40);}
     .cap-box-list{display:flex; flex-direction:column; gap:8px;}
+
     .cap-tag{
       display:flex; align-items:center; gap:10px;
       border:1px solid rgba(255,255,255,.10);
@@ -562,11 +586,16 @@
       background:rgba(130,188,0,.06);
       color:rgba(255,255,255,.82);
     }
-    .cap-tag .mini-dot{
-      width:6px;height:6px;border-radius:999px;background:rgba(130,188,0,.85);
+
+    /* mini dots (now pulsing too) */
+    .mini-dot{
+      width:6px;height:6px;
+      background:rgba(130,188,0,.85);
+      --dotcolor: rgba(130,188,0,.55);
       box-shadow:0 0 14px rgba(130,188,0,.22);
       flex:0 0 6px;
     }
+
     .cap-actionbar{
       margin-top:16px;
       display:flex;
@@ -598,13 +627,6 @@
       border-radius:18px;
       box-shadow:inset 0 0 0 1px rgba(130,188,0,.06);
       pointer-events:none;
-    }
-    .audit-title{
-      text-align:center;
-      font-size: clamp(28px, 3.8vw, 52px);
-      font-weight:900;
-      letter-spacing:-.02em;
-      margin:0 0 18px;
     }
     .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px;}
     @media (max-width:780px){ .form-grid{grid-template-columns:1fr;} }
@@ -673,6 +695,9 @@
       text-transform:uppercase;
       color:rgba(130,188,0,.85);
       margin-bottom:12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
     .footer-links a{
       display:block;
@@ -682,16 +707,16 @@
     }
     .footer-links a:last-child{border-bottom:none;}
     .footer-links a:hover{color:#fff;}
-    .footer-contact{
+
+    /* (4) align Command Centre address rows with System/Legal rows */
+    .footer-lines .line{
+      display:block;
+      padding:8px 0;
       color:rgba(255,255,255,.70);
-      line-height:1.8;
-      /* (5) keep address on one line (so it aligns with “Privacy” row height better) */
-      white-space:nowrap;
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
-    @media (max-width:980px){
-      .footer-contact{white-space:normal;}
-    }
-    .mt-26{margin-top:26px;}
+    .footer-lines .line:last-child{border-bottom:none;}
+    .footer-lines .muted{color:rgba(255,255,255,.55)}
   </style>
 </head>
 
@@ -735,7 +760,6 @@
 
     <div class="container" style="position:relative; z-index:1;">
       <div class="statusline">
-        <!-- (1) pulsing dot -->
         <span class="pulse-dot"></span>
         SYSTEM STATUS: OPTIMAL // ENCRYPTION: AES-256
       </div>
@@ -743,7 +767,6 @@
       <div class="hero-grid">
         <div>
           <h1>
-            <!-- (2) INTELLIGENCE-LED (white), ESTATE (green) underneath, then GOVERNANCE (green) -->
             <span class="break">INTELLIGENCE-LED</span>
             <span class="break green">ESTATE</span>
             <span class="break green">GOVERNANCE.</span>
@@ -771,7 +794,6 @@
     <div class="glow"></div>
 
     <div class="container" style="position:relative; z-index:1;">
-      <!-- (1) pulsing dot here too -->
       <div class="kicker"><span class="pulse-dot"></span> ARCHITECTURE // CENTRAL COMMAND</div>
 
       <div class="compute-strip" aria-label="Live computing ticker">
@@ -801,7 +823,6 @@
 
       <div class="arch-grid">
         <div>
-          <!-- (3) Centralised white, DOMINANCE. uppercase -->
           <h2 class="title"><span style="color:#fff;">Centralised</span> <span class="green">DOMINANCE.</span></h2>
           <p class="lead">
             Eliminating the friction between physical assets and digital oversight.
@@ -854,11 +875,9 @@
     <div class="glow"></div>
 
     <div class="container" style="position:relative; z-index:1;">
-      <!-- (1) pulsing dot -->
       <div class="kicker"><span class="pulse-dot"></span> CAPABILITIES // COMMAND_LAYER</div>
       <h2 class="title">Command <span class="green">Centre Modules.</span></h2>
 
-      <!-- (4) keep on one line (wrap on mobile) -->
       <p class="lead one-line">
         Select a discipline to inspect live signals, governance outputs, and protocol coverage — all from a unified control surface.
       </p>
@@ -956,12 +975,12 @@
     <div class="glow"></div>
 
     <div class="container" style="position:relative; z-index:1;">
-      <!-- (1) pulsing dot -->
       <div class="kicker" style="justify-content:center;"><span class="pulse-dot"></span> SYSTEM AUDIT</div>
       <h2 class="title" style="text-align:center; margin-top:18px;">EXECUTE <span class="green">COMPLIANCE PROTOCOL</span></h2>
 
       <div class="audit-center">
         <div class="audit-card">
+          <!-- (3) NOTE: true “send email” requires a server. This uses mailto (opens the visitor’s email client). -->
           <form id="auditForm">
             <div class="form-grid">
               <div>
@@ -981,11 +1000,11 @@
 
               <div>
                 <label for="contactEmail">CONTACT EMAIL</label>
-                <input id="contactEmail" name="contactEmail" type="email" placeholder="secure_uplink@email.com" required />
+                <input id="contactEmail" name="contactEmail" type="email" placeholder="name@company.com" required />
               </div>
             </div>
 
-            <div class="mt-26">
+            <div style="margin-top:26px;">
               <label for="discipline">ENQUIRY OPTIONS</label>
               <select id="discipline" name="discipline" required>
                 <option value="" selected disabled>Select discipline...</option>
@@ -1001,7 +1020,7 @@
               </select>
             </div>
 
-            <div class="mt-26">
+            <div style="margin-top:26px;">
               <label for="notes">NOTES</label>
               <textarea id="notes" name="notes" placeholder="Add any context (sites, timelines, compliance concerns)..."></textarea>
             </div>
@@ -1036,7 +1055,7 @@
         </div>
 
         <div>
-          <div class="footer-col-title"><span class="pulse-dot" style="margin-right:10px; vertical-align:middle;"></span>SYSTEM</div>
+          <div class="footer-col-title"><span class="pulse-dot"></span>SYSTEM</div>
           <div class="footer-links">
             <a href="#intelligence">Intelligence</a>
             <a href="#architecture">Architecture</a>
@@ -1046,7 +1065,7 @@
         </div>
 
         <div>
-          <div class="footer-col-title"><span class="pulse-dot" style="margin-right:10px; vertical-align:middle;"></span>LEGAL</div>
+          <div class="footer-col-title"><span class="pulse-dot"></span>LEGAL</div>
           <div class="footer-links">
             <a href="#terms">Terms</a>
             <a href="#privacy">Privacy</a>
@@ -1055,12 +1074,12 @@
         </div>
 
         <div>
-          <!-- (1) pulsing dot; (5) keep address in one line -->
-          <div class="footer-col-title"><span class="pulse-dot" style="margin-right:10px; vertical-align:middle;"></span>COMMAND CENTRE</div>
-          <div class="footer-contact">
-            71–75 Shelton Street<br/>
-            London, WC2H 9JQ<br/><br/>
-            T: 0330 0432153 (local rate)
+          <div class="footer-col-title"><span class="pulse-dot"></span>COMMAND CENTRE</div>
+          <!-- (4) address lines now match the same row height/padding as “Architecture” + “Privacy” -->
+          <div class="footer-lines">
+            <span class="line">71–75 Shelton Street</span>
+            <span class="line">London, WC2H 9JQ</span>
+            <span class="line muted">T: 0330 0432153 (local rate)</span>
           </div>
         </div>
       </div>
@@ -1097,7 +1116,8 @@
       {
         id: "fire",
         index: "02",
-        title: "FIRE, H&S",
+        /* (2) updated label */
+        title: "FIRE, HEALTH & SAFETY",
         category: "SAFETY",
         status: "ACTIVE",
         blurb: "Full-spectrum risk alignment and automated assessments for critical life safety and evacuation readiness.",
@@ -1214,11 +1234,10 @@
       return "monitoring";
     };
 
+    // Render left list
     const capItemsEl = document.getElementById("capItems");
     const moduleCountEl = document.getElementById("moduleCount");
     moduleCountEl.textContent = String(CAPS.length).padStart(2,"0");
-
-    let liveKpiNodes = [];
 
     function createCapButton(cap, isActive){
       const sClass = statusToClass(cap.status);
@@ -1256,6 +1275,7 @@
       });
     }
 
+    // Right panel elements
     const panelCategory = document.getElementById("panelCategory");
     const panelStatusDot = document.getElementById("panelStatusDot");
     const panelStatusText = document.getElementById("panelStatusText");
@@ -1269,6 +1289,9 @@
     const signalsCount = document.getElementById("signalsCount");
     const outputsCount = document.getElementById("outputsCount");
     const protocolsCount = document.getElementById("protocolsCount");
+
+    // live KPI nodes
+    let liveKpiNodes = [];
 
     function renderTags(el, items){
       el.innerHTML = "";
@@ -1295,7 +1318,6 @@
       kpis.forEach((k) => {
         const div = document.createElement("div");
         div.className = "kpi";
-
         const isLive = !!k.live;
         const safeText = isLive ? formatValue(k.live, Number(k.value), k.suffix) : String(k.value);
 
@@ -1311,12 +1333,7 @@
 
         if (isLive){
           const valueEl = div.querySelector(".k-value");
-          liveKpiNodes.push({
-            el: valueEl,
-            type: k.live,
-            base: Number(k.value),
-            suffix: k.suffix || ""
-          });
+          liveKpiNodes.push({ el: valueEl, type: k.live, base: Number(k.value), suffix: k.suffix || "" });
         }
       });
     }
@@ -1365,26 +1382,53 @@
         });
       });
     }, { root: null, threshold: 0.35 });
-
     sections.forEach(sec => observer.observe(sec));
 
-    // Execute Audit form demo
+    // ===== (3) "Send to email" via mailto (opens user email client) =====
+    // For automatic sending without the visitor's email app, you need a backend endpoint (I can provide one if you want).
     const auditForm = document.getElementById("auditForm");
     const formNotice = document.getElementById("formNotice");
+
     auditForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(auditForm);
+
       const estate = (data.get("estateName") || "").toString().trim();
+      const name = (data.get("contactName") || "").toString().trim();
+      const tel = (data.get("contactTel") || "").toString().trim();
+      const email = (data.get("contactEmail") || "").toString().trim();
       const discipline = (data.get("discipline") || "").toString().trim();
-      formNotice.textContent = `Request queued: ${estate} // ${discipline}. (Connect this to your email/CRM endpoint when ready.)`;
+      const notes = (data.get("notes") || "").toString().trim();
+
+      const subject = `Safe Compliance Audit Request — ${estate || "New Enquiry"}`;
+      const body =
+`NEW AUDIT REQUEST
+
+ESTATE: ${estate}
+DISCIPLINE: ${discipline}
+
+CONTACT NAME: ${name}
+CONTACT EMAIL: ${email}
+CONTACT TEL: ${tel}
+
+NOTES:
+${notes || "(none)"}
+
+---
+Submitted via SafeCompliance.com`;
+
+      const mailto = `mailto:hello@safecompliance.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+
+      formNotice.textContent = "Opening your email client to send this request to hello@safecompliance.com...";
+      setTimeout(() => (formNotice.textContent = ""), 6500);
+
       auditForm.reset();
-      setTimeout(() => (formNotice.textContent = ""), 7000);
     });
 
     // Animate SYSTEM_BOOT log
     const bootLog = document.getElementById("bootLog");
     const healthIndex = document.getElementById("healthIndex");
-
     const liveChecks = [
       { t: "CHECKING_SSL_CERTIFICATE...", r: "VALID" },
       { t: "VALIDATING_NAV_LINKS...", r: "PASS" },
@@ -1394,7 +1438,6 @@
       { t: "HASHING_ASSET_MANIFEST...", r: "DONE" },
       { t: "AUDIT_PIPELINE_STATUS...", r: "ONLINE" }
     ];
-
     function addLiveLine(){
       const pick = liveChecks[Math.floor(Math.random()*liveChecks.length)];
       const line = document.createElement("div");
@@ -1409,7 +1452,6 @@
     }
     setInterval(addLiveLine, 1400);
 
-    // health index slight drift
     let hi = 100;
     setInterval(() => {
       hi = Math.max(96, Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1))));
@@ -1435,7 +1477,6 @@
           v = base + (Math.random() < 0.25 ? (Math.random() < 0.5 ? -1 : 1) : 0);
           v = Math.max(0, v);
         }
-
         el.textContent = formatValue(type, Number(v), suffix);
       });
     }
@@ -1461,8 +1502,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
