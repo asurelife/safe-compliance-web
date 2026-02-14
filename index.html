@@ -18,16 +18,6 @@
       --shadow:0 0 0 1px rgba(255,255,255,.06);
     }
 
-    html, body{
-  height: 100%;
-}
-
-body{
-  margin: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth; scroll-padding-top:84px;}
     body{
@@ -61,37 +51,16 @@ body{
         radial-gradient(900px 520px at 82% 38%, rgba(56,189,248,.08), transparent 60%);
     }
 
-    /* Capabilities: allow internal scrolling so content isn't clipped */
-#capabilities{
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
-
-/* Keep separators visible while scrolling inside Capabilities */
-#capabilities .separator-top,
-#capabilities .separator-bottom{
-  position: sticky;
-  left: 0;
-  right: 0;
-  z-index: 6;
-}
-
-#capabilities .separator-top{ top: 0; }
-#capabilities .separator-bottom{ bottom: 0; }
-
-
     /* ====== SECTION FULL HEIGHT + GREEN SEPARATORS ====== */
-/* Stable fullscreen sections (no clipping) */
-.fullscreen{
-  min-height: 100vh;       /* still full screen */
-  height: auto;            /* allows content to grow */
-  position: relative;
-  overflow: visible;       /* prevents "missing" content */
-  padding-top: 110px;      /* space for fixed header + green line */
-  padding-bottom: 80px;
-}
-
+    .fullscreen{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:110px 0;
+      position:relative;
+      overflow:hidden;
+      background:var(--navy);
+    }
     .separator-top{
       position:absolute; left:0; top:0; width:100%;
       height:3px;
@@ -748,43 +717,6 @@ body{
     }
     .footer-lines .line:last-child{border-bottom:none;}
     .footer-lines .muted{color:rgba(255,255,255,.55)}
-
-    /* Allow scroll only in Capabilities so content isn't clipped */
-.scroll-section{
-  overflow:auto;                  /* enables scrolling */
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width: thin;
-}
-
-/* Optional: keep the separators fixed while scrolling */
-.scroll-section .separator-top,
-.scroll-section .separator-bottom{
-  position: sticky;
-  left: 0;
-  right: 0;
-  z-index: 6;
-}
-.scroll-section .separator-top{ top: 0; }
-.scroll-section .separator-bottom{ bottom: 0; }
-
-/* Ensure your content sits above scanlines/glow */
-.scroll-section .container{
-  position: relative;
-  z-index: 3;
-}
-
-.scroll-section::-webkit-scrollbar{
-  width: 8px;
-}
-.scroll-section::-webkit-scrollbar-thumb{
-  background: rgba(255,255,255,.12);
-  border-radius: 999px;
-}
-.scroll-section::-webkit-scrollbar-track{
-  background: rgba(0,0,0,0);
-}
-
-
   </style>
 </head>
 
@@ -936,7 +868,7 @@ body{
   </section>
 
   <!-- CAPABILITIES -->
-  <section id="capabilities" class="fullscreen scroll-section">
+  <section id="capabilities" class="fullscreen">
     <div class="separator-top"></div>
     <div class="separator-bottom"></div>
     <div class="scanlines"></div>
@@ -1602,53 +1534,6 @@ Submitted via SafeCompliance.com`;
     });
   }
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const auditForm = document.getElementById("auditForm");
-  const formNotice = document.getElementById("formNotice");
-
-  if (!auditForm) return;
-
-  auditForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    if (formNotice) formNotice.textContent = "Transmitting audit request…";
-
-    const payload = {
-      estateName: document.getElementById("estateName").value.trim(),
-      contactName: document.getElementById("contactName").value.trim(),
-      contactTel: document.getElementById("contactTel").value.trim(),
-      contactEmail: document.getElementById("contactEmail").value.trim(),
-      discipline: document.getElementById("discipline").value.trim(),
-      notes: document.getElementById("notes").value.trim()
-    };
-
-    try {
-      const res = await fetch("/api/audit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok || !data.ok) {
-        if (formNotice) formNotice.textContent =
-          `Failed to send request. ${data?.error ? "Error: " + data.error : ""}`.trim();
-        return;
-      }
-
-      if (formNotice) formNotice.textContent = "Request sent successfully ✅";
-      auditForm.reset();
-      setTimeout(() => { if (formNotice) formNotice.textContent = ""; }, 7000);
-
-    } catch (err) {
-      if (formNotice) formNotice.textContent = "Network error. Please try again.";
-    }
-  });
-});
-</script>
-
 
 </body>
 </html>
