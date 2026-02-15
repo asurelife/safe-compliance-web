@@ -1455,27 +1455,35 @@ if (bootLog && healthIndex) {
   ];
 
   function addLiveLine() {
-    const pick = liveChecks[Math.floor(Math.random() * liveChecks.length)];
-    const line = document.createElement("div");
-    line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
-
     const divider = bootLog.querySelector(".terminal-divider");
     if (!divider) return;
 
+    const pick = liveChecks[Math.floor(Math.random() * liveChecks.length)];
+    const line = document.createElement("div");
+    line.className = "live-line";
+    line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
     bootLog.insertBefore(line, divider);
 
-    const lines = bootLog.querySelectorAll("div");
-    if (lines.length > 12) bootLog.removeChild(lines[4]);
+    // keep only the latest 8 live lines (never touches your fixed lines or divider)
+    const live = bootLog.querySelectorAll(".live-line");
+    if (live.length > 8) live[0].remove();
   }
+
+  // PRE-FILL so the terminal looks "full" immediately
+  for (let i = 0; i < 6; i++) addLiveLine();
 
   setInterval(addLiveLine, 1400);
 
   let hi = 100;
   setInterval(() => {
-    hi = Math.max(96, Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1))));
+    hi = Math.max(
+      96,
+      Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1)))
+    );
     healthIndex.textContent = String(Math.round(hi));
   }, 1200);
 }
+
 
     // Animate KPI numbers
     function tickLiveKpis(){
