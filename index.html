@@ -29,13 +29,19 @@
     }
     a{color:inherit; text-decoration:none}
 
-    .container{
-      width: min(1180px, 92vw);
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 2;
-    }
+.container{
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: clamp(16px, 4vw, 32px);
+  padding-right: clamp(16px, 4vw, 32px);
+  position: relative;
+  z-index: 2;
+}
+
+    html, body{
+  overflow-x: hidden;
+}
 
     /* ====== FUTURISTIC BACKDROP ====== */
     .scanlines{
@@ -67,7 +73,10 @@
       display: flex;
       align-items: center;
     }
-    .fullscreen > .container{ width: 100%; }
+    .fullscreen > .container{
+  width: 100%;
+  max-width: 1180px;
+}
 
     .separator-top{
       position:absolute; left:0; top:0; width:100%;
