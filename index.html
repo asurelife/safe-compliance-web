@@ -28,15 +28,14 @@
       line-height:1.5;
     }
     a{color:inherit; text-decoration:none}
-    
-    /*.container{width:min(1200px, 92vw); margin:0 auto;}*/
+
     .container{
-  width: min(1180px, 92vw);
-  margin: 0 auto;
-  padding: 0 24px;
-  position: relative;
-  z-index: 2;
-  }
+      width: min(1180px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
 
     /* ====== FUTURISTIC BACKDROP ====== */
     .scanlines{
@@ -60,20 +59,15 @@
     }
 
     /* ====== SECTION FULL HEIGHT + GREEN SEPARATORS ====== */
-.fullscreen{
-  min-height: 100vh;
-  position: relative;
-  padding: 120px 0;
-  overflow: visible;
-
-  /* restore “content enters the screen” */
-  display: flex;
-  align-items: center;
-}
-
-.fullscreen > .container{
-  width: 100%;
-}
+    .fullscreen{
+      min-height: 100vh;
+      position: relative;
+      padding: 120px 0;
+      overflow: visible;
+      display: flex;
+      align-items: center;
+    }
+    .fullscreen > .container{ width: 100%; }
 
     .separator-top{
       position:absolute; left:0; top:0; width:100%;
@@ -91,14 +85,13 @@
       pointer-events:none;
     }
 
-    /* ====== (1) LIVE PULSING DOTS — APPLIES TO ALL DOT TYPES ====== */
+    /* ====== LIVE PULSING DOTS ====== */
     @keyframes pulse{
       0%{transform:scale(.35); opacity:.0}
       25%{opacity:.55}
       100%{transform:scale(1.35); opacity:0}
     }
 
-    /* base dot + ring */
     .pulse-dot,
     .s-dot,
     .mini-dot{
@@ -450,7 +443,6 @@
     .cap-index.big{font-size:12px;}
     .cap-status{margin-top:6px; display:flex; align-items:center; gap:8px;}
 
-    /* status dots (now pulsing too) */
     .s-dot{
       width:6px;height:6px;
       display:inline-block;
@@ -601,7 +593,6 @@
       color:rgba(255,255,255,.82);
     }
 
-    /* mini dots (now pulsing too) */
     .mini-dot{
       width:6px;height:6px;
       background:rgba(130,188,0,.85);
@@ -722,7 +713,6 @@
     .footer-links a:last-child{border-bottom:none;}
     .footer-links a:hover{color:#fff;}
 
-    /* (4) align Command Centre address rows with System/Legal rows */
     .footer-lines .line{
       display:block;
       padding:8px 0;
@@ -874,7 +864,7 @@
             <div>&gt; LOADING_COMPLIANCE_ENGINE... <span class="strong">DONE</span></div>
             <div>&gt; VERIFYING_SITE_INTEGRITY... <span class="strong">PASS</span></div>
             <div>&gt; PING_TELEMETRY_NODES... <span class="strong">OK</span></div>
-            
+
             <div class="terminal-divider"></div>
             <div class="terminal-big">ESTATE_HEALTH_INDEX: <span id="healthIndex">100</span>%</div>
             <div>&gt; VALIDATING_NAV_LINKS... <span class="strong">PASS</span></div>
@@ -882,7 +872,6 @@
             <div>&gt; VERIFYING_FORM_ENDPOINT... <span class="strong">READY</span></div>
             <div>&gt; HASHING_ASSET_MANIFEST... <span class="strong">DONE</span></div>
             <div>&gt; AUDIT_PIPELINE_STATUS... <span class="strong">ONLINE</span></div>
-
           </div>
         </div>
       </div>
@@ -1002,7 +991,6 @@
 
       <div class="audit-center">
         <div class="audit-card">
-          <!-- (3) NOTE: true “send email” requires a server. This uses mailto (opens the visitor’s email client). -->
           <form id="auditForm">
             <div class="form-grid">
               <div>
@@ -1097,7 +1085,6 @@
 
         <div>
           <div class="footer-col-title"><span class="pulse-dot"></span>COMMAND CENTRE</div>
-          <!-- (4) address lines now match the same row height/padding as “Architecture” + “Privacy” -->
           <div class="footer-lines">
             <span class="line">71–75 Shelton Street</span>
             <span class="line">London, WC2H 9JQ</span>
@@ -1108,6 +1095,7 @@
     </div>
   </footer>
 
+  <!-- ✅ SINGLE CONSOLIDATED SCRIPT (fixes missing Command Centre Modules) -->
   <script>
     // ===== Mobile menu =====
     const hamburger = document.getElementById("hamburger");
@@ -1138,7 +1126,6 @@
       {
         id: "fire",
         index: "02",
-        /* (2) updated label */
         title: "FIRE, HEALTH & SAFETY",
         category: "SAFETY",
         status: "ACTIVE",
@@ -1256,10 +1243,26 @@
       return "monitoring";
     };
 
-    // Render left list
+    // ===== Capabilities: render left list + right panel =====
     const capItemsEl = document.getElementById("capItems");
     const moduleCountEl = document.getElementById("moduleCount");
-    moduleCountEl.textContent = String(CAPS.length).padStart(2,"0");
+    if (moduleCountEl) moduleCountEl.textContent = String(CAPS.length).padStart(2,"0");
+
+    const panelCategory = document.getElementById("panelCategory");
+    const panelStatusDot = document.getElementById("panelStatusDot");
+    const panelStatusText = document.getElementById("panelStatusText");
+    const panelIndex = document.getElementById("panelIndex");
+    const panelTitle = document.getElementById("panelTitle");
+    const panelBlurb = document.getElementById("panelBlurb");
+    const panelKpis = document.getElementById("panelKpis");
+    const panelSignals = document.getElementById("panelSignals");
+    const panelOutputs = document.getElementById("panelOutputs");
+    const panelProtocols = document.getElementById("panelProtocols");
+    const signalsCount = document.getElementById("signalsCount");
+    const outputsCount = document.getElementById("outputsCount");
+    const protocolsCount = document.getElementById("protocolsCount");
+
+    let liveKpiNodes = [];
 
     function createCapButton(cap, isActive){
       const sClass = statusToClass(cap.status);
@@ -1289,6 +1292,7 @@
     }
 
     function renderLeftList(activeId){
+      if (!capItemsEl) return;
       capItemsEl.innerHTML = "";
       CAPS.forEach((cap) => {
         const btn = createCapButton(cap, cap.id === activeId);
@@ -1297,25 +1301,8 @@
       });
     }
 
-    // Right panel elements
-    const panelCategory = document.getElementById("panelCategory");
-    const panelStatusDot = document.getElementById("panelStatusDot");
-    const panelStatusText = document.getElementById("panelStatusText");
-    const panelIndex = document.getElementById("panelIndex");
-    const panelTitle = document.getElementById("panelTitle");
-    const panelBlurb = document.getElementById("panelBlurb");
-    const panelKpis = document.getElementById("panelKpis");
-    const panelSignals = document.getElementById("panelSignals");
-    const panelOutputs = document.getElementById("panelOutputs");
-    const panelProtocols = document.getElementById("panelProtocols");
-    const signalsCount = document.getElementById("signalsCount");
-    const outputsCount = document.getElementById("outputsCount");
-    const protocolsCount = document.getElementById("protocolsCount");
-
-    // live KPI nodes
-    let liveKpiNodes = [];
-
     function renderTags(el, items){
+      if (!el) return;
       el.innerHTML = "";
       items.forEach((t) => {
         const div = document.createElement("div");
@@ -1334,6 +1321,7 @@
     }
 
     function renderKpis(kpis){
+      if (!panelKpis) return;
       panelKpis.innerHTML = "";
       liveKpiNodes = [];
 
@@ -1364,23 +1352,25 @@
       const cap = CAPS.find(c => c.id === id) || CAPS[0];
       const sClass = statusToClass(cap.status);
 
-      panelCategory.textContent = cap.category;
-      panelIndex.textContent = `[${cap.index}]`;
-      panelTitle.textContent = cap.title;
-      panelBlurb.textContent = cap.blurb;
+      if (panelCategory) panelCategory.textContent = cap.category;
+      if (panelIndex) panelIndex.textContent = `[${cap.index}]`;
+      if (panelTitle) panelTitle.textContent = cap.title;
+      if (panelBlurb) panelBlurb.textContent = cap.blurb;
 
-      panelStatusDot.className = `s-dot ${sClass}`;
-      panelStatusText.className = `s-text ${sClass}`;
-      panelStatusText.textContent = cap.status;
+      if (panelStatusDot) panelStatusDot.className = `s-dot ${sClass}`;
+      if (panelStatusText){
+        panelStatusText.className = `s-text ${sClass}`;
+        panelStatusText.textContent = cap.status;
+      }
 
       renderKpis(cap.kpis);
       renderTags(panelSignals, cap.signals);
       renderTags(panelOutputs, cap.outputs);
       renderTags(panelProtocols, cap.protocols);
 
-      signalsCount.textContent = String(cap.signals.length).padStart(2,"0") + "x";
-      outputsCount.textContent = String(cap.outputs.length).padStart(2,"0") + "x";
-      protocolsCount.textContent = String(cap.protocols.length).padStart(2,"0") + "x";
+      if (signalsCount) signalsCount.textContent = String(cap.signals.length).padStart(2,"0") + "x";
+      if (outputsCount) outputsCount.textContent = String(cap.outputs.length).padStart(2,"0") + "x";
+      if (protocolsCount) protocolsCount.textContent = String(cap.protocols.length).padStart(2,"0") + "x";
 
       renderLeftList(cap.id);
     }
@@ -1388,107 +1378,50 @@
     renderLeftList(CAPS[0].id);
     setActive(CAPS[0].id);
 
-    // Nav active highlighting on scroll
-    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
-    const sections = ["intelligence","architecture","capabilities","execute-audit"]
-      .map(id => document.getElementById(id))
-      .filter(Boolean);
+    // ===== SYSTEM_BOOT live lines =====
+    const bootLog = document.getElementById("bootLog");
+    const healthIndex = document.getElementById("healthIndex");
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const id = entry.target.id;
-        navLinks.forEach(a => {
-          const href = a.getAttribute("href") || "";
-          a.classList.toggle("active", href === "#" + id);
-        });
-      });
-    }, { root: null, threshold: 0.35 });
-    sections.forEach(sec => observer.observe(sec));
+    if (bootLog && healthIndex) {
+      const liveChecks = [
+        { t: "CHECKING_SSL_CERTIFICATE...", r: "VALID" },
+        { t: "VALIDATING_NAV_LINKS...", r: "PASS" },
+        { t: "SCANNING_SECTION_RENDER...", r: "OK" },
+        { t: "VERIFYING_FORM_ENDPOINT...", r: "READY" },
+        { t: "PING_TELEMETRY_GATEWAY...", r: "OK" },
+        { t: "HASHING_ASSET_MANIFEST...", r: "DONE" },
+        { t: "AUDIT_PIPELINE_STATUS...", r: "ONLINE" }
+      ];
 
-    // ===== (3) "Send to email" via mailto (opens user email client) =====
-    // For automatic sending without the visitor's email app, you need a backend endpoint (I can provide one if you want).
-    const auditForm = document.getElementById("auditForm");
-    const formNotice = document.getElementById("formNotice");
+      function addLiveLine() {
+        const divider = bootLog.querySelector(".terminal-divider");
+        if (!divider) return;
 
-    auditForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const data = new FormData(auditForm);
+        const pick = liveChecks[Math.floor(Math.random() * liveChecks.length)];
+        const line = document.createElement("div");
+        line.className = "live-line";
+        line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
+        bootLog.insertBefore(line, divider);
 
-      const estate = (data.get("estateName") || "").toString().trim();
-      const name = (data.get("contactName") || "").toString().trim();
-      const tel = (data.get("contactTel") || "").toString().trim();
-      const email = (data.get("contactEmail") || "").toString().trim();
-      const discipline = (data.get("discipline") || "").toString().trim();
-      const notes = (data.get("notes") || "").toString().trim();
+        const live = bootLog.querySelectorAll(".live-line");
+        if (live.length > 8) live[0].remove();
+      }
 
-      const subject = `Safe Compliance Audit Request — ${estate || "New Enquiry"}`;
-      const body =
-`NEW AUDIT REQUEST
+      for (let i = 0; i < 6; i++) addLiveLine();
+      setInterval(addLiveLine, 1400);
 
-ESTATE: ${estate}
-DISCIPLINE: ${discipline}
+      let hi = 100;
+      setInterval(() => {
+        hi = Math.max(96, Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1))));
+        healthIndex.textContent = String(Math.round(hi));
+      }, 1200);
+    }
 
-CONTACT NAME: ${name}
-CONTACT EMAIL: ${email}
-CONTACT TEL: ${tel}
-
-NOTES:
-${notes || "(none)"}
-
----
-Submitted via SafeCompliance.com`;
-
-// SYSTEM_BOOT log (safe)
-const bootLog = document.getElementById("bootLog");
-const healthIndex = document.getElementById("healthIndex");
-
-if (bootLog && healthIndex) {
-  const liveChecks = [
-    { t: "CHECKING_SSL_CERTIFICATE...", r: "VALID" },
-    { t: "VALIDATING_NAV_LINKS...", r: "PASS" },
-    { t: "SCANNING_SECTION_RENDER...", r: "OK" },
-    { t: "VERIFYING_FORM_ENDPOINT...", r: "READY" },
-    { t: "PING_TELEMETRY_GATEWAY...", r: "OK" },
-    { t: "HASHING_ASSET_MANIFEST...", r: "DONE" },
-    { t: "AUDIT_PIPELINE_STATUS...", r: "ONLINE" }
-  ];
-
-  function addLiveLine() {
-    const divider = bootLog.querySelector(".terminal-divider");
-    if (!divider) return;
-
-    const pick = liveChecks[Math.floor(Math.random() * liveChecks.length)];
-    const line = document.createElement("div");
-    line.className = "live-line";
-    line.innerHTML = `&gt; ${pick.t} <span class="strong">${pick.r}</span>`;
-    bootLog.insertBefore(line, divider);
-
-    // keep only the latest 8 live lines (never touches your fixed lines or divider)
-    const live = bootLog.querySelectorAll(".live-line");
-    if (live.length > 8) live[0].remove();
-  }
-
-  // PRE-FILL so the terminal looks "full" immediately
-  for (let i = 0; i < 6; i++) addLiveLine();
-
-  setInterval(addLiveLine, 1400);
-
-  let hi = 100;
-  setInterval(() => {
-    hi = Math.max(
-      96,
-      Math.min(100, hi + (Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : +1)))
-    );
-    healthIndex.textContent = String(Math.round(hi));
-  }, 1200);
-}
-
-
-    // Animate KPI numbers
+    // ===== Animate KPI numbers (Capabilities) =====
     function tickLiveKpis(){
       liveKpiNodes.forEach(node => {
         const { el, type, base, suffix } = node;
+        if (!el) return;
 
         let v = base;
         if (type === "ms"){
@@ -1509,7 +1442,7 @@ if (bootLog && healthIndex) {
     }
     setInterval(tickLiveKpis, 900);
 
-    // Animate Architecture stats values
+    // ===== Animate Architecture stats values =====
     const statLive = document.querySelectorAll("[data-live]");
     setInterval(() => {
       statLive.forEach(el => {
@@ -1526,50 +1459,69 @@ if (bootLog && healthIndex) {
         }
       });
     }, 1000);
-  </script>
-<script>
-  const auditForm = document.getElementById("auditForm");
-  const formNotice = document.getElementById("formNotice");
 
-  if (auditForm) {
-    auditForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    // ===== Audit form (fetch to /api/audit) =====
+    const auditForm = document.getElementById("auditForm");
+    const formNotice = document.getElementById("formNotice");
 
-      formNotice.textContent = "Transmitting audit request…";
+    if (auditForm) {
+      auditForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (formNotice) formNotice.textContent = "Transmitting audit request…";
 
-      const payload = {
-        estateName: document.getElementById("estateName").value.trim(),
-        contactName: document.getElementById("contactName").value.trim(),
-        contactTel: document.getElementById("contactTel").value.trim(),
-        contactEmail: document.getElementById("contactEmail").value.trim(),
-        discipline: document.getElementById("discipline").value.trim(),
-        notes: document.getElementById("notes").value.trim()
-      };
+        const payload = {
+          estateName: document.getElementById("estateName")?.value.trim() || "",
+          contactName: document.getElementById("contactName")?.value.trim() || "",
+          contactTel: document.getElementById("contactTel")?.value.trim() || "",
+          contactEmail: document.getElementById("contactEmail")?.value.trim() || "",
+          discipline: document.getElementById("discipline")?.value.trim() || "",
+          notes: document.getElementById("notes")?.value.trim() || ""
+        };
 
-      try {
-        const res = await fetch("/api/audit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
+        try {
+          const res = await fetch("/api/audit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
 
-        const data = await res.json().catch(() => ({}));
+          const data = await res.json().catch(() => ({}));
 
-        if (!res.ok || !data.ok) {
-          formNotice.textContent = "Failed to send request. Please try again.";
-          return;
+          if (!res.ok || !data.ok) {
+            if (formNotice) formNotice.textContent = "Failed to send request. Please try again.";
+            return;
+          }
+
+          if (formNotice) formNotice.textContent = "Request sent successfully ✅";
+          auditForm.reset();
+          setTimeout(() => { if (formNotice) formNotice.textContent = ""; }, 7000);
+
+        } catch (err) {
+          if (formNotice) formNotice.textContent = "Network error. Please try again.";
         }
+      });
+    }
 
-        formNotice.textContent = "Request sent successfully ✅";
-        auditForm.reset();
-        setTimeout(() => (formNotice.textContent = ""), 7000);
+    // ===== Nav active highlighting on scroll =====
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+    const sections = ["intelligence","architecture","capabilities","execute-audit"]
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
 
-      } catch (err) {
-        formNotice.textContent = "Network error. Please try again.";
-      }
-    });
-  }
-</script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach(a => {
+          const href = a.getAttribute("href") || "";
+          a.classList.toggle("active", href === "#" + id);
+        });
+      });
+    }, { threshold: 0.35 });
+
+    sections.forEach(sec => observer.observe(sec));
+  </script>
 
 </body>
 </html>
+
